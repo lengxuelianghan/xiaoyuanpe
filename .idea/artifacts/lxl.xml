@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lxl">
+    <output-path>$PROJECT_DIR$/out/artifacts/lxl</output-path>
+    <root id="archive" name="lxl.war" />
+  </artifact>
+</component>

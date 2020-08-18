@@ -65,6 +65,11 @@ public class UserController {
         return resultBean;
     }
 
+    @RequestMapping(value = "/ceshi")
+    public String ceshi(){
+      return "hello world";
+    }
+
     @RequestMapping(value = "/updateUser")
     public ResultBean updateUser(@RequestBody User user){
         ResultBean resultBean = new ResultBean();
