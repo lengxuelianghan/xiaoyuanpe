@@ -54,7 +54,7 @@ public class BusinessController {
         return resultBean;
     }
 
-    @RequestMapping("/updateBusiness")
+    @RequestMapping(value = "/updateBusiness", method = RequestMethod.POST)
     public ResultBean updateBusiness(@RequestBody Business business){
         ResultBean resultBean = new ResultBean();
         try {

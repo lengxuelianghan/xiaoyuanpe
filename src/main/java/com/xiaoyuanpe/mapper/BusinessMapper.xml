@@ -248,4 +248,11 @@
       bueines_price = #{bueinesPrice,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <delete id="deleteByPrimaryList" parameterType="java.util.List">
+    delete from business
+    where id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

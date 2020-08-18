@@ -26,7 +26,7 @@ public class TransactionController {
         return resultBean;
     }
 
-    @PostMapping("/queryTransaction")
+    @RequestMapping("/queryTransaction/{id}")
     public ResultBean queryTransaction(@PathVariable Integer id){
         ResultBean resultBean = new ResultBean();
         try {
@@ -40,7 +40,7 @@ public class TransactionController {
         return resultBean;
     }
 
-    @PostMapping("/queryTransactionList")
+    @RequestMapping("/queryTransactionList")
     public ResultBean queryTransactionList(){
         ResultBean resultBean = new ResultBean();
         try {
@@ -54,7 +54,7 @@ public class TransactionController {
         return resultBean;
     }
 
-    @PostMapping("/updateTransaction")
+    @RequestMapping(value = "/updateTransaction", method = RequestMethod.POST)
     public ResultBean updateTransaction(@RequestBody Transaction transaction){
         ResultBean resultBean = new ResultBean();
         try {

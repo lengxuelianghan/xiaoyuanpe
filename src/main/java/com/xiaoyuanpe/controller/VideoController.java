@@ -53,7 +53,7 @@ public class VideoController {
         return resultBean;
     }
 
-    @RequestMapping("/updateVideo")
+    @RequestMapping(value = "/updateVideo", method = RequestMethod.POST)
     public ResultBean updateVideo(@RequestBody Video video){
         ResultBean resultBean = new ResultBean();
         try {

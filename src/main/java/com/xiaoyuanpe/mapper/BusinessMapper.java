@@ -32,5 +32,7 @@ public interface BusinessMapper {
 
     int updateByPrimaryKeyWithBLOBs(Business record);
 
+    int deleteByPrimaryList(List<Integer> id);
+
     int updateByPrimaryKey(Business record);
 }

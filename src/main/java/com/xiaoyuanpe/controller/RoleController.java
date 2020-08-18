@@ -12,7 +12,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @PostMapping("/addUser")
+    @PostMapping("/addRole")
     public ResultBean addRole(@RequestBody Role role){
         ResultBean resultBean = new ResultBean();
         try {
@@ -49,6 +49,20 @@ public class RoleController {
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg("角色列表查找失败");
+            System.out.println("错误:"+e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @RequestMapping("/updateRole")
+    public ResultBean updateRole(@RequestBody Role role){
+        ResultBean resultBean = new ResultBean();
+        try {
+            resultBean.setCode(0);
+            this.roleService.ModifyRole(role);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg("角色修改失败");
             System.out.println("错误:"+e.getMessage());
         }
         return resultBean;

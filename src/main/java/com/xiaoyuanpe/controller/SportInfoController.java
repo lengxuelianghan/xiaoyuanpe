@@ -58,7 +58,7 @@ public class SportInfoController {
         return resultBean;
     }
 
-    @RequestMapping("/updateSportInfo")
+    @RequestMapping(value = "/updateSportInfo", method = RequestMethod.POST)
     public ResultBean updateSportInfoList(@RequestBody SportInfo sportInfo){
         ResultBean resultBean = new ResultBean();
         try {

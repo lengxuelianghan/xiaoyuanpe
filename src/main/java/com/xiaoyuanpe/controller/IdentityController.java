@@ -6,12 +6,10 @@ import com.xiaoyuanpe.services.IdentityService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("identity")
+@RequestMapping("/identity")
 public class IdentityController {
     @Autowired
     private IdentityService identityService;
@@ -20,7 +18,7 @@ public class IdentityController {
 
 
     @PostMapping("/addIdentity")
-    public ResultBean addIdentity(Identities identities){
+    public ResultBean addIdentity(@RequestBody Identities identities){
         ResultBean resultBean = new ResultBean();
         try {
             this.identityService.addIdentities(identities);
@@ -31,8 +29,8 @@ public class IdentityController {
         }
         return resultBean;
     }
-    @RequestMapping("/queryIdentity")
-    public ResultBean queryIdentity(Integer id){
+    @RequestMapping("/queryIdentity/{id}")
+    public ResultBean queryIdentity(@PathVariable Integer id){
         ResultBean resultBean = new ResultBean();
         try {
             resultBean.setData(this.identityService.findIdentitiesById(id));
@@ -55,8 +53,8 @@ public class IdentityController {
         }
         return resultBean;
     }
-    @RequestMapping("/updateIdentity")
-    public ResultBean updateIdentity(Identities identities){
+    @RequestMapping(value = "/updateIdentity", method = RequestMethod.POST)
+    public ResultBean updateIdentity(@RequestBody Identities identities){
         ResultBean resultBean = new ResultBean();
         try {
             this.identityService.ModifyIdentities(identities);
@@ -67,8 +65,8 @@ public class IdentityController {
         }
         return resultBean;
     }
-    @RequestMapping("/assignIdentity")
-    public ResultBean assignIdentity(Integer id, String identities){
+    @RequestMapping("/assignIdentity/{id}")
+    public ResultBean assignIdentity(@PathVariable Integer id, @RequestBody String identities){
         ResultBean resultBean = new ResultBean();
         try {
            Boolean b = this.identityService.assignIdentity(id, identities);

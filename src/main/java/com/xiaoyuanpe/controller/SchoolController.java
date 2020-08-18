@@ -12,7 +12,7 @@ public class SchoolController {
     @Autowired
     private SchoolService schoolService;
 
-    @PostMapping("addSchool")
+    @PostMapping("/addSchool")
     public ResultBean addSchool(@RequestBody School school){
         ResultBean resultBean = new ResultBean();
         try {
@@ -26,7 +26,7 @@ public class SchoolController {
         return resultBean;
     }
 
-    @RequestMapping("querySchool/{id}")
+    @RequestMapping("/querySchool/{id}")
     public ResultBean querySchool(@PathVariable Integer id){
         ResultBean resultBean = new ResultBean();
         try {
@@ -40,7 +40,7 @@ public class SchoolController {
         return resultBean;
     }
 
-    @RequestMapping("querySchoolList")
+    @RequestMapping("/querySchoolList")
     public ResultBean querySchoolList(){
         ResultBean resultBean = new ResultBean();
         try {
@@ -54,7 +54,7 @@ public class SchoolController {
         return resultBean;
     }
 
-    @RequestMapping("updateSchool")
+    @RequestMapping(value = "/updateSchool", method = RequestMethod.POST)
     public ResultBean updateSchool(@RequestBody School school){
         ResultBean resultBean = new ResultBean();
         try {

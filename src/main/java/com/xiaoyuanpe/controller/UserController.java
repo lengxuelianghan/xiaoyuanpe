@@ -83,6 +83,14 @@ public class UserController {
         }
         return resultBean;
     }
+
+    @PostMapping("/deleteUser")
+    public ResultBean deleteUser(@RequestBody List<Integer> selectsMultipleId){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setMsg("SUCCESS");
+        //resultBean.setCode(this.userService.deleteCustomerRecords(selectsMultipleId));
+        return resultBean;
+    }
 //    @RequestMapping(value="/startTime/{id}/{time}")
 //    public ResultBean startTime(@PathVariable Integer id, String time){
 //        ResultBean resultBean = new ResultBean();
