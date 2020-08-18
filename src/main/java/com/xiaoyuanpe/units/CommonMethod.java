@@ -5,7 +5,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.BASE64Decoder;
+//import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -108,36 +108,36 @@ public class CommonMethod {
         return val.toString();
     }
 
-    public ResultBean<String> UploadImage(String fileName, String file, String path) {
-        BASE64Decoder decoder = new BASE64Decoder();
-        try {
-            String imageFile = file.split(",")[1];
-            System.out.println("图片开始上传!");
-            byte[] bytes = decoder.decodeBuffer(imageFile);
-            for (int i = 0; i < bytes.length; ++i) {
-                if (bytes[i] < 0) {
-                    bytes[i] += 256; // 调整异常数据
-                }
-            }
-            String fPath = "C:\\jsdData\\image\\" + path;
-            File fFile = new File(fPath);
-            if (!fFile.exists()) {
-                fFile.mkdirs();
-            }
-            String realPath = fPath + "\\" + fileName;
-            // 生成图片
-            OutputStream out = new FileOutputStream(realPath);
-            out.write(bytes);
-            out.flush();
-            out.close();
-            String contextPate = "\\image\\" + path + "\\" + fileName;
-            return new ResultBean<>(contextPate, SUCCESS, "上传成功");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return new ResultBean<>(UNKNOWN_EXCEPTION, "系统错误，请联系管理员!");
-        }
-    }
+//    public ResultBean<String> UploadImage(String fileName, String file, String path) {
+//        BASE64Decoder decoder = new BASE64Decoder();
+//        try {
+//            String imageFile = file.split(",")[1];
+//            System.out.println("图片开始上传!");
+//            byte[] bytes = decoder.decodeBuffer(imageFile);
+//            for (int i = 0; i < bytes.length; ++i) {
+//                if (bytes[i] < 0) {
+//                    bytes[i] += 256; // 调整异常数据
+//                }
+//            }
+//            String fPath = "C:\\jsdData\\image\\" + path;
+//            File fFile = new File(fPath);
+//            if (!fFile.exists()) {
+//                fFile.mkdirs();
+//            }
+//            String realPath = fPath + "\\" + fileName;
+//            // 生成图片
+//            OutputStream out = new FileOutputStream(realPath);
+//            out.write(bytes);
+//            out.flush();
+//            out.close();
+//            String contextPate = "\\image\\" + path + "\\" + fileName;
+//            return new ResultBean<>(contextPate, SUCCESS, "上传成功");
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResultBean<>(UNKNOWN_EXCEPTION, "系统错误，请联系管理员!");
+//        }
+//    }
 
     /**
      * @description: 该方法用于上传文件
