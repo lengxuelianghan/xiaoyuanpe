@@ -28,10 +28,24 @@ public class LoginController {
             for (User user : this.userService.findUsersAll()) {
                 if (usernumber.equals(user.getEmail())) {
                     session.setAttribute("user", user);
+                    session.setMaxInactiveInterval(30*60*60);
                 }
             }
             resultBean.setCode(0);
             resultBean.setMsg(info);
+        }catch (Exception e){
+            System.out.println("错误："+e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("登录失败");
+        }
+        return resultBean;
+    }
+    @PostMapping("/logout")
+    public ResultBean logout(HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        try {
+            session.removeAttribute("user");
+            resultBean.setCode(0);
         }catch (Exception e){
             System.out.println("错误："+e.getMessage());
             resultBean.setCode(1);
