@@ -5,9 +5,15 @@ public class SportInfo {
 
     private Integer sportId;
 
+    private Integer collegeId;
+
     private Integer studentId;
 
     private Integer singleExerciseTime;
+
+    private Integer schoolId;
+
+    private Integer classId;
 
     public Integer getId() {
         return id;
@@ -25,6 +31,14 @@ public class SportInfo {
         this.sportId = sportId;
     }
 
+    public Integer getCollegeId() {
+        return collegeId;
+    }
+
+    public void setCollegeId(Integer collegeId) {
+        this.collegeId = collegeId;
+    }
+
     public Integer getStudentId() {
         return studentId;
     }
@@ -39,5 +53,21 @@ public class SportInfo {
 
     public void setSingleExerciseTime(Integer singleExerciseTime) {
         this.singleExerciseTime = singleExerciseTime;
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public Integer getClassId() {
+        return classId;
+    }
+
+    public void setClassId(Integer classId) {
+        this.classId = classId;
     }
 }

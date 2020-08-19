@@ -39,3 +39,4 @@ public class VideoServiceImpl implements VideoService {
         this.videoMapper.deleteByPrimaryKey(id);
     }
 }
+

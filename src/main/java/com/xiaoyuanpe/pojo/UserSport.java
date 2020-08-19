@@ -3,13 +3,19 @@ package com.xiaoyuanpe.pojo;
 public class UserSport {
     private Integer id;
 
-    private Integer userId;
+    private Integer collegeId;
+
+    private Integer schoolId;
 
     private Integer sportId;
 
-    private String action;
+    private String organizers;
 
-    private Integer score;
+    private Integer times;
+
+    private String studentNumber;
+
+    private Integer flag;
 
     public Integer getId() {
         return id;
@@ -19,12 +25,20 @@ public class UserSport {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getCollegeId() {
+        return collegeId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCollegeId(Integer collegeId) {
+        this.collegeId = collegeId;
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
     }
 
     public Integer getSportId() {
@@ -35,19 +49,35 @@ public class UserSport {
         this.sportId = sportId;
     }
 
-    public String getAction() {
-        return action;
+    public String getOrganizers() {
+        return organizers;
     }
 
-    public void setAction(String action) {
-        this.action = action == null ? null : action.trim();
+    public void setOrganizers(String organizers) {
+        this.organizers = organizers == null ? null : organizers.trim();
     }
 
-    public Integer getScore() {
-        return score;
+    public Integer getTimes() {
+        return times;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setTimes(Integer times) {
+        this.times = times;
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber == null ? null : studentNumber.trim();
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 }

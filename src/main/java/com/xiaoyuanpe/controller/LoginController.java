@@ -40,7 +40,7 @@ public class LoginController {
         }
         return resultBean;
     }
-    @PostMapping("/logout")
+    @RequestMapping("/logout")
     public ResultBean logout(HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {

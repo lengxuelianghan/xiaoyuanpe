@@ -3,10 +3,13 @@
 <mapper namespace="com.xiaoyuanpe.mapper.UserSportMapper">
   <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.UserSport">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="college_id" jdbcType="INTEGER" property="collegeId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
     <result column="sport_id" jdbcType="INTEGER" property="sportId" />
-    <result column="action" jdbcType="VARCHAR" property="action" />
-    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="organizers" jdbcType="VARCHAR" property="organizers" />
+    <result column="times" jdbcType="INTEGER" property="times" />
+    <result column="student_number" jdbcType="VARCHAR" property="studentNumber" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, sport_id, action, score
+    id, college_id, school_id, sport_id, organizers, times, student_number, flag
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.UserSportExample" resultMap="BaseResultMap">
     select
@@ -100,10 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.UserSport">
-    insert into user_sport (id, user_id, sport_id, 
-      action, score)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{sportId,jdbcType=INTEGER}, 
-      #{action,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER})
+    insert into user_sport (id, college_id, school_id, 
+      sport_id, organizers, times, 
+      student_number, flag)
+    values (#{id,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, 
+      #{sportId,jdbcType=INTEGER}, #{organizers,jdbcType=VARCHAR}, #{times,jdbcType=INTEGER}, 
+      #{studentNumber,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.UserSport">
     insert into user_sport
@@ -111,34 +116,52 @@
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="collegeId != null">
+        college_id,
+      </if>
+      <if test="schoolId != null">
+        school_id,
       </if>
       <if test="sportId != null">
         sport_id,
       </if>
-      <if test="action != null">
-        action,
+      <if test="organizers != null">
+        organizers,
       </if>
-      <if test="score != null">
-        score,
+      <if test="times != null">
+        times,
+      </if>
+      <if test="studentNumber != null">
+        student_number,
+      </if>
+      <if test="flag != null">
+        flag,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="collegeId != null">
+        #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="sportId != null">
         #{sportId,jdbcType=INTEGER},
       </if>
-      <if test="action != null">
-        #{action,jdbcType=VARCHAR},
+      <if test="organizers != null">
+        #{organizers,jdbcType=VARCHAR},
       </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
+      <if test="times != null">
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="studentNumber != null">
+        #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -154,17 +177,26 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.collegeId != null">
+        college_id = #{record.collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
       </if>
       <if test="record.sportId != null">
         sport_id = #{record.sportId,jdbcType=INTEGER},
       </if>
-      <if test="record.action != null">
-        action = #{record.action,jdbcType=VARCHAR},
+      <if test="record.organizers != null">
+        organizers = #{record.organizers,jdbcType=VARCHAR},
       </if>
-      <if test="record.score != null">
-        score = #{record.score,jdbcType=INTEGER},
+      <if test="record.times != null">
+        times = #{record.times,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentNumber != null">
+        student_number = #{record.studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -174,10 +206,13 @@
   <update id="updateByExample" parameterType="map">
     update user_sport
     set id = #{record.id,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      college_id = #{record.collegeId,jdbcType=INTEGER},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
       sport_id = #{record.sportId,jdbcType=INTEGER},
-      action = #{record.action,jdbcType=VARCHAR},
-      score = #{record.score,jdbcType=INTEGER}
+      organizers = #{record.organizers,jdbcType=VARCHAR},
+      times = #{record.times,jdbcType=INTEGER},
+      student_number = #{record.studentNumber,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -185,27 +220,40 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.UserSport">
     update user_sport
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="collegeId != null">
+        college_id = #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="sportId != null">
         sport_id = #{sportId,jdbcType=INTEGER},
       </if>
-      <if test="action != null">
-        action = #{action,jdbcType=VARCHAR},
+      <if test="organizers != null">
+        organizers = #{organizers,jdbcType=VARCHAR},
       </if>
-      <if test="score != null">
-        score = #{score,jdbcType=INTEGER},
+      <if test="times != null">
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="studentNumber != null">
+        student_number = #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.UserSport">
     update user_sport
-    set user_id = #{userId,jdbcType=INTEGER},
+    set college_id = #{collegeId,jdbcType=INTEGER},
+      school_id = #{schoolId,jdbcType=INTEGER},
       sport_id = #{sportId,jdbcType=INTEGER},
-      action = #{action,jdbcType=VARCHAR},
-      score = #{score,jdbcType=INTEGER}
+      organizers = #{organizers,jdbcType=VARCHAR},
+      times = #{times,jdbcType=INTEGER},
+      student_number = #{studentNumber,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

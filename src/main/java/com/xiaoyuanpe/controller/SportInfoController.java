@@ -1,12 +1,15 @@
 package com.xiaoyuanpe.controller;
 
-import com.xiaoyuanpe.pojo.SportInfo;
-import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.pojo.*;
+import com.xiaoyuanpe.services.CollegeService;
+import com.xiaoyuanpe.services.SemesterService;
 import com.xiaoyuanpe.services.SportInfoService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/sportInfo")
@@ -14,7 +17,9 @@ public class SportInfoController {
     @Autowired
     private SportInfoService sportInfoService;
     @Autowired
-    private UserService userService;
+    private CollegeService collegeService;
+    @Autowired
+    private SemesterService semesterService;
 
     @PostMapping("/addSportInfo")
     public ResultBean addSportInfo(@RequestBody SportInfo sportInfo){
@@ -58,19 +63,23 @@ public class SportInfoController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/updateSportInfo", method = RequestMethod.POST)
-    public ResultBean updateSportInfoList(@RequestBody SportInfo sportInfo){
+    @RequestMapping(value = "/updateSportInfo/{num}", method = RequestMethod.POST)
+    public ResultBean updateSportInfoList(@RequestBody SportInfo sportInfo, @PathVariable Integer num, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
             this.sportInfoService.ModifySportInfo(sportInfo);
-            User user = this.userService.findUsersById(sportInfo.getStudentId());
-            user.setExerciseTime(user.getExerciseTime()+sportInfo.getSingleExerciseTime());
-            if (user.getCredit() < 0){
-                if (user.getExerciseTime()>8000){
-                    user.setCredit(4);
+            Semester semester =this.semesterService.findSemesterByIds(sportInfo.getSchoolId(),sportInfo.getCollegeId(),
+                    sportInfo.getClassId(),sportInfo.getStudentId(),num);
+            semester.setExerciseTime(semester.getExerciseTime()+sportInfo.getSingleExerciseTime());
+            if (semester.getScore() < 0){
+                if (semester.getExerciseTime()>8000){
+                    semester.setScore(this.collegeService.findCollegeById(sportInfo.getCollegeId()).getScore());
                 }
+            }else {
+                resultBean.setMsg("分数已达上限");
             }
-            this.userService.ModifyUser(user);
+            this.sportInfoService.ModifySportInfo(sportInfo);
+            this.semesterService.ModifySemester(semester);
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -79,5 +88,7 @@ public class SportInfoController {
         }
         return resultBean;
     }
+
+
 
 }

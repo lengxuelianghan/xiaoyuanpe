@@ -23,10 +23,6 @@ public class User {
 
     private Integer schoolId;
 
-    private Integer credit;
-
-    private Integer exerciseTime;
-
     public Integer getId() {
         return id;
     }
@@ -113,21 +109,5 @@ public class User {
 
     public void setSchoolId(Integer schoolId) {
         this.schoolId = schoolId;
-    }
-
-    public Integer getCredit() {
-        return credit;
-    }
-
-    public void setCredit(Integer credit) {
-        this.credit = credit;
-    }
-
-    public Integer getExerciseTime() {
-        return exerciseTime;
-    }
-
-    public void setExerciseTime(Integer exerciseTime) {
-        this.exerciseTime = exerciseTime;
     }
 }

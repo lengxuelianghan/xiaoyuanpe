@@ -41,12 +41,14 @@
 <!--        <table schema="" tableName="sports"></table>-->
 <!--        <table schema="" tableName="transaction"></table>-->
 <!--        <table schema="" tableName="user"></table>-->
+        <table schema="" tableName="user_sport"></table>
 <!--        <table schema="" tableName="sport_info"></table>-->
 <!--        <table schema="" tableName="score"></table>-->
 <!--        <table schema="" tableName="video"></table>-->
-        <table schema="" tableName="role_perm"></table>
-        <table schema="" tableName="user_role"></table>
-        <table schema="" tableName="user_sport"></table>
+<!--        <table schema="" tableName="student"></table>-->
+<!--        <table schema="" tableName="classes"></table>-->
+<!--        <table schema="" tableName="semester"></table>-->
+<!--        <table schema="" tableName="college"></table>-->
     </context>
 
 </generatorConfiguration>
