@@ -64,7 +64,7 @@ public class SportInfoController {
     }
 
     @RequestMapping(value = "/updateSportInfo/{num}", method = RequestMethod.POST)
-    public ResultBean updateSportInfoList(@RequestBody SportInfo sportInfo, @PathVariable Integer num, HttpSession session){
+    public ResultBean updateSportInfo(@RequestBody SportInfo sportInfo, @PathVariable Integer num, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
             this.sportInfoService.ModifySportInfo(sportInfo);
