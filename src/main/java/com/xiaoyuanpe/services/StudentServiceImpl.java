@@ -42,4 +42,9 @@ public class StudentServiceImpl implements StudentService {
     public Student findStudentByNumber(String snumber) {
         return this.studentMapper.selectByPrimaryNumber(snumber);
     }
+
+    @Override
+    public Student findStudentLast() {
+        return this.studentMapper.selectLast();
+    }
 }

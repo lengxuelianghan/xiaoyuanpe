@@ -15,5 +15,14 @@ public interface SemesterService {
 
     void DeleteSemester(Integer id);
 
-    Semester findSemesterByIds(Integer shcoolId, Integer collegeId,Integer classId,Integer studentId,Integer term);
+    Semester findSemesterByIds(Integer schoolId, Integer collegeId,Integer classId,Integer studentId,Integer term);
+
+    List<Semester> findSemesterByStudent(Integer schoolId, Integer collegeId,Integer classId,Integer studentId);
+
+    List<Semester> findSemesterByClasses(Integer schoolId, Integer collegeId,Integer classId,Integer term);
+
+    List<Semester> findSemesterByCollege(Integer schoolId, Integer collegeId, Integer term);
+
+    List<Semester> selectByPrimarySchool(Integer schoolId, Integer term);
+
 }

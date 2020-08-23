@@ -40,7 +40,27 @@ public class SemesterServiceImpl implements SemesterService {
     }
 
     @Override
-    public Semester findSemesterByIds(Integer shcoolId, Integer collegeId, Integer classId, Integer studentId, Integer term) {
-        return this.semesterMapper.selectByPrimaryKeys(shcoolId,collegeId,classId,studentId,term);
+    public Semester findSemesterByIds(Integer schoolId, Integer collegeId, Integer classId, Integer studentId, Integer term) {
+        return this.semesterMapper.selectByPrimaryKeys(schoolId,collegeId,classId,studentId,term);
+    }
+
+    @Override
+    public List<Semester> findSemesterByStudent(Integer schoolId, Integer collegeId, Integer classId, Integer studentId) {
+        return this.semesterMapper.selectByPrimaryStudent(schoolId,collegeId,classId,studentId);
+    }
+
+    @Override
+    public List<Semester> findSemesterByClasses(Integer schoolId, Integer collegeId, Integer classId, Integer term) {
+        return this.semesterMapper.selectByPrimaryClasses(schoolId,collegeId,classId,term);
+    }
+
+    @Override
+    public List<Semester> findSemesterByCollege(Integer schoolId, Integer collegeId, Integer term) {
+        return this.semesterMapper.selectByPrimaryCollege(schoolId,collegeId,term);
+    }
+
+    @Override
+    public List<Semester> selectByPrimarySchool(Integer schoolId, Integer term) {
+        return this.semesterMapper.selectByPrimarySchool(schoolId,term);
     }
 }
