@@ -2,14 +2,12 @@ package com.xiaoyuanpe.units;
 
 import com.xiaoyuanpe.pojo.StudentInfo;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
