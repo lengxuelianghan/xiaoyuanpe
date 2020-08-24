@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUsersAll() {
         UserExample example = new UserExample();
-        return this.usersMapper.selectByExample(example);
+        return this.usersMapper.selectByExample(1);
     }
 
     @Override

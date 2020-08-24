@@ -257,36 +257,31 @@
   </update>
 
   <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+    select *
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classId = #{classId,jdbcType=INTEGER} and sudent_id = #{studentId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryStudent" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+    select *
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classId = #{classId,jdbcType=INTEGER} and sudent_id = #{studentId,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryClasses" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+    select *
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classId = #{classId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryCollege" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+    select *
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimarySchool" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
+    select *
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>

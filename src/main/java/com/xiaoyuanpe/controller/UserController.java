@@ -2,6 +2,7 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.UserService;
+import com.xiaoyuanpe.units.Page;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -51,11 +52,13 @@ public class UserController {
     }
     @RequestMapping(value = "/queryUserList")
     public ResultBean queryUserList(){
+        Page<User> userPage= new Page<>(1,2,1);
         List<User> userList = new ArrayList<>();
         ResultBean resultBean = new ResultBean();
         try {
             userList = this.userService.findUsersAll();
-            resultBean.setData(userList);
+            userPage.setList(userList);
+            resultBean.setData(userPage.getList());
             resultBean.setCode(0);
         }catch (Exception se){
             System.out.println("出错"+se.getMessage());

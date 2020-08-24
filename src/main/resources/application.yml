@@ -3,8 +3,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/xiaoyuanpe?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: 17854258952
+    #password: 17854258952
     type: com.alibaba.druid.pool.DruidDataSource
+    password: waylxl
 #mybatis:
 #  # 若资源映射xml文件在resources目录
 #  mapper-locations: classpath:/mapper/*./xml
