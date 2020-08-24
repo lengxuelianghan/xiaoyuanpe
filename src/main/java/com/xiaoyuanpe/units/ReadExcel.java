@@ -1,7 +1,6 @@
 package com.xiaoyuanpe.units;
 
 import com.xiaoyuanpe.pojo.StudentInfo;
-import javafx.stage.FileChooser;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellType;
@@ -40,18 +39,6 @@ public class ReadExcel {
         this.num = num;
     }
 
-    private static void configureFileChooser(
-            final FileChooser fileChooser) {
-        fileChooser.setTitle("View Pictures");
-        fileChooser.setInitialDirectory(
-                new File(System.getProperty("user.home"))
-        );
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Excel", "*.xlsx"),
-                new FileChooser.ExtensionFilter("XLS", "*.xls"),
-                new FileChooser.ExtensionFilter("XLSX", "*.xlsx")
-        );
-    }
     public List<StudentInfo> openFile(File file) {
         List<StudentInfo> studentInfos = new ArrayList<>();
         Workbook wb = this.getExcel(file.toString());
