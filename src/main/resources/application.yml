@@ -10,3 +10,6 @@ spring:
 #  mapper-locations: classpath:/mapper/*./xml
 #  # 定义包别名使用pojo时可以直接使用pojo下的类型名称而不用加包名
 #  type-aliases-package:
+logging:
+  config: classpath:logback-spring.xml
+
