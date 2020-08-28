@@ -5,6 +5,8 @@ spring:
     username: root
     password: 17854258952
     type: com.alibaba.druid.pool.DruidDataSource
+  freemarker:
+    check-template-location: false
 #mybatis:
 #  # 若资源映射xml文件在resources目录
 #  mapper-locations: classpath:/mapper/*./xml
