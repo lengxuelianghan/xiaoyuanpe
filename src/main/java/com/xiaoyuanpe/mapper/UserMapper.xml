@@ -75,9 +75,19 @@
   <sql id="Base_Column_List">
     id, user_number, username, password, age, sex, unit, identity, phone, email, school_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap">
-    select *
-    from user limit 1,#{num}
+  <select id="selectByExample"  parameterType="com.xiaoyuanpe.pojo.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
 
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
