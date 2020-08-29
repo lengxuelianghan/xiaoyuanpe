@@ -21,12 +21,12 @@ public class LoginController {
     private LoginService loginService;
     @PostMapping("/login")
     public ResultBean Login(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
-
         ResultBean resultBean = new ResultBean();
         try {
+            int pageSize = (int)this.userService.Count();
             String info = this.loginService.login(usernumber, password);
-            for (User user : this.userService.findUsersAll()) {
-                if (usernumber.equals(user.getEmail())) {
+            for (User user : this.userService.findUsersAll(1,pageSize).getContent()) {
+                if (usernumber.equals(user.getUserNumber())) {
                     session.setAttribute("user", user);
                     session.setMaxInactiveInterval(30*60*60);
                 }
