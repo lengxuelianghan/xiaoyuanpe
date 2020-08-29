@@ -3,6 +3,7 @@ package com.xiaoyuanpe.services;
 import com.xiaoyuanpe.mapper.UserMapper;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserExample;
+import com.xiaoyuanpe.units.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +21,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUsersAll() {
+    public Pager<User> findUsersAll(Integer current, Integer pageSize) {
+        Pager<User> pager = new Pager<>();
+        pager.setCurrentPage(current);
+        pager.setPageSize(pageSize);
         UserExample example = new UserExample();
-        return this.usersMapper.selectByExample(example);
+        int totalNum = (int)this.usersMapper.countByExample(example);
+        pager.setRecordTotal(totalNum);
+        List<User> userList = this.usersMapper.selectByExample(example);
+        if (current * pageSize < totalNum) {
+            pager.setContent(userList.subList((current - 1) * pageSize, current * pageSize));
+        }
+        else {
+            if ((current - 1) * pageSize <= totalNum){
+                pager.setContent(userList.subList((current - 1) * pageSize, totalNum));
+            }
+            else {
+                pager.setContent(null);
+            }
+
+        }
+        return pager;
     }
 
     @Override
@@ -50,5 +69,10 @@ public class UserServiceImpl implements UserService {
         else {
             return true;
         }
+    }
+
+    @Override
+    public long Count() {
+        return this.usersMapper.countByExample(new UserExample());
     }
 }

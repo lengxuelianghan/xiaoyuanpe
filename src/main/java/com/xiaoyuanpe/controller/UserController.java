@@ -50,18 +50,11 @@ public class UserController {
         }
         return resultBean;
     }
-    @RequestMapping(value = "/queryUserList")
-    public ResultBean queryUserList(){
-        Pager<User> userPage = new Pager<>();
-        List<User> userList = new ArrayList<>();
+    @RequestMapping(value = "/queryUserList/{current}/{pageSize}")
+    public ResultBean queryUserList(@PathVariable Integer current, @PathVariable Integer pageSize){
         ResultBean resultBean = new ResultBean();
         try {
-            userList = this.userService.findUsersAll();
-            userPage.setCurrentPage(1);
-            userPage.setPageSize(10);
-            userPage.setRecordTotal(62);
-            userPage.setContent(userList);
-            resultBean.setData(userPage);
+            resultBean.setData(this.userService.findUsersAll(current, pageSize));
             resultBean.setCode(0);
         }catch (Exception se){
             System.out.println("出错"+se.getMessage());

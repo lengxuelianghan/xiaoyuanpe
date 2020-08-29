@@ -3841,3 +3841,646 @@ Caused by: com.mysql.cj.exceptions.InvalidConnectionAttributeException: The serv
 15:19:20.161 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 15:19:20.176 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 14 ms
 15:19:20.392 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+15:25:43.052 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 16624 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+15:25:43.092 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+15:25:45.419 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+15:25:45.430 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+15:25:45.431 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+15:25:45.431 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+15:25:45.555 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+15:25:45.555 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2280 ms
+15:25:48.628 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+15:25:49.107 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+15:25:49.140 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+15:25:49.143 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.756 seconds (JVM running for 11.368)
+15:29:31.144 logback [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+15:29:31.145 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+15:29:31.164 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 18 ms
+15:29:31.371 logback [http-nio-8080-exec-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:08:29.385 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 5084 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:08:29.411 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:08:32.073 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:08:32.100 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:08:32.100 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:08:32.101 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:08:32.253 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:08:32.253 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2560 ms
+19:08:35.521 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:08:35.975 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:08:36.009 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:08:36.013 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.108 seconds (JVM running for 11.717)
+19:08:48.487 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:08:48.487 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:08:48.500 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 13 ms
+19:08:48.633 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:22:32.020 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 6460 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:22:32.027 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:22:34.273 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:22:34.285 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:22:34.286 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:22:34.286 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:22:34.473 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:22:34.473 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2080 ms
+19:22:37.549 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:22:38.119 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:22:38.155 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:22:38.158 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.586 seconds (JVM running for 11.064)
+19:22:50.023 logback [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:22:50.023 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:22:50.035 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+19:22:50.270 logback [http-nio-8080-exec-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:25:11.250 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 4192 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:25:11.256 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:25:14.319 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:25:14.338 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:25:14.339 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:25:14.340 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:25:14.642 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:25:14.642 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3066 ms
+19:25:17.744 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:25:18.230 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:25:18.264 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:25:18.268 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.331 seconds (JVM running for 11.887)
+19:25:23.212 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:25:23.212 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:25:23.227 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 13 ms
+19:25:23.512 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:27:35.748 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 12512 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:27:35.759 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:27:37.962 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:27:37.973 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:27:37.974 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:27:37.975 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:27:38.110 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:27:38.110 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2019 ms
+19:27:41.214 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:27:41.639 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:27:41.669 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:27:41.673 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.341 seconds (JVM running for 10.77)
+19:27:49.910 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:27:49.910 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:27:49.922 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+19:27:50.070 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:28:52.996 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 1844 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:28:53.008 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:28:55.446 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:28:55.456 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:28:55.456 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:28:55.457 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:28:55.621 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:28:55.621 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2357 ms
+19:28:58.687 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:28:59.118 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:28:59.151 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:28:59.155 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.719 seconds (JVM running for 11.145)
+19:29:09.179 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:29:09.179 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:29:09.191 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+19:29:09.333 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:29:54.994 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 11804 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:29:55.000 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:29:57.581 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:29:57.590 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:29:57.591 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:29:57.591 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:29:57.724 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:29:57.725 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2483 ms
+19:30:00.949 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:30:01.391 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:30:01.424 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:30:01.427 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.69 seconds (JVM running for 11.193)
+19:30:05.099 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:30:05.100 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:30:05.118 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 18 ms
+19:30:05.303 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:30:42.424 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 9392 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:30:42.435 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:30:45.109 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:30:45.122 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:30:45.124 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:30:45.124 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:30:45.385 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:30:45.385 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2637 ms
+19:30:48.466 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:30:48.900 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:30:48.933 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:30:48.936 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.805 seconds (JVM running for 11.616)
+19:30:53.148 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:30:53.148 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:30:53.164 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 16 ms
+19:30:53.339 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:31:19.981 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 12940 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:31:19.987 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:31:22.121 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:31:22.130 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:31:22.131 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:31:22.131 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:31:22.289 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:31:22.289 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2034 ms
+19:31:25.311 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:31:25.723 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:31:25.761 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:31:25.765 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.206 seconds (JVM running for 10.733)
+19:31:45.548 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:31:45.548 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:31:45.561 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+19:31:45.710 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:32:15.629 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 8532 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:32:15.635 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:32:17.796 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:32:17.817 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:32:17.819 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:32:17.819 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:32:18.127 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:32:18.127 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2237 ms
+19:32:21.272 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:32:21.691 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:32:21.723 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:32:21.727 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.529 seconds (JVM running for 11.006)
+19:32:25.876 logback [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:32:25.878 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:32:25.895 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 17 ms
+19:32:26.072 logback [http-nio-8080-exec-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:34:59.098 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 9908 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:34:59.108 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:35:01.746 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:35:01.756 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:35:01.757 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:35:01.757 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:35:01.935 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:35:01.935 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2433 ms
+19:35:05.017 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:35:05.429 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:35:05.462 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:35:05.465 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.696 seconds (JVM running for 11.103)
+19:35:33.383 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:35:33.384 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:35:33.396 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+19:35:33.537 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:41:58.094 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 16168 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:41:58.099 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:42:00.270 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:42:00.287 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:42:00.288 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:42:00.288 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:42:00.451 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:42:00.451 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2030 ms
+19:42:03.580 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:42:04.015 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:42:04.047 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:42:04.051 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.314 seconds (JVM running for 10.802)
+19:42:45.902 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 1876 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:42:45.909 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:42:48.502 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:42:48.515 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:42:48.516 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:42:48.517 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:42:48.673 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:42:48.673 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2534 ms
+19:42:52.030 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:42:52.463 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:42:52.495 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:42:52.499 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.931 seconds (JVM running for 11.331)
+19:42:52.840 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:42:52.840 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:42:52.850 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+19:42:53.050 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:43:28.728 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 7732 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:43:28.737 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:43:31.406 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:43:31.428 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:43:31.429 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:43:31.429 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:43:31.701 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:43:31.701 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2706 ms
+19:43:34.821 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:43:35.269 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:43:35.300 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:43:35.303 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.838 seconds (JVM running for 11.378)
+19:43:41.820 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:43:41.821 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:43:41.832 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+19:43:41.976 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:44:33.129 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 5624 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+19:44:33.135 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+19:44:35.544 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+19:44:35.553 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+19:44:35.554 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+19:44:35.554 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+19:44:35.692 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+19:44:35.692 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2339 ms
+19:44:38.835 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+19:44:39.276 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+19:44:39.310 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+19:44:39.314 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.681 seconds (JVM running for 11.15)
+19:44:43.495 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:44:43.496 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+19:44:43.510 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 14 ms
+19:44:43.686 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+22:01:36.082 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 4088 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:01:36.088 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:01:38.419 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:01:38.428 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:01:38.429 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:01:38.429 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:01:38.550 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:01:38.550 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2135 ms
+22:01:41.602 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:01:42.019 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:01:42.050 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:01:42.054 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.227 seconds (JVM running for 10.728)
+22:02:23.853 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 14460 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:02:23.860 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:02:26.664 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$6ea66741] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:02:26.719 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:02:30.220 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:02:30.711 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:02:30.733 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:02:30.735 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:02:30.736 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:02:30.958 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:02:30.958 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 6799 ms
+22:02:32.680 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:02:33.435 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:02:33.473 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:02:33.479 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 11.101 seconds (JVM running for 14.789)
+22:02:35.856 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:02:35.856 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:02:35.900 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 43 ms
+22:02:36.001 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost].[/] - Session event listener threw exception
+java.lang.AbstractMethodError: org.apache.tomcat.websocket.server.WsSessionListener.sessionCreated(Ljavax/servlet/http/HttpSessionEvent;)V
+	at org.apache.catalina.session.StandardSession.tellNew(StandardSession.java:389)
+	at org.apache.catalina.session.StandardSession.setId(StandardSession.java:361)
+	at org.apache.catalina.session.StandardSession.setId(StandardSession.java:342)
+	at org.apache.catalina.session.ManagerBase.createSession(ManagerBase.java:719)
+	at org.apache.catalina.connector.Request.doGetSession(Request.java:3042)
+	at org.apache.catalina.connector.Request.getSession(Request.java:2445)
+	at org.apache.catalina.connector.RequestFacade.getSession(RequestFacade.java:908)
+	at javax.servlet.http.HttpServletRequestWrapper.getSession(HttpServletRequestWrapper.java:270)
+	at org.apache.shiro.web.servlet.ShiroHttpServletRequest.getSession(ShiroHttpServletRequest.java:148)
+	at org.apache.shiro.web.servlet.ShiroHttpServletRequest.getSession(ShiroHttpServletRequest.java:190)
+	at org.apache.shiro.web.session.mgt.ServletContainerSessionManager.createSession(ServletContainerSessionManager.java:108)
+	at org.apache.shiro.web.session.mgt.ServletContainerSessionManager.start(ServletContainerSessionManager.java:64)
+	at org.apache.shiro.mgt.SessionsSecurityManager.start(SessionsSecurityManager.java:152)
+	at org.apache.shiro.subject.support.DelegatingSubject.getSession(DelegatingSubject.java:340)
+	at org.apache.shiro.subject.support.DelegatingSubject.getSession(DelegatingSubject.java:316)
+	at org.apache.shiro.web.util.WebUtils.saveRequest(WebUtils.java:607)
+	at org.apache.shiro.web.filter.AccessControlFilter.saveRequest(AccessControlFilter.java:208)
+	at org.apache.shiro.web.filter.AccessControlFilter.saveRequestAndRedirectToLogin(AccessControlFilter.java:191)
+	at org.apache.shiro.web.filter.authc.FormAuthenticationFilter.onAccessDenied(FormAuthenticationFilter.java:168)
+	at org.apache.shiro.web.filter.AccessControlFilter.onAccessDenied(AccessControlFilter.java:133)
+	at org.apache.shiro.web.filter.AccessControlFilter.onPreHandle(AccessControlFilter.java:162)
+	at org.apache.shiro.web.filter.PathMatchingFilter.isFilterChainContinued(PathMatchingFilter.java:203)
+	at org.apache.shiro.web.filter.PathMatchingFilter.preHandle(PathMatchingFilter.java:178)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:131)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+22:02:36.507 logback [http-nio-8080-exec-3] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+22:02:51.977 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 13676 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:02:51.987 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:02:54.148 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$8b7f506b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:02:54.172 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:02:56.301 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:02:56.568 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:02:56.578 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:02:56.579 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:02:56.579 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:02:56.697 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:02:56.697 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4512 ms
+22:02:57.600 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:02:58.061 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:02:58.094 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:02:58.097 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.911 seconds (JVM running for 11.462)
+22:05:54.950 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:05:54.951 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:05:54.963 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+22:05:55.115 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+22:06:09.917 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 9660 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:06:09.923 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:06:12.283 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$b82f86d8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:06:12.306 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:06:14.413 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:06:14.678 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:06:14.687 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:06:14.688 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:06:14.688 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:06:14.806 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:06:14.806 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4642 ms
+22:06:15.714 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:06:16.134 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:06:16.168 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:06:16.171 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.458 seconds (JVM running for 10.93)
+22:06:21.326 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:06:21.326 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:06:21.338 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+22:06:21.473 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+22:07:15.824 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 1928 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:07:15.834 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:07:18.256 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$c4b92076] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:07:18.280 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:07:20.459 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:07:20.716 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:07:20.725 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:07:20.726 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:07:20.726 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:07:20.858 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:07:20.858 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4718 ms
+22:07:21.786 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:07:22.200 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:07:22.234 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:07:22.237 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.703 seconds (JVM running for 11.091)
+22:07:31.479 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:07:31.480 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:07:31.491 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+22:07:31.640 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+22:08:24.016 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 11744 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:08:24.026 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:08:26.132 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$d3e014cc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:08:26.160 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:08:28.274 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:08:28.531 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:08:28.540 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:08:28.541 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:08:28.541 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:08:28.661 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:08:28.661 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4468 ms
+22:08:29.575 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:08:30.003 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:08:30.035 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:08:30.039 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.577 seconds (JVM running for 10.971)
+22:08:40.145 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:08:40.145 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:08:40.155 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+22:08:40.187 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost].[/] - Session event listener threw exception
+java.lang.AbstractMethodError: org.apache.tomcat.websocket.server.WsSessionListener.sessionCreated(Ljavax/servlet/http/HttpSessionEvent;)V
+	at org.apache.catalina.session.StandardSession.tellNew(StandardSession.java:389)
+	at org.apache.catalina.session.StandardSession.setId(StandardSession.java:361)
+	at org.apache.catalina.session.StandardSession.setId(StandardSession.java:342)
+	at org.apache.catalina.session.ManagerBase.createSession(ManagerBase.java:719)
+	at org.apache.catalina.connector.Request.doGetSession(Request.java:3042)
+	at org.apache.catalina.connector.Request.getSession(Request.java:2445)
+	at org.apache.catalina.connector.RequestFacade.getSession(RequestFacade.java:908)
+	at javax.servlet.http.HttpServletRequestWrapper.getSession(HttpServletRequestWrapper.java:270)
+	at org.apache.shiro.web.servlet.ShiroHttpServletRequest.getSession(ShiroHttpServletRequest.java:148)
+	at org.apache.shiro.web.servlet.ShiroHttpServletRequest.getSession(ShiroHttpServletRequest.java:190)
+	at org.apache.shiro.web.session.mgt.ServletContainerSessionManager.createSession(ServletContainerSessionManager.java:108)
+	at org.apache.shiro.web.session.mgt.ServletContainerSessionManager.start(ServletContainerSessionManager.java:64)
+	at org.apache.shiro.mgt.SessionsSecurityManager.start(SessionsSecurityManager.java:152)
+	at org.apache.shiro.subject.support.DelegatingSubject.getSession(DelegatingSubject.java:340)
+	at org.apache.shiro.subject.support.DelegatingSubject.getSession(DelegatingSubject.java:316)
+	at org.apache.shiro.web.util.WebUtils.saveRequest(WebUtils.java:607)
+	at org.apache.shiro.web.filter.AccessControlFilter.saveRequest(AccessControlFilter.java:208)
+	at org.apache.shiro.web.filter.AccessControlFilter.saveRequestAndRedirectToLogin(AccessControlFilter.java:191)
+	at org.apache.shiro.web.filter.authc.FormAuthenticationFilter.onAccessDenied(FormAuthenticationFilter.java:168)
+	at org.apache.shiro.web.filter.AccessControlFilter.onAccessDenied(AccessControlFilter.java:133)
+	at org.apache.shiro.web.filter.AccessControlFilter.onPreHandle(AccessControlFilter.java:162)
+	at org.apache.shiro.web.filter.PathMatchingFilter.isFilterChainContinued(PathMatchingFilter.java:203)
+	at org.apache.shiro.web.filter.PathMatchingFilter.preHandle(PathMatchingFilter.java:178)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:131)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+22:08:40.231 logback [http-nio-8080-exec-2] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+22:08:45.687 logback [http-nio-8080-exec-3] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+22:09:06.251 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 15780 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:09:06.257 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:09:08.431 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$f964bf5a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:09:08.454 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:09:10.585 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:09:10.843 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:09:10.852 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:09:10.852 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:09:10.852 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:09:10.969 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:09:10.969 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4504 ms
+22:09:11.875 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:09:12.281 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:09:12.312 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:09:12.316 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.268 seconds (JVM running for 10.662)
+22:09:20.852 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:09:20.852 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:09:20.863 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+22:09:20.894 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost].[/] - Session event listener threw exception
+java.lang.AbstractMethodError: org.apache.tomcat.websocket.server.WsSessionListener.sessionCreated(Ljavax/servlet/http/HttpSessionEvent;)V
+	at org.apache.catalina.session.StandardSession.tellNew(StandardSession.java:389)
+	at org.apache.catalina.session.StandardSession.setId(StandardSession.java:361)
+	at org.apache.catalina.session.StandardSession.setId(StandardSession.java:342)
+	at org.apache.catalina.session.ManagerBase.createSession(ManagerBase.java:719)
+	at org.apache.catalina.connector.Request.doGetSession(Request.java:3042)
+	at org.apache.catalina.connector.Request.getSession(Request.java:2445)
+	at org.apache.catalina.connector.RequestFacade.getSession(RequestFacade.java:908)
+	at javax.servlet.http.HttpServletRequestWrapper.getSession(HttpServletRequestWrapper.java:270)
+	at org.apache.shiro.web.servlet.ShiroHttpServletRequest.getSession(ShiroHttpServletRequest.java:148)
+	at org.apache.shiro.web.servlet.ShiroHttpServletRequest.getSession(ShiroHttpServletRequest.java:190)
+	at org.apache.shiro.web.session.mgt.ServletContainerSessionManager.createSession(ServletContainerSessionManager.java:108)
+	at org.apache.shiro.web.session.mgt.ServletContainerSessionManager.start(ServletContainerSessionManager.java:64)
+	at org.apache.shiro.mgt.SessionsSecurityManager.start(SessionsSecurityManager.java:152)
+	at org.apache.shiro.subject.support.DelegatingSubject.getSession(DelegatingSubject.java:340)
+	at org.apache.shiro.subject.support.DelegatingSubject.getSession(DelegatingSubject.java:316)
+	at org.apache.shiro.web.util.WebUtils.saveRequest(WebUtils.java:607)
+	at org.apache.shiro.web.filter.AccessControlFilter.saveRequest(AccessControlFilter.java:208)
+	at org.apache.shiro.web.filter.AccessControlFilter.saveRequestAndRedirectToLogin(AccessControlFilter.java:191)
+	at org.apache.shiro.web.filter.authc.FormAuthenticationFilter.onAccessDenied(FormAuthenticationFilter.java:168)
+	at org.apache.shiro.web.filter.AccessControlFilter.onAccessDenied(AccessControlFilter.java:133)
+	at org.apache.shiro.web.filter.AccessControlFilter.onPreHandle(AccessControlFilter.java:162)
+	at org.apache.shiro.web.filter.PathMatchingFilter.isFilterChainContinued(PathMatchingFilter.java:203)
+	at org.apache.shiro.web.filter.PathMatchingFilter.preHandle(PathMatchingFilter.java:178)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:131)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+22:09:20.934 logback [http-nio-8080-exec-2] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+22:09:31.878 logback [http-nio-8080-exec-4] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
