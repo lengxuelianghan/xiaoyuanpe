@@ -25,16 +25,10 @@ public class LoginController {
         ResultBean resultBean = new ResultBean();
         try {
             String info = this.loginService.login(usernumber, password);
-            int pageSize = (int) this.userService.Count();
-            for (User user : this.userService.findUsersAll(1,pageSize).getContent()) {
-                System.out.println(user.getUserNumber()+","+user.getPassword());
-                if (usernumber.equals(user.getUserNumber())) {
-                    //System.out.println("user"+user.getUserNumber());
+            for (User user : this.userService.findUsersAll()) {
+                if (usernumber.equals(user.getEmail())) {
                     session.setAttribute("user", user);
                     session.setMaxInactiveInterval(30*60*60);
-                    User user1 = (User)session.getAttribute("user");
-                    System.out.println(user1.getUsername());
-                    break;
                 }
             }
             resultBean.setCode(0);
@@ -42,7 +36,7 @@ public class LoginController {
         }catch (Exception e){
             System.out.println("错误："+e.getMessage());
             resultBean.setCode(1);
-            resultBean.setMsg("登录失败"+e.getMessage());
+            resultBean.setMsg("登录失败");
         }
         return resultBean;
     }
@@ -55,7 +49,7 @@ public class LoginController {
         }catch (Exception e){
             System.out.println("错误："+e.getMessage());
             resultBean.setCode(1);
-            resultBean.setMsg("登录失败"+e.getMessage());
+            resultBean.setMsg("登录失败");
         }
         return resultBean;
     }
