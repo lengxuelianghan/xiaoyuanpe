@@ -307,6 +307,6 @@
     select
     <include refid="Base_Column_List" />
     from user
-    where userNumber = #{unumber,jdbcType=VARCHAR}
+    where user_number = #{unumber,jdbcType=VARCHAR}
   </select>
 </mapper>
