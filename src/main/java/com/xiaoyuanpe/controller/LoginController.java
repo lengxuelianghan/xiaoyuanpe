@@ -26,7 +26,7 @@ public class LoginController {
         try {
             String info = this.loginService.login(usernumber, password);
             for (User user : this.userService.findUsersAll()) {
-                if (usernumber.equals(user.getEmail())) {
+                if (usernumber.equals(user.getUserNumber())) {
                     session.setAttribute("user", user);
                     session.setMaxInactiveInterval(30*60*60);
                 }
