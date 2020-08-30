@@ -64,7 +64,7 @@ public class IdentityController {
         }
         return resultBean;
     }
-    @RequestMapping(value = "/assignIdentity/{id}", method = RequestMethod.POST)
+    @PostMapping("/assignIdentity/{id}")
     public ResultBean assignIdentity(@PathVariable Integer id, @RequestParam String identities){
         ResultBean resultBean = new ResultBean();
         try {
