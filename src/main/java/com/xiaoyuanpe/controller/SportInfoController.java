@@ -84,7 +84,7 @@ public class SportInfoController {
         }catch (Exception e){
             System.out.println(e.getMessage());
             resultBean.setCode(1);
-            resultBean.setMsg("查找运动信息列表失败！");
+            resultBean.setMsg("查找运动信息列表失败！"+e.getMessage());
         }
         return resultBean;
     }
