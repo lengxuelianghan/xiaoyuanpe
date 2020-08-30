@@ -265,13 +265,13 @@
   <select id="selectByPrimaryStudent" resultMap="BaseResultMap">
     select *
     from semester
-    where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classId = #{classId,jdbcType=INTEGER} and sudent_id = #{studentId,jdbcType=INTEGER}
+    where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classes_id = #{classId,jdbcType=INTEGER} and sudent_id = #{studentId,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryClasses" resultMap="BaseResultMap">
     select *
     from semester
-    where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classId = #{classId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
+    where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classes_id = #{classId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryCollege" resultMap="BaseResultMap">
