@@ -79,7 +79,7 @@ public class SportInfoController {
             Semester semester =this.semesterService.findSemesterByIds(sportInfo.getSchoolId(),sportInfo.getCollegeId(),
                     sportInfo.getClassId(),sportInfo.getStudentId(),sportInfo.getNum());
             semester.setExerciseTime(semester.getExerciseTime()+sportInfo.getSingleExerciseTime());
-            if (semester.getScore() < 0){
+            if (semester.getScore() <= 0){
                 if (semester.getExerciseTime()>8000){
                     semester.setScore(this.collegeService.findCollegeById(sportInfo.getCollegeId()).getScore());
                 }
