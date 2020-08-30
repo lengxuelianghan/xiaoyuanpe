@@ -26,8 +26,9 @@ public class StudentController {
         Student student = this.studentService.findStudentById(sid);
         try {
             if (num!=0) {
-                resultBean.setData(this.semesterService.findSemesterByIds(student.getShcoolId(), student.getCollegeId(),
-                        student.getClassesId(), student.getId(), num));
+                Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),
+                        student.getCollegeId(), student.getClassesId(), student.getId(), num);
+                resultBean.setData(semester);
             }
             else {
                 resultBean.setData(this.semesterService.findSemesterByStudent(student.getShcoolId(),
@@ -35,6 +36,7 @@ public class StudentController {
             }
             resultBean.setCode(0);
         }catch (Exception e){
+            System.out.println(e.getMessage());
             resultBean.setMsg("查询失败");
             resultBean.setCode(1);
         }

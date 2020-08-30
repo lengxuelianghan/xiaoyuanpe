@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form action="/identity/assignIdentity/4" method="post">
-    <input type="text" name="identities">
-    <input type="submit" value="提交">
+<form th:action="@{/sportInfo/updateSportInfo/{num}(num=1)}" method="post">
+    <input type="text" name="sportId">
+    <input type="text" name="collegeId">
+    <input type="text" name="studentId">
+    <input type="text" name="singleExerciseTime">
+    <input type="text" name="schoolId">
+    <input type="text" name="classId">
+
+<!--    "sportId":1,-->
+<!--    "collegeId":1,-->
+<!--    "studentId":2,-->
+<!--    "singleExerciseTime":12,-->
+<!--    "schoolId":1,-->
+<!--    "classId":1-->
+    <input type="submit" value="提交" name="submit">
 </form>
 
 </body>
