@@ -3,6 +3,7 @@ package com.xiaoyuanpe.controller;
 import com.xiaoyuanpe.pojo.Semester;
 import com.xiaoyuanpe.pojo.Student;
 import com.xiaoyuanpe.pojo.UserSport;
+import com.xiaoyuanpe.pojo.UserSportNum;
 import com.xiaoyuanpe.services.CollegeService;
 import com.xiaoyuanpe.services.SemesterService;
 import com.xiaoyuanpe.services.StudentService;
@@ -77,13 +78,13 @@ public class UserSportController {
         return resultBean;
     }
 
-    @PostMapping("/addSportScore/{num}")
-    public ResultBean addSportScore(@RequestBody UserSport userSport, @PathVariable Integer num){
+    @PostMapping("/addSportScore")
+    public ResultBean addSportScore(@RequestBody UserSportNum userSport){
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(userSport.getStudentNumber());
             Semester semester =this.semesterService.findSemesterByIds(userSport.getSchoolId(),userSport.getCollegeId(),
-                    student.getClassesId(),student.getId(),num);
+                    student.getClassesId(),student.getId(), userSport.getNum());
             semester.setExerciseTime(semester.getExerciseTime()+userSport.getTimes());
             if (semester.getScore() < 0){
                 if (semester.getExerciseTime()>8000){

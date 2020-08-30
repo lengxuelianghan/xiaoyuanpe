@@ -62,15 +62,22 @@ public class SportInfoController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/updateSportInfo/{num}", method = RequestMethod.POST)
-    public ResultBean updateSportInfo(@RequestBody SportInfo sportInfo, @PathVariable Integer num, HttpSession session){
+    @RequestMapping(value = "/updateSportInfo", method = RequestMethod.POST)
+    public ResultBean updateSportInfo(@RequestBody SportInfoNum sportInfo, HttpSession session){
 
-        System.out.println(sportInfo.getSingleExerciseTime()+","+num);
         ResultBean resultBean = new ResultBean();
         try {
-            this.sportInfoService.ModifySportInfo(sportInfo);
+            SportInfo sportInfo1 = new SportInfo();
+            sportInfo1.setClassId(sportInfo.getClassId());
+            sportInfo1.setSingleExerciseTime(sportInfo.getSingleExerciseTime());
+            sportInfo1.setCollegeId(sportInfo.getCollegeId());
+            sportInfo1.setSchoolId(sportInfo.getSchoolId());
+            sportInfo1.setSportId(sportInfo.getSportId());
+            sportInfo1.setStudentId(sportInfo.getStudentId());
+
+            this.sportInfoService.ModifySportInfo(sportInfo1);
             Semester semester =this.semesterService.findSemesterByIds(sportInfo.getSchoolId(),sportInfo.getCollegeId(),
-                    sportInfo.getClassId(),sportInfo.getStudentId(),num);
+                    sportInfo.getClassId(),sportInfo.getStudentId(),sportInfo.getNum());
             semester.setExerciseTime(semester.getExerciseTime()+sportInfo.getSingleExerciseTime());
             if (semester.getScore() < 0){
                 if (semester.getExerciseTime()>8000){
@@ -79,7 +86,7 @@ public class SportInfoController {
             }else {
                 resultBean.setMsg("分数已达上限");
             }
-            this.sportInfoService.ModifySportInfo(sportInfo);
+            this.sportInfoService.ModifySportInfo(sportInfo1);
             this.semesterService.ModifySemester(semester);
             resultBean.setCode(0);
         }catch (Exception e){
