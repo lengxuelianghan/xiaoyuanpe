@@ -30,7 +30,7 @@ public class UserController {
         }catch (Exception se){
             System.out.println("出错"+se.getMessage());
             resultBean.setCode(1);
-            resultBean.setMsg("用户添加失败");
+            resultBean.setMsg("用户添加失败"+se.getMessage());
         }
         return resultBean;
     }
