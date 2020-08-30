@@ -4,7 +4,6 @@ import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.CollegeService;
 import com.xiaoyuanpe.services.SemesterService;
 import com.xiaoyuanpe.services.SportInfoService;
-import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
