@@ -31,7 +31,7 @@ public class BusinessController {
         ResultBean resultBean = new ResultBean();
         try {
             resultBean.setData(this.businessService.findBusinessById(id));
-            resultBean.setCode(1);
+            resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
             resultBean.setCode(1);
@@ -40,11 +40,11 @@ public class BusinessController {
         return resultBean;
     }
 
-    @RequestMapping("/queryBusinessList")
-    public ResultBean queryBusinessList(){
+    @RequestMapping("/queryBusinessList/{current}/{pageSize}")
+    public ResultBean queryBusinessList(@PathVariable Integer current, @PathVariable Integer pageSize){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.businessService.findBusinessAll());
+            resultBean.setData(this.businessService.findBusinessAll(current, pageSize));
             resultBean.setCode(1);
         }catch (Exception e){
             System.out.println(e.getMessage());
