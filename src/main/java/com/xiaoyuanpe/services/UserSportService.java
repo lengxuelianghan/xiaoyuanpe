@@ -1,13 +1,14 @@
 package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.pojo.UserSport;
+import com.xiaoyuanpe.units.Pager;
 
 import java.util.List;
 
 public interface UserSportService {
     void addUserSport(UserSport userSport);
 
-    List<UserSport> findUserSportAll();
+    Pager<UserSport> findUserSportAll(Integer current, Integer pageSize);
 
     UserSport findUserSportById(Integer id);
 

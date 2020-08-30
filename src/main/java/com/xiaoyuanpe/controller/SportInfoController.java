@@ -49,11 +49,11 @@ public class SportInfoController {
         return resultBean;
     }
 
-    @RequestMapping("/querySportInfoList")
-    public ResultBean querySportInfoList(){
+    @RequestMapping("/querySportInfoList/{current}/{pageSize}")
+    public ResultBean querySportInfoList(@PathVariable Integer current, @PathVariable Integer pageSize){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.sportInfoService.findSportInfoAll());
+            resultBean.setData(this.sportInfoService.findSportInfoAll(current, pageSize));
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());

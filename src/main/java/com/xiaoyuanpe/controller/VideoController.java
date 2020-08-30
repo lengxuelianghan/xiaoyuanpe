@@ -39,11 +39,11 @@ public class VideoController {
         return resultBean;
     }
 
-    @RequestMapping("/queryVideoList")
-    public ResultBean queryVideoList(){
+    @RequestMapping("/queryVideoList/{current}/{pageSize}")
+    public ResultBean queryVideoList(@PathVariable Integer current, @PathVariable Integer pageSize){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.videoService.findVideoAll());
+            resultBean.setData(this.videoService.findVideoAll(current, pageSize));
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());

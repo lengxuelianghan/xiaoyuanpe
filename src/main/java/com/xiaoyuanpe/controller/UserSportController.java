@@ -49,11 +49,11 @@ public class UserSportController {
         }
         return resultBean;
     }
-    @RequestMapping("/queryUserSportList")
-    public ResultBean queryUserSportList(){
+    @RequestMapping("/queryUserSportList/{current}/{pageSize}")
+    public ResultBean queryUserSportList(@PathVariable Integer current, @PathVariable Integer pageSize){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.userSportService.findUserSportAll());
+            resultBean.setData(this.userSportService.findUserSportAll(current,pageSize));
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());

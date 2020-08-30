@@ -16,7 +16,6 @@ public class IdentityController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping("/addIdentity")
     public ResultBean addIdentity(@RequestBody Identities identities){
         ResultBean resultBean = new ResultBean();

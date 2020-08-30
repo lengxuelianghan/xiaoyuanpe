@@ -1,13 +1,14 @@
 package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.pojo.Video;
+import com.xiaoyuanpe.units.Pager;
 
 import java.util.List;
 
 public interface VideoService {
     void addVideo(Video video);
 
-    List<Video> findVideoAll();
+    Pager<Video> findVideoAll(Integer current, Integer pageSize);
 
     Video findVideoById(Integer id);
 
