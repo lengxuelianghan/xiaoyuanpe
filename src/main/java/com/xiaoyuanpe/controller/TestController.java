@@ -12,4 +12,9 @@ public class TestController {
         System.out.println();
         return "login";
     }
+    @RequestMapping("/assign")
+    public String assign(){
+        System.out.println();
+        return "assign";
+    }
 }
