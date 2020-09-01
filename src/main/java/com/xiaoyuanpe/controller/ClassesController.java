@@ -1,10 +1,15 @@
 package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.Classes;
+import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.ClassesService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/classes")
@@ -39,11 +44,19 @@ public class ClassesController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryClassesList")
-    public ResultBean queryClassesList(){
+    @RequestMapping(value = "/queryClassesList/{cid}")
+    public ResultBean queryClassesList(@PathVariable Integer cid, HttpSession session){
+        User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.classesService.findClassesAll());
+            List<Classes> classesList = new ArrayList<>();
+            List<Classes> classes = this.classesService.findClassesAll();
+            for (Classes classes1: classes){
+                if ((classes1.getCollegeId()==cid)&&(Integer.parseInt(classes1.getShchoolId())==user.getSchoolId())){
+                    classesList.add(classes1);
+                }
+            }
+            resultBean.setData(classesList);
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -52,6 +65,28 @@ public class ClassesController {
         }
         return resultBean;
     }
+
+    @RequestMapping(value = "/queryClassesList/{sid}/{cid}")
+    public ResultBean queryClassesListByList(@PathVariable Integer sid, @PathVariable Integer cid){
+        ResultBean resultBean = new ResultBean();
+        try {
+            List<Classes> classesList = new ArrayList<>();
+            List<Classes> classes = this.classesService.findClassesAll();
+            for (Classes classes1: classes){
+                if ((classes1.getCollegeId()==cid)&&(Integer.parseInt(classes1.getShchoolId())==sid)){
+                    classesList.add(classes1);
+                }
+            }
+            resultBean.setData(classesList);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("班级列表信息添加失败");
+        }
+        return resultBean;
+    }
+
 
     @RequestMapping(value = "/updateClasses", method = RequestMethod.POST)
     public ResultBean updateClasses(@RequestBody Classes classes){
