@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -128,4 +130,70 @@ public class StudentController {
         }
         return resultBean;
     }
+
+    @RequestMapping("/queryStudentInfoBySchool/{sid}")
+    public ResultBean queryStudentInfoBySchool(@PathVariable Integer sid, HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        try {
+            List<Student> studentList = new ArrayList<>();
+            List<Student> students = this.studentService.findStudentAll();
+            for (Student student : students){
+                if (student.getShcoolId()==sid){
+                    studentList.add(student);
+                }
+            }
+            resultBean.setData(studentList);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学生信息新增失败");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping("/queryStudentInfoByCollege/{sid}/{cid}")
+    public ResultBean queryStudentInfoByCollege(@PathVariable Integer sid, @PathVariable Integer cid,
+                                                HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        try {
+            List<Student> studentList = new ArrayList<>();
+            List<Student> students = this.studentService.findStudentAll();
+            for (Student student : students){
+                if (student.getShcoolId()==sid && student.getCollegeId()==cid){
+                    studentList.add(student);
+                }
+            }
+            resultBean.setData(studentList);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学生信息新增失败");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping("/queryStudentInfoByClass/{sid}/{cid}/{ccid}")
+    public ResultBean queryStudentInfoByClass(@PathVariable Integer sid, @PathVariable Integer cid,
+                                              @PathVariable Integer ccid, HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        try {
+            List<Student> studentList = new ArrayList<>();
+            List<Student> students = this.studentService.findStudentAll();
+            for (Student student : students){
+                if (student.getShcoolId()==sid && student.getCollegeId()==cid && student.getClassesId()==ccid){
+                    studentList.add(student);
+                }
+            }
+            resultBean.setData(studentList);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学生信息新增失败");
+        }
+        return resultBean;
+    }
+
 }
