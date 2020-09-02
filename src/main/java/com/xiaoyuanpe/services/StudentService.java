@@ -15,6 +15,8 @@ public interface StudentService {
 
     void DeleteStudent(Integer id);
 
+    void DeleteStudentList(List<Integer> ids);
+
     Student findStudentByNumber(String snumber);
 
     Student findStudentLast();

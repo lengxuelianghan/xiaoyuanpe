@@ -12,6 +12,8 @@ public interface IdentitiesMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByPrimaryKeys(List<Integer> ids);
+
     int insert(Identities record);
 
     int insertSelective(Identities record);

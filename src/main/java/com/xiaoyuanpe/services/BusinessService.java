@@ -16,5 +16,7 @@ public interface BusinessService {
 
     void DeleteBusiness(Integer id);
 
+    void DeleteBusinessList(List<Integer> ids);
+
     long Count();
 }

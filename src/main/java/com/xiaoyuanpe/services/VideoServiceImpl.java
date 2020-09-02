@@ -57,5 +57,10 @@ public class VideoServiceImpl implements VideoService {
     public void DeleteVideo(Integer id) {
         this.videoMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void DeleteVideoList(List<Integer> ids) {
+        this.videoMapper.deleteByPrimaryKeys(ids);
+    }
 }
 

@@ -14,4 +14,5 @@ public interface CollegeService {
     void ModifyCollege(College college);
 
     void DeleteCollege(Integer id);
+    void DeleteCollegeList(List<Integer> ids);
 }

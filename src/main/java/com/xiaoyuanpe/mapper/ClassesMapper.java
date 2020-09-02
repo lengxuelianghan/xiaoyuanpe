@@ -27,4 +27,6 @@ public interface ClassesMapper {
     int updateByPrimaryKeySelective(Classes record);
 
     int updateByPrimaryKey(Classes record);
+
+    int deleteByPrimaryKeys(List<Integer> ids);
 }

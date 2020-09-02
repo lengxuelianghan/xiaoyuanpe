@@ -12,6 +12,8 @@ public interface SchoolMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByPrimaryKeys(List<Integer> ids);
+
     int insert(School record);
 
     int insertSelective(School record);

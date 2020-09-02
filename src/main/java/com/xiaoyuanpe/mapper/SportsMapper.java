@@ -12,6 +12,8 @@ public interface SportsMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByPrimaryKeys(List<Integer> ids);
+
     int insert(Sports record);
 
     int insertSelective(Sports record);

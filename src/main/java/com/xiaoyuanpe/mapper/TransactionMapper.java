@@ -12,6 +12,8 @@ public interface TransactionMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByPrimaryKeys(List<Integer> id);
+
     int insert(Transaction record);
 
     int insertSelective(Transaction record);

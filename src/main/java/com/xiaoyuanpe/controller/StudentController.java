@@ -196,4 +196,18 @@ public class StudentController {
         return resultBean;
     }
 
+    @RequestMapping(value = "/deleteStudent", method = RequestMethod.POST)
+    public ResultBean deleteStudent(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.studentService.DeleteStudentList(ids);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println("错误"+e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学生删除失败");
+        }
+        return resultBean;
+    }
+
 }

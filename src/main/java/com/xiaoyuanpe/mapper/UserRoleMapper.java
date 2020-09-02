@@ -12,6 +12,8 @@ public interface UserRoleMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByPrimaryKeys(List<Integer> ids);
+
     int insert(UserRole record);
 
     int insertSelective(UserRole record);

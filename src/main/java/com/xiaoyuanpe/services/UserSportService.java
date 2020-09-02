@@ -16,4 +16,6 @@ public interface UserSportService {
 
     void DeleteUserSport(Integer id);
 
+    void DeleteUserSportList(List<Integer> ids);
+
 }

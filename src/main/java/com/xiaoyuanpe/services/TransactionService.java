@@ -14,4 +14,6 @@ public interface TransactionService {
     void ModifyTransaction(Transaction transaction);
 
     void DeleteTransaction(Integer id);
+    void DeleteTransactionList(List<Integer> ids);
+
 }

@@ -14,4 +14,6 @@ public interface ClassesService {
     void ModifyClasses(Classes classes);
 
     void DeleteClasses(Integer id);
+
+    void DeleteClassesList(List<Integer> ids);
 }

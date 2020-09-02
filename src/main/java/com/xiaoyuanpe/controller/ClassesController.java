@@ -52,7 +52,7 @@ public class ClassesController {
             List<Classes> classesList = new ArrayList<>();
             List<Classes> classes = this.classesService.findClassesAll();
             for (Classes classes1: classes){
-                if ((classes1.getCollegeId()==cid)&&(Integer.parseInt(classes1.getShchoolId())==user.getSchoolId())){
+                if ((classes1.getCollegeId()==cid)&&(classes1.getSchoolId()==user.getSchoolId())){
                     classesList.add(classes1);
                 }
             }
@@ -73,7 +73,7 @@ public class ClassesController {
             List<Classes> classesList = new ArrayList<>();
             List<Classes> classes = this.classesService.findClassesAll();
             for (Classes classes1: classes){
-                if ((classes1.getCollegeId()==cid)&&(Integer.parseInt(classes1.getShchoolId())==sid)){
+                if ((classes1.getCollegeId()==cid)&&(classes1.getSchoolId()==sid)){
                     classesList.add(classes1);
                 }
             }
@@ -93,6 +93,20 @@ public class ClassesController {
         ResultBean resultBean = new ResultBean();
         try {
             this.classesService.ModifyClasses(classes);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("班级信息更新失败");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/deleteClasses", method = RequestMethod.POST)
+    public ResultBean deleteClasses(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.classesService.DeleteClassesList(ids);
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());

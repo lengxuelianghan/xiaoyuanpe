@@ -38,4 +38,9 @@ public class ClassesServiceImpl implements ClassesService {
     public void DeleteClasses(Integer id) {
         this.classesMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void DeleteClassesList(List<Integer> ids) {
+        this.classesMapper.deleteByPrimaryKeys(ids);
+    }
 }

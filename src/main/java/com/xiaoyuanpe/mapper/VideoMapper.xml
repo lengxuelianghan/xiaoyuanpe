@@ -178,4 +178,12 @@
       video_url = #{videoUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+    delete from video
+    where id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
 </mapper>

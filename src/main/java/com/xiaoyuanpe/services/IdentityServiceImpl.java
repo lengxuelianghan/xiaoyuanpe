@@ -44,6 +44,11 @@ public class IdentityServiceImpl implements IdentityService {
     }
 
     @Override
+    public void DeleteIdentitiesList(List<Integer> ids) {
+        this.identitiesMapper.deleteByPrimaryKeys(ids);
+    }
+
+    @Override
     public Identities findIdentitiesByName(String name) {
         return this.identitiesMapper.selectByPrimaryName(name);
     }

@@ -3,7 +3,7 @@
 <mapper namespace="com.xiaoyuanpe.mapper.ClassesMapper">
   <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.Classes">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="shchool_id" jdbcType="VARCHAR" property="shchoolId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
     <result column="college_id" jdbcType="INTEGER" property="collegeId" />
     <result column="class_name" jdbcType="VARCHAR" property="className" />
   </resultMap>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, shchool_id, college_id, class_name
+    id, school_id, college_id, class_name
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ClassesExample" resultMap="BaseResultMap">
     select
@@ -99,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Classes">
-    insert into classes (id, shchool_id, college_id, 
+    insert into classes (id, school_id, college_id, 
       class_name)
-    values (#{id,jdbcType=INTEGER}, #{shchoolId,jdbcType=VARCHAR}, #{collegeId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, 
       #{className,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Classes">
@@ -110,8 +110,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="shchoolId != null">
-        shchool_id,
+      <if test="schoolId != null">
+        school_id,
       </if>
       <if test="collegeId != null">
         college_id,
@@ -124,8 +124,8 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="shchoolId != null">
-        #{shchoolId,jdbcType=VARCHAR},
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="collegeId != null">
         #{collegeId,jdbcType=INTEGER},
@@ -147,8 +147,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.shchoolId != null">
-        shchool_id = #{record.shchoolId,jdbcType=VARCHAR},
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
       </if>
       <if test="record.collegeId != null">
         college_id = #{record.collegeId,jdbcType=INTEGER},
@@ -164,7 +164,7 @@
   <update id="updateByExample" parameterType="map">
     update classes
     set id = #{record.id,jdbcType=INTEGER},
-      shchool_id = #{record.shchoolId,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
       college_id = #{record.collegeId,jdbcType=INTEGER},
       class_name = #{record.className,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -174,8 +174,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.Classes">
     update classes
     <set>
-      <if test="shchoolId != null">
-        shchool_id = #{shchoolId,jdbcType=VARCHAR},
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="collegeId != null">
         college_id = #{collegeId,jdbcType=INTEGER},
@@ -188,9 +188,16 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.Classes">
     update classes
-    set shchool_id = #{shchoolId,jdbcType=VARCHAR},
+    set school_id = #{schoolId,jdbcType=INTEGER},
       college_id = #{collegeId,jdbcType=INTEGER},
       class_name = #{className,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <delete id="deleteByPrimaryKeys" parameterType="java.util.List">
+    delete from classes
+    where id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

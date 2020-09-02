@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sportInfo")
@@ -97,6 +98,33 @@ public class SportInfoController {
         return resultBean;
     }
 
+    @RequestMapping(value = "/updateSportInfoSample", method = RequestMethod.POST)
+    public ResultBean updateSportInfoSample(@RequestBody SportInfo sportInfo, HttpSession session){
 
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.sportInfoService.ModifySportInfo(sportInfo);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("查找运动信息列表失败！"+e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/deleteSportInfo", method = RequestMethod.POST)
+    public ResultBean deleteSportInfo(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.sportInfoService.DeleteSportInfoList(ids);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("查找运动信息列表失败！"+e.getMessage());
+        }
+        return resultBean;
+    }
 
 }

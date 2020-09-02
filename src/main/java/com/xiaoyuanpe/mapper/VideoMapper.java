@@ -12,6 +12,8 @@ public interface VideoMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByPrimaryKeys(List<Integer> ids);
+
     int insert(Video record);
 
     int insertSelective(Video record);

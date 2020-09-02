@@ -57,4 +57,9 @@ public class SportServiceImpl implements SportService {
     public void DeleteSports(Integer id) {
         this.sportsMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void DeleteSportsList(List<Integer> ids) {
+        this.sportsMapper.deleteByPrimaryKeys(ids);
+    }
 }

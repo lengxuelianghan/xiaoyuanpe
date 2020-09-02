@@ -16,6 +16,8 @@ public interface UserService {
 
     void DeleteUser(Integer id);
 
+    void DeleteUserList(List<Integer> ids);
+
     Boolean NameRepeat(String name);
 
     long Count();

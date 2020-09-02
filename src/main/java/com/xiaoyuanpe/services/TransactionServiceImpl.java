@@ -38,4 +38,9 @@ public class TransactionServiceImpl implements TransactionService {
     public void DeleteTransaction(Integer id) {
         this.transactionMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void DeleteTransactionList(List<Integer> ids) {
+        this.transactionMapper.deleteByPrimaryKeys(ids);
+    }
 }

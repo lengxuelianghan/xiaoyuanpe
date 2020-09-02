@@ -59,6 +59,11 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
+    public void DeleteBusinessList(List<Integer> ids) {
+        this.businessMapper.deleteByPrimaryList(ids);
+    }
+
+    @Override
     public long Count() {
         return this.businessMapper.countByExample(new BusinessExample());
     }

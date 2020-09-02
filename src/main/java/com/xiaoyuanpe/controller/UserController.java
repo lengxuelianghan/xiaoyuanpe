@@ -8,13 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
 @RequestMapping("/user")
-//@Scope("prototype")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -84,10 +81,16 @@ public class UserController {
     }
 
     @PostMapping("/deleteUser")
-    public ResultBean deleteUser(@RequestBody List<Integer> selectsMultipleId){
+    public ResultBean deleteUser(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
-        resultBean.setMsg("SUCCESS");
-        //resultBean.setCode(this.userService.deleteCustomerRecords(selectsMultipleId));
+        try {
+            this.userService.DeleteUserList(ids);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            System.out.println(e.getMessage());
+            resultBean.setMsg("删除失败"+e.getMessage());
+        }
         return resultBean;
     }
 //    @RequestMapping(value="/startTime/{id}/{time}")

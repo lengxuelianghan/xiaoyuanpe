@@ -6,6 +6,8 @@ import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/video")
 public class VideoController {
@@ -67,11 +69,11 @@ public class VideoController {
         return resultBean;
     }
 
-    @RequestMapping("/deleteVideo/{id}")
-    public ResultBean deleteVideo(@PathVariable Integer id){
+    @RequestMapping("/deleteVideo")
+    public ResultBean deleteVideo(@PathVariable List<Integer> ids){
         ResultBean resultBean = new ResultBean();
         try {
-            this.videoService.DeleteVideo(id);
+            this.videoService.DeleteVideoList(ids);
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -80,4 +82,5 @@ public class VideoController {
         }
         return resultBean;
     }
+
 }

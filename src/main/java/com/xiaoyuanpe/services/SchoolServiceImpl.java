@@ -37,4 +37,9 @@ public class SchoolServiceImpl implements SchoolService {
     public void DeleteSchool(Integer id) {
         this.schoolMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void DeleteSchoolList(List<Integer> ids) {
+        this.schoolMapper.deleteByPrimaryKeys(ids);
+    }
 }

@@ -39,6 +39,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public void DeleteStudentList(List<Integer> ids) {
+        this.studentMapper.deleteByPrimaryKeys(ids);
+    }
+
+    @Override
     public Student findStudentByNumber(String snumber) {
         return this.studentMapper.selectByPrimaryNumber(snumber);
     }

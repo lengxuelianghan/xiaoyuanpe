@@ -14,4 +14,5 @@ public interface SchoolService {
     void ModifySchool(School school);
 
     void DeleteSchool(Integer id);
+    void DeleteSchoolList(List<Integer> ids);
 }

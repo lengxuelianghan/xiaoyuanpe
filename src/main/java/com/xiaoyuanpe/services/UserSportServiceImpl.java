@@ -56,4 +56,9 @@ public class UserSportServiceImpl implements UserSportService {
     public void DeleteUserSport(Integer id) {
 
     }
+
+    @Override
+    public void DeleteUserSportList(List<Integer> ids) {
+        this.userSportMapper.deleteByPrimaryKeys(ids);
+    }
 }

@@ -8,6 +8,8 @@ import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/identity")
 public class IdentityController {
@@ -80,6 +82,19 @@ public class IdentityController {
             System.out.println("错误:"+e.getMessage());
             resultBean.setCode(1);
             resultBean.setMsg("身份信息分配失败");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/deleteIdentity", method = RequestMethod.POST)
+    public ResultBean deleteIdentity(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.identityService.DeleteIdentitiesList(ids);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg("身份信息更新失败");
         }
         return resultBean;
     }

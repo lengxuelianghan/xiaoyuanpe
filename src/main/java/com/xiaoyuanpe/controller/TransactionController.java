@@ -6,6 +6,8 @@ import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/transaction")
 public class TransactionController {
@@ -59,6 +61,20 @@ public class TransactionController {
         ResultBean resultBean = new ResultBean();
         try {
             this.transactionService.ModifyTransaction(transaction);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setMsg("交易信息修改失败！");
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/deleteTransaction", method = RequestMethod.POST)
+    public ResultBean deleteTransaction(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.transactionService.DeleteTransactionList(ids);
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());

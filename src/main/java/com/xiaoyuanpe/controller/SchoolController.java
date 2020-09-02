@@ -6,6 +6,8 @@ import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/school")
 public class SchoolController {
@@ -59,6 +61,20 @@ public class SchoolController {
         ResultBean resultBean = new ResultBean();
         try {
             this.schoolService.ModifySchool(school);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println("错误"+e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学校添更新失败");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/deleteSchool", method = RequestMethod.POST)
+    public ResultBean deleteSchool(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.schoolService.DeleteSchoolList(ids);
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println("错误"+e.getMessage());

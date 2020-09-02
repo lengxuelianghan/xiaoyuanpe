@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void DeleteUserList(List<Integer> ids) {
+        this.usersMapper.deleteByPrimaryKeys(ids);
+    }
+
+    @Override
     public Boolean NameRepeat(String number) {
         User user = this.usersMapper.selectByPrimaryNumber(number);
         if (user!=null){

@@ -15,4 +15,6 @@ public interface VideoService {
     void ModifyVideo(Video video);
 
     void DeleteVideo(Integer id);
+
+    void DeleteVideoList(List<Integer> ids);
 }

@@ -12,6 +12,8 @@ public interface StudentMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    int deleteByPrimaryKeys(List<Integer> ids);
+
     int insert(Student record);
 
     int insertSelective(Student record);

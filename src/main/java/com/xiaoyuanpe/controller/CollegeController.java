@@ -101,4 +101,19 @@ public class CollegeController {
         }
         return resultBean;
     }
+
+    @RequestMapping(value = "/deleteCollege", method = RequestMethod.POST)
+    public ResultBean deleteCollege(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            System.out.println(ids.toString());
+            this.collegeService.DeleteCollegeList(ids);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学院信息修改失败");
+        }
+        return resultBean;
+    }
 }

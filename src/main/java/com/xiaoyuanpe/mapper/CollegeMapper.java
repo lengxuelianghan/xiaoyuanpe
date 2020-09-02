@@ -27,4 +27,6 @@ public interface CollegeMapper {
     int updateByPrimaryKeySelective(College record);
 
     int updateByPrimaryKey(College record);
+
+    int deleteByPrimaryKeys(List<Integer> id);
 }

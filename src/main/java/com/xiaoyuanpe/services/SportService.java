@@ -15,4 +15,5 @@ public interface SportService {
     void ModifySports(Sports sports);
 
     void DeleteSports(Integer id);
+    void DeleteSportsList(List<Integer> ids);
 }

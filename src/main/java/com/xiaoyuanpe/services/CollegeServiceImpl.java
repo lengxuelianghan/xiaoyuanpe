@@ -38,4 +38,9 @@ public class CollegeServiceImpl implements CollegeService {
     public void DeleteCollege(Integer id) {
         this.collegeMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public void DeleteCollegeList(List<Integer> ids) {
+        this.collegeMapper.deleteByPrimaryKeys(ids);
+    }
 }

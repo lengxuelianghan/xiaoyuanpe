@@ -12,6 +12,8 @@ import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/userSport")
 public class UserSportController {
@@ -99,6 +101,20 @@ public class UserSportController {
             System.out.println(e.getMessage());
             resultBean.setCode(1);
             resultBean.setMsg("运动信息新增失败");
+        }
+        return resultBean;
+    }
+
+    @PostMapping("/deleteUserSport")
+    public ResultBean deleteUserSport(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.userSportService.DeleteUserSportList(ids);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("运动信息删除失败");
         }
         return resultBean;
     }

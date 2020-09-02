@@ -14,6 +14,7 @@ public interface IdentityService {
     void ModifyIdentities(Identities identities);
 
     void DeleteIdentities(Integer id);
+    void DeleteIdentitiesList(List<Integer> ids);
 
     Identities findIdentitiesByName(String name);
 
