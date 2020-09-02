@@ -25,28 +25,31 @@ public class ImportController  {
     @Autowired
     private SemesterService semesterService;
 
-    @PostMapping("/readExcel/{cId}/{ccId}")
-    public ResultBean ImportFile(@RequestBody String filePath, @PathVariable Integer sId, @PathVariable Integer cId,
-                                 @PathVariable Integer ccId, HttpSession session){
+    @RequestMapping(value = "/readExcel", method = RequestMethod.POST)
+    public ResultBean ImportFile(@RequestParam Integer sId, @RequestParam Integer cId,
+                                 @RequestParam Integer ccId, @RequestParam String filePath){
+        System.out.println(filePath);
         ResultBean resultBean = new ResultBean();
         try {
-            User user = (User) session.getAttribute("user");
             ReadExcel readExcel = new ReadExcel();
             List<StudentInfo> studentInfos = readExcel.importExcel(filePath);
             for (StudentInfo studentInfo : studentInfos) {
+                System.out.println(studentInfo.getName()+","
+                        +studentInfo.getNumber()+","+studentInfo.getPassword()+","+studentInfo.getPhone()
+                        +","+studentInfo.getAge()+","+studentInfo.getSex()+","+1);
                 User user1 = new User();
                 user1.setIdentity("学生");
                 user1.setAge(studentInfo.getAge());
                 user1.setUserNumber(studentInfo.getNumber());
                 user1.setPassword(studentInfo.getPassword());
                 user1.setUsername(studentInfo.getName());
-                user1.setSchoolId(user.getSchoolId());
+                user1.setSchoolId(sId);
                 user1.setPhone(studentInfo.getPhone());
                 user1.setSex(studentInfo.getSex());
                 this.userService.addUser(user1);
 
                 Student student = new Student();
-                student.setShcoolId(user.getSchoolId());
+                student.setShcoolId(sId);
                 student.setCollegeId(cId);
                 student.setClassesId(ccId);
                 student.setAge(studentInfo.getAge());
@@ -55,10 +58,10 @@ public class ImportController  {
                 student.setSex(studentInfo.getSex());
                 this.studentService.addStudent(student);
 
-
                 Student student1 = this.studentService.findStudentLast();
+                System.out.println(student1.getId()+"saguisgcgidsuhcdsiu");
                 Semester semester = new Semester();
-                semester.setSudentId(student1.getId()+1);
+                semester.setSudentId(student1.getId());
                 semester.setClassesId(student.getClassesId());
                 semester.setScore(0);
                 semester.setExerciseTime(0);
@@ -69,7 +72,6 @@ public class ImportController  {
                     semester.setTerm(i + 1);
                     this.semesterService.addSemester(semester);
                 }
-
             }
             resultBean.setCode(0);
         }catch (Exception e){

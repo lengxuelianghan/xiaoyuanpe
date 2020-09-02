@@ -40,12 +40,20 @@ public class ExcelUtil {
                         if (sheet.getRow(j)==null){
                             continue;
                         }
-                        StudentInfo studentInfo1 = new StudentInfo(ExcelUtil.getCell(sheet.getRow(j).getCell(1)),
-                                ExcelUtil.getCell(sheet.getRow(j).getCell(2)),
-                                ExcelUtil.getCell(sheet.getRow(j).getCell(3)),
-                                ExcelUtil.getCell(sheet.getRow(j).getCell(4)),
-                                Integer.valueOf((ExcelUtil.getCell(sheet.getRow(j).getCell(5)).equals("") ? "0" : ExcelUtil.getCell(sheet.getRow(j).getCell(5)))),
-                                ExcelUtil.getCell(sheet.getRow(j).getCell(6)));
+//                        StudentInfo studentInfo1 = new StudentInfo(ExcelUtil.getCell(sheet.getRow(j).getCell(1)),
+//                                ExcelUtil.getCell(sheet.getRow(j).getCell(2)),
+//                                ExcelUtil.getCell(sheet.getRow(j).getCell(3)),
+//                                ExcelUtil.getCell(sheet.getRow(j).getCell(4)),
+//                                Integer.valueOf((ExcelUtil.getCell(sheet.getRow(j).getCell(5)).equals("") ? "0" : ExcelUtil.getCell(sheet.getRow(j).getCell(5)))),
+//                                ExcelUtil.getCell(sheet.getRow(j).getCell(6)));
+                        StudentInfo studentInfo1 = new StudentInfo();
+                        studentInfo1.setName(ExcelUtil.getCell(sheet.getRow(j).getCell(0)));
+                        studentInfo1.setNumber(ExcelUtil.getCell(sheet.getRow(j).getCell(1)));
+
+                        studentInfo1.setSex("无");
+                        studentInfo1.setAge(0);
+                        studentInfo1.setPhone("无");
+                        studentInfo1.setPassword("123456");
                         BOM.add(studentInfo1);
                     }
                 }
@@ -55,35 +63,40 @@ public class ExcelUtil {
             for (int s = 0; s < xs.getNumberOfSheets(); s++) {
                 XSSFSheet sheet = xs.getSheetAt(s);
                 int lastRowNum = sheet.getLastRowNum();
-                System.out.println("当前页:" + xs.getSheetName(s));
-                for (int i = 0; i < lastRowNum; i++) {
-                    System.out.println(lastRowNum);
+                //System.out.println("当前页:" + xs.getSheetName(s));
+                for (int i = 1; i < lastRowNum+1; i++) {
+                    //System.out.println(lastRowNum);
                     XSSFRow row = sheet.getRow(i);
                     studentInfo = new StudentInfo();
                     for (int j = 0; j < row.getLastCellNum(); j++) {
                         XSSFCell cell = row.getCell(j);
                         switch (cell.getColumnIndex()) {
                             case 0:
-                                System.out.println(Integer.parseInt(cell.getRawValue()));
-                                break;
-                            case 1:
                                 studentInfo.setName(cell.toString());
                                 break;
-                            case 2:
+                            case 1:
                                 studentInfo.setNumber(cell.toString());
+                                studentInfo.setSex("无");
+                                studentInfo.setAge(0);
+                                studentInfo.setPhone("无");
+                                studentInfo.setPassword("123456");
+                                //studentInfo.setName(cell.toString());
                                 break;
-                            case 3:
-                                studentInfo.setPassword(cell.toString());
-                                break;
-                            case 4:
-                                studentInfo.setSex(cell.toString());
-                                break;
-                            case 5:
-                                studentInfo.setAge(Integer.valueOf(cell.getRawValue()));
-                                break;
-                            case 6:
-                                studentInfo.setPhone(cell.getRawValue());
-                                break;
+//                            case 2:
+//                                studentInfo.setNumber(cell.toString());
+//                                break;
+//                            case 3:
+//                                studentInfo.setPassword(cell.toString());
+//                                break;
+//                            case 4:
+//                                studentInfo.setSex(cell.toString());
+//                                break;
+//                            case 5:
+//                                studentInfo.setAge(Integer.valueOf(cell.getRawValue()));
+//                                break;
+//                            case 6:
+//                                studentInfo.setPhone(cell.getRawValue());
+//                                break;
                             default:
                                 // TODO 数据格式有误
                                 break;

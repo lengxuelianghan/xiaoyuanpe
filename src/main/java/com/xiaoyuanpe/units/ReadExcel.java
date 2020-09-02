@@ -23,7 +23,8 @@ public class ReadExcel {
         File file = new File(filePath);
         if (file != null) {
             this.num=1;
-            return openFile(file);
+            List<StudentInfo> studentInfos = openFile(file);
+            return studentInfos;
         }
         else {
             this.num=0;
