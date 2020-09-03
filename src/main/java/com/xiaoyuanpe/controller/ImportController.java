@@ -9,10 +9,14 @@ import com.xiaoyuanpe.services.StudentService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ReadExcel;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -26,13 +30,20 @@ public class ImportController  {
     private SemesterService semesterService;
 
     @RequestMapping(value = "/readExcel", method = RequestMethod.POST)
-    public ResultBean ImportFile(@RequestParam Integer sId, @RequestParam Integer cId,
-                                 @RequestParam Integer ccId, @RequestParam String filePath){
-        System.out.println(filePath);
+    public ResultBean ImportFile(@RequestParam Integer sId, @RequestParam Integer cId, @RequestParam Integer ccId,
+                                 @RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest req){
         ResultBean resultBean = new ResultBean();
+        String fileName = "";
+        System.out.println(12321);
         try {
+            if (excelFile != null){
+                String filename=excelFile.getOriginalFilename();
+                fileName = filename;
+                File f = new File("D:"+"/"+filename);
+                FileUtils.writeByteArrayToFile(f, excelFile.getBytes());
+            }
             ReadExcel readExcel = new ReadExcel();
-            List<StudentInfo> studentInfos = readExcel.importExcel(filePath);
+            List<StudentInfo> studentInfos = readExcel.importExcel("D:"+"/"+fileName);
             for (StudentInfo studentInfo : studentInfos) {
                 System.out.println(studentInfo.getName()+","
                         +studentInfo.getNumber()+","+studentInfo.getPassword()+","+studentInfo.getPhone()
@@ -59,7 +70,6 @@ public class ImportController  {
                 this.studentService.addStudent(student);
 
                 Student student1 = this.studentService.findStudentLast();
-                System.out.println(student1.getId()+"saguisgcgidsuhcdsiu");
                 Semester semester = new Semester();
                 semester.setSudentId(student1.getId());
                 semester.setClassesId(student.getClassesId());

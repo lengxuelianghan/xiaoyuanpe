@@ -75,7 +75,7 @@ public class ExcelUtil {
                                 studentInfo.setName(cell.toString());
                                 break;
                             case 1:
-                                studentInfo.setNumber(cell.toString());
+                                studentInfo.setNumber(String.valueOf(Integer.parseInt(cell.getRawValue())));
                                 studentInfo.setSex("无");
                                 studentInfo.setAge(0);
                                 studentInfo.setPhone("无");
