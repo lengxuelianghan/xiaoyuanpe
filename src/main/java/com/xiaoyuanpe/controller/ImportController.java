@@ -39,11 +39,11 @@ public class ImportController  {
             if (excelFile != null){
                 String filename=excelFile.getOriginalFilename();
                 fileName = filename;
-                File f = new File("D:"+"/"+filename);
+                File f = new File("C:"+"/"+filename);
                 FileUtils.writeByteArrayToFile(f, excelFile.getBytes());
             }
             ReadExcel readExcel = new ReadExcel();
-            List<StudentInfo> studentInfos = readExcel.importExcel("D:"+"/"+fileName);
+            List<StudentInfo> studentInfos = readExcel.importExcel("C:"+"/"+fileName);
             for (StudentInfo studentInfo : studentInfos) {
                 System.out.println(studentInfo.getName()+","
                         +studentInfo.getNumber()+","+studentInfo.getPassword()+","+studentInfo.getPhone()
