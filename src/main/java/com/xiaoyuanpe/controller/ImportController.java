@@ -11,12 +11,18 @@ import com.xiaoyuanpe.units.ReadExcel;
 import com.xiaoyuanpe.units.ResultBean;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,15 +41,21 @@ public class ImportController  {
         ResultBean resultBean = new ResultBean();
         String fileName = "";
         System.out.println(12321);
+        String filepath = getUploadPath();
         try {
             if (excelFile != null){
                 String filename=excelFile.getOriginalFilename();
-                fileName = filename;
-                File f = new File("C:\\Users\\Administrator\\Desktop"+"\\"+filename);
-                FileUtils.writeByteArrayToFile(f, excelFile.getBytes());
+                fileName = getFileName(filename);
+//                File f = new File("C:\\Users\\Administrator\\Desktop"+"\\"+filename);
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(filepath + File.separator + fileName)));
+                System.out.println(filepath + File.separator + fileName);
+                //FileUtils.writeByteArrayToFile(f, excelFile.getBytes());
+                out.write(excelFile.getBytes());
+                out.flush();
             }
             ReadExcel readExcel = new ReadExcel();
-            List<StudentInfo> studentInfos = readExcel.importExcel("C:\\Users\\Administrator\\Desktop"+"\\"+fileName);
+            List<StudentInfo> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
             for (StudentInfo studentInfo : studentInfos) {
                 System.out.println(studentInfo.getName()+","
                         +studentInfo.getNumber()+","+studentInfo.getPassword()+","+studentInfo.getPhone()
@@ -90,5 +102,29 @@ public class ImportController  {
             resultBean.setMsg("导入失败");
         }
         return resultBean;
+    }
+
+    private String getFileName(String fileName) {
+        int index = fileName.lastIndexOf(".");
+        final SimpleDateFormat sDateFormate = new SimpleDateFormat("yyyymmddHHmmss");  //设置时间格式
+        String nowTimeStr = sDateFormate.format(new Date()); // 当前时间
+        fileName = fileName.substring(0, index) + "_" + nowTimeStr + fileName.substring(index);
+        return fileName;
+    }
+
+    /**
+     * 获取当前系统路径
+     */
+    private String getUploadPath() {
+        File path = null;
+        try {
+            path = new File(ResourceUtils.getURL("classpath:").getPath());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (!path.exists()) path = new File("");
+        File upload = new File(path.getAbsolutePath(), "static/upload/");
+        if (!upload.exists()) upload.mkdirs();
+        return upload.getAbsolutePath();
     }
 }
