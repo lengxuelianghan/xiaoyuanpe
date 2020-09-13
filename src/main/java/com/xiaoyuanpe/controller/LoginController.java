@@ -31,6 +31,7 @@ public class LoginController {
                     session.setAttribute("user", user);
                     session.setMaxInactiveInterval(30*60*60);
                     resultBean.setCode(0);
+                    resultBean.setTotal(user.getId());
                     break;
                 }
             }
