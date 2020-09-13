@@ -23,15 +23,17 @@ public class LoginController {
     public ResultBean Login(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
+            resultBean.setCode(1);
             int pageSize = (int)this.userService.Count();
             String info = this.loginService.login(usernumber, password);
             for (User user : this.userService.findUsersAll(1,pageSize).getContent()) {
                 if (usernumber.equals(user.getUserNumber())) {
                     session.setAttribute("user", user);
                     session.setMaxInactiveInterval(30*60*60);
+                    resultBean.setCode(0);
+                    break;
                 }
             }
-            resultBean.setCode(0);
             resultBean.setMsg(info);
         }catch (Exception e){
             System.out.println("错误："+e.getMessage());
