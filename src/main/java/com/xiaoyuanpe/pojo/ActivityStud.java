@@ -7,7 +7,7 @@ public class ActivityStud {
 
     private Integer studentId;
 
-    private String character;
+    private String characters;
 
     public Integer getId() {
         return id;
@@ -33,11 +33,11 @@ public class ActivityStud {
         this.studentId = studentId;
     }
 
-    public String getCharacter() {
-        return character;
+    public String getCharacters() {
+        return characters;
     }
 
-    public void setCharacter(String character) {
-        this.character = character == null ? null : character.trim();
+    public void setCharacters(String characters) {
+        this.characters = characters == null ? null : characters.trim();
     }
 }

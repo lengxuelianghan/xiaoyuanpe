@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="student_id" jdbcType="INTEGER" property="studentId" />
-    <result column="character" jdbcType="VARCHAR" property="character" />
+    <result column="characters" jdbcType="VARCHAR" property="characters" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, activity_id, student_id, character
+    id, activity_id, student_id, characters
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ActivityStudExample" resultMap="BaseResultMap">
     select
@@ -100,9 +100,9 @@
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.ActivityStud">
     insert into activity_stud (id, activity_id, student_id, 
-      character)
+      characters)
     values (#{id,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, 
-      #{character,jdbcType=VARCHAR})
+      #{characters,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.ActivityStud">
     insert into activity_stud
@@ -116,8 +116,8 @@
       <if test="studentId != null">
         student_id,
       </if>
-      <if test="character != null">
-        character,
+      <if test="characters != null">
+        characters,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -130,8 +130,8 @@
       <if test="studentId != null">
         #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="character != null">
-        #{character,jdbcType=VARCHAR},
+      <if test="characters != null">
+        #{characters,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -153,8 +153,8 @@
       <if test="record.studentId != null">
         student_id = #{record.studentId,jdbcType=INTEGER},
       </if>
-      <if test="record.character != null">
-        character = #{record.character,jdbcType=VARCHAR},
+      <if test="record.characters != null">
+        characters = #{record.characters,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -166,7 +166,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       activity_id = #{record.activityId,jdbcType=INTEGER},
       student_id = #{record.studentId,jdbcType=INTEGER},
-      character = #{record.character,jdbcType=VARCHAR}
+      characters = #{record.characters,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,8 +180,8 @@
       <if test="studentId != null">
         student_id = #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="character != null">
-        character = #{character,jdbcType=VARCHAR},
+      <if test="characters != null">
+        characters = #{characters,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -190,7 +190,7 @@
     update activity_stud
     set activity_id = #{activityId,jdbcType=INTEGER},
       student_id = #{studentId,jdbcType=INTEGER},
-      character = #{character,jdbcType=VARCHAR}
+      characters = #{characters,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -42,9 +42,9 @@
 
 <!--        <table schema="" tableName="signin"></table>-->
 <!--        <table schema="" tableName="activity"></table>-->
-<!--        <table schema="" tableName="activity_stud"></table>-->
+        <table schema="" tableName="activity_stud"></table>
 <!--        <table schema="" tableName="class_year"></table>-->
-        <table schema="" tableName="info"></table>
+<!--        <table schema="" tableName="info"></table>-->
 
         <!--        <table schema="" tableName="user"></table>-->
 <!--        <table schema="" tableName="user_sport"></table>-->

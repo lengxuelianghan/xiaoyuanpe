@@ -234,7 +234,7 @@ public class ActivityController {
             int id = this.studentService.findStudentByNumber(num).getId();
             activityStud.setStudentId(id);
             activityStud.setActivityId(aid);
-            activityStud.setCharacter("参与者");
+            activityStud.setCharacters("参与者");
             this.activityStudService.addActivityStud(activityStud);
             resultBean.setCode(0);
         }catch (Exception e){
@@ -254,7 +254,7 @@ public class ActivityController {
                 int sid = this.studentService.findStudentByNumber(num).getId();
                 activityStud.setStudentId(sid);
                 activityStud.setActivityId(aid);
-                activityStud.setCharacter("参与者");
+                activityStud.setCharacters("参与者");
                 this.activityStudService.addActivityStud(activityStud);
             }
             resultBean.setCode(0);
@@ -274,7 +274,7 @@ public class ActivityController {
             int id = this.studentService.findStudentByNumber(num).getId();
             activityStud.setStudentId(id);
             activityStud.setActivityId(aid);
-            activityStud.setCharacter(role);
+            activityStud.setCharacters(role);
             this.activityStudService.addActivityStud(activityStud);
             resultBean.setCode(0);
         }catch (Exception e){
@@ -296,7 +296,7 @@ public class ActivityController {
             activityStud.setStudentId(id);
             activityStud.setActivityId(aid);
             if (this.activityService.findActivityById(aid).getPublisherId()==sid) {
-                activityStud.setCharacter("发起人");
+                activityStud.setCharacters("发起人");
                 this.activityStudService.addActivityStud(activityStud);
             }
             resultBean.setCode(0);
@@ -314,7 +314,7 @@ public class ActivityController {
             List<ActivityStud> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacter().equals("参与者")){
+                if(activityStud.getCharacters().equals("参与者")){
                     activityStudList.add(activityStud);
                 }
             }
@@ -334,7 +334,7 @@ public class ActivityController {
             List<ActivityStud> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacter().equals("发起人")){
+                if(activityStud.getCharacters().equals("发起人")){
                     activityStudList.add(activityStud);
                 }
             }
@@ -354,7 +354,7 @@ public class ActivityController {
             List<ActivityStud> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacter().equals("签到员")){
+                if(activityStud.getCharacters().equals("签到员")){
                     activityStudList.add(activityStud);
                 }
             }
