@@ -227,8 +227,8 @@ public class ActivityController {
     @GetMapping("/signUp/{aid}")
     public ResultBean signUp(@PathVariable Integer aid, HttpSession session){
         ResultBean resultBean = new ResultBean();
+        User user = (User) session.getAttribute("user");
         try {
-            User user = (User) session.getAttribute("user");
             ActivityStud activityStud = new ActivityStud();
             String num = this.userService.findUsersById(user.getId()).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
@@ -287,8 +287,8 @@ public class ActivityController {
     @GetMapping("/organizer/{aid}")
     public ResultBean organizer(@PathVariable Integer aid, HttpSession session){
         ResultBean resultBean = new ResultBean();
+        User user = (User) session.getAttribute("user");
         try {
-            User user = (User) session.getAttribute("user");
             Integer sid = user.getId();
             ActivityStud activityStud = new ActivityStud();
             String num = this.userService.findUsersById(sid).getUserNumber();
