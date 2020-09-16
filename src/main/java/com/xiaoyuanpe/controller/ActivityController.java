@@ -163,7 +163,7 @@ public class ActivityController {
         return upload.getAbsolutePath();
     }
 
-    @GetMapping("/reviewById/id")
+    @GetMapping("/reviewById/{id}")
     public ResultBean reviewById(@PathVariable Integer id){
         ResultBean resultBean = new ResultBean();
         try {
@@ -218,7 +218,7 @@ public class ActivityController {
         }
         return resultBean;
     }
-    @GetMapping("/signUp/aid")
+    @GetMapping("/signUp/{aid}")
     public ResultBean signUp(@PathVariable Integer aid, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
@@ -238,7 +238,7 @@ public class ActivityController {
         return resultBean;
     }
 
-    @PostMapping("/signUpList/aid")
+    @PostMapping("/signUpList/{aid}")
     public ResultBean signUpList(@RequestBody List<Integer> ids, @PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try {
@@ -259,7 +259,7 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/assignation/aid/sid/role")
+    @GetMapping("/assignation/{aid}/{sid}/{role}")
     public ResultBean assignation(@PathVariable Integer aid, @PathVariable Integer sid, @PathVariable  String role){
         ResultBean resultBean = new ResultBean();
         try {
@@ -278,7 +278,7 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/organizer/aid")
+    @GetMapping("/organizer/{aid}")
     public ResultBean organizer(@PathVariable Integer aid, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
