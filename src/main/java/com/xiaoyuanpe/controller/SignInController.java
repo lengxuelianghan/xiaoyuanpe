@@ -48,7 +48,31 @@ public class SignInController {
             for(Integer id: ids){
                 Signin signin = this.signInService.findSigninById(id);
                 signin.setFlag(1);
+                signin.setSignTime(new Date());
                 this.signInService.ModifySignin(signin);
+            }
+            resultBean.setCode(0);
+        }
+        catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @PostMapping("/updateSignOutList")
+    public ResultBean updateSignOutList(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try{
+            for(Integer id: ids){
+                Signin signin = this.signInService.findSigninById(id);
+                if (signin.getSignTime()!=null) {
+                    signin.setFlag(2);
+                    Date date = new Date();
+                    signin.setSignoutTime(date);
+                    this.signInService.ModifySignin(signin);
+                }
             }
             resultBean.setCode(0);
         }
