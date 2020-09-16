@@ -211,7 +211,8 @@ public class ActivityController {
             List<Activity> activityList = new ArrayList<>();
             List<Activity> activitys = this.activityService.findActivityAllList();
             for(Activity activity: activitys){
-                if (Integer.parseInt(activity.getReviewerId())==user.getId()){
+                System.out.println(activity.getReviewerId()+"."+user.getId());
+                if (activity.getReviewerId()!=null && Integer.parseInt(activity.getReviewerId())==user.getId()){
                     activityList.add(activity);
                 }
             }
