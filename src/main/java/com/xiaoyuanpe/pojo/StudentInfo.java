@@ -7,6 +7,9 @@ public class StudentInfo {
     private String sex;
     private Integer age;
     private String phone;
+    private String school;
+    private String college;
+    private String classes;
 
     public StudentInfo(String name, String number, String password, String sex, Integer age, String phone) {
         this.name = name;
@@ -65,5 +68,29 @@ public class StudentInfo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getClasses() {
+        return classes;
+    }
+
+    public void setClasses(String classes) {
+        this.classes = classes;
     }
 }

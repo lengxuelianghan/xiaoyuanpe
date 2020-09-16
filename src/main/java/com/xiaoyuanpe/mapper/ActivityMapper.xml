@@ -4,12 +4,31 @@
   <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.Activity">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_content" jdbcType="VARCHAR" property="activityContent" />
     <result column="image_path" jdbcType="VARCHAR" property="imagePath" />
     <result column="publisher_id" jdbcType="INTEGER" property="publisherId" />
     <result column="publish_data" jdbcType="TIMESTAMP" property="publishData" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaoyuanpe.pojo.Activity">
-    <result column="activity_content" jdbcType="LONGVARCHAR" property="activityContent" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
+    <result column="college_id" jdbcType="INTEGER" property="collegeId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="college" jdbcType="VARCHAR" property="college" />
+    <result column="registration_closing_time" jdbcType="TIMESTAMP" property="registrationClosingTime" />
+    <result column="registration_start_time" jdbcType="TIMESTAMP" property="registrationStartTime" />
+    <result column="reviewer_id" jdbcType="VARCHAR" property="reviewerId" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="way_registration" jdbcType="VARCHAR" property="wayRegistration" />
+    <result column="activity_area" jdbcType="VARCHAR" property="activityArea" />
+    <result column="event_location" jdbcType="VARCHAR" property="eventLocation" />
+    <result column="activity_classification" jdbcType="VARCHAR" property="activityClassification" />
+    <result column="participation_fee" jdbcType="VARCHAR" property="participationFee" />
+    <result column="college_list" jdbcType="VARCHAR" property="collegeList" />
+    <result column="class_list" jdbcType="VARCHAR" property="classList" />
+    <result column="people_num" jdbcType="INTEGER" property="peopleNum" />
+    <result column="signout" jdbcType="VARCHAR" property="signout" />
+    <result column="field_clock" jdbcType="VARCHAR" property="fieldClock" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,27 +89,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, activity_name, image_path, publisher_id, publish_data
+    id, activity_name, activity_content, image_path, publisher_id, publish_data, school_id, 
+    college_id, start_time, end_time, status, college, registration_closing_time, registration_start_time, 
+    reviewer_id, contact, contact_phone, way_registration, activity_area, event_location, 
+    activity_classification, participation_fee, college_list, class_list, people_num, 
+    signout, field_clock
   </sql>
-  <sql id="Blob_Column_List">
-    activity_content
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.xiaoyuanpe.pojo.ActivityExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from activity
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ActivityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -105,11 +109,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from activity
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -124,12 +126,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Activity">
-    insert into activity (id, activity_name, image_path, 
-      publisher_id, publish_data, activity_content
-      )
-    values (#{id,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{imagePath,jdbcType=VARCHAR}, 
-      #{publisherId,jdbcType=INTEGER}, #{publishData,jdbcType=TIMESTAMP}, #{activityContent,jdbcType=LONGVARCHAR}
-      )
+    insert into activity (id, activity_name, activity_content, 
+      image_path, publisher_id, publish_data, 
+      school_id, college_id, start_time, 
+      end_time, status, college, 
+      registration_closing_time, registration_start_time, 
+      reviewer_id, contact, contact_phone, 
+      way_registration, activity_area, event_location, 
+      activity_classification, participation_fee, 
+      college_list, class_list, people_num, 
+      signout, field_clock)
+    values (#{id,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{activityContent,jdbcType=VARCHAR}, 
+      #{imagePath,jdbcType=VARCHAR}, #{publisherId,jdbcType=INTEGER}, #{publishData,jdbcType=TIMESTAMP}, 
+      #{schoolId,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{college,jdbcType=VARCHAR}, 
+      #{registrationClosingTime,jdbcType=TIMESTAMP}, #{registrationStartTime,jdbcType=TIMESTAMP}, 
+      #{reviewerId,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{wayRegistration,jdbcType=VARCHAR}, #{activityArea,jdbcType=VARCHAR}, #{eventLocation,jdbcType=VARCHAR}, 
+      #{activityClassification,jdbcType=VARCHAR}, #{participationFee,jdbcType=VARCHAR}, 
+      #{collegeList,jdbcType=VARCHAR}, #{classList,jdbcType=VARCHAR}, #{peopleNum,jdbcType=INTEGER}, 
+      #{signout,jdbcType=VARCHAR}, #{fieldClock,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Activity">
     insert into activity
@@ -140,6 +156,9 @@
       <if test="activityName != null">
         activity_name,
       </if>
+      <if test="activityContent != null">
+        activity_content,
+      </if>
       <if test="imagePath != null">
         image_path,
       </if>
@@ -149,8 +168,68 @@
       <if test="publishData != null">
         publish_data,
       </if>
-      <if test="activityContent != null">
-        activity_content,
+      <if test="schoolId != null">
+        school_id,
+      </if>
+      <if test="collegeId != null">
+        college_id,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="college != null">
+        college,
+      </if>
+      <if test="registrationClosingTime != null">
+        registration_closing_time,
+      </if>
+      <if test="registrationStartTime != null">
+        registration_start_time,
+      </if>
+      <if test="reviewerId != null">
+        reviewer_id,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="wayRegistration != null">
+        way_registration,
+      </if>
+      <if test="activityArea != null">
+        activity_area,
+      </if>
+      <if test="eventLocation != null">
+        event_location,
+      </if>
+      <if test="activityClassification != null">
+        activity_classification,
+      </if>
+      <if test="participationFee != null">
+        participation_fee,
+      </if>
+      <if test="collegeList != null">
+        college_list,
+      </if>
+      <if test="classList != null">
+        class_list,
+      </if>
+      <if test="peopleNum != null">
+        people_num,
+      </if>
+      <if test="signout != null">
+        signout,
+      </if>
+      <if test="fieldClock != null">
+        field_clock,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -159,6 +238,9 @@
       </if>
       <if test="activityName != null">
         #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityContent != null">
+        #{activityContent,jdbcType=VARCHAR},
       </if>
       <if test="imagePath != null">
         #{imagePath,jdbcType=VARCHAR},
@@ -169,8 +251,68 @@
       <if test="publishData != null">
         #{publishData,jdbcType=TIMESTAMP},
       </if>
-      <if test="activityContent != null">
-        #{activityContent,jdbcType=LONGVARCHAR},
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="collegeId != null">
+        #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="college != null">
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationClosingTime != null">
+        #{registrationClosingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationStartTime != null">
+        #{registrationStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewerId != null">
+        #{reviewerId,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="wayRegistration != null">
+        #{wayRegistration,jdbcType=VARCHAR},
+      </if>
+      <if test="activityArea != null">
+        #{activityArea,jdbcType=VARCHAR},
+      </if>
+      <if test="eventLocation != null">
+        #{eventLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="activityClassification != null">
+        #{activityClassification,jdbcType=VARCHAR},
+      </if>
+      <if test="participationFee != null">
+        #{participationFee,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeList != null">
+        #{collegeList,jdbcType=VARCHAR},
+      </if>
+      <if test="classList != null">
+        #{classList,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null">
+        #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="signout != null">
+        #{signout,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldClock != null">
+        #{fieldClock,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -189,6 +331,9 @@
       <if test="record.activityName != null">
         activity_name = #{record.activityName,jdbcType=VARCHAR},
       </if>
+      <if test="record.activityContent != null">
+        activity_content = #{record.activityContent,jdbcType=VARCHAR},
+      </if>
       <if test="record.imagePath != null">
         image_path = #{record.imagePath,jdbcType=VARCHAR},
       </if>
@@ -198,22 +343,70 @@
       <if test="record.publishData != null">
         publish_data = #{record.publishData,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.activityContent != null">
-        activity_content = #{record.activityContent,jdbcType=LONGVARCHAR},
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="record.collegeId != null">
+        college_id = #{record.collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.college != null">
+        college = #{record.college,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registrationClosingTime != null">
+        registration_closing_time = #{record.registrationClosingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registrationStartTime != null">
+        registration_start_time = #{record.registrationStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reviewerId != null">
+        reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null">
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null">
+        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wayRegistration != null">
+        way_registration = #{record.wayRegistration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityArea != null">
+        activity_area = #{record.activityArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eventLocation != null">
+        event_location = #{record.eventLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityClassification != null">
+        activity_classification = #{record.activityClassification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.participationFee != null">
+        participation_fee = #{record.participationFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collegeList != null">
+        college_list = #{record.collegeList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classList != null">
+        class_list = #{record.classList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peopleNum != null">
+        people_num = #{record.peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.signout != null">
+        signout = #{record.signout,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldClock != null">
+        field_clock = #{record.fieldClock,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update activity
-    set id = #{record.id,jdbcType=INTEGER},
-      activity_name = #{record.activityName,jdbcType=VARCHAR},
-      image_path = #{record.imagePath,jdbcType=VARCHAR},
-      publisher_id = #{record.publisherId,jdbcType=INTEGER},
-      publish_data = #{record.publishData,jdbcType=TIMESTAMP},
-      activity_content = #{record.activityContent,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -222,9 +415,31 @@
     update activity
     set id = #{record.id,jdbcType=INTEGER},
       activity_name = #{record.activityName,jdbcType=VARCHAR},
+      activity_content = #{record.activityContent,jdbcType=VARCHAR},
       image_path = #{record.imagePath,jdbcType=VARCHAR},
       publisher_id = #{record.publisherId,jdbcType=INTEGER},
-      publish_data = #{record.publishData,jdbcType=TIMESTAMP}
+      publish_data = #{record.publishData,jdbcType=TIMESTAMP},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
+      college_id = #{record.collegeId,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      college = #{record.college,jdbcType=VARCHAR},
+      registration_closing_time = #{record.registrationClosingTime,jdbcType=TIMESTAMP},
+      registration_start_time = #{record.registrationStartTime,jdbcType=TIMESTAMP},
+      reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+      way_registration = #{record.wayRegistration,jdbcType=VARCHAR},
+      activity_area = #{record.activityArea,jdbcType=VARCHAR},
+      event_location = #{record.eventLocation,jdbcType=VARCHAR},
+      activity_classification = #{record.activityClassification,jdbcType=VARCHAR},
+      participation_fee = #{record.participationFee,jdbcType=VARCHAR},
+      college_list = #{record.collegeList,jdbcType=VARCHAR},
+      class_list = #{record.classList,jdbcType=VARCHAR},
+      people_num = #{record.peopleNum,jdbcType=INTEGER},
+      signout = #{record.signout,jdbcType=VARCHAR},
+      field_clock = #{record.fieldClock,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -235,6 +450,9 @@
       <if test="activityName != null">
         activity_name = #{activityName,jdbcType=VARCHAR},
       </if>
+      <if test="activityContent != null">
+        activity_content = #{activityContent,jdbcType=VARCHAR},
+      </if>
       <if test="imagePath != null">
         image_path = #{imagePath,jdbcType=VARCHAR},
       </if>
@@ -244,27 +462,100 @@
       <if test="publishData != null">
         publish_data = #{publishData,jdbcType=TIMESTAMP},
       </if>
-      <if test="activityContent != null">
-        activity_content = #{activityContent,jdbcType=LONGVARCHAR},
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
+      </if>
+      <if test="collegeId != null">
+        college_id = #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="college != null">
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationClosingTime != null">
+        registration_closing_time = #{registrationClosingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationStartTime != null">
+        registration_start_time = #{registrationStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewerId != null">
+        reviewer_id = #{reviewerId,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="wayRegistration != null">
+        way_registration = #{wayRegistration,jdbcType=VARCHAR},
+      </if>
+      <if test="activityArea != null">
+        activity_area = #{activityArea,jdbcType=VARCHAR},
+      </if>
+      <if test="eventLocation != null">
+        event_location = #{eventLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="activityClassification != null">
+        activity_classification = #{activityClassification,jdbcType=VARCHAR},
+      </if>
+      <if test="participationFee != null">
+        participation_fee = #{participationFee,jdbcType=VARCHAR},
+      </if>
+      <if test="collegeList != null">
+        college_list = #{collegeList,jdbcType=VARCHAR},
+      </if>
+      <if test="classList != null">
+        class_list = #{classList,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleNum != null">
+        people_num = #{peopleNum,jdbcType=INTEGER},
+      </if>
+      <if test="signout != null">
+        signout = #{signout,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldClock != null">
+        field_clock = #{fieldClock,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaoyuanpe.pojo.Activity">
-    update activity
-    set activity_name = #{activityName,jdbcType=VARCHAR},
-      image_path = #{imagePath,jdbcType=VARCHAR},
-      publisher_id = #{publisherId,jdbcType=INTEGER},
-      publish_data = #{publishData,jdbcType=TIMESTAMP},
-      activity_content = #{activityContent,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.Activity">
     update activity
     set activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_content = #{activityContent,jdbcType=VARCHAR},
       image_path = #{imagePath,jdbcType=VARCHAR},
       publisher_id = #{publisherId,jdbcType=INTEGER},
-      publish_data = #{publishData,jdbcType=TIMESTAMP}
+      publish_data = #{publishData,jdbcType=TIMESTAMP},
+      school_id = #{schoolId,jdbcType=INTEGER},
+      college_id = #{collegeId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      college = #{college,jdbcType=VARCHAR},
+      registration_closing_time = #{registrationClosingTime,jdbcType=TIMESTAMP},
+      registration_start_time = #{registrationStartTime,jdbcType=TIMESTAMP},
+      reviewer_id = #{reviewerId,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      way_registration = #{wayRegistration,jdbcType=VARCHAR},
+      activity_area = #{activityArea,jdbcType=VARCHAR},
+      event_location = #{eventLocation,jdbcType=VARCHAR},
+      activity_classification = #{activityClassification,jdbcType=VARCHAR},
+      participation_fee = #{participationFee,jdbcType=VARCHAR},
+      college_list = #{collegeList,jdbcType=VARCHAR},
+      class_list = #{classList,jdbcType=VARCHAR},
+      people_num = #{peopleNum,jdbcType=INTEGER},
+      signout = #{signout,jdbcType=VARCHAR},
+      field_clock = #{fieldClock,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

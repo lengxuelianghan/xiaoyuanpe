@@ -11,6 +11,8 @@ public class Signin {
 
     private Integer flag;
 
+    private Date signoutTime;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class Signin {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public Date getSignoutTime() {
+        return signoutTime;
+    }
+
+    public void setSignoutTime(Date signoutTime) {
+        this.signoutTime = signoutTime;
     }
 }

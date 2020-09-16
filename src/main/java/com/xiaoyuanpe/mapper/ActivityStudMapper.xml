@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiaoyuanpe.mapper.SigninMapper">
-  <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.Signin">
+<mapper namespace="com.xiaoyuanpe.mapper.ActivityStudMapper">
+  <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.ActivityStud">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="student_id" jdbcType="INTEGER" property="studentId" />
-    <result column="sign_time" jdbcType="TIMESTAMP" property="signTime" />
-    <result column="flag" jdbcType="INTEGER" property="flag" />
-    <result column="signout_time" jdbcType="TIMESTAMP" property="signoutTime" />
+    <result column="character" jdbcType="VARCHAR" property="character" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, student_id, sign_time, flag, signout_time
+    id, activity_id, student_id, character
   </sql>
-  <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.SigninExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ActivityStudExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from signin
+    from activity_stud
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from signin
+    from activity_stud
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from signin
+    delete from activity_stud
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xiaoyuanpe.pojo.SigninExample">
-    delete from signin
+  <delete id="deleteByExample" parameterType="com.xiaoyuanpe.pojo.ActivityStudExample">
+    delete from activity_stud
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Signin">
-    insert into signin (id, student_id, sign_time, 
-      flag, signout_time)
-    values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{signTime,jdbcType=TIMESTAMP}, 
-      #{flag,jdbcType=INTEGER}, #{signoutTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.ActivityStud">
+    insert into activity_stud (id, activity_id, student_id, 
+      character)
+    values (#{id,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, 
+      #{character,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Signin">
-    insert into signin
+  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.ActivityStud">
+    insert into activity_stud
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
       <if test="studentId != null">
         student_id,
       </if>
-      <if test="signTime != null">
-        sign_time,
-      </if>
-      <if test="flag != null">
-        flag,
-      </if>
-      <if test="signoutTime != null">
-        signout_time,
+      <if test="character != null">
+        character,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
       <if test="studentId != null">
         #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="signTime != null">
-        #{signTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=INTEGER},
-      </if>
-      <if test="signoutTime != null">
-        #{signoutTime,jdbcType=TIMESTAMP},
+      <if test="character != null">
+        #{character,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xiaoyuanpe.pojo.SigninExample" resultType="java.lang.Long">
-    select count(*) from signin
+  <select id="countByExample" parameterType="com.xiaoyuanpe.pojo.ActivityStudExample" resultType="java.lang.Long">
+    select count(*) from activity_stud
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update signin
+    update activity_stud
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.activityId != null">
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
       <if test="record.studentId != null">
         student_id = #{record.studentId,jdbcType=INTEGER},
       </if>
-      <if test="record.signTime != null">
-        sign_time = #{record.signTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.flag != null">
-        flag = #{record.flag,jdbcType=INTEGER},
-      </if>
-      <if test="record.signoutTime != null">
-        signout_time = #{record.signoutTime,jdbcType=TIMESTAMP},
+      <if test="record.character != null">
+        character = #{record.character,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -172,40 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update signin
+    update activity_stud
     set id = #{record.id,jdbcType=INTEGER},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
       student_id = #{record.studentId,jdbcType=INTEGER},
-      sign_time = #{record.signTime,jdbcType=TIMESTAMP},
-      flag = #{record.flag,jdbcType=INTEGER},
-      signout_time = #{record.signoutTime,jdbcType=TIMESTAMP}
+      character = #{record.character,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.Signin">
-    update signin
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.ActivityStud">
+    update activity_stud
     <set>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
       <if test="studentId != null">
         student_id = #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="signTime != null">
-        sign_time = #{signTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        flag = #{flag,jdbcType=INTEGER},
-      </if>
-      <if test="signoutTime != null">
-        signout_time = #{signoutTime,jdbcType=TIMESTAMP},
+      <if test="character != null">
+        character = #{character,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.Signin">
-    update signin
-    set student_id = #{studentId,jdbcType=INTEGER},
-      sign_time = #{signTime,jdbcType=TIMESTAMP},
-      flag = #{flag,jdbcType=INTEGER},
-      signout_time = #{signoutTime,jdbcType=TIMESTAMP}
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.ActivityStud">
+    update activity_stud
+    set activity_id = #{activityId,jdbcType=INTEGER},
+      student_id = #{studentId,jdbcType=INTEGER},
+      character = #{character,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

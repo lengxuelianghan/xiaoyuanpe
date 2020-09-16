@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class SigninExample {
+public class InfoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SigninExample() {
+    public InfoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,243 +165,273 @@ public class SigninExample {
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIsNull() {
-            addCriterion("student_id is null");
+        public Criteria andTitleIsNull() {
+            addCriterion("title is null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIsNotNull() {
-            addCriterion("student_id is not null");
+        public Criteria andTitleIsNotNull() {
+            addCriterion("title is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdEqualTo(Integer value) {
-            addCriterion("student_id =", value, "studentId");
+        public Criteria andTitleEqualTo(String value) {
+            addCriterion("title =", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotEqualTo(Integer value) {
-            addCriterion("student_id <>", value, "studentId");
+        public Criteria andTitleNotEqualTo(String value) {
+            addCriterion("title <>", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThan(Integer value) {
-            addCriterion("student_id >", value, "studentId");
+        public Criteria andTitleGreaterThan(String value) {
+            addCriterion("title >", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("student_id >=", value, "studentId");
+        public Criteria andTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("title >=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThan(Integer value) {
-            addCriterion("student_id <", value, "studentId");
+        public Criteria andTitleLessThan(String value) {
+            addCriterion("title <", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThanOrEqualTo(Integer value) {
-            addCriterion("student_id <=", value, "studentId");
+        public Criteria andTitleLessThanOrEqualTo(String value) {
+            addCriterion("title <=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIn(List<Integer> values) {
-            addCriterion("student_id in", values, "studentId");
+        public Criteria andTitleLike(String value) {
+            addCriterion("title like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotIn(List<Integer> values) {
-            addCriterion("student_id not in", values, "studentId");
+        public Criteria andTitleNotLike(String value) {
+            addCriterion("title not like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdBetween(Integer value1, Integer value2) {
-            addCriterion("student_id between", value1, value2, "studentId");
+        public Criteria andTitleIn(List<String> values) {
+            addCriterion("title in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("student_id not between", value1, value2, "studentId");
+        public Criteria andTitleNotIn(List<String> values) {
+            addCriterion("title not in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeIsNull() {
-            addCriterion("sign_time is null");
+        public Criteria andTitleBetween(String value1, String value2) {
+            addCriterion("title between", value1, value2, "title");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeIsNotNull() {
-            addCriterion("sign_time is not null");
+        public Criteria andTitleNotBetween(String value1, String value2) {
+            addCriterion("title not between", value1, value2, "title");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeEqualTo(Date value) {
-            addCriterion("sign_time =", value, "signTime");
+        public Criteria andContentIsNull() {
+            addCriterion("content is null");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeNotEqualTo(Date value) {
-            addCriterion("sign_time <>", value, "signTime");
+        public Criteria andContentIsNotNull() {
+            addCriterion("content is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeGreaterThan(Date value) {
-            addCriterion("sign_time >", value, "signTime");
+        public Criteria andContentEqualTo(String value) {
+            addCriterion("content =", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("sign_time >=", value, "signTime");
+        public Criteria andContentNotEqualTo(String value) {
+            addCriterion("content <>", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeLessThan(Date value) {
-            addCriterion("sign_time <", value, "signTime");
+        public Criteria andContentGreaterThan(String value) {
+            addCriterion("content >", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeLessThanOrEqualTo(Date value) {
-            addCriterion("sign_time <=", value, "signTime");
+        public Criteria andContentGreaterThanOrEqualTo(String value) {
+            addCriterion("content >=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeIn(List<Date> values) {
-            addCriterion("sign_time in", values, "signTime");
+        public Criteria andContentLessThan(String value) {
+            addCriterion("content <", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeNotIn(List<Date> values) {
-            addCriterion("sign_time not in", values, "signTime");
+        public Criteria andContentLessThanOrEqualTo(String value) {
+            addCriterion("content <=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeBetween(Date value1, Date value2) {
-            addCriterion("sign_time between", value1, value2, "signTime");
+        public Criteria andContentLike(String value) {
+            addCriterion("content like", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andSignTimeNotBetween(Date value1, Date value2) {
-            addCriterion("sign_time not between", value1, value2, "signTime");
+        public Criteria andContentNotLike(String value) {
+            addCriterion("content not like", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andFlagIsNull() {
-            addCriterion("flag is null");
+        public Criteria andContentIn(List<String> values) {
+            addCriterion("content in", values, "content");
             return (Criteria) this;
         }
 
-        public Criteria andFlagIsNotNull() {
-            addCriterion("flag is not null");
+        public Criteria andContentNotIn(List<String> values) {
+            addCriterion("content not in", values, "content");
             return (Criteria) this;
         }
 
-        public Criteria andFlagEqualTo(Integer value) {
-            addCriterion("flag =", value, "flag");
+        public Criteria andContentBetween(String value1, String value2) {
+            addCriterion("content between", value1, value2, "content");
             return (Criteria) this;
         }
 
-        public Criteria andFlagNotEqualTo(Integer value) {
-            addCriterion("flag <>", value, "flag");
+        public Criteria andContentNotBetween(String value1, String value2) {
+            addCriterion("content not between", value1, value2, "content");
             return (Criteria) this;
         }
 
-        public Criteria andFlagGreaterThan(Integer value) {
-            addCriterion("flag >", value, "flag");
+        public Criteria andNameIsNull() {
+            addCriterion("name is null");
             return (Criteria) this;
         }
 
-        public Criteria andFlagGreaterThanOrEqualTo(Integer value) {
-            addCriterion("flag >=", value, "flag");
+        public Criteria andNameIsNotNull() {
+            addCriterion("name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFlagLessThan(Integer value) {
-            addCriterion("flag <", value, "flag");
+        public Criteria andNameEqualTo(String value) {
+            addCriterion("name =", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andFlagLessThanOrEqualTo(Integer value) {
-            addCriterion("flag <=", value, "flag");
+        public Criteria andNameNotEqualTo(String value) {
+            addCriterion("name <>", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andFlagIn(List<Integer> values) {
-            addCriterion("flag in", values, "flag");
+        public Criteria andNameGreaterThan(String value) {
+            addCriterion("name >", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andFlagNotIn(List<Integer> values) {
-            addCriterion("flag not in", values, "flag");
+        public Criteria andNameGreaterThanOrEqualTo(String value) {
+            addCriterion("name >=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andFlagBetween(Integer value1, Integer value2) {
-            addCriterion("flag between", value1, value2, "flag");
+        public Criteria andNameLessThan(String value) {
+            addCriterion("name <", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andFlagNotBetween(Integer value1, Integer value2) {
-            addCriterion("flag not between", value1, value2, "flag");
+        public Criteria andNameLessThanOrEqualTo(String value) {
+            addCriterion("name <=", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeIsNull() {
-            addCriterion("signout_time is null");
+        public Criteria andNameLike(String value) {
+            addCriterion("name like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeIsNotNull() {
-            addCriterion("signout_time is not null");
+        public Criteria andNameNotLike(String value) {
+            addCriterion("name not like", value, "name");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeEqualTo(Date value) {
-            addCriterion("signout_time =", value, "signoutTime");
+        public Criteria andNameIn(List<String> values) {
+            addCriterion("name in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeNotEqualTo(Date value) {
-            addCriterion("signout_time <>", value, "signoutTime");
+        public Criteria andNameNotIn(List<String> values) {
+            addCriterion("name not in", values, "name");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeGreaterThan(Date value) {
-            addCriterion("signout_time >", value, "signoutTime");
+        public Criteria andNameBetween(String value1, String value2) {
+            addCriterion("name between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("signout_time >=", value, "signoutTime");
+        public Criteria andNameNotBetween(String value1, String value2) {
+            addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeLessThan(Date value) {
-            addCriterion("signout_time <", value, "signoutTime");
+        public Criteria andPublishDateIsNull() {
+            addCriterion("publish_date is null");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeLessThanOrEqualTo(Date value) {
-            addCriterion("signout_time <=", value, "signoutTime");
+        public Criteria andPublishDateIsNotNull() {
+            addCriterion("publish_date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeIn(List<Date> values) {
-            addCriterion("signout_time in", values, "signoutTime");
+        public Criteria andPublishDateEqualTo(Date value) {
+            addCriterion("publish_date =", value, "publishDate");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeNotIn(List<Date> values) {
-            addCriterion("signout_time not in", values, "signoutTime");
+        public Criteria andPublishDateNotEqualTo(Date value) {
+            addCriterion("publish_date <>", value, "publishDate");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeBetween(Date value1, Date value2) {
-            addCriterion("signout_time between", value1, value2, "signoutTime");
+        public Criteria andPublishDateGreaterThan(Date value) {
+            addCriterion("publish_date >", value, "publishDate");
             return (Criteria) this;
         }
 
-        public Criteria andSignoutTimeNotBetween(Date value1, Date value2) {
-            addCriterion("signout_time not between", value1, value2, "signoutTime");
+        public Criteria andPublishDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("publish_date >=", value, "publishDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishDateLessThan(Date value) {
+            addCriterion("publish_date <", value, "publishDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishDateLessThanOrEqualTo(Date value) {
+            addCriterion("publish_date <=", value, "publishDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishDateIn(List<Date> values) {
+            addCriterion("publish_date in", values, "publishDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishDateNotIn(List<Date> values) {
+            addCriterion("publish_date not in", values, "publishDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishDateBetween(Date value1, Date value2) {
+            addCriterion("publish_date between", value1, value2, "publishDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishDateNotBetween(Date value1, Date value2) {
+            addCriterion("publish_date not between", value1, value2, "publishDate");
             return (Criteria) this;
         }
     }

@@ -1,13 +1,9 @@
 package com.xiaoyuanpe.controller;
 
-import com.xiaoyuanpe.pojo.Semester;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.StudentInfo;
-import com.xiaoyuanpe.pojo.User;
-import com.xiaoyuanpe.services.SemesterService;
-import com.xiaoyuanpe.services.StudentService;
-import com.xiaoyuanpe.services.UserService;
+import com.xiaoyuanpe.pojo.*;
+import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.ReadExcel;
+import com.xiaoyuanpe.units.ReadExcelClass;
 import com.xiaoyuanpe.units.ResultBean;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/importFile")
@@ -34,6 +29,12 @@ public class ImportController  {
     private StudentService studentService;
     @Autowired
     private SemesterService semesterService;
+    @Autowired
+    private SchoolService schoolService;
+    @Autowired
+    private CollegeService collegeService;
+    @Autowired
+    private ClassesService classesService;
 
     @RequestMapping(value = "/readExcel", method = RequestMethod.POST)
     public ResultBean ImportFile(@RequestParam Integer sId, @RequestParam Integer cId, @RequestParam Integer ccId,
@@ -127,4 +128,62 @@ public class ImportController  {
         if (!upload.exists()) upload.mkdirs();
         return upload.getAbsolutePath();
     }
+
+    @RequestMapping(value = "/ImportFileClass", method = RequestMethod.POST)
+    public ResultBean ImportFileClass(@RequestParam("excelFile")MultipartFile excelFile){
+        ResultBean resultBean = new ResultBean();
+        String fileName = "";
+        String filepath = getUploadPath();
+        try {
+            List<String> successList = new ArrayList<>();
+            List<String> failList = new ArrayList<>();
+            if (excelFile != null){
+                String filename=excelFile.getOriginalFilename();
+                fileName = "class_"+getFileName(filename);
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(filepath + File.separator + fileName)));
+                System.out.println(filepath + File.separator + fileName);
+                out.write(excelFile.getBytes());
+                out.flush();
+            }
+            ReadExcelClass readExcel = new ReadExcelClass();
+            List<StudentInfo> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
+            List<School> schools = this.schoolService.findSchoolAll();
+            List<String> schoolName = new ArrayList<>();
+            Map<String,Integer> stringIntegerMap = new HashMap<>();
+            for (School school:schools){
+                schoolName.add(school.getSchoolName());
+                stringIntegerMap.put(school.getSchoolName(), school.getId());
+            }
+            List<College> colleges = this.collegeService.findCollegeAll();
+            List<String> collegelName = new ArrayList<>();
+            Map<String,Integer> stringIntegerMap1 = new HashMap<>();
+            for (College college:colleges){
+                collegelName.add(college.getCollegeName());
+                stringIntegerMap1.put(college.getCollegeName(), college.getId());
+            }
+            for (StudentInfo studentInfo : studentInfos) {
+                if (schoolName.contains(studentInfo.getSchool())){
+                    if(collegelName.contains(studentInfo.getCollege())){
+                        Classes classes = new Classes();
+                        classes.setClassName(studentInfo.getClasses());
+                        classes.setCollegeId(stringIntegerMap1.get(studentInfo.getCollege()));
+                        classes.setSchoolId(stringIntegerMap.get(studentInfo.getSchool()));
+                        this.classesService.addClasses(classes);
+                        successList.add(studentInfo.getClasses());
+                    }
+                    else failList.add(studentInfo.getClasses());
+                }
+                else failList.add(studentInfo.getClasses());
+            }
+            resultBean.setData(failList);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("导入失败");
+        }
+        return resultBean;
+    }
+
 }
