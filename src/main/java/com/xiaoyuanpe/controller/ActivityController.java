@@ -170,9 +170,13 @@ public class ActivityController {
             Activity activity = this.activityService.findActivityById(id);
             if (activity.getStatus()==0){
                 activity.setStatus(1);
+                resultBean.setCode(0);
+                this.activityService.ModifyActivity(activity);
             }
-            this.activityService.ModifyActivity(activity);
-            resultBean.setCode(0);
+            else {
+                resultBean.setCode(1);
+                resultBean.setMsg("状态已审核");
+            }
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg(e.getMessage());
@@ -186,9 +190,10 @@ public class ActivityController {
         try {
             for (Integer id: ids){
                 Activity activity = this.activityService.findActivityById(id);
-                if (activity.getStatus()==0)
-                activity.setStatus(1);
-                this.activityService.ModifyActivity(activity);
+                if (activity.getStatus()==0) {
+                    activity.setStatus(1);
+                    this.activityService.ModifyActivity(activity);
+                }
             }
             resultBean.setCode(0);
         }catch (Exception e){
@@ -206,7 +211,7 @@ public class ActivityController {
             List<Activity> activityList = new ArrayList<>();
             List<Activity> activitys = this.activityService.findActivityAllList();
             for(Activity activity: activitys){
-                if (activity.getPublisherId()==user.getId()){
+                if (Integer.parseInt(activity.getReviewerId())==user.getId()){
                     activityList.add(activity);
                 }
             }
