@@ -47,15 +47,15 @@ public class AutoCreate {
     @Scheduled(cron = "0 */1 * * * ?")
     public void updateStatus(){
         try{
-            System.out.println("123321");
+            //System.out.println("123321");
             Date date = new Date();
             List<Activity> activityList =  this.activityService.findActivityAllList();
             for (Activity activity: activityList){
-                System.out.println(date.compareTo(activity.getEndTime()));
-                System.out.println(date.compareTo(activity.getRegistrationStartTime()));
-                System.out.println(date.compareTo(activity.getRegistrationClosingTime()));
-                System.out.println(date);
-                System.out.println(activity.getEndTime());
+//                System.out.println(date.compareTo(activity.getEndTime()));
+//                System.out.println(date.compareTo(activity.getRegistrationStartTime()));
+//                System.out.println(date.compareTo(activity.getRegistrationClosingTime()));
+//                System.out.println(date);
+//                System.out.println(activity.getEndTime());
 
                 if (activity.getStatus()==1 && date.compareTo(activity.getRegistrationStartTime())>0 && date.compareTo(activity.getRegistrationClosingTime())<0){
                     activity.setStatus(2);

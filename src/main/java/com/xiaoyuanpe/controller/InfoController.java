@@ -50,7 +50,7 @@ public class InfoController {
         return resultBean;
     }
 
-    @GetMapping("/queryInfo/id")
+    @GetMapping("/queryInfo/{id}")
     public ResultBean queryInfo(@PathVariable Integer id){
         ResultBean resultBean = new ResultBean();
         try {
