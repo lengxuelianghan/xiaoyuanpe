@@ -1,0 +1,611 @@
+16:28:00.869 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 3688 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+16:28:00.915 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+16:28:10.459 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$9d52c042] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:28:10.519 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:28:13.495 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:28:14.442 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+16:28:14.506 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+16:28:14.507 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+16:28:14.507 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+16:28:14.761 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+16:28:14.761 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 13006 ms
+16:28:17.551 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+16:28:18.980 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+16:28:19.181 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+16:28:19.189 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 24.481 seconds (JVM running for 36.978)
+16:30:04.779 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 5868 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+16:30:04.792 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+16:30:07.340 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$3b006029] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:30:07.367 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:30:09.837 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:30:10.100 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+16:30:10.113 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+16:30:10.114 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+16:30:10.114 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+16:30:11.395 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+16:30:11.395 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 6399 ms
+16:30:12.730 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+16:30:13.283 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+16:30:13.317 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+16:30:13.321 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 10.085 seconds (JVM running for 14.099)
+16:30:18.119 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+16:30:18.119 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+16:30:18.129 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+16:30:18.640 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+20:36:39.813 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 14340 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+20:36:39.899 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+20:36:43.739 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$9d9207fe] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:36:43.766 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:36:46.392 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:36:46.949 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:36:46.989 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:36:46.990 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+20:36:46.990 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+20:36:47.200 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:36:47.201 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 6862 ms
+20:36:48.675 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:36:49.263 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:36:49.327 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:36:49.331 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 11.632 seconds (JVM running for 19.149)
+20:39:30.338 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:39:30.338 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+20:39:30.346 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+20:39:30.477 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: No primary or default constructor found for interface java.util.List] with root cause
+java.lang.NoSuchMethodException: java.util.List.<init>()
+	at java.lang.Class.getConstructor0(Class.java:3082)
+	at java.lang.Class.getDeclaredConstructor(Class.java:2178)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:216)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:139)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:167)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:134)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:707)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+20:39:30.498 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:348)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:173)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+20:40:15.228 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 14548 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+20:40:15.250 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+20:40:17.687 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$8adf2fa2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:40:17.710 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:40:20.245 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:40:20.501 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:40:20.515 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:40:20.517 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+20:40:20.517 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+20:40:20.652 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:40:20.653 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5069 ms
+20:40:21.632 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:40:22.169 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:40:22.206 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:40:22.209 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.368 seconds (JVM running for 11.948)
+20:40:27.891 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:40:27.891 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+20:40:27.904 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+20:40:27.957 logback [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required List parameter 'ids' is not present]
+20:40:27.964 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+20:41:04.404 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 16100 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+20:41:04.416 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+20:41:07.474 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$47e2df59] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:41:07.511 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:41:09.858 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:41:10.113 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:41:10.123 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:41:10.124 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+20:41:10.124 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+20:41:10.270 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:41:10.270 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5524 ms
+20:41:11.218 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:41:11.700 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:41:11.735 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:41:11.739 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.978 seconds (JVM running for 12.461)
+20:41:22.133 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:41:22.133 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+20:41:22.142 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+20:41:22.271 logback [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 1]]
+20:41:22.278 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+20:42:16.121 logback [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 1]]
+20:42:16.122 logback [http-nio-8080-exec-2] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+20:42:47.158 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 15976 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+20:42:47.164 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+20:42:48.954 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$c7293ff7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:42:48.978 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:42:51.128 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:42:51.402 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:42:51.412 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:42:51.412 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+20:42:51.413 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+20:42:51.538 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:42:51.539 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4038 ms
+20:42:52.502 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:42:52.984 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:42:53.019 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:42:53.023 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.532 seconds (JVM running for 11.049)
+20:43:16.618 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:43:16.618 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+20:43:16.626 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+20:43:16.694 logback [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 1]]
+20:43:16.701 logback [http-nio-8080-exec-1] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+20:43:38.428 logback [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList<java.lang.Integer>` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 1]]
+20:43:38.430 logback [http-nio-8080-exec-2] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing ErrorPage[errorCode=0, location=/error]
+java.lang.NoSuchMethodError: javax.servlet.http.HttpServletRequest.getHttpServletMapping()Ljavax/servlet/http/HttpServletMapping;
+	at org.apache.catalina.core.ApplicationHttpRequest.setRequest(ApplicationHttpRequest.java:708)
+	at org.apache.catalina.core.ApplicationHttpRequest.<init>(ApplicationHttpRequest.java:114)
+	at org.apache.catalina.core.ApplicationDispatcher.wrapRequest(ApplicationDispatcher.java:917)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:358)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:394)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:253)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:373)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+20:52:24.776 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 1540 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+20:52:24.783 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+20:52:27.095 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$c4083118] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:52:27.120 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:52:29.314 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:52:29.568 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:52:29.578 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:52:29.579 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+20:52:29.579 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+20:52:29.714 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:52:29.714 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4766 ms
+20:52:30.668 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:52:31.128 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:52:31.164 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:52:31.170 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.065 seconds (JVM running for 11.568)
+20:53:13.778 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 12108 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+20:53:13.792 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+20:53:16.176 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$bc131d65] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:53:16.201 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:53:18.533 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:53:18.879 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:53:18.889 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:53:18.890 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+20:53:18.891 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+20:53:19.058 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:53:19.058 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4929 ms
+20:53:20.281 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:53:20.760 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:53:20.796 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:53:20.800 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.54 seconds (JVM running for 12.027)
+20:57:01.150 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 15964 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+20:57:01.159 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+20:57:03.049 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$c75854ed] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:57:03.073 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:57:05.255 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+20:57:05.511 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+20:57:05.521 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+20:57:05.521 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+20:57:05.522 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+20:57:05.648 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+20:57:05.648 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4269 ms
+20:57:06.605 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+20:57:07.059 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+20:57:07.092 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+20:57:07.095 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.639 seconds (JVM running for 11.246)
+21:20:33.528 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 14308 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+21:20:33.563 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+21:20:35.844 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$808ee272] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:20:35.960 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:20:38.370 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:20:38.649 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+21:20:38.659 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:20:38.660 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:20:38.660 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+21:20:38.794 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:20:38.794 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4659 ms
+21:20:39.806 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:20:40.345 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+21:20:40.378 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+21:20:40.381 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.973 seconds (JVM running for 13.015)
+21:21:04.213 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:21:04.213 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+21:21:04.221 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+21:22:09.042 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 14472 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+21:22:09.056 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+21:22:11.250 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$8e6cf481] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:22:11.274 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:22:13.735 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:22:14.086 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+21:22:14.096 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:22:14.096 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:22:14.096 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+21:22:14.223 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:22:14.224 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4868 ms
+21:22:15.195 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:22:15.696 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+21:22:15.732 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+21:22:15.735 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 8.375 seconds (JVM running for 11.816)
+21:22:20.940 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:22:20.940 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+21:22:20.949 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+21:22:21.127 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+21:22:21.305 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:21.310 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:21.822 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:22.348 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:22.856 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:23.363 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:23.869 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:24.375 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:24.901 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:25.406 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:25.927 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:26.430 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:26.934 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:27.461 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:27.973 logback [Druid-ConnectionPool-Create-447449342] ERROR c.alibaba.druid.pool.DruidDataSource - create connection SQLException, url: jdbc:mysql://localhost:3306/xiaoyuanpe?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false, errorCode 1045, state 28000
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:836)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:456)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:246)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:197)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1558)
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1623)
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2468)
+21:22:45.835 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 7052 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+21:22:45.849 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+21:22:47.743 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$97cc091e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:22:47.766 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:22:49.933 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+21:22:50.204 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+21:22:50.213 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:22:50.214 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:22:50.214 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+21:22:50.346 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:22:50.347 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4232 ms
+21:22:51.298 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+21:22:51.758 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+21:22:51.791 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+21:22:51.795 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 7.593 seconds (JVM running for 11.083)
+21:23:00.666 logback [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:23:00.666 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+21:23:00.675 logback [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+21:23:00.822 logback [http-nio-8080-exec-2] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+22:15:28.754 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Starting XiaoyuanpeApplication on DESKTOP-9DFQI7H with PID 15300 (D:\java\xiaoyuanpe\target\classes started by lxl in D:\java\xiaoyuanpe)
+22:15:28.961 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - No active profile set, falling back to default profiles: default
+22:15:31.579 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'shiroConfig' of type [com.xiaoyuanpe.units.ShiroConfig$$EnhancerBySpringCGLIB$$f03ca92] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:15:31.604 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'realm' of type [com.xiaoyuanpe.units.Realm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:15:34.188 logback [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+22:15:34.581 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+22:15:34.599 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+22:15:34.601 logback [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+22:15:34.602 logback [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.34]
+22:15:34.919 logback [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+22:15:34.919 logback [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 5662 ms
+22:15:36.983 logback [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+22:15:37.723 logback [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+22:15:37.781 logback [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+22:15:37.787 logback [main] INFO  com.xiaoyuanpe.XiaoyuanpeApplication - Started XiaoyuanpeApplication in 10.943 seconds (JVM running for 15.019)
+22:15:48.343 logback [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+22:15:48.344 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+22:15:48.351 logback [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+22:15:48.527 logback [http-nio-8080-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
