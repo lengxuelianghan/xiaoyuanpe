@@ -378,4 +378,71 @@ public class ActivityController {
         return resultBean;
     }
 
+    @GetMapping("/getActivityByOrganizers")
+    public ResultBean getActivityByOrganizers(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            List<ActivityStud> activityStudList = new ArrayList<>();
+            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+            for (ActivityStud activityStud: activityStuds){
+                if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
+                    activityStudList.add(activityStud);
+                }
+            }
+            resultBean.setCode(0);
+            resultBean.setData(activityStudList);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @GetMapping("/getActivityByPartner")
+    public ResultBean getActivityByPartner(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        System.out.println(user.getUsername());
+        ResultBean resultBean = new ResultBean();
+        try {
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            List<ActivityStud> activityStudList = new ArrayList<>();
+            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+            for (ActivityStud activityStud: activityStuds){
+                if(activityStud.getCharacters().equals("参与者")&&student.getId()==activityStud.getStudentId()){
+                    activityStudList.add(activityStud);
+                }
+            }
+            resultBean.setCode(0);
+            resultBean.setData(activityStudList);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @GetMapping("/getActivityBySignin")
+    public ResultBean getActivityBySignin(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            List<ActivityStud> activityStudList = new ArrayList<>();
+            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+            for (ActivityStud activityStud: activityStuds){
+                if(activityStud.getCharacters().equals("签到员")&&student.getId()==activityStud.getStudentId()){
+                    activityStudList.add(activityStud);
+                }
+            }
+            resultBean.setCode(0);
+            resultBean.setData(activityStudList);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+        }
+        return resultBean;
+    }
+
 }

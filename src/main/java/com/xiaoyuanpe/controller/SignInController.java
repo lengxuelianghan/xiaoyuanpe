@@ -71,10 +71,10 @@ public class SignInController {
                         //System.out.println(activityStud.getActivityId()+","+student.getId());
                             this.signInService.addSignin(signin);
                         System.out.println(activityStud.getActivityId()+","+student.getId());
-                        resultBean.setCode(0);
                     }
                 }
             }
+            resultBean.setCode(0);
         }
         catch (Exception e){
             resultBean.setMsg(e.getMessage());
