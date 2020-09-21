@@ -18,8 +18,8 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private StudentMapper studentMapper;
     @Override
-    public void addActivity(Activity activity) {
-        this.activityMapper.insert(activity);
+    public int addActivity(Activity activity) {
+        return this.activityMapper.insert(activity);
     }
 
     @Override

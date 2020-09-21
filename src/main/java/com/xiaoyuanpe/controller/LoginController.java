@@ -4,6 +4,8 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.LoginService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +55,26 @@ public class LoginController {
             System.out.println("错误："+e.getMessage());
             resultBean.setCode(1);
             resultBean.setMsg("登录失败");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping("/LoginOrNot")
+    public ResultBean LoginOrNot(HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        try {
+            User user = (User) session.getAttribute("user");
+            if (user!= null){
+                resultBean.setCode(0);
+                resultBean.setMsg("已登陆");
+            }
+            else {
+                resultBean.setCode(1);
+                resultBean.setMsg("未登录");
+            }
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
         }
         return resultBean;
     }

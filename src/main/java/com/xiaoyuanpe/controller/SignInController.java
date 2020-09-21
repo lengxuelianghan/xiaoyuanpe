@@ -1,12 +1,12 @@
 package com.xiaoyuanpe.controller;
 
-import com.xiaoyuanpe.pojo.Signin;
-import com.xiaoyuanpe.pojo.Student;
+import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,22 +20,93 @@ public class SignInController {
     @Autowired
     private StudentService studentService;
     @Autowired
-    private SchoolService schoolService;
+    private UserService userService;
     @Autowired
-    private CollegeService collegeService;
+    private ActivityStudService activityStudService;
     @Autowired
-    private ClassesService classesService;
+    private ActivityService activityService;
 
-    @PostMapping("/updateSignIn")
-    public ResultBean updateSignIn(@RequestBody Signin signin){
+    @GetMapping("/addSportSignIn/{activityId}")
+    public ResultBean addSportSignIn(@PathVariable Integer activityId, HttpSession session){
+        User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try{
-            if (signin.getFlag()==2){
-                signin.setSignoutTime(new Date());
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+            for (ActivityStud activityStud: activityStuds){
+                if (activityStud.getActivityId()==activityId && activityStud.getStudentId()==student.getId()){
+                    Signin signin = new Signin();
+                    if (signin.getFlag()==0) {
+                        signin.setFlag(1);
+                        signin.setStudentId(student.getId());
+                        signin.setActivityId(activityId);
+                        signin.setSignTime(new Date());
+                        this.signInService.addSignin(signin);
+                        resultBean.setCode(0);
+                    }
+                }
             }
-            this.signInService.ModifySignin(signin);
         }
         catch (Exception e){
+            resultBean.setMsg(e.getMessage());
+            resultBean.setCode(1);
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @PostMapping("/addSportSignInList/{activityId}")
+    public ResultBean addSportSignInList(@PathVariable Integer activityId, @RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try{
+            for (Integer id: ids) {
+                User user = this.userService.findUsersById(id);
+                Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+                List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+                for (ActivityStud activityStud : activityStuds) {
+                    if (activityStud.getActivityId() == activityId && activityStud.getStudentId() == student.getId()) {
+                        Signin signin = new Signin();
+                        if (signin.getFlag() == 0) {
+                            signin.setFlag(1);
+                            signin.setStudentId(student.getId());
+                            signin.setActivityId(activityId);
+                            signin.setSignTime(new Date());
+                            this.signInService.addSignin(signin);
+                        }
+                    }
+                    resultBean.setCode(0);
+                }
+            }
+        }
+        catch (Exception e){
+            resultBean.setMsg(e.getMessage());
+            resultBean.setCode(1);
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @PostMapping("/updateSignOutList/{activityId}")
+    public ResultBean updateSignOut(@RequestBody List<Integer> ids, @PathVariable Integer activityId){
+        ResultBean resultBean = new ResultBean();
+        try{
+            for (Integer id: ids){
+                User user = this.userService.findUsersById(id);
+                Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+                List<Signin> signins = this.signInService.findSigninAll();
+                for (Signin signin : signins) {
+                    if (signin.getFlag() == 1 && signin.getActivityId()==activityId) {
+                            signin.setFlag(2);
+                            signin.setSignoutTime(new Date());
+                            this.signInService.ModifySignin(signin);
+                    }
+                }
+                resultBean.setCode(0);
+            }
+        }
+        catch (Exception e){
+            resultBean.setMsg(e.getMessage());
+            resultBean.setCode(1);
             System.out.println(e.getMessage());
         }
         return resultBean;
@@ -74,6 +145,28 @@ public class SignInController {
                     this.signInService.ModifySignin(signin);
                 }
             }
+            resultBean.setCode(0);
+        }
+        catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @RequestMapping("/querySignInByOrigination/{aid}")
+    public ResultBean querySignInByOrigination(@PathVariable Integer aid){
+        ResultBean resultBean = new ResultBean();
+        try{
+            List<Signin> signinList = this.signInService.findSigninAll();
+            List<Signin> signins = new ArrayList<>();
+            for (Signin signin: signinList){
+                if(signin.getActivityId()==aid){
+                    signins.add(signin);
+                }
+            }
+            resultBean.setData(signins);
             resultBean.setCode(0);
         }
         catch (Exception e){

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ActivityService {
 
-    void addActivity(Activity activity);
+    int addActivity(Activity activity);
 
     Pager<Activity> findActivityAll(int current, int pageSize);
 

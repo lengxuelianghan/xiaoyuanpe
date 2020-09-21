@@ -13,6 +13,10 @@ public class Signin {
 
     private Date signoutTime;
 
+    private Integer activityId;
+
+    private Integer sportId;
+
     public Integer getId() {
         return id;
     }
@@ -51,5 +55,21 @@ public class Signin {
 
     public void setSignoutTime(Date signoutTime) {
         this.signoutTime = signoutTime;
+    }
+
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
+
+    public Integer getSportId() {
+        return sportId;
+    }
+
+    public void setSportId(Integer sportId) {
+        this.sportId = sportId;
     }
 }

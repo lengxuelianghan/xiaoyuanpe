@@ -404,6 +404,126 @@ public class SigninExample {
             addCriterion("signout_time not between", value1, value2, "signoutTime");
             return (Criteria) this;
         }
+
+        public Criteria andActivityIdIsNull() {
+            addCriterion("activity_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdIsNotNull() {
+            addCriterion("activity_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdEqualTo(Integer value) {
+            addCriterion("activity_id =", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdNotEqualTo(Integer value) {
+            addCriterion("activity_id <>", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdGreaterThan(Integer value) {
+            addCriterion("activity_id >", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("activity_id >=", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdLessThan(Integer value) {
+            addCriterion("activity_id <", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdLessThanOrEqualTo(Integer value) {
+            addCriterion("activity_id <=", value, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdIn(List<Integer> values) {
+            addCriterion("activity_id in", values, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdNotIn(List<Integer> values) {
+            addCriterion("activity_id not in", values, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdBetween(Integer value1, Integer value2) {
+            addCriterion("activity_id between", value1, value2, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("activity_id not between", value1, value2, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdIsNull() {
+            addCriterion("sport_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdIsNotNull() {
+            addCriterion("sport_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdEqualTo(Integer value) {
+            addCriterion("sport_id =", value, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdNotEqualTo(Integer value) {
+            addCriterion("sport_id <>", value, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdGreaterThan(Integer value) {
+            addCriterion("sport_id >", value, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sport_id >=", value, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdLessThan(Integer value) {
+            addCriterion("sport_id <", value, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdLessThanOrEqualTo(Integer value) {
+            addCriterion("sport_id <=", value, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdIn(List<Integer> values) {
+            addCriterion("sport_id in", values, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdNotIn(List<Integer> values) {
+            addCriterion("sport_id not in", values, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdBetween(Integer value1, Integer value2) {
+            addCriterion("sport_id between", value1, value2, "sportId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSportIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("sport_id not between", value1, value2, "sportId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

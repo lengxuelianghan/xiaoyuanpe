@@ -37,21 +37,55 @@ public class ActivityController {
     private ActivityStudService activityStudService;
 
     @PostMapping("/addActivity")
-    public ResultBean addActivity(@RequestParam("imageFile") MultipartFile imageFile, Activity activity){
+    public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity){
         ResultBean resultBean = new ResultBean();
         try {
-            if (imageFile != null){
+            if (pictureFile != null){
                 String filepath = getUploadPath();
-                String filename=imageFile.getOriginalFilename();
+                String filename=pictureFile.getOriginalFilename();
                 String fileName = getFileName(filename);
                 BufferedOutputStream out = new BufferedOutputStream(
-                        new FileOutputStream(new File(filepath + File.separator + fileName)));
-                System.out.println(filepath + File.separator + fileName);
-                activity.setImagePath(filepath + File.separator + fileName);
-                out.write(imageFile.getBytes());
+                        new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
+                System.out.println("C:\\nginx\\img\\"+ fileName);
+                activity.setImagePath("C:\\nginx\\img\\"+  fileName);
+                out.write(pictureFile.getBytes());
                 out.flush();
             }
             this.activityService.addActivity(activity);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @PostMapping("/addActivity/{uid}")
+    public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
+                                  @PathVariable Integer uid){
+        ResultBean resultBean = new ResultBean();
+        try {
+            if (pictureFile != null){
+                String filepath = getUploadPath();
+                String filename=pictureFile.getOriginalFilename();
+                String fileName = getFileName(filename);
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
+                System.out.println("C:\\nginx\\img\\"+ fileName);
+                activity.setImagePath("C:\\nginx\\img\\"+ fileName);
+                out.write(pictureFile.getBytes());
+                out.flush();
+            }
+            this.activityService.addActivity(activity);
+
+            ActivityStud activityStud = new ActivityStud();
+            String num = this.userService.findUsersById(uid).getUserNumber();
+            int id = this.studentService.findStudentByNumber(num).getId();
+            activityStud.setStudentId(id);
+            activityStud.setActivityId(activity.getId());
+            activityStud.setCharacters("发起人");
+            this.activityStudService.addActivityStud(activityStud);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
@@ -307,14 +341,14 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/getPartner")
-    public ResultBean getPartner(){
+    @GetMapping("/getPartner/{aid}")
+    public ResultBean getPartner(@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try {
             List<ActivityStud> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacters().equals("参与者")){
+                if(activityStud.getCharacters().equals("参与者") && activityStud.getActivityId()==aid){
                     activityStudList.add(activityStud);
                 }
             }
@@ -327,14 +361,14 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/getOrganizers")
-    public ResultBean getOrganizers(){
+    @GetMapping("/getOrganizers/{aid}")
+    public ResultBean getOrganizers(@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try {
             List<ActivityStud> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacters().equals("发起人")){
+                if(activityStud.getCharacters().equals("发起人") && activityStud.getActivityId()==aid){
                     activityStudList.add(activityStud);
                 }
             }
@@ -347,14 +381,14 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/getSignIn")
-    public ResultBean getSignIn(){
+    @GetMapping("/getSignIn/{aid}")
+    public ResultBean getSignIn(@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try {
             List<ActivityStud> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacters().equals("签到员")){
+                if(activityStud.getCharacters().equals("签到员") && activityStud.getActivityId()==aid){
                     activityStudList.add(activityStud);
                 }
             }

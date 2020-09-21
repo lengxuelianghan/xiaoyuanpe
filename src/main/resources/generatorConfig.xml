@@ -32,7 +32,7 @@
         <javaClientGenerator targetPackage="com.xiaoyuanpe.mapper" type="XMLMAPPER" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-
+<!---->
 <!--        <table schema="" tableName="school"></table>-->
 <!--        <table schema="" tableName="business"></table>-->
 <!--        <table schema="" tableName="manager"></table>-->
@@ -40,9 +40,9 @@
 <!--        <table schema="" tableName="permissions"></table>-->
 <!--        <table schema="" tableName="sports"></table>-->
 
-<!--        <table schema="" tableName="signin"></table>-->
+        <table schema="" tableName="signin"></table>
 <!--        <table schema="" tableName="activity"></table>-->
-        <table schema="" tableName="activity_stud"></table>
+<!--        <table schema="" tableName="activity_stud"></table>-->
 <!--        <table schema="" tableName="class_year"></table>-->
 <!--        <table schema="" tableName="info"></table>-->
 
