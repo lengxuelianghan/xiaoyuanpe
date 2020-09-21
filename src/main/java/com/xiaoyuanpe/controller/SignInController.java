@@ -36,14 +36,12 @@ public class SignInController {
             for (ActivityStud activityStud: activityStuds){
                 if (activityStud.getActivityId()==activityId && activityStud.getStudentId()==student.getId()){
                     Signin signin = new Signin();
-                    if (signin.getFlag()==0) {
-                        signin.setFlag(1);
-                        signin.setStudentId(student.getId());
-                        signin.setActivityId(activityId);
-                        signin.setSignTime(new Date());
-                        this.signInService.addSignin(signin);
-                        resultBean.setCode(0);
-                    }
+                    signin.setFlag(1);
+                    signin.setStudentId(student.getId());
+                    signin.setActivityId(activityId);
+                    signin.setSignTime(new Date());
+                    this.signInService.addSignin(signin);
+                    resultBean.setCode(0);
                 }
             }
         }
@@ -66,15 +64,15 @@ public class SignInController {
                 for (ActivityStud activityStud : activityStuds) {
                     if (activityStud.getActivityId() == activityId && activityStud.getStudentId() == student.getId()) {
                         Signin signin = new Signin();
-                        if (signin.getFlag() == 0) {
                             signin.setFlag(1);
                             signin.setStudentId(student.getId());
                             signin.setActivityId(activityId);
                             signin.setSignTime(new Date());
+                        //System.out.println(activityStud.getActivityId()+","+student.getId());
                             this.signInService.addSignin(signin);
-                        }
+                        System.out.println(activityStud.getActivityId()+","+student.getId());
+                        resultBean.setCode(0);
                     }
-                    resultBean.setCode(0);
                 }
             }
         }
@@ -87,7 +85,7 @@ public class SignInController {
     }
 
     @PostMapping("/updateSignOutList/{activityId}")
-    public ResultBean updateSignOut(@RequestBody List<Integer> ids, @PathVariable Integer activityId){
+    public ResultBean updateSignOut(@PathVariable Integer activityId, @RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
         try{
             for (Integer id: ids){
@@ -95,7 +93,7 @@ public class SignInController {
                 Student student = this.studentService.findStudentByNumber(user.getUserNumber());
                 List<Signin> signins = this.signInService.findSigninAll();
                 for (Signin signin : signins) {
-                    if (signin.getFlag() == 1 && signin.getActivityId()==activityId) {
+                    if (signin.getFlag() == 1 && signin.getActivityId()==activityId && signin.getStudentId()==student.getId()) {
                             signin.setFlag(2);
                             signin.setSignoutTime(new Date());
                             this.signInService.ModifySignin(signin);
@@ -155,7 +153,7 @@ public class SignInController {
         return resultBean;
     }
 
-    @RequestMapping("/querySignInByOrigination/{aid}")
+    @RequestMapping("/querySignInByActivity/{aid}")
     public ResultBean querySignInByOrigination(@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try{

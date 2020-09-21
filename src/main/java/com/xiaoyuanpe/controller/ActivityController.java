@@ -318,29 +318,6 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/organizer/{aid}")
-    public ResultBean organizer(@PathVariable Integer aid, HttpSession session){
-        ResultBean resultBean = new ResultBean();
-        User user = (User) session.getAttribute("user");
-        try {
-            Integer sid = user.getId();
-            ActivityStud activityStud = new ActivityStud();
-            String num = this.userService.findUsersById(sid).getUserNumber();
-            int id = this.studentService.findStudentByNumber(num).getId();
-            activityStud.setStudentId(id);
-            activityStud.setActivityId(aid);
-            if (this.activityService.findActivityById(aid).getPublisherId()==sid) {
-                activityStud.setCharacters("发起人");
-                this.activityStudService.addActivityStud(activityStud);
-            }
-            resultBean.setCode(0);
-        }catch (Exception e){
-            resultBean.setCode(1);
-            resultBean.setMsg(e.getMessage());
-        }
-        return resultBean;
-    }
-
     @GetMapping("/getPartner/{aid}")
     public ResultBean getPartner(@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
