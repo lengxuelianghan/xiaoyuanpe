@@ -1,7 +1,9 @@
 package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.pojo.UserEntry;
 import com.xiaoyuanpe.services.LoginService;
+import com.xiaoyuanpe.services.SchoolService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock;
@@ -21,6 +23,9 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private SchoolService schoolService;
+
     @PostMapping("/login")
     public ResultBean Login(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
         ResultBean resultBean = new ResultBean();
@@ -34,6 +39,14 @@ public class LoginController {
                     session.setMaxInactiveInterval(30*60*60);
                     resultBean.setCode(0);
                     resultBean.setTotal(user.getId());
+                    UserEntry userEntry = new UserEntry();
+                    userEntry.setId(user.getId());userEntry.setUsername(user.getUsername());
+                    userEntry.setAge(user.getAge());userEntry.setEmail(user.getEmail());userEntry.setSex(user.getSex());
+                    userEntry.setPhone(user.getPhone());userEntry.setIdentity(user.getIdentity());
+                    userEntry.setPassword(user.getPassword());
+                    userEntry.setSchoolId(this.schoolService.findSchoolById(user.getSchoolId()).getSchoolName());
+                    userEntry.setUnit(user.getUnit());userEntry.setUserNumber(user.getUserNumber());
+                    resultBean.setData(userEntry);
                     break;
                 }
             }

@@ -1,13 +1,7 @@
 package com.xiaoyuanpe.controller;
 
-import com.xiaoyuanpe.pojo.Activity;
-import com.xiaoyuanpe.pojo.ActivityStud;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.User;
-import com.xiaoyuanpe.services.ActivityService;
-import com.xiaoyuanpe.services.ActivityStudService;
-import com.xiaoyuanpe.services.StudentService;
-import com.xiaoyuanpe.services.UserService;
+import com.xiaoyuanpe.pojo.*;
+import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
@@ -20,9 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/activity")
@@ -35,6 +27,8 @@ public class ActivityController {
     private StudentService studentService;
     @Autowired
     private ActivityStudService activityStudService;
+    @Autowired
+    private SchoolService schoolService;
 
     @PostMapping("/addActivity")
     public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity){
@@ -135,7 +129,46 @@ public class ActivityController {
     public ResultBean queryActivityListAll(){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.activityService.findActivityAllList());
+            List<Activity> activityList = this.activityService.findActivityAllList();
+            List<User> users = this.userService.findUsersListAll();
+            Map<Integer, String> userNameMap = new HashMap<>();
+            for (User user: users) {
+                userNameMap.put(user.getId(), user.getUsername());
+            }
+            List<ActivityEntry> activityEntries = new ArrayList<>();
+            for (Activity activity: activityList){
+                ActivityEntry activityEntry = new ActivityEntry();
+                activityEntry.setId(activity.getId());
+                activityEntry.setActivityName(activity.getActivityName());
+                activityEntry.setContact(activity.getContact()==null?"":activity.getContact());
+                activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
+                activityEntry.setActivityArea(activity.getActivityArea()==null?"":activity.getActivityArea());
+                activityEntry.setActivityContent(activity.getActivityContent()==null?"":activity.getActivityContent());
+                activityEntry.setActivityClassification(activity.getActivityClassification()==null?"":activity.getActivityClassification());
+                activityEntry.setClassList(activity.getClassList()==null?"":activity.getClassList());
+                activityEntry.setCollege(activity.getCollege()==null?"":activity.getCollege());
+                activityEntry.setCollegeId(activity.getCollegeId()==null?0:activity.getCollegeId());
+                activityEntry.setCollegeList(activity.getCollegeList()==null?"":activity.getCollegeList());
+                activityEntry.setContactPhone(activity.getContactPhone()==null?"":activity.getContactPhone());
+                activityEntry.setEndTime(activity.getEndTime()==null?new Date():activity.getEndTime());
+                activityEntry.setEventLocation(activity.getEventLocation()==null?"":activity.getEventLocation());
+                activityEntry.setFieldClock(activity.getFieldClock()==null?"":activity.getFieldClock());
+                activityEntry.setImagePath(activity.getImagePath()==null?"":activity.getImagePath());
+                activityEntry.setParticipationFee(activity.getParticipationFee()==null?"":activity.getParticipationFee());
+                activityEntry.setPeopleNum(activity.getPeopleNum()==null?0:activity.getPeopleNum());
+                activityEntry.setPublishData(activity.getPublishData()==null?new Date():activity.getPublishData());
+                activityEntry.setRegistrationClosingTime(activity.getRegistrationClosingTime()==null?new Date():activity.getRegistrationClosingTime());
+                activityEntry.setRegistrationStartTime(activity.getRegistrationStartTime()==null?new Date():activity.getRegistrationStartTime());
+                activityEntry.setReviewerId(activity.getReviewerId()==null?"":activity.getReviewerId());
+                activityEntry.setSchoolId(activity.getSchoolId()==null?"":this.schoolService.findSchoolById(activity.getSchoolId()).getSchoolName());
+                //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
+                activityEntry.setSignout(activity.getSignout()==null?"":activity.getSignout());
+                activityEntry.setStartTime(activity.getStartTime()==null?new Date():activity.getStartTime());
+                activityEntry.setStatus(activity.getStatus()==null?0:activity.getStatus());
+                activityEntry.setWayRegistration(activity.getWayRegistration()==null?"":activity.getWayRegistration());
+                activityEntries.add(activityEntry);
+            }
+            resultBean.setData(activityEntries);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
@@ -378,17 +411,26 @@ public class ActivityController {
         return resultBean;
     }
 
+    public ActivityStudEntry IntegerToString(ActivityStud activityStud){
+        ActivityStudEntry activityStudEntry = new ActivityStudEntry();
+        activityStudEntry.setActivityId(this.activityService.findActivityById(activityStud.getActivityId()).getActivityName());
+        activityStudEntry.setCharacters(activityStud.getCharacters());
+        activityStudEntry.setId(activityStud.getId());
+        activityStudEntry.setStudentId(this.studentService.findStudentById(activityStud.getStudentId()).getStudentName());
+        return activityStudEntry;
+    }
+
     @GetMapping("/getActivityByOrganizers")
     public ResultBean getActivityByOrganizers(HttpSession session){
         User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-            List<ActivityStud> activityStudList = new ArrayList<>();
+            List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
                 if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
-                    activityStudList.add(activityStud);
+                    activityStudList.add(this.IntegerToString(activityStud));
                 }
             }
             resultBean.setCode(0);
@@ -407,11 +449,11 @@ public class ActivityController {
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-            List<ActivityStud> activityStudList = new ArrayList<>();
+            List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
                 if(activityStud.getCharacters().equals("参与者")&&student.getId()==activityStud.getStudentId()){
-                    activityStudList.add(activityStud);
+                    activityStudList.add(this.IntegerToString(activityStud));
                 }
             }
             resultBean.setCode(0);
@@ -429,11 +471,11 @@ public class ActivityController {
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-            List<ActivityStud> activityStudList = new ArrayList<>();
+            List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
                 if(activityStud.getCharacters().equals("签到员")&&student.getId()==activityStud.getStudentId()){
-                    activityStudList.add(activityStud);
+                    activityStudList.add(this.IntegerToString(activityStud));
                 }
             }
             resultBean.setCode(0);

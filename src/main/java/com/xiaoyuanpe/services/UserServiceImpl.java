@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findUsersListAll() {
+        return this.usersMapper.selectByExample(new UserExample());
+    }
+
+    @Override
     public User findUsersById(Integer id) {
         return this.usersMapper.selectByPrimaryKey(id);
     }

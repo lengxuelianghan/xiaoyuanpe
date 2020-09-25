@@ -10,6 +10,8 @@ public interface UserService {
 
     Pager<User> findUsersAll(Integer current, Integer pageSize);
 
+    List<User> findUsersListAll();
+
     User findUsersById(Integer id);
 
     void ModifyUser(User users);
