@@ -462,7 +462,10 @@ public class ActivityController {
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
                 if(activityStud.getCharacters().equals("参与者")&&student.getId()==activityStud.getStudentId()){
-                    activityStudList.add(this.IntegerToString(activityStud));
+                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+                    if (activityStudEntry!=null) {
+                        activityStudList.add(activityStudEntry);
+                    }
                 }
             }
             resultBean.setCode(0);
@@ -483,8 +486,9 @@ public class ActivityController {
             List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacters().equals("签到员")&&student.getId()==activityStud.getStudentId()){
-                    activityStudList.add(this.IntegerToString(activityStud));
+                ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+                if (activityStudEntry!=null) {
+                    activityStudList.add(activityStudEntry);
                 }
             }
             resultBean.setCode(0);
