@@ -412,13 +412,18 @@ public class ActivityController {
     }
 
     public ActivityStudEntry IntegerToString(ActivityStud activityStud){
-        ActivityStudEntry activityStudEntry = new ActivityStudEntry();
-        activityStudEntry.setActivityId(
-                this.activityService.findActivityById(activityStud.getActivityId()).getActivityName());
-        activityStudEntry.setCharacters(activityStud.getCharacters());
-        activityStudEntry.setId(activityStud.getId());
-        activityStudEntry.setStudentId(this.studentService.findStudentById(activityStud.getStudentId()).getStudentName());
-        return activityStudEntry;
+        try {
+            ActivityStudEntry activityStudEntry = new ActivityStudEntry();
+            activityStudEntry.setActivityId(
+                    this.activityService.findActivityById(activityStud.getActivityId()).getActivityName());
+            activityStudEntry.setCharacters(activityStud.getCharacters());
+            activityStudEntry.setId(activityStud.getId());
+            activityStudEntry.setStudentId(this.studentService.findStudentById(activityStud.getStudentId()).getStudentName());
+            return activityStudEntry;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @GetMapping("/getActivityByOrganizers")
@@ -426,18 +431,15 @@ public class ActivityController {
         User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-            List<Activity> activityList = this.activityService.findActivityAllList();
-            List list= new LinkedList();
-            for (Activity activity:activityList){
-                list.add(activity.getId());
-            }
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
             List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
                 if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
-                    if (list.contains(activityStud.getActivityId()))
-                        activityStudList.add(this.IntegerToString(activityStud));
+                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+                    if (activityStudEntry!=null) {
+                        activityStudList.add(activityStudEntry);
+                    }
                 }
             }
             resultBean.setCode(0);
