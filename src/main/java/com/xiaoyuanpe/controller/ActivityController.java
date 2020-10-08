@@ -421,17 +421,17 @@ public class ActivityController {
 
     public ActivityStudEntry IntegerToString(ActivityStud activityStud){
         int signStatus = -1;
-        try {
-            List<Signin> signins = this.signInService.findSigninAll();
-            for (Signin signin: signins){
-                if (signin.getStudentId()==activityStud.getStudentId()&&
-                        signin.getActivityId()==activityStud.getActivityId()){
-                    signStatus = signin.getFlag();
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        try {
+//            List<Signin> signins = this.signInService.findSigninAll();
+//            for (Signin signin: signins){
+//                if (signin.getStudentId()==activityStud.getStudentId()&&
+//                        signin.getActivityId()==activityStud.getActivityId()){
+//                    signStatus = signin.getFlag();
+//                }
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
         try {
             Activity activity =  this.activityService.findActivityById(activityStud.getActivityId());
