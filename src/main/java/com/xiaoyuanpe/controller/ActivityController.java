@@ -419,7 +419,7 @@ public class ActivityController {
         return resultBean;
     }
 
-    public ActivityStudEntry IntegerToString(ActivityStud activityStud){
+    private ActivityStudEntry IntegerToString(ActivityStud activityStud){
         int signStatus = -1;
 //        try {
 //            List<Signin> signins = this.signInService.findSigninAll();
