@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.controller;
 
+import com.xiaoyuanpe.services.ActivityService;
 import com.xiaoyuanpe.services.LoginService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
@@ -14,10 +15,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.Date;
+
+@RestController
 @RequestMapping("/test")
 public class TestController {
+
+    @Autowired
+    private ActivityService activityService;
     @RequestMapping("/login")
     public String Login(){
         System.out.println();
@@ -46,5 +53,16 @@ public class TestController {
             return "login";
         }
         return "login";
+    }
+
+    @RequestMapping("/getTime")
+    public ResultBean getTime(){
+        Date[] dates=new Date[3];
+        ResultBean resultBean = new ResultBean();
+        dates[0] = new Date();
+        dates[1] = this.activityService.findActivityById(11).getRegistrationStartTime();
+        dates[2] = this.activityService.findActivityById(11).getRegistrationClosingTime();
+        resultBean.setData(dates);
+        return resultBean;
     }
 }

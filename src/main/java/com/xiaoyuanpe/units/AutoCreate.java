@@ -56,21 +56,27 @@ public class AutoCreate {
 //                System.out.println(date.compareTo(activity.getRegistrationClosingTime()));
 //                System.out.println(date);
 //                System.out.println(activity.getEndTime());
-
+                System.out.println(date.toString());
+                System.out.println(activity.getRegistrationStartTime().toString());
+                System.out.println(activity.getRegistrationClosingTime().toString());
+                System.out.println(activity.getStartTime().toString());
+                System.out.println(activity.getEndTime().toString());
+                System.out.println("-----------------------------------");
+                // 0 未审核 1 已审核
                 if (activity.getStatus()==1 && date.compareTo(activity.getRegistrationStartTime())>0 && date.compareTo(activity.getRegistrationClosingTime())<0){
-                    activity.setStatus(2);
+                    activity.setStatus(2);//报名阶段
                 }
                 else if (activity.getStatus()==2 && date.compareTo(activity.getStartTime())>0 && date.compareTo(activity.getEndTime())<0){
-                    activity.setStatus(3);
+                    activity.setStatus(3);//待完结
                 }
-                else if(activity.getStatus()==4 && date.compareTo(activity.getEndTime())>0){
-                    activity.setStatus(4);
+                else if(activity.getStatus()==3 && date.compareTo(activity.getEndTime())>0){
+                    activity.setStatus(4);//完结
                 }
                 this.activityService.ModifyActivity(activity);
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("错误"+e.getMessage());
         }
     }
 }
