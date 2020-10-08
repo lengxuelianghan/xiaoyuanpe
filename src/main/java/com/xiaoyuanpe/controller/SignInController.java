@@ -136,7 +136,7 @@ public class SignInController {
         try{
             for(Integer id: ids){
                 Signin signin = this.signInService.findSigninById(id);
-                if (signin.getSignTime()!=null) {
+                if (signin.getSignTime()!=null&&signin.getSignoutTime()==null) {
                     signin.setFlag(2);
                     Date date = new Date();
                     signin.setSignoutTime(date);

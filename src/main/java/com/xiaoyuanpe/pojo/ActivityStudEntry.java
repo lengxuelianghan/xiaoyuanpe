@@ -10,6 +10,12 @@ public class ActivityStudEntry {
 
     private String characters;
 
+    private Integer SportState;
+
+    private String StudentNumber;
+
+    private Integer SignStatus;
+
     public Integer getId() {
         return id;
     }
@@ -40,5 +46,29 @@ public class ActivityStudEntry {
 
     public void setCharacters(String characters) {
         this.characters = characters;
+    }
+
+    public Integer getSportState() {
+        return SportState;
+    }
+
+    public void setSportState(Integer sportState) {
+        SportState = sportState;
+    }
+
+    public String getStudentNumber() {
+        return StudentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        StudentNumber = studentNumber;
+    }
+
+    public Integer getSignStatus() {
+        return SignStatus;
+    }
+
+    public void setSignStatus(Integer signStatus) {
+        SignStatus = signStatus;
     }
 }
