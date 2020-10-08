@@ -441,9 +441,9 @@ public class ActivityController {
             activityStudEntry.setCharacters(activityStud.getCharacters());
             activityStudEntry.setId(activityStud.getActivityId());
             activityStudEntry.setStudentId(student.getStudentName());
-            activityStudEntry.setSportState(activity.getStatus());
-            activityStudEntry.setStudentNumber(student.getStudentNumber());
-            activityStudEntry.setSignStatus(signStatus);
+//            activityStudEntry.setSportState(activity.getStatus());
+//            activityStudEntry.setStudentNumber(student.getStudentNumber());
+            //activityStudEntry.setSignStatus(signStatus);
             return activityStudEntry;
         }catch (Exception e){
             e.printStackTrace();
