@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/login/login" method="post">
+<h3 style="color:red" th:text="${msg}"></h3>
+<form action="/test/login1" method="post">
     用户名：<input name="usernumber" type="text">
     密码：<input name="password" type="text">
     <input name="commit" type="submit" value="提交">

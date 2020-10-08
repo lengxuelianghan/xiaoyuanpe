@@ -6,9 +6,13 @@ import com.xiaoyuanpe.services.LoginService;
 import com.xiaoyuanpe.services.SchoolService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
-import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock;
-import org.apache.ibatis.jdbc.Null;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,6 +84,7 @@ public class LoginController {
             if (user!= null){
                 resultBean.setCode(0);
                 resultBean.setMsg("已登陆");
+                resultBean.setData(user.getUsername());
             }
             else {
                 resultBean.setCode(1);
