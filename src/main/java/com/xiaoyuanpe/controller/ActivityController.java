@@ -421,29 +421,35 @@ public class ActivityController {
 
     private ActivityStudEntry IntegerToString(ActivityStud activityStud){
         int signStatus = -1;
-//        try {
-//            List<Signin> signins = this.signInService.findSigninAll();
-//            for (Signin signin: signins){
-//                if (signin.getStudentId()==activityStud.getStudentId()&&
-//                        signin.getActivityId()==activityStud.getActivityId()){
-//                    signStatus = signin.getFlag();
-//                }
-//            }
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
+        try {
+            List<Signin> signins = this.signInService.findSigninAll();
+            for (Signin signin: signins){
+                if (signin.getStudentId()==activityStud.getStudentId()&&
+                        signin.getActivityId()==activityStud.getActivityId()){
+                    signStatus = signin.getFlag();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         try {
             Activity activity =  this.activityService.findActivityById(activityStud.getActivityId());
             Student student = this.studentService.findStudentById(activityStud.getStudentId());
+            System.out.println(activity.getActivityName()+
+                    activityStud.getCharacters()+
+                    activityStud.getActivityId()+
+                    student.getStudentName()+
+                    activity.getStatus()+
+                    student.getStudentNumber());
             ActivityStudEntry activityStudEntry = new ActivityStudEntry();
             activityStudEntry.setActivityId(activity.getActivityName());
             activityStudEntry.setCharacters(activityStud.getCharacters());
             activityStudEntry.setId(activityStud.getActivityId());
             activityStudEntry.setStudentId(student.getStudentName());
-//            activityStudEntry.setSportState(activity.getStatus());
-//            activityStudEntry.setStudentNumber(student.getStudentNumber());
-            //activityStudEntry.setSignStatus(signStatus);
+            activityStudEntry.setSportState(activity.getStatus()==null?0:activity.getStatus());
+            activityStudEntry.setStudentNumber(student.getStudentNumber());
+            activityStudEntry.setSignStatus(signStatus);
             return activityStudEntry;
         }catch (Exception e){
             e.printStackTrace();
@@ -454,12 +460,14 @@ public class ActivityController {
     @GetMapping("/getActivityByOrganizers")
     public ResultBean getActivityByOrganizers(HttpSession session){
         User user = (User) session.getAttribute("user");
+        System.out.println(user.getUserNumber());
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
             List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
+                System.out.println(activityStud.getCharacters()+","+student.getId()+","+activityStud.getStudentId());
                 if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
                     ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
                     if (activityStudEntry!=null) {
