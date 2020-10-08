@@ -60,7 +60,7 @@ public class TestController {
         Date[] dates=new Date[3];
         ResultBean resultBean = new ResultBean();
         Date date = new Date();
-        dates[0] =  date = new Date(date.getTime()+8*60*60*1000);
+        dates[0] =  new Date(date.getTime()+8*60*60*1000);
         dates[1] = this.activityService.findActivityById(11).getRegistrationStartTime();
         dates[2] = this.activityService.findActivityById(11).getRegistrationClosingTime();
         resultBean.setData(dates);
