@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class AutoCreate {
         try{
             //System.out.println("123321");
             Date date = new Date();
+            date = new Date(date.getTime()+8*60*60*1000);
             List<Activity> activityList =  this.activityService.findActivityAllList();
             for (Activity activity: activityList){
 //                System.out.println(date.compareTo(activity.getEndTime()));
