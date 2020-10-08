@@ -486,9 +486,11 @@ public class ActivityController {
             List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
-                ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-                if (activityStudEntry!=null) {
-                    activityStudList.add(activityStudEntry);
+                if(activityStud.getCharacters().equals("签到员")&&student.getId()==activityStud.getStudentId()) {
+                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+                    if (activityStudEntry != null) {
+                        activityStudList.add(activityStudEntry);
+                    }
                 }
             }
             resultBean.setCode(0);
