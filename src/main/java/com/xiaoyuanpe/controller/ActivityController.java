@@ -44,6 +44,7 @@ public class ActivityController {
                         new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
                 System.out.println("C:\\nginx\\img\\"+ fileName);
                 activity.setImagePath("C:\\nginx\\img\\"+  fileName);
+                activity.setStatus(0);
                 out.write(pictureFile.getBytes());
                 out.flush();
             }
@@ -70,6 +71,8 @@ public class ActivityController {
                         new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
                 System.out.println("C:\\nginx\\img\\"+ fileName);
                 activity.setImagePath("C:\\nginx\\img\\"+ fileName);
+                activity.setStatus(0);
+                activity.setPublisherId(uid);
                 out.write(pictureFile.getBytes());
                 out.flush();
             }
@@ -132,17 +135,13 @@ public class ActivityController {
         ResultBean resultBean = new ResultBean();
         try {
             List<Activity> activityList = this.activityService.findActivityAllList();
-            List<User> users = this.userService.findUsersListAll();
-            Map<Integer, String> userNameMap = new HashMap<>();
-            for (User user: users) {
-                userNameMap.put(user.getId(), user.getUsername());
-            }
             List<ActivityEntry> activityEntries = new ArrayList<>();
             for (Activity activity: activityList){
                 ActivityEntry activityEntry = new ActivityEntry();
                 activityEntry.setId(activity.getId());
                 activityEntry.setActivityName(activity.getActivityName());
                 activityEntry.setContact(activity.getContact()==null?"":activity.getContact());
+                User user = this.userService.findUsersById(activity.getPublisherId());
                 activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
                 activityEntry.setActivityArea(activity.getActivityArea()==null?"":activity.getActivityArea());
                 activityEntry.setActivityContent(activity.getActivityContent()==null?"":activity.getActivityContent());
@@ -298,20 +297,39 @@ public class ActivityController {
     public ResultBean signUp(@PathVariable Integer aid, HttpSession session){
         ResultBean resultBean = new ResultBean();
         User user = (User) session.getAttribute("user");
+        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+        Map<Integer,List<Integer>> map = new HashMap<>();
+        for (ActivityStud activityStud:activityStuds){
+            if (!map.containsKey(activityStud.getActivityId())) {
+                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+            }
+            else {
+                List<Integer> list = map.get(activityStud.getActivityId());
+                List arrList = new ArrayList(list);
+                arrList.add(activityStud.getStudentId());
+                map.put(activityStud.getActivityId(),arrList);
+            }
+        }
         try {
             ActivityStud activityStud = new ActivityStud();
             String num = this.userService.findUsersById(user.getId()).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
-            activityStud.setStudentId(id);
-            activityStud.setActivityId(aid);
-            activityStud.setCharacters("参与者");
-            Signin signin = new Signin();
-            signin.setFlag(0);
-            signin.setStudentId(id);
-            signin.setActivityId(aid);
-            this.signInService.addSignin(signin);
-            this.activityStudService.addActivityStud(activityStud);
-            resultBean.setCode(0);
+            if (map.containsKey(aid) && map.get(aid).contains(id)){
+                resultBean.setCode(1);
+                resultBean.setMsg("已报名参加！");
+            }
+            else {
+                activityStud.setStudentId(id);
+                activityStud.setActivityId(aid);
+                activityStud.setCharacters("参与者");
+                Signin signin = new Signin();
+                signin.setFlag(0);
+                signin.setStudentId(id);
+                signin.setActivityId(aid);
+                this.signInService.addSignin(signin);
+                this.activityStudService.addActivityStud(activityStud);
+                resultBean.setCode(0);
+            }
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg(e.getMessage());
@@ -322,8 +340,19 @@ public class ActivityController {
     @PostMapping("/signUpList/{aid}")
     public ResultBean signUpList(@RequestBody List<Integer> ids, @PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
+        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+        Map<Integer,List<Integer>> map = new HashMap<>();
+        for (ActivityStud activityStud:activityStuds){
+            if (map.containsKey(activityStud.getActivityId())) {
+                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+            }
+            else
+                map.get(activityStud.getActivityId()).add(activityStud.getStudentId());
+        }
         try {
             for (Integer id: ids) {
+                if (map.containsKey(aid) && map.get(aid).contains(id))
+                    continue;
                 ActivityStud activityStud = new ActivityStud();
                 String num = this.userService.findUsersById(id).getUserNumber();
                 int sid = this.studentService.findStudentByNumber(num).getId();
