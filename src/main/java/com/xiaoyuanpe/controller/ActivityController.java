@@ -293,6 +293,7 @@ public class ActivityController {
         }
         return resultBean;
     }
+    //个人报名参加活动
     @GetMapping("/signUp/{aid}")
     public ResultBean signUp(@PathVariable Integer aid, HttpSession session){
         ResultBean resultBean = new ResultBean();
@@ -317,7 +318,7 @@ public class ActivityController {
         }
         return resultBean;
     }
-
+    //根据id批量参与活动
     @PostMapping("/signUpList/{aid}")
     public ResultBean signUpList(@RequestBody List<Integer> ids, @PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
@@ -329,6 +330,12 @@ public class ActivityController {
                 activityStud.setStudentId(sid);
                 activityStud.setActivityId(aid);
                 activityStud.setCharacters("参与者");
+                Signin signin = new Signin();
+                signin.setFlag(0);
+                signin.setStudentId(sid);
+                signin.setActivityId(aid);
+                this.signInService.addSignin(signin);
+                this.activityStudService.addActivityStud(activityStud);
                 this.activityStudService.addActivityStud(activityStud);
             }
             resultBean.setCode(0);
