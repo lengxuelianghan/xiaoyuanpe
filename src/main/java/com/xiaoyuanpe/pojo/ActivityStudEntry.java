@@ -16,6 +16,10 @@ public class ActivityStudEntry {
 
     private Integer SignStatus;
 
+    private Integer studentIDNum;
+
+    private Integer signId;
+
     public Integer getId() {
         return id;
     }
@@ -70,5 +74,21 @@ public class ActivityStudEntry {
 
     public void setSignStatus(Integer signStatus) {
         SignStatus = signStatus;
+    }
+
+    public Integer getStudentIDNum() {
+        return studentIDNum;
+    }
+
+    public void setStudentIDNum(Integer studentIDNum) {
+        this.studentIDNum = studentIDNum;
+    }
+
+    public Integer getSignId() {
+        return signId;
+    }
+
+    public void setSignId(Integer signId) {
+        this.signId = signId;
     }
 }

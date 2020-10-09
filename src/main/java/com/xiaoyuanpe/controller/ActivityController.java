@@ -304,6 +304,11 @@ public class ActivityController {
             activityStud.setStudentId(id);
             activityStud.setActivityId(aid);
             activityStud.setCharacters("参与者");
+            Signin signin = new Signin();
+            signin.setFlag(0);
+            signin.setStudentId(id);
+            signin.setActivityId(aid);
+            this.signInService.addSignin(signin);
             this.activityStudService.addActivityStud(activityStud);
             resultBean.setCode(0);
         }catch (Exception e){
@@ -421,12 +426,14 @@ public class ActivityController {
 
     private ActivityStudEntry IntegerToString(ActivityStud activityStud){
         int signStatus = -1;
+        int signId = -1;
         try {
             List<Signin> signins = this.signInService.findSigninAll();
             for (Signin signin: signins){
                 if (signin.getStudentId()==activityStud.getStudentId()&&
                         signin.getActivityId()==activityStud.getActivityId()){
                     signStatus = signin.getFlag();
+                    signId = signin.getId();
                 }
             }
         }catch (Exception e){
@@ -436,12 +443,6 @@ public class ActivityController {
         try {
             Activity activity =  this.activityService.findActivityById(activityStud.getActivityId());
             Student student = this.studentService.findStudentById(activityStud.getStudentId());
-            System.out.println(activity.getActivityName()+
-                    activityStud.getCharacters()+
-                    activityStud.getActivityId()+
-                    student.getStudentName()+
-                    activity.getStatus()+
-                    student.getStudentNumber());
             ActivityStudEntry activityStudEntry = new ActivityStudEntry();
             activityStudEntry.setActivityId(activity.getActivityName());
             activityStudEntry.setCharacters(activityStud.getCharacters());
@@ -450,6 +451,8 @@ public class ActivityController {
             activityStudEntry.setSportState(activity.getStatus()==null?0:activity.getStatus());
             activityStudEntry.setStudentNumber(student.getStudentNumber());
             activityStudEntry.setSignStatus(signStatus);
+            activityStudEntry.setSignId(signId);
+            activityStudEntry.setStudentIDNum(student.getId());
             return activityStudEntry;
         }catch (Exception e){
             e.printStackTrace();
