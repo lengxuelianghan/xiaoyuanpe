@@ -346,16 +346,17 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/assignation/{aid}/{sid}/{role}")
-    public ResultBean assignation(@PathVariable Integer aid, @PathVariable Integer sid, @PathVariable  String role){
+    @GetMapping("/assignation/{aid}")
+    public ResultBean assignation(@PathVariable Integer aid, HttpSession session){
+        User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
             ActivityStud activityStud = new ActivityStud();
-            String num = this.userService.findUsersById(sid).getUserNumber();
+            String num = this.userService.findUsersById(user.getId()).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
             activityStud.setStudentId(id);
             activityStud.setActivityId(aid);
-            activityStud.setCharacters(role);
+            activityStud.setCharacters("签到员");
             this.activityStudService.addActivityStud(activityStud);
             resultBean.setCode(0);
         }catch (Exception e){
@@ -364,16 +365,19 @@ public class ActivityController {
         }
         return resultBean;
     }
-
+    //根据活动id获取参与者
     @GetMapping("/getPartner/{aid}")
     public ResultBean getPartner(@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try {
-            List<ActivityStud> activityStudList = new ArrayList<>();
+            List<ActivityStudEntry> activityStudList = new ArrayList<>();
             List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
             for (ActivityStud activityStud: activityStuds){
                 if(activityStud.getCharacters().equals("参与者") && activityStud.getActivityId()==aid){
-                    activityStudList.add(activityStud);
+                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+                    if (activityStudEntry!=null) {
+                        activityStudList.add(activityStudEntry);
+                    }
                 }
             }
             resultBean.setCode(0);
