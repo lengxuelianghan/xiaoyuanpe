@@ -13,6 +13,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -89,7 +90,10 @@ public class ActivityController {
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg(e.getMessage());
-            System.out.println(e.getMessage());
+            System.out.println(e.getClass().toString());
+            if (e.getClass().toString().equals("java.sql.SQLIntegrityConstraintViolationException")){
+                resultBean.setMsg("学校信息或用户信息不存在");
+            }
         }
         return resultBean;
     }
