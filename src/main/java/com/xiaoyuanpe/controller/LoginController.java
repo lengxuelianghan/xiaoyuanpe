@@ -92,7 +92,7 @@ public class LoginController {
             if (user!= null){
                 resultBean.setCode(0);
                 resultBean.setMsg("已登陆");
-                resultBean.setData(user.getUsername());
+                resultBean.setData(user);
             }
             else {
                 resultBean.setCode(1);

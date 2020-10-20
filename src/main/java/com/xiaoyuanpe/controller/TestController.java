@@ -32,7 +32,8 @@ public class TestController {
     }
     @RequestMapping("/assign")
     public String assign(){
-        System.out.println();
+        int a = 0x122;
+        System.out.println(a/2);
         return "assign";
     }
 
