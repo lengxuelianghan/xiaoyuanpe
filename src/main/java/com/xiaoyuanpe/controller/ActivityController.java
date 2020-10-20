@@ -383,15 +383,35 @@ public class ActivityController {
     public ResultBean assignation(@PathVariable Integer aid, HttpSession session){
         User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
+        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+        Map<Integer,List<Integer>> map = new HashMap<>();
+        for (ActivityStud activityStud:activityStuds){
+            if (!map.containsKey(activityStud.getActivityId())) {
+                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+            }
+            else {
+                List<Integer> list = map.get(activityStud.getActivityId());
+                List arrList = new ArrayList(list);
+                arrList.add(activityStud.getStudentId());
+                map.put(activityStud.getActivityId(),arrList);
+            }
+        }
+
         try {
-            ActivityStud activityStud = new ActivityStud();
             String num = this.userService.findUsersById(user.getId()).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
-            activityStud.setStudentId(id);
-            activityStud.setActivityId(aid);
-            activityStud.setCharacters("签到员");
-            this.activityStudService.addActivityStud(activityStud);
-            resultBean.setCode(0);
+            if (map.containsKey(aid) && map.get(aid).contains(id)){
+                resultBean.setCode(1);
+                resultBean.setMsg("已报名参加！");
+            }
+            else {
+                ActivityStud activityStud = new ActivityStud();
+                activityStud.setStudentId(id);
+                activityStud.setActivityId(aid);
+                activityStud.setCharacters("签到员");
+                this.activityStudService.addActivityStud(activityStud);
+                resultBean.setCode(0);
+            }
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg(e.getMessage());
