@@ -243,7 +243,7 @@ public class SignInController {
         }
         return resultBean;
     }
-
+    //签退
     @PostMapping("/updateSignIOutList")
     public ResultBean updateSignIOutList(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();

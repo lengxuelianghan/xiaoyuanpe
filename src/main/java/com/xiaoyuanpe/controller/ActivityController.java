@@ -379,9 +379,9 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/assignation/{aid}")
-    public ResultBean assignation(@PathVariable Integer aid, HttpSession session){
-        User user = (User) session.getAttribute("user");
+    @GetMapping("/assignation/{aid}/{uid}")
+    public ResultBean assignation(@PathVariable Integer aid, @PathVariable Integer uid){
+        //User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
         Map<Integer,List<Integer>> map = new HashMap<>();
@@ -398,8 +398,9 @@ public class ActivityController {
         }
 
         try {
-            String num = this.userService.findUsersById(user.getId()).getUserNumber();
+            String num = this.userService.findUsersById(uid).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
+            ActivityStud activityStud1 = this.activityStudService.findByAIdAndSid(aid, id);
             if (map.containsKey(aid) && map.get(aid).contains(id)){
                 resultBean.setCode(1);
                 resultBean.setMsg("已报名参加！");

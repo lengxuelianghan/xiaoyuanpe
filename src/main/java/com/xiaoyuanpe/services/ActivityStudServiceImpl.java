@@ -26,6 +26,11 @@ public class ActivityStudServiceImpl implements ActivityStudService {
     }
 
     @Override
+    public ActivityStud findByAIdAndSid(Integer aid, Integer sid) {
+        return this.activityStudMapper.selectByAidAndSid(aid, sid);
+    }
+
+    @Override
     public void ModifyActivityStud(ActivityStud activityStud) {
         this.activityStudMapper.updateByPrimaryKey(activityStud);
     }

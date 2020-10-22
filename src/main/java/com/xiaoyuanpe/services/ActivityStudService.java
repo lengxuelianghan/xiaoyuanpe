@@ -9,6 +9,8 @@ public interface ActivityStudService {
 
     ActivityStud findActivityStudById(Integer id);
 
+    ActivityStud findByAIdAndSid(Integer aid, Integer sid);
+
     void ModifyActivityStud(ActivityStud activityStud);
 
     void DeleteActivityStudList(List<Integer> ids);

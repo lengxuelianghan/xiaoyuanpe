@@ -20,6 +20,8 @@ public interface ActivityStudMapper {
 
     ActivityStud selectByPrimaryKey(Integer id);
 
+    ActivityStud selectByAidAndSid(@Param("aid") Integer aid, @Param("sid") Integer sid);
+
     int updateByExampleSelective(@Param("record") ActivityStud record, @Param("example") ActivityStudExample example);
 
     int updateByExample(@Param("record") ActivityStud record, @Param("example") ActivityStudExample example);

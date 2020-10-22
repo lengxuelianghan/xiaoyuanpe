@@ -88,6 +88,10 @@
     from activity_stud
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByAidAndSid" resultMap="BaseResultMap">
+    select from activity_stud
+    where activity_id = #{activityId,jdbcType=INTEGER} and student_id = #{studentId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from activity_stud
     where id = #{id,jdbcType=INTEGER}
