@@ -400,7 +400,7 @@ public class ActivityController {
         try {
             String num = this.userService.findUsersById(uid).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
-            //ActivityStud activityStud1 = this.activityStudService.findByAIdAndSid(aid, id);
+
             if (map.containsKey(aid) && map.get(aid).contains(id)){
                 resultBean.setCode(1);
                 resultBean.setMsg("已报名参加！");
