@@ -38,6 +38,7 @@ public class SemesterController {
                 if (s.getAge() == semester.getTerm()
                         &&semester.getSchoolId() == schoolId){
                     SemesterEntry semesterEntry = new SemesterEntry();
+                    semesterEntry.setId(semester.getId());
                     semesterEntry.setName(s.getStudentName());
                     semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
                     semesterEntry.setScore(semester.getScore());
