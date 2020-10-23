@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,7 @@ public class SignInController {
     @Autowired
     private ActivityStudService activityStudService;
     @Autowired
-    private ActivityService activityService;
+    private SemesterService semesterService;
 
     @GetMapping("/addSportSignIn/{activityId}")
     public ResultBean addSportSignIn(@PathVariable Integer activityId, HttpSession session){
@@ -248,10 +249,24 @@ public class SignInController {
     public ResultBean updateSignIOutList(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
         try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
             for(Integer id: ids){
                 Signin signin = this.signInService.findSigninById(id);
                 signin.setFlag(2);
                 signin.setSignoutTime(new Date());
+                int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
+                List<Semester> semesters = this.semesterService.findSemesterAll();
+                for (Semester semester: semesters){
+                    Student student = this.studentService.findStudentById(signin.getStudentId());
+                    if (semester.getTerm() == student.getAge()&&signin.getStudentId() == semester.getSudentId()){
+                        semester.setExerciseTime(semester.getExerciseTime() + dataLen);
+                        int s = (int) (dataLen * 0.1);
+                        semester.setScore(semester.getScore() + s);
+                        this.semesterService.ModifySemester(semester);
+                        break;
+                    }
+                }
+
                 this.signInService.ModifySignin(signin);
             }
             resultBean.setCode(0);
