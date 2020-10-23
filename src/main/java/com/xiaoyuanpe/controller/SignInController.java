@@ -259,9 +259,10 @@ public class SignInController {
                 for (Semester semester: semesters){
                     Student student = this.studentService.findStudentById(signin.getStudentId());
                     if (semester.getTerm() == student.getAge()&&signin.getStudentId() == semester.getSudentId()){
-                        semester.setExerciseTime(semester.getExerciseTime() + dataLen);
-                        int s = (int) (dataLen * 0.1);
-                        semester.setScore(semester.getScore() + s);
+                        int ss = semester.getExerciseTime();
+                        semester.setExerciseTime(ss + dataLen);
+                        int s = semester.getScore() + (int) (dataLen * 0.5);
+                        semester.setScore(s);
                         this.semesterService.ModifySemester(semester);
                         break;
                     }
