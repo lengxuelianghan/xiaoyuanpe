@@ -249,13 +249,13 @@ public class SignInController {
     public ResultBean updateSignIOutList(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
         try{
-            SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
             for(Integer id: ids){
                 Signin signin = this.signInService.findSigninById(id);
                 signin.setFlag(2);
                 signin.setSignoutTime(new Date());
                 int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                 List<Semester> semesters = this.semesterService.findSemesterAll();
+                System.out.println(dataLen);
                 for (Semester semester: semesters){
                     Student student = this.studentService.findStudentById(signin.getStudentId());
                     if (semester.getTerm() == student.getAge()&&signin.getStudentId() == semester.getSudentId()){
@@ -264,6 +264,8 @@ public class SignInController {
                         int s = semester.getScore() + (int) (dataLen * 0.5);
                         semester.setScore(s);
                         this.semesterService.ModifySemester(semester);
+                        System.out.println(s);
+                        resultBean.setData(s+","+(ss+dataLen));
                         break;
                     }
                 }
