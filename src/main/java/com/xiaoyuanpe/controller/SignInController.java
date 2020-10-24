@@ -258,6 +258,7 @@ public class SignInController {
                 System.out.println(dataLen);
                 for (Semester semester: semesters){
                     Student student = this.studentService.findStudentById(signin.getStudentId());
+                    resultBean.setData(semester);
                     if (semester.getTerm() == student.getAge()&&signin.getStudentId() == semester.getSudentId()){
                         int ss = semester.getExerciseTime();
                         semester.setExerciseTime(ss + dataLen);
