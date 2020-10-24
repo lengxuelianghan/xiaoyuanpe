@@ -156,7 +156,7 @@ public class SignInController {
                             semester.setScore(s);
                             this.semesterService.ModifySemester(semester);
                             System.out.println(s);
-                            resultBean.setData(s+","+(ss+dataLen));
+                            resultBean.setData(signin.getSignoutTime()+","+ signin.getSignTime());
                             break;
                         }
                     }
