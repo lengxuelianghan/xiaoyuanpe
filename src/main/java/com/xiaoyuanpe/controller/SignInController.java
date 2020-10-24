@@ -151,7 +151,7 @@ public class SignInController {
                         resultBean.setData(semester);
                         if (semester.getTerm() == student.getAge()&&signin.getStudentId() == semester.getSudentId()){
                             int ss = semester.getExerciseTime();
-                            semester.setExerciseTime(ss + dataLen);
+                            semester.setExerciseTime(ss - dataLen);
                             int s = semester.getScore() + (int) (dataLen * 0.5);
                             semester.setScore(s);
                             this.semesterService.ModifySemester(semester);
