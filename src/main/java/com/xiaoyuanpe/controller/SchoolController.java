@@ -95,7 +95,7 @@ public class SchoolController {
             }
         }catch (Exception ee) {
             resultBean.setCode(1);
-            resultBean.setMsg(ee);
+            resultBean.setMsg(ee.toString());
         }
         return resultBean;
     }
