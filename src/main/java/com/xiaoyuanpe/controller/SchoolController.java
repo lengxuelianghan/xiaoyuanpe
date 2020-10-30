@@ -79,23 +79,23 @@ public class SchoolController {
         ResultBean resultBean = new ResultBean();
         try {
             boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
+            if (HasRole.hasOneRole(booleans)) {
+                try {
+                    resultBean.setData(this.schoolService.findSchoolAll());
+                    resultBean.setCode(0);
+                } catch (Exception e) {
+                    System.out.println("错误" + e.getMessage());
+                    resultBean.setCode(1);
+                    resultBean.setMsg("学校列表查找失败");
+                }
+            }
+            else {
+                resultBean.setMsg("您们没有权限");
+                resultBean.setCode(1);
+            }
         }catch (Exception ee) {
             System.out.println(ee.getMessage());
             resultBean.setMsg(ee.getMessage());
-        }
-        if (true) {
-            try {
-                resultBean.setData(this.schoolService.findSchoolAll());
-                resultBean.setCode(0);
-            } catch (Exception e) {
-                System.out.println("错误" + e.getMessage());
-                resultBean.setCode(1);
-                resultBean.setMsg("学校列表查找失败");
-            }
-        }
-        else {
-            resultBean.setMsg("您们没有权限");
-            resultBean.setCode(1);
         }
         return resultBean;
     }
