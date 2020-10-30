@@ -1,6 +1,7 @@
 package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.School;
+import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.SchoolService;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
@@ -11,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +21,21 @@ import java.util.List;
 public class SchoolController {
     @Autowired
     private SchoolService schoolService;
+
+    @GetMapping("/selectSchoolByUser")
+    public ResultBean selectSchoolByUser(HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        User user = (User) session.getAttribute("user");
+        try {
+            resultBean.setData(this.schoolService.findSchoolById(user.getSchoolId()));
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println("错误"+e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学校查找失败");
+        }
+        return resultBean;
+    }
 
     @PostMapping("/addSchool")
     public ResultBean addSchool(@RequestBody School school){
