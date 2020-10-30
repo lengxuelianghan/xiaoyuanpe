@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -78,7 +79,13 @@ public class SchoolController {
         Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
         try {
-            boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
+            List<String> stringList = new ArrayList<>();
+            stringList.add(new String("schoolmanager"));
+            stringList.add(new String("supermanager"));
+            stringList.add(new String("classmanager"));
+            stringList.add(new String("teacher"));
+            stringList.add(new String("student"));
+            boolean[] booleans = subject.hasRoles(stringList);
             if (HasRole.hasOneRole(booleans)) {
                 try {
                     resultBean.setData(this.schoolService.findSchoolAll());
@@ -95,7 +102,7 @@ public class SchoolController {
             }
         }catch (Exception ee) {
             resultBean.setCode(1);
-            resultBean.setMsg(ee.toString()+"," + subject.toString());
+            resultBean.setMsg(ee.toString()+"," + subject.toString()+",");
         }
         return resultBean;
     }
