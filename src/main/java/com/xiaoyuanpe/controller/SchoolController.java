@@ -75,9 +75,9 @@ public class SchoolController {
 
     @RequestMapping("/querySchoolList")
     public ResultBean querySchoolList(){
-        Subject subject = SecurityUtils.getSubject();
+        //Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
-        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
+        //boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
         if (true) {
             try {
                 resultBean.setData(this.schoolService.findSchoolAll());
