@@ -78,7 +78,7 @@ public class SchoolController {
         Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
-        if (HasRole.hasOneRole(booleans)) {
+        if (true) {
             try {
                 resultBean.setData(this.schoolService.findSchoolAll());
                 resultBean.setCode(0);
