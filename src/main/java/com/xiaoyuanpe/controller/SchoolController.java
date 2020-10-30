@@ -85,7 +85,9 @@ public class SchoolController {
             stringList.add(new String("classmanager"));
             stringList.add(new String("teacher"));
             stringList.add(new String("student"));
+            resultBean.setData(stringList);
             boolean[] booleans = subject.hasRoles(stringList);
+            resultBean.setData(booleans.length);
             if (HasRole.hasOneRole(booleans)) {
                 try {
                     resultBean.setData(this.schoolService.findSchoolAll());
@@ -102,7 +104,7 @@ public class SchoolController {
             }
         }catch (Exception ee) {
             resultBean.setCode(1);
-            resultBean.setMsg(ee.toString()+"," + subject.toString()+",");
+            resultBean.setMsg(ee.toString()+"," +",");
         }
         return resultBean;
     }
