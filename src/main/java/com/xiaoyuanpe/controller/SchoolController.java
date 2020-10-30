@@ -77,7 +77,12 @@ public class SchoolController {
     public ResultBean querySchoolList(){
         Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
-        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
+        try {
+            boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
+        }catch (Exception ee) {
+            System.out.println(ee.getMessage());
+            resultBean.setMsg(ee.getMessage());
+        }
         if (true) {
             try {
                 resultBean.setData(this.schoolService.findSchoolAll());
