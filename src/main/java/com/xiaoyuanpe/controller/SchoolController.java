@@ -95,7 +95,7 @@ public class SchoolController {
             }
         }catch (Exception ee) {
             resultBean.setCode(1);
-            resultBean.setMsg(ee.toString()+"," + subject.hasRole("student"));
+            resultBean.setMsg(ee.toString()+"," + subject.toString());
         }
         return resultBean;
     }
