@@ -40,11 +40,11 @@ public class LoginController {
                 resultBean.setCode(0);
                 for (User user : this.userService.findUsersAll(1, pageSize).getContent()) {
                     if (usernumber.equals(user.getUserNumber())) {
-                        Subject subject = SecurityUtils.getSubject();
-                        subject.getSession().setAttribute("user",user);
-                        subject.getSession().setTimeout(30 * 60 * 60 * 1000L);
-//                        session.setAttribute("user", user);
-//                        session.setMaxInactiveInterval(30 * 60 * 60);
+//                        Subject subject = SecurityUtils.getSubject();
+//                        subject.getSession().setAttribute("user",user);
+//                        subject.getSession().setTimeout(30 * 60 * 60 * 1000L);
+                        session.setAttribute("user", user);
+                        session.setMaxInactiveInterval(30 * 60 * 60);
                         resultBean.setTotal(user.getId());
                         UserEntry userEntry = new UserEntry();
                         userEntry.setId(user.getId());

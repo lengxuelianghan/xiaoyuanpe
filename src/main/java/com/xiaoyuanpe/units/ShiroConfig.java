@@ -39,7 +39,7 @@ public class ShiroConfig {
     @Bean(name = "securityManager")
     public DefaultWebSecurityManager getDefaultWebSecurityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setSessionManager(sessionManager());
+//        securityManager.setSessionManager(sessionManager());
         securityManager.setRealm(getRealm());
         return securityManager;
     }
@@ -55,14 +55,14 @@ public class ShiroConfig {
         realm.setAuthorizationCacheName("authorizationCache");
         return new Realm();
     }
-
-    @Bean(name = "sessionManager")
-    public DefaultWebSessionManager sessionManager() {
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        // 设置session过期时间3600s
-        sessionManager.setDeleteInvalidSessions(true);
-        sessionManager.setSessionValidationSchedulerEnabled(true);
-        sessionManager.setGlobalSessionTimeout(24*60*60*1000L);
-        return sessionManager;
-    }
+//
+//    @Bean(name = "sessionManager")
+//    public DefaultWebSessionManager sessionManager() {
+//        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+//        // 设置session过期时间3600s
+//        sessionManager.setDeleteInvalidSessions(true);
+//        sessionManager.setSessionValidationSchedulerEnabled(true);
+//        sessionManager.setGlobalSessionTimeout(24*60*60*1000L);
+//        return sessionManager;
+//    }
 }
