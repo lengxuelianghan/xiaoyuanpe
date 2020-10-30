@@ -1,11 +1,7 @@
 package com.xiaoyuanpe.units;
 
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -48,11 +44,11 @@ public class ShiroConfig {
     public Realm getRealm(){
         Realm realm = new Realm();
         //开启缓存管理EhCache
-        realm.setCachingEnabled(true);//开启全局缓存
-        realm.setAuthenticationCachingEnabled(true);//开启认证缓存
-        realm.setAuthenticationCacheName("authenticationCache");
-        realm.setAuthorizationCachingEnabled(true);//开启授权缓存
-        realm.setAuthorizationCacheName("authorizationCache");
+//        realm.setCachingEnabled(true);//开启全局缓存
+//        realm.setAuthenticationCachingEnabled(true);//开启认证缓存
+//        realm.setAuthenticationCacheName("authenticationCache");
+//        realm.setAuthorizationCachingEnabled(true);//开启授权缓存
+//        realm.setAuthorizationCacheName("authorizationCache");
         return new Realm();
     }
 //
