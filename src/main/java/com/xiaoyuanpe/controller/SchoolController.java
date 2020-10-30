@@ -2,10 +2,16 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.School;
 import com.xiaoyuanpe.services.SchoolService;
+import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -17,13 +23,21 @@ public class SchoolController {
     @PostMapping("/addSchool")
     public ResultBean addSchool(@RequestBody School school){
         ResultBean resultBean = new ResultBean();
-        try {
-            this.schoolService.addSchool(school);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println("错误"+e.getMessage());
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.schoolService.addSchool(school);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学校添加失败");
+            }
+        }
+        else {
+            resultBean.setMsg("您们没有权限");
             resultBean.setCode(1);
-            resultBean.setMsg("学校添加失败");
         }
         return resultBean;
     }
@@ -44,14 +58,22 @@ public class SchoolController {
 
     @RequestMapping("/querySchoolList")
     public ResultBean querySchoolList(){
+        Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
-        try {
-            resultBean.setData(this.schoolService.findSchoolAll());
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println("错误"+e.getMessage());
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager", "classmanager"," teacher", "student"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                resultBean.setData(this.schoolService.findSchoolAll());
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学校列表查找失败");
+            }
+        }
+        else {
+            resultBean.setMsg("您们没有权限");
             resultBean.setCode(1);
-            resultBean.setMsg("学校列表查找失败");
         }
         return resultBean;
     }
@@ -59,13 +81,21 @@ public class SchoolController {
     @RequestMapping(value = "/updateSchool", method = RequestMethod.POST)
     public ResultBean updateSchool(@RequestBody School school){
         ResultBean resultBean = new ResultBean();
-        try {
-            this.schoolService.ModifySchool(school);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println("错误"+e.getMessage());
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.schoolService.ModifySchool(school);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学校添更新失败");
+            }
+        }
+        else {
+            resultBean.setMsg("您们没有权限");
             resultBean.setCode(1);
-            resultBean.setMsg("学校添更新失败");
         }
         return resultBean;
     }
@@ -73,13 +103,21 @@ public class SchoolController {
     @RequestMapping(value = "/deleteSchool", method = RequestMethod.POST)
     public ResultBean deleteSchool(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
-        try {
-            this.schoolService.DeleteSchoolList(ids);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println("错误"+e.getMessage());
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.schoolService.DeleteSchoolList(ids);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学校添更新失败");
+            }
+        }
+        else {
+            resultBean.setMsg("您们没有权限");
             resultBean.setCode(1);
-            resultBean.setMsg("学校添更新失败");
         }
         return resultBean;
     }

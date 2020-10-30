@@ -6,6 +6,8 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.SemesterService;
 import com.xiaoyuanpe.services.StudentService;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,7 @@ public class StudentController {
     private SemesterService semesterService;
 
     @RequestMapping("/StudentSportInfo/{sid}/{num}")
+    @RequiresRoles(value = {"student"})
     public ResultBean SearchAll(@PathVariable Integer sid, @PathVariable Integer num){
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentById(sid);
@@ -91,6 +94,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
+    @RequiresRoles(value = {"stu"})
     public ResultBean addStudent(@RequestBody Student student){
         ResultBean resultBean = new ResultBean();
         try {

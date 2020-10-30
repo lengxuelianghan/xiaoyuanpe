@@ -1,5 +1,7 @@
 package com.xiaoyuanpe.pojo;
 
+import java.util.List;
+
 public class User {
     private Integer id;
 
@@ -22,6 +24,16 @@ public class User {
     private String email;
 
     private Integer schoolId;
+
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public Integer getId() {
         return id;

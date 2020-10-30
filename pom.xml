@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+<!--        <tomcat.version>8.5.37</tomcat.version>-->
     </properties>
     <packaging>war</packaging>
     <dependencies>
@@ -32,6 +33,12 @@
             </exclusions>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

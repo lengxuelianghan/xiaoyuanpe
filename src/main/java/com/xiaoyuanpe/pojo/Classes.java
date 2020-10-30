@@ -9,6 +9,8 @@ public class Classes {
 
     private String className;
 
+    private Integer termYear;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Classes {
 
     public void setClassName(String className) {
         this.className = className == null ? null : className.trim();
+    }
+
+    public Integer getTermYear() {
+        return termYear;
+    }
+
+    public void setTermYear(Integer termYear) {
+        this.termYear = termYear;
     }
 }

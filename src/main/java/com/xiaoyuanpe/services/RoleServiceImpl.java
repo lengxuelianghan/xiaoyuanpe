@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("role")
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;

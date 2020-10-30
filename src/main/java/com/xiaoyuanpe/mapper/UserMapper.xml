@@ -96,6 +96,14 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByStudentNum" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_number = #{num, jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}
@@ -317,4 +325,33 @@
       #{item}
     </foreach>
   </delete>
+
+
+  <resultMap id="UserMap" type="com.xiaoyuanpe.pojo.User">
+    <id column="uid" property="id" />
+    <result column="user_number" property="userNumber" />
+    <collection property="roles" javaType="list" ofType="com.xiaoyuanpe.pojo.Role">
+      <id column="id" property="id"></id>
+      <result column="rname" property="roleName"></result>
+    </collection>
+  </resultMap>
+  <select id="findRolesByUsername" parameterType="java.lang.String" resultMap="UserMap">
+        select u.id uid,u.user_number, r.id, r.role_name rname
+        from user u
+        left join user_role ur
+        on u.id=ur.user_id
+        left join role r
+        on ur.role_id=r.id
+        where u.user_number=#{userNumber}
+    </select>
+
+  <select id="findPermsByRoleId" parameterType="java.lang.Integer" resultType="com.xiaoyuanpe.pojo.Permissions">
+        select p.id,p.permission_name,p.url,r.role_name from role r
+        left join role_perm rp
+        on r.id = rp.role_id
+        left join permissions p
+        on rp.perm_id=p.id
+        where r.id=#{id}
+    </select>
+
 </mapper>

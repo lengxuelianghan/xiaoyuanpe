@@ -1,6 +1,10 @@
 package com.xiaoyuanpe.units;
 
+import com.xiaoyuanpe.pojo.Permissions;
+import com.xiaoyuanpe.pojo.Role;
 import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.services.PermissionService;
+import com.xiaoyuanpe.services.RoleService;
 import com.xiaoyuanpe.services.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -8,44 +12,47 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
 public class Realm extends AuthorizingRealm {
-
-    @Autowired
-    private UserService userService;
-
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("授权");
-        //给资源进行授权
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        //添加授权资源字符串
-        info.addStringPermission("user:add");
-
-        return info;
+        String primaryPrincipal = (String)principalCollection.getPrimaryPrincipal();
+        System.out.println(primaryPrincipal);
+        UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
+        List<Role> rolesByUsername = userService.findRolesByUsername(primaryPrincipal).getRoles();
+        if (!CollectionUtils.isEmpty(rolesByUsername)){
+            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            rolesByUsername.forEach((role)->{
+                System.out.println(role.getRoleName());
+                info.addRole(role.getRoleName());
+                List<Permissions> perms = userService.findPermsByRoleId(role.getId());
+                if (!CollectionUtils.isEmpty(perms)){
+                    perms.forEach(perms1 -> {
+                        System.out.println(perms1.getPermissionName());
+                        info.addStringPermission(perms1.getPermissionName());
+                    });
+                }
+            });
+            return info;
+        }
+        return null;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         System.out.println("认证");
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        String userName="";
-        List<User> users = this.userService.findUsersListAll();
-        String password="";
-        int b=0;
-        for (User user: users) {
-            if (token.getUsername().equals(user.getUsername())) {
-                b=1;
-                userName = user.getUsername();
-                password = user.getPassword();
-            }
+        String principal = (String) authenticationToken.getPrincipal();
+        UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
+        User user = userService.findUsersByStudentNum(principal);
+        if (!ObjectUtils.isEmpty(user)){
+            return new SimpleAuthenticationInfo(principal,user.getPassword(), this.getName());
         }
-        if (b==0){
-            return null;
-        }
-        else
-            return new SimpleAuthenticationInfo("",password,"");
+        return null;
     }
 }

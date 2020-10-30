@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.services;
 
+import com.xiaoyuanpe.pojo.Permissions;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.units.Pager;
 
@@ -14,6 +15,8 @@ public interface UserService {
 
     User findUsersById(Integer id);
 
+    User findUsersByStudentNum(String num);
+
     void ModifyUser(User users);
 
     void DeleteUser(Integer id);
@@ -23,4 +26,8 @@ public interface UserService {
     Boolean NameRepeat(String name);
 
     long Count();
+
+    User findRolesByUsername(String userNumber);
+
+    List<Permissions> findPermsByRoleId(Integer id);
 }

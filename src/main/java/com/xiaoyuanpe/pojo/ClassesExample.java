@@ -353,6 +353,66 @@ public class ClassesExample {
             addCriterion("class_name not between", value1, value2, "className");
             return (Criteria) this;
         }
+
+        public Criteria andTermYearIsNull() {
+            addCriterion("term_year is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearIsNotNull() {
+            addCriterion("term_year is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearEqualTo(Integer value) {
+            addCriterion("term_year =", value, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearNotEqualTo(Integer value) {
+            addCriterion("term_year <>", value, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearGreaterThan(Integer value) {
+            addCriterion("term_year >", value, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearGreaterThanOrEqualTo(Integer value) {
+            addCriterion("term_year >=", value, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearLessThan(Integer value) {
+            addCriterion("term_year <", value, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearLessThanOrEqualTo(Integer value) {
+            addCriterion("term_year <=", value, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearIn(List<Integer> values) {
+            addCriterion("term_year in", values, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearNotIn(List<Integer> values) {
+            addCriterion("term_year not in", values, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearBetween(Integer value1, Integer value2) {
+            addCriterion("term_year between", value1, value2, "termYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andTermYearNotBetween(Integer value1, Integer value2) {
+            addCriterion("term_year not between", value1, value2, "termYear");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

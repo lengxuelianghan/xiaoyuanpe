@@ -1,6 +1,7 @@
 package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.mapper.UserMapper;
+import com.xiaoyuanpe.pojo.Permissions;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserExample;
 import com.xiaoyuanpe.units.Pager;
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper usersMapper;
@@ -55,6 +56,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUsersByStudentNum(String num) {
+        return this.usersMapper.selectByStudentNum(num);
+    }
+
+    @Override
     @Transactional
     public void ModifyUser(User users) {
         this.usersMapper.updateByPrimaryKey(users);
@@ -84,5 +90,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public long Count() {
         return this.usersMapper.countByExample(new UserExample());
+    }
+
+    @Override
+    public User findRolesByUsername(String userNumber) {
+        return this.usersMapper.findRolesByUsername(userNumber);
+    }
+
+    @Override
+    public List<Permissions> findPermsByRoleId(Integer id) {
+        return this.usersMapper.findPermsByRoleId(id);
     }
 }
