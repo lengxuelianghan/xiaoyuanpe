@@ -26,7 +26,7 @@ public class ShiroConfig {
         Map<String,String> map = new LinkedHashMap<>();
         map.put("/login/**", "anon");
         map.put("/**", "authc");
-        map.put("/**", "perms[]");
+        //map.put("/**", "perms[]");
         shiroFilterFactoryBean.setLoginUrl("/login/login");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
