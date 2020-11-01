@@ -85,10 +85,10 @@ public class SchoolController {
             stringList.add(new String("classmanager"));
             stringList.add(new String("teacher"));
             stringList.add(new String("student"));
-//            resultBean.setData(stringList);
-//            boolean[] booleans = subject.hasRoles(stringList);
-//            resultBean.setData(booleans.length);
-            if (true) {
+            resultBean.setData(stringList);
+            boolean[] booleans = subject.hasRoles(stringList);
+            resultBean.setData(booleans.length);
+            if (HasRole.hasOneRole(booleans)) {
                 try {
                     resultBean.setData(this.schoolService.findSchoolAll());
                     resultBean.setCode(0);
