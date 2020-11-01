@@ -24,9 +24,9 @@ public class ShiroConfig {
          * prems:该资源必须授予资源权限才可以访问
          * role：必须得到角色授权才可以访问 **/
         Map<String,String> map = new LinkedHashMap<>();
-        map.put("/login/login", "anon");
-        map.put("/login/logout", "anon");
-        map.put("/**","authc");
+        map.put("/login/**", "anon");
+        map.put("/**", "authc");
+        map.put("/**", "perms[]");
         shiroFilterFactoryBean.setLoginUrl("/login/login");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
