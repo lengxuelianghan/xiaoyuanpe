@@ -30,13 +30,13 @@ public class Realm extends AuthorizingRealm {
             rolesByUsername.forEach((role)->{
                 System.out.println(role.getRoleName());
                 info.addRole(role.getRoleName());
-                List<Permissions> perms = userService.findPermsByRoleId(role.getId());
-                if (!CollectionUtils.isEmpty(perms)){
-                    perms.forEach(perms1 -> {
-                        System.out.println(perms1.getPermissionName());
-                        info.addStringPermission(perms1.getPermissionName());
-                    });
-                }
+//                List<Permissions> perms = userService.findPermsByRoleId(role.getId());
+//                if (!CollectionUtils.isEmpty(perms)){
+//                    perms.forEach(perms1 -> {
+//                        System.out.println(perms1.getPermissionName());
+//                        info.addStringPermission(perms1.getPermissionName());
+//                    });
+//                }
             });
             return info;
         }
