@@ -84,7 +84,7 @@ public class SchoolController {
             stringList.add(new String("supermanager"));
             stringList.add(new String("classmanager"));
             stringList.add(new String("teacher"));
-            //stringList.add(new String("student"));
+            stringList.add(new String("student"));
             resultBean.setData(stringList);
             boolean[] booleans = subject.hasRoles(stringList);
             resultBean.setData(booleans.length);
