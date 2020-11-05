@@ -42,7 +42,7 @@ public class SchoolController {
     public ResultBean addSchool(@RequestBody School school){
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
-        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
+        boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
                 this.schoolService.addSchool(school);
@@ -76,17 +76,7 @@ public class SchoolController {
 
     @RequestMapping("/querySchoolList")
     public ResultBean querySchoolList(){
-        Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
-        try {
-            List<String> stringList = new ArrayList<>();
-            stringList.add(new String("schoolmanager"));
-            stringList.add(new String("supermanager"));
-            stringList.add(new String("classmanager"));
-            stringList.add(new String("teacher"));
-            stringList.add(new String("student"));
-            boolean[] booleans = subject.hasRoles(stringList);
-            if (HasRole.hasOneRole(booleans)) {
                 try {
                     resultBean.setData(this.schoolService.findSchoolAll());
                     resultBean.setCode(0);
@@ -95,15 +85,6 @@ public class SchoolController {
                     resultBean.setCode(1);
                     resultBean.setMsg("学校列表查找失败");
                 }
-            }
-            else {
-                resultBean.setMsg("您们没有权限");
-                resultBean.setCode(1);
-            }
-        }catch (Exception ee) {
-            resultBean.setCode(1);
-            resultBean.setMsg(ee.toString()+"," +",");
-        }
         return resultBean;
     }
 
@@ -133,7 +114,7 @@ public class SchoolController {
     public ResultBean deleteSchool(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
-        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
+        boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
                 this.schoolService.DeleteSchoolList(ids);

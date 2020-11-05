@@ -1,18 +1,21 @@
 package com.xiaoyuanpe.controller;
 
-import com.xiaoyuanpe.pojo.Semester;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.pojo.*;
+import com.xiaoyuanpe.services.RoleService;
 import com.xiaoyuanpe.services.SemesterService;
 import com.xiaoyuanpe.services.StudentService;
+import com.xiaoyuanpe.services.UserService;
+import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,23 +26,27 @@ public class StudentController {
     private StudentService studentService;
     @Autowired
     private SemesterService semesterService;
+    @Autowired
+    private RoleService roleService;
 
-    @RequestMapping("/StudentSportInfo/{sid}/{num}")
-    @RequiresRoles(value = {"student"})
-    public ResultBean SearchAll(@PathVariable Integer sid, @PathVariable Integer num){
+    // 查询当前学期学生成绩
+    @RequestMapping("/StudentSportInfo")
+    public ResultBean SearchAll(HttpSession session){
+        User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
+        int sid = this.studentService.findStudentByNumber(user.getUserNumber()).getId();
         Student student = this.studentService.findStudentById(sid);
         try {
-            if (num!=0) {
+            if (student.getAge()!=0) {
                 Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),
-                        student.getCollegeId(), student.getClassesId(), student.getId(), num);
+                        student.getCollegeId(), student.getClassesId(), student.getId(), student.getAge());
                 resultBean.setData(semester);
+                resultBean.setCode(0);
             }
             else {
-                resultBean.setData(this.semesterService.findSemesterByStudent(student.getShcoolId(),
-                        student.getCollegeId(),student.getClassesId(),sid));
+                resultBean.setCode(1);
+                resultBean.setMsg("查询失败，已无信息！");
             }
-            resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
             resultBean.setMsg("查询失败");
@@ -47,76 +54,111 @@ public class StudentController {
         }
         return resultBean;
     }
+    //按照班级信息查询
     @RequestMapping("/queryStudentListByClass/{cId}/{ccId}/{num}")
     public ResultBean queryStudentListByClass(@PathVariable Integer cId, @PathVariable Integer ccId,
                                               @PathVariable Integer num, HttpSession session){
         ResultBean resultBean = new ResultBean();
-        try {
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","classmanager","teacher"));
+        if (HasRole.hasOneRole(booleans)) {
             User user = (User) session.getAttribute("user");
-            resultBean.setData(this.semesterService.findSemesterByClasses(user.getSchoolId(),cId,ccId,num));
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+            try {
+                List<Semester> semesterByClasses = this.semesterService.findSemesterByClasses(user.getSchoolId(), cId, ccId, num);
+                resultBean.setData(semesterByClasses);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息新增失败");
+            }
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息新增失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
-
+    //根据学院查询当前学期成绩
     @RequestMapping("/queryStudentListByCollege/{cId}/{num}")
     public ResultBean queryStudentListByCollege(@PathVariable Integer cId, @PathVariable Integer num,HttpSession session){
         ResultBean resultBean = new ResultBean();
-        try {
-            User user = (User) session.getAttribute("user");
-            resultBean.setData(this.semesterService.findSemesterByCollege(user.getSchoolId(),cId,num));
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","teacher"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                User user = (User) session.getAttribute("user");
+                resultBean.setData(this.semesterService.findSemesterByCollege(user.getSchoolId(), cId, num));
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息新增失败");
+            }
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息新增失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
-
+    //根据学校查询当前学期信息
     @RequestMapping("/queryStudentListBySchool/{num}")
     public ResultBean queryStudentListBySchool(@PathVariable Integer num, HttpSession session){
         ResultBean resultBean = new ResultBean();
-        try {
-            User user = (User) session.getAttribute("user");
-            resultBean.setData(this.semesterService.selectByPrimarySchool(user.getSchoolId(),num));
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                User user = (User) session.getAttribute("user");
+                resultBean.setData(this.semesterService.selectByPrimarySchool(user.getSchoolId(), num));
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息新增失败");
+            }
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息新增失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
 
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-    @RequiresRoles(value = {"stu"})
     public ResultBean addStudent(@RequestBody Student student){
         ResultBean resultBean = new ResultBean();
-        try {
-            this.studentService.addStudent(student);
-            Student student1 = this.studentService.findStudentLast();
-            Semester semester = new Semester();
-            semester.setSudentId(student1.getId()+1);
-            semester.setClassesId(student.getClassesId());
-            semester.setScore(0);
-            semester.setExerciseTime(0);
-            semester.setCollegeId(student.getCollegeId());
-            semester.setSchoolId(student.getShcoolId());
-            int i = 0;
-            for (i=0; i<8; i++){
-                semester.setTerm(i + 1);
-                this.semesterService.addSemester(semester);
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","classmanager","teacher"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.studentService.addStudent(student);
+                Student student1 = this.studentService.findStudentLast();
+                Semester semester = new Semester();
+                semester.setSudentId(student1.getId() + 1);
+                semester.setClassesId(student.getClassesId());
+                semester.setScore(0);
+                semester.setTerm(1);
+                semester.setExerciseTime(0);
+                semester.setCollegeId(student.getCollegeId());
+                semester.setSchoolId(student.getShcoolId());
+//                Role role = new Role();
+//                role.setRoleType(5);
+                UserRole userRole = new UserRole();
+                userRole.setUserId(student.getId());
+                userRole.setRoleId(5);
+                int i = 0;
+                for (i = 0; i < 8; i++) {
+                    semester.setTerm(i + 1);
+                    this.semesterService.addSemester(semester);
+                }
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息插入失败");
             }
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息插入失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }

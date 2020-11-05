@@ -28,6 +28,7 @@ public class ShiroConfig {
          * role：必须得到角色授权才可以访问 **/
         Map<String,String> map = new LinkedHashMap<>();
         map.put("/login/**", "anon");
+        map.put("/school/querySchoolList", "anon");
         map.put("/**", "authc");
         //map.put("/**", "perms[]");
         shiroFilterFactoryBean.setLoginUrl("/login/login");

@@ -6,13 +6,7 @@ import com.xiaoyuanpe.services.LoginService;
 import com.xiaoyuanpe.services.SchoolService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +34,6 @@ public class LoginController {
                 resultBean.setCode(0);
                 for (User user : this.userService.findUsersAll(1, pageSize).getContent()) {
                     if (usernumber.equals(user.getUserNumber())) {
-//                        Subject subject = SecurityUtils.getSubject();
-//                        subject.getSession().setAttribute("user",user);
-//                        subject.getSession().setTimeout(30 * 60 * 60 * 1000L);
                         session.setAttribute("user", user);
                         session.setMaxInactiveInterval(30 * 60 * 60);
                         resultBean.setTotal(user.getId());

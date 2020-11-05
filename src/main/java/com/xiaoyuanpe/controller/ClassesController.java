@@ -3,12 +3,16 @@ package com.xiaoyuanpe.controller;
 import com.xiaoyuanpe.pojo.Classes;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.ClassesService;
+import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -18,14 +22,22 @@ public class ClassesController {
     private ClassesService classesService;
     @RequestMapping(value = "/addClasses", method = RequestMethod.POST)
     public ResultBean addClasses(@RequestBody Classes classes){
+        Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
-        try {
-            this.classesService.addClasses(classes);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.classesService.addClasses(classes);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("班级信息添加失败");
+            }
+        }
+        else {
+            resultBean.setMsg("您们没有权限");
             resultBean.setCode(1);
-            resultBean.setMsg("班级信息添加失败");
         }
         return resultBean;
     }
@@ -90,28 +102,42 @@ public class ClassesController {
 
     @RequestMapping(value = "/updateClasses", method = RequestMethod.POST)
     public ResultBean updateClasses(@RequestBody Classes classes){
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
         ResultBean resultBean = new ResultBean();
-        try {
-            this.classesService.ModifyClasses(classes);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.classesService.ModifyClasses(classes);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("班级信息更新失败");
+            }
+        }else {
+            resultBean.setMsg("您们没有权限");
             resultBean.setCode(1);
-            resultBean.setMsg("班级信息更新失败");
         }
         return resultBean;
     }
 
     @RequestMapping(value = "/deleteClasses", method = RequestMethod.POST)
     public ResultBean deleteClasses(@RequestBody List<Integer> ids){
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
         ResultBean resultBean = new ResultBean();
-        try {
-            this.classesService.DeleteClassesList(ids);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.classesService.DeleteClassesList(ids);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("班级信息更新失败");
+            }
+        }else {
+            resultBean.setMsg("您们没有权限");
             resultBean.setCode(1);
-            resultBean.setMsg("班级信息更新失败");
         }
         return resultBean;
     }
