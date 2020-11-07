@@ -36,6 +36,7 @@ public class SemesterController {
         ResultBean resultBean = new ResultBean();
         List<SemesterEntry> semesterEntries = new ArrayList<>();
         try {
+            resultBean.setData(schoolId+"--111");
             List<Semester> semesters = this.semesterService.findSemesterAll();
             for (Semester semester: semesters){
                 Student s  =this.studentService.findStudentById(semester.getSudentId());
