@@ -138,8 +138,16 @@ public class StudentController {
                 semester.setExerciseTime(0);
                 semester.setCollegeId(student.getCollegeId());
                 semester.setSchoolId(student.getShcoolId());
+                User user = new User();
+                user.setUserNumber(student.getStudentNumber());
+                user.setSex(student.getSex());
+                user.setUsername(student.getStudentName());
+                user.setPassword("123456");
+                user.setSchoolId(student.getShcoolId());
+                user.setIdentity("学生");
+                this.userService.addUser(user);
                 UserRole userRole = new UserRole();
-                userRole.setUserId(this.userService.findUsersByStudentNum(this.studentService.findStudentById(student.getId()).getStudentName()).getId());
+                userRole.setUserId(user.getId());
                 userRole.setRoleId(5);
                 this.userRoleService.addUserRole(userRole);
                 int i = 0;

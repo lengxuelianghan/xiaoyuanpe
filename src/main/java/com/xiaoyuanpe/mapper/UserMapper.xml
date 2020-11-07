@@ -114,7 +114,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.User">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into user (id, user_number, username, 
       password, age, sex, 
       unit, identity, phone, 
