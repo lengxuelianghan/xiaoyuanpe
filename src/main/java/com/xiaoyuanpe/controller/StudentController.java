@@ -24,6 +24,8 @@ public class StudentController {
     private SemesterService semesterService;
     @Autowired
     private UserRoleService userRoleService;
+    @Autowired
+    private UserService userService;
 
     // 查询当前学期学生成绩
     @RequestMapping("/StudentSportInfo")
@@ -137,7 +139,7 @@ public class StudentController {
                 semester.setCollegeId(student.getCollegeId());
                 semester.setSchoolId(student.getShcoolId());
                 UserRole userRole = new UserRole();
-                userRole.setUserId(student.getId());
+                userRole.setUserId(this.userService.findRolesByUsername(this.studentService.findStudentById(student.getId()).getStudentName()).getId());
                 userRole.setRoleId(5);
                 this.userRoleService.addUserRole(userRole);
                 int i = 0;
