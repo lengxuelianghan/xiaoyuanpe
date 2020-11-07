@@ -104,7 +104,14 @@ public class SemesterController {
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         try {
-            Semester semester = this.semesterService.findSemesterByStudent(student.getShcoolId(), student.getCollegeId(), student.getClassesId(), student.getId()).get(0);
+            List<Semester> semesters = this.semesterService.findSemesterByStudent(student.getShcoolId(), student.getCollegeId(), student.getClassesId(), student.getId());
+            Semester semester = new Semester();
+            for (Semester sem: semesters){
+                if (student.getAge() == sem.getTerm()) {
+                    semester = sem;
+                    break;
+                }
+            }
             SemesterEntry semesterEntry = new SemesterEntry();
             semesterEntry.setId(semester.getId());
             semesterEntry.setName(student.getStudentName());
