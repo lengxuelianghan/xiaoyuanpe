@@ -74,7 +74,7 @@ public class SemesterController {
             List<Semester> semesters = this.semesterService.findSemesterAll();
             for (Semester semester: semesters){
                 Student s  =this.studentService.findStudentById(semester.getSudentId());
-                if (semester.getSchoolId()==user.getSchoolId()&&student.getClassesId()==semester.getSchoolId()){
+                if (s.getAge() == semester.getTerm()&&student.getClassesId()==semester.getClassesId()){
                     SemesterEntry semesterEntry = new SemesterEntry();
                     semesterEntry.setId(semester.getId());
                     semesterEntry.setName(s.getStudentName());
