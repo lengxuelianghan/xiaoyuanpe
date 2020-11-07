@@ -1,14 +1,10 @@
 package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.*;
-import com.xiaoyuanpe.services.RoleService;
-import com.xiaoyuanpe.services.SemesterService;
-import com.xiaoyuanpe.services.StudentService;
-import com.xiaoyuanpe.services.UserService;
+import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +23,7 @@ public class StudentController {
     @Autowired
     private SemesterService semesterService;
     @Autowired
-    private RoleService roleService;
+    private UserRoleService userRoleService;
 
     // 查询当前学期学生成绩
     @RequestMapping("/StudentSportInfo")
@@ -127,7 +123,7 @@ public class StudentController {
     public ResultBean addStudent(@RequestBody Student student){
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
-        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","classmanager","teacher"));
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
                 this.studentService.addStudent(student);
@@ -145,6 +141,7 @@ public class StudentController {
                 UserRole userRole = new UserRole();
                 userRole.setUserId(student.getId());
                 userRole.setRoleId(5);
+                this.userRoleService.addUserRole(userRole);
                 int i = 0;
                 for (i = 0; i < 8; i++) {
                     semester.setTerm(i + 1);
@@ -165,35 +162,49 @@ public class StudentController {
 
     @RequestMapping(value = "/updateStudent", method = RequestMethod.POST)
     public ResultBean updateStudent(@RequestBody Student student){
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         ResultBean resultBean = new ResultBean();
-        try {
-            this.studentService.ModifyStudent(student);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.studentService.ModifyStudent(student);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息修改失败");
+            }
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息修改失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
 
     @RequestMapping("/queryStudentInfoBySchool/{sid}")
     public ResultBean queryStudentInfoBySchool(@PathVariable Integer sid, HttpSession session){
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         ResultBean resultBean = new ResultBean();
-        try {
-            List<Student> studentList = new ArrayList<>();
-            List<Student> students = this.studentService.findStudentAll();
-            for (Student student : students){
-                if (student.getShcoolId()==sid){
-                    studentList.add(student);
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                List<Student> studentList = new ArrayList<>();
+                List<Student> students = this.studentService.findStudentAll();
+                for (Student student : students) {
+                    if (student.getShcoolId() == sid) {
+                        studentList.add(student);
+                    }
                 }
+                resultBean.setData(studentList);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息新增失败");
             }
-            resultBean.setData(studentList);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息新增失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
@@ -201,57 +212,78 @@ public class StudentController {
     @RequestMapping("/queryStudentInfoByCollege/{sid}/{cid}")
     public ResultBean queryStudentInfoByCollege(@PathVariable Integer sid, @PathVariable Integer cid,
                                                 HttpSession session){
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         ResultBean resultBean = new ResultBean();
-        try {
-            List<Student> studentList = new ArrayList<>();
-            List<Student> students = this.studentService.findStudentAll();
-            for (Student student : students){
-                if (student.getShcoolId()==sid && student.getCollegeId()==cid){
-                    studentList.add(student);
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                List<Student> studentList = new ArrayList<>();
+                List<Student> students = this.studentService.findStudentAll();
+                for (Student student : students) {
+                    if (student.getShcoolId() == sid && student.getCollegeId() == cid) {
+                        studentList.add(student);
+                    }
                 }
+                resultBean.setData(studentList);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息新增失败");
             }
-            resultBean.setData(studentList);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息新增失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
-
+    // 查询本学院所有班级信息
     @RequestMapping("/queryStudentInfoByClass/{sid}/{cid}/{ccid}")
     public ResultBean queryStudentInfoByClass(@PathVariable Integer sid, @PathVariable Integer cid,
                                               @PathVariable Integer ccid, HttpSession session){
         ResultBean resultBean = new ResultBean();
-        try {
-            List<Student> studentList = new ArrayList<>();
-            List<Student> students = this.studentService.findStudentAll();
-            for (Student student : students){
-                if (student.getShcoolId()==sid && student.getCollegeId()==cid && student.getClassesId()==ccid){
-                    studentList.add(student);
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","classmanager","teacher"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                List<Student> studentList = new ArrayList<>();
+                List<Student> students = this.studentService.findStudentAll();
+                for (Student student : students) {
+                    if (student.getShcoolId() == sid && student.getCollegeId() == cid && student.getClassesId() == ccid) {
+                        studentList.add(student);
+                    }
                 }
+                resultBean.setData(studentList);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息新增失败");
             }
-            resultBean.setData(studentList);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生信息新增失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
 
     @RequestMapping(value = "/deleteStudent", method = RequestMethod.POST)
     public ResultBean deleteStudent(@RequestBody List<Integer> ids){
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         ResultBean resultBean = new ResultBean();
-        try {
-            this.studentService.DeleteStudentList(ids);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println("错误"+e.getMessage());
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.studentService.DeleteStudentList(ids);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生删除失败");
+            }
+        }else {
             resultBean.setCode(1);
-            resultBean.setMsg("学生删除失败");
+            resultBean.setMsg("你没有权限");
         }
         return resultBean;
     }
