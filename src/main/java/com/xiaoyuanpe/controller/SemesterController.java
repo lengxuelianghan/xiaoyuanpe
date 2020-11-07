@@ -105,7 +105,12 @@ public class SemesterController {
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         try {
             Semester semester = this.semesterService.findSemesterByStudent(student.getShcoolId(), student.getCollegeId(), student.getClassesId(), student.getId()).get(0);
-            resultBean.setData(semester);
+            SemesterEntry semesterEntry = new SemesterEntry();
+            semesterEntry.setId(semester.getId());
+            semesterEntry.setName(student.getStudentName());
+            semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
+            semesterEntry.setScore(semester.getScore());
+            resultBean.setData(semesterEntry);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg("查询失败"+e.getMessage());
