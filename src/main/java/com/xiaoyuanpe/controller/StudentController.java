@@ -127,17 +127,14 @@ public class StudentController {
         if (HasRole.hasOneRole(booleans)) {
             try {
                 this.studentService.addStudent(student);
-                Student student1 = this.studentService.findStudentLast();
                 Semester semester = new Semester();
-                semester.setSudentId(student1.getId() + 1);
+                semester.setSudentId(student.getId());
                 semester.setClassesId(student.getClassesId());
                 semester.setScore(0);
                 semester.setTerm(1);
                 semester.setExerciseTime(0);
                 semester.setCollegeId(student.getCollegeId());
                 semester.setSchoolId(student.getShcoolId());
-//                Role role = new Role();
-//                role.setRoleType(5);
                 UserRole userRole = new UserRole();
                 userRole.setUserId(student.getId());
                 userRole.setRoleId(5);

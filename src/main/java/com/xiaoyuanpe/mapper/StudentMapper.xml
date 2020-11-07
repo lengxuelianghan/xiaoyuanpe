@@ -118,7 +118,7 @@
       #{classesId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{studentNumber,jdbcType=VARCHAR}, 
       #{age,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Student">
+  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Student" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
