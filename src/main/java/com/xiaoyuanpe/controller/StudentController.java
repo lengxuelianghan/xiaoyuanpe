@@ -128,6 +128,7 @@ public class StudentController {
             try {
                 this.studentService.addStudent(student);
                 Semester semester = new Semester();
+                resultBean.setMsg(student.getId()+"hh");
                 semester.setSudentId(student.getId());
                 semester.setClassesId(student.getClassesId());
                 semester.setScore(0);

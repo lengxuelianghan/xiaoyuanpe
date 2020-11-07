@@ -76,6 +76,7 @@ public class ActivityController {
                 activity.setPublisherId(uid);
                 out.write(pictureFile.getBytes());
                 out.flush();
+                out.close();
             }
             this.activityService.addActivity(activity);
 
