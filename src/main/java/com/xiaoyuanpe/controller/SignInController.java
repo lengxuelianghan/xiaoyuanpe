@@ -35,6 +35,8 @@ public class SignInController {
     private ActivityService activityService;
     @Autowired
     private SportService sportService;
+    @Autowired
+    private CollegeService collegeService;
 
     @GetMapping("/addSportSignIn/{activityId}")
     public ResultBean addSportSignIn(@PathVariable Integer activityId, HttpSession session){
@@ -293,6 +295,17 @@ public class SignInController {
         return resultBean;
     }
 
+    private StudentInfoEntry setStudentInfoEntry(Signin signin){
+        Student student = this.studentService.findStudentById(signin.getId());
+        StudentInfoEntry studentInfoEntry = new StudentInfoEntry();
+        studentInfoEntry.setId(signin.getId());
+        studentInfoEntry.setClassz(this.classesService.findClassesById(student.getClassesId()).getClassName());
+        studentInfoEntry.setCollege(this.classesService.findClassesById(student.getCollegeId()).getClassName());
+        studentInfoEntry.setFlag(signin.getFlag());
+        studentInfoEntry.setStudentName(this.studentService.findStudentById(signin.getStudentId()).getStudentName());
+        return studentInfoEntry;
+    }
+
     //运动签到，按照班级来
     @RequestMapping(value = "/getSignInByClass")
     public ResultBean getSignInByClass(HttpServletRequest httpServletRequest){
@@ -301,7 +314,7 @@ public class SignInController {
         date = new Date(date.getTime()+8*60*60*1000);
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-        List<Signin> signinList = new ArrayList<>();
+        List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
         try {
             List<Signin> signins = this.signInService.findSigninAll();
             for (Signin signin: signins){
@@ -309,10 +322,10 @@ public class SignInController {
                         this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date date1 = signin.getSignTime();
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
-                        signinList.add(signin);
+                        studentInfoEntries.add(this.setStudentInfoEntry(signin));
                 }
             }
-            resultBean.setData(signinList);
+            resultBean.setData(studentInfoEntries);
         }catch (Exception e){
             resultBean.setMsg("失败！");
         }
@@ -347,7 +360,7 @@ public class SignInController {
         date = new Date(date.getTime()+8*60*60*1000);
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-        List<Signin> signinList = new ArrayList<>();
+        List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
         try {
             List<Signin> signins = this.signInService.findSigninAll();
             for (Signin signin: signins){
@@ -355,10 +368,10 @@ public class SignInController {
                         this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date date1 = signin.getSignTime();
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
-                        signinList.add(signin);
+                        studentInfoEntries.add(this.setStudentInfoEntry(signin));
                 }
             }
-            resultBean.setData(signinList);
+            resultBean.setData(studentInfoEntries);
         }catch (Exception e){
             resultBean.setMsg("失败！");
         }
