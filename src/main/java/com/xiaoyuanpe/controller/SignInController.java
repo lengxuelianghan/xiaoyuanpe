@@ -375,6 +375,7 @@ public class SignInController {
                     Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
                             student.getClassesId(),student.getId(), student.getAge());
                     if (semester!=null) {
+                        resultBean.setMsg(semester.getExerciseTime()+","+semester.getClassesId());
                         int score = semester.getExerciseTime();
                         semester.setExerciseTime(score + dataLen);
                         int s = semester.getScore() + (int) (dataLen * 0.5);
