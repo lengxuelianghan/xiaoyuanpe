@@ -302,7 +302,7 @@ public class SignInController {
         studentInfoEntry.setClassz(this.classesService.findClassesById(student.getClassesId()).getClassName());
         studentInfoEntry.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
         studentInfoEntry.setFlag(signin.getFlag());
-        studentInfoEntry.setStudentName(this.studentService.findStudentById(signin.getStudentId()).getStudentName());
+        studentInfoEntry.setStudentName(student.getStudentName());
         return studentInfoEntry;
     }
 
