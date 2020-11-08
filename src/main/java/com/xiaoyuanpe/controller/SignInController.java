@@ -420,10 +420,10 @@ public class SignInController {
                         singlePeopleInfo.setEndTime(signin.getSignoutTime());
                         singlePeopleInfo.setScore(dataLen * 0.5f);
                         singlePeopleInfo.setClasz(this.classesService.findClassesById(student.getClassesId()).getClassName());
-                        if (signin.getSportId()!=null) {
+                        if (signin.getActivityId()!=null) {
                             singlePeopleInfo.setActivityOrSportName(this.activityService.findActivityById(signin.getActivityId()).getActivityName());
                         }
-                        else
+                        else if(signin.getSportId()!=null)
                             singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
                         singlePeopleInfos.add(singlePeopleInfo);
                     }
