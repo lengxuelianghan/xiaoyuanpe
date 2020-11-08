@@ -374,11 +374,14 @@ public class SignInController {
                     int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                     Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
                             student.getClassesId(),student.getId(), student.getAge());
-                    int score = semester.getExerciseTime();
-                    semester.setExerciseTime(score+dataLen);
-                    int s = semester.getScore() + (int) (dataLen * 0.5);
-                    semester.setScore(s);
-                    this.semesterService.ModifySemester(semester);
+                    if (semester!=null) {
+                        int score = semester.getExerciseTime();
+                        semester.setExerciseTime(score + dataLen);
+                        int s = semester.getScore() + (int) (dataLen * 0.5);
+                        semester.setScore(s);
+                        this.signInService.ModifySignin(signin);
+                        this.semesterService.ModifySemester(semester);
+                    }
                 }
                 else continue;
             }
