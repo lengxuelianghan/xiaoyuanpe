@@ -412,7 +412,7 @@ public class SignInController {
                     Date endTime = signin.getSignoutTime();
                     Date date = new Date();
                     if (signin.getFlag()==2&&endTime.getYear()==date.getYear()&&endTime.getMonth()==date.getMonth()
-                            &&date.getDay()-endTime.getDay()<7){
+                            &&date.getDay()-endTime.getDay()<7&&date.getDay()-endTime.getDay()>0){
                         SinglePeopleInfo singlePeopleInfo = new SinglePeopleInfo();
                         int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                         singlePeopleInfo.setTimeLen(dataLen);
@@ -421,10 +421,10 @@ public class SignInController {
                         singlePeopleInfo.setScore(dataLen * 0.5f);
                         singlePeopleInfo.setClasz(this.classesService.findClassesById(student.getClassesId()).getClassName());
                         if (signin.getActivityId()!=null) {
-                            singlePeopleInfo.setActivityOrSportName(this.activityService.findActivityById(signin.getActivityId()).getActivityName());
+                            singlePeopleInfo.setActivityOrSportName(signin.getId()+","+this.activityService.findActivityById(signin.getActivityId()).getActivityName());
                         }
                         else if(signin.getSportId()!=null)
-                            singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
+                            singlePeopleInfo.setActivityOrSportName(signin.getId()+","+this.sportService.findSportsById(signin.getSportId()).getName());
                         singlePeopleInfos.add(singlePeopleInfo);
                     }
                 }
