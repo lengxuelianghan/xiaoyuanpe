@@ -31,6 +31,10 @@ public class SignInController {
     private SemesterService semesterService;
     @Autowired
     private ClassesService classesService;
+    @Autowired
+    private ActivityService activityService;
+    @Autowired
+    private SportService sportService;
 
     @GetMapping("/addSportSignIn/{activityId}")
     public ResultBean addSportSignIn(@PathVariable Integer activityId, HttpSession session){
@@ -364,6 +368,7 @@ public class SignInController {
     @RequestMapping(value = "/setSignOutByClass")
     public ResultBean setSignOutByClass(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
+        resultBean.setMsg("失败！");
         try {
             for (Integer id: ids){
                 Signin signin = this.signInService.findSigninById(id);
@@ -375,7 +380,7 @@ public class SignInController {
                     Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
                             student.getClassesId(),student.getId(), student.getAge());
                     if (semester!=null) {
-                        resultBean.setMsg(semester.getExerciseTime()+","+semester.getClassesId());
+                        //resultBean.setMsg(semester.getExerciseTime()+","+semester.getClassesId());
                         int score = semester.getExerciseTime();
                         semester.setExerciseTime(score + dataLen);
                         int s = semester.getScore() + (int) (dataLen * 0.5);
@@ -415,6 +420,11 @@ public class SignInController {
                         singlePeopleInfo.setEndTime(signin.getSignoutTime());
                         singlePeopleInfo.setScore(dataLen * 0.5f);
                         singlePeopleInfo.setClasz(this.classesService.findClassesById(student.getClassesId()).getClassName());
+                        if (signin.getSportId()!=null) {
+                            singlePeopleInfo.setActivityOrSportName(this.activityService.findActivityById(signin.getActivityId()).getActivityName());
+                        }
+                        else
+                            singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
                         singlePeopleInfos.add(singlePeopleInfo);
                     }
                 }

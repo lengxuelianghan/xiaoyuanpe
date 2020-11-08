@@ -8,6 +8,7 @@ public class SinglePeopleInfo {
     private Integer timeLen;
     private float score;
     private String clasz;
+    private String ActivityOrSportName;
 
     public Date getStartTime() {
         return startTime;
@@ -47,5 +48,13 @@ public class SinglePeopleInfo {
 
     public void setClasz(String clasz) {
         this.clasz = clasz;
+    }
+
+    public String getActivityOrSportName() {
+        return ActivityOrSportName;
+    }
+
+    public void setActivityOrSportName(String activityOrSportName) {
+        ActivityOrSportName = activityOrSportName;
     }
 }
