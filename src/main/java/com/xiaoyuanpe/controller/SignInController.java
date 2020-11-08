@@ -296,11 +296,11 @@ public class SignInController {
     }
 
     private StudentInfoEntry setStudentInfoEntry(Signin signin){
-        Student student = this.studentService.findStudentById(signin.getId());
+        Student student = this.studentService.findStudentById(signin.getStudentId());
         StudentInfoEntry studentInfoEntry = new StudentInfoEntry();
         studentInfoEntry.setId(signin.getId());
-//        studentInfoEntry.setClassz(this.classesService.findClassesById(student.getClassesId()).getClassName());
-//        studentInfoEntry.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
+        studentInfoEntry.setClassz(this.classesService.findClassesById(student.getClassesId()).getClassName());
+        studentInfoEntry.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
         studentInfoEntry.setFlag(signin.getFlag());
         studentInfoEntry.setStudentName(student.getStudentName());
         return studentInfoEntry;
