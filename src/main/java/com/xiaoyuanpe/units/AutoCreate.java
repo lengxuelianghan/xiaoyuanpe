@@ -26,7 +26,7 @@ public class AutoCreate {
     @Autowired
     private ActivityService activityService;
 
-    @Scheduled(cron = "0 22 22 * * ?")
+    @Scheduled(cron = "0 10 5 ? * MON-FRI")
     public void addSignIn(){
         try{
             System.out.println("你好");
@@ -36,6 +36,7 @@ public class AutoCreate {
                 signin1.setFlag(0);
                 signin1.setSignTime(new Date());
                 signin1.setStudentId(student.getId());
+                signin1.setSportId(1);
                 this.signInService.addSignin(signin1);
             }
         }
@@ -44,6 +45,23 @@ public class AutoCreate {
         }
     }
 
+//    @Scheduled(cron = "0 10 5 ? * MON-FRI")
+//    public void setCurrentSems(){
+//        try{
+//            System.out.println("你好");
+//            StudentExample studentExample = new StudentExample();
+//            for (Student student: this.studentService.findStudentAll()){
+//                Signin signin1 = new Signin();
+//                signin1.setFlag(0);
+//                signin1.setSignTime(new Date());
+//                signin1.setStudentId(student.getId());
+//                this.signInService.addSignin(signin1);
+//            }
+//        }
+//        catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     @Scheduled(cron = "0 */1 * * * ?")
     public void updateStatus(){

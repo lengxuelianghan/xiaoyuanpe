@@ -3,9 +3,12 @@ package com.xiaoyuanpe.controller;
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.xmlbeans.impl.tool.Extension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.tags.Param;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -283,5 +286,22 @@ public class SignInController {
         }
         return resultBean;
     }
+
+    //运动签到，按照班级来
+    @RequestMapping(value = "/signInByClass", method = RequestMethod.POST)
+    public ResultBean signInByClass(@RequestBody List<Integer> ids, HttpServletRequest httpServletRequest){
+        User user = (User) httpServletRequest.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+//        Student student = this.studentService.findStudentByNumber();
+        try {
+//            List<Signin> signin = this.signInService.findSigninAll();
+            resultBean.setData(user.getUsername());
+        }catch (Exception e){
+            resultBean.setMsg("失败！");
+        }
+        return resultBean;
+    }
+
+
 
 }
