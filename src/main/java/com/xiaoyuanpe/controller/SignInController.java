@@ -300,7 +300,7 @@ public class SignInController {
         StudentInfoEntry studentInfoEntry = new StudentInfoEntry();
         studentInfoEntry.setId(signin.getId());
         studentInfoEntry.setClassz(this.classesService.findClassesById(student.getClassesId()).getClassName());
-        studentInfoEntry.setCollege(this.classesService.findClassesById(student.getCollegeId()).getClassName());
+        studentInfoEntry.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
         studentInfoEntry.setFlag(signin.getFlag());
         studentInfoEntry.setStudentName(this.studentService.findStudentById(signin.getStudentId()).getStudentName());
         return studentInfoEntry;
