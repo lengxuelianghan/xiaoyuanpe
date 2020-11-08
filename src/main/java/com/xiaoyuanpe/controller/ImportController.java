@@ -82,9 +82,8 @@ public class ImportController  {
                 student.setSex(studentInfo.getSex());
                 this.studentService.addStudent(student);
 
-                Student student1 = this.studentService.findStudentLast();
                 Semester semester = new Semester();
-                semester.setSudentId(student1.getId());
+                semester.setSudentId(student.getId());
                 semester.setClassesId(student.getClassesId());
                 semester.setScore(0);
                 semester.setExerciseTime(0);

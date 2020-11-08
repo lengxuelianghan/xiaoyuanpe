@@ -8,6 +8,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -33,35 +34,37 @@ public class ActivityController {
     @Autowired
     private SignInService signInService;
 
-    @PostMapping("/addActivity")
-    public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity){
-        ResultBean resultBean = new ResultBean();
-        try {
-            if (pictureFile != null){
-                String filepath = getUploadPath();
-                String filename=pictureFile.getOriginalFilename();
-                String fileName = getFileName(filename);
-                BufferedOutputStream out = new BufferedOutputStream(
-                        new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
-                System.out.println("C:\\nginx\\img\\"+ fileName);
-                activity.setImagePath("C:\\nginx\\img\\"+  fileName);
-                activity.setStatus(0);
-                out.write(pictureFile.getBytes());
-                out.flush();
-            }
-            this.activityService.addActivity(activity);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            resultBean.setCode(1);
-            resultBean.setMsg(e.getMessage());
-            System.out.println(e.getMessage());
-        }
-        return resultBean;
-    }
+//    @PostMapping("/addActivity")
+//    public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity){
+//        ResultBean resultBean = new ResultBean();
+//        try {
+//            if (pictureFile != null){
+//                String filepath = getUploadPath();
+//                String filename=pictureFile.getOriginalFilename();
+//                String fileName = getFileName(filename);
+//                BufferedOutputStream out = new BufferedOutputStream(
+//                        new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
+//                System.out.println("C:\\nginx\\img\\"+ fileName);
+//                activity.setImagePath("C:\\nginx\\img\\"+  fileName);
+//                activity.setStatus(0);
+//                out.write(pictureFile.getBytes());
+//                out.flush();
+//            }
+//            this.activityService.addActivity(activity);
+//            resultBean.setCode(0);
+//        }catch (Exception e){
+//            resultBean.setCode(1);
+//            resultBean.setMsg(e.getMessage());
+//            System.out.println(e.getMessage());
+//        }
+//        return resultBean;
+//    }
 
-    @PostMapping("/addActivity/{uid}")
+    @PostMapping("/addActivity")
     public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
-                                  @PathVariable Integer uid){
+                                  HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        Integer uid = user.getId();
         ResultBean resultBean = new ResultBean();
         try {
             if (pictureFile != null){

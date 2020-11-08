@@ -29,6 +29,8 @@ public class SignInController {
     private ActivityStudService activityStudService;
     @Autowired
     private SemesterService semesterService;
+    @Autowired
+    private ClassesService classesService;
 
     @GetMapping("/addSportSignIn/{activityId}")
     public ResultBean addSportSignIn(@PathVariable Integer activityId, HttpSession session){
@@ -288,20 +290,137 @@ public class SignInController {
     }
 
     //运动签到，按照班级来
-    @RequestMapping(value = "/signInByClass", method = RequestMethod.POST)
-    public ResultBean signInByClass(@RequestBody List<Integer> ids, HttpServletRequest httpServletRequest){
+    @RequestMapping(value = "/getSignInByClass")
+    public ResultBean getSignInByClass(HttpServletRequest httpServletRequest){
         User user = (User) httpServletRequest.getSession().getAttribute("user");
+        Date date = new Date();
+        date = new Date(date.getTime()+8*60*60*1000);
         ResultBean resultBean = new ResultBean();
-//        Student student = this.studentService.findStudentByNumber();
+        Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+        List<Signin> signinList = new ArrayList<>();
         try {
-//            List<Signin> signin = this.signInService.findSigninAll();
-            resultBean.setData(user.getUsername());
+            List<Signin> signins = this.signInService.findSigninAll();
+            for (Signin signin: signins){
+                if (signin.getSportId()!=null && signin.getSportId() == 1 && signin.getFlag() == 0 &&
+                        this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
+                    Date date1 = signin.getSignTime();
+                    if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
+                        signinList.add(signin);
+                }
+            }
+            resultBean.setData(signinList);
         }catch (Exception e){
             resultBean.setMsg("失败！");
         }
         return resultBean;
     }
+    // 批量签到
+    @RequestMapping(value = "/setSignInByClass")
+    public ResultBean setSignInByClass(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            for (Integer id: ids){
+                Signin signin = this.signInService.findSigninById(id);
+                if (signin.getFlag()==0){
+                    signin.setFlag(1);
+                    signin.setSignTime(new Date());
+                    this.signInService.ModifySignin(signin);
+                }
+                else continue;
+            }
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setMsg("失败！");
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
+    //运动签退，按照班级来
+    @RequestMapping(value = "/getSignOutByClass")
+    public ResultBean getSignOutByClass(HttpServletRequest httpServletRequest){
+        User user = (User) httpServletRequest.getSession().getAttribute("user");
+        Date date = new Date();
+        date = new Date(date.getTime()+8*60*60*1000);
+        ResultBean resultBean = new ResultBean();
+        Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+        List<Signin> signinList = new ArrayList<>();
+        try {
+            List<Signin> signins = this.signInService.findSigninAll();
+            for (Signin signin: signins){
+                if (signin.getSportId()!=null && signin.getSportId() == 1 && signin.getFlag() == 1 &&
+                        this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
+                    Date date1 = signin.getSignTime();
+                    if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
+                        signinList.add(signin);
+                }
+            }
+            resultBean.setData(signinList);
+        }catch (Exception e){
+            resultBean.setMsg("失败！");
+        }
+        return resultBean;
+    }
+    // 批量签退
+    @RequestMapping(value = "/setSignOutByClass")
+    public ResultBean setSignOutByClass(@RequestBody List<Integer> ids){
+        ResultBean resultBean = new ResultBean();
+        try {
+            for (Integer id: ids){
+                Signin signin = this.signInService.findSigninById(id);
+                Student student = this.studentService.findStudentById(signin.getStudentId());
+                if (signin.getFlag()==1){
+                    signin.setFlag(2);
+                    signin.setSignoutTime(new Date());
+                    int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
+                    Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
+                            student.getClassesId(),student.getId(), student.getAge());
+                    int score = semester.getExerciseTime();
+                    semester.setExerciseTime(score+dataLen);
+                    int s = semester.getScore() + (int) (dataLen * 0.5);
+                    semester.setScore(s);
+                    this.semesterService.ModifySemester(semester);
+                }
+                else continue;
+            }
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setMsg("失败！");
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
 
-
-
+    @RequestMapping(value = "/searchActivityOneWeek")
+    public ResultBean searchActivityOneWeek(HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        User user = (User) session.getAttribute("user");
+        Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+        try {
+            List<SinglePeopleInfo> singlePeopleInfos = new ArrayList<>();
+            List<Signin> signins = this.signInService.findSigninAll();
+            for (Signin signin: signins){
+                if (this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
+                    Date endTime = signin.getSignoutTime();
+                    Date date = new Date();
+                    if (signin.getFlag()==2&&endTime.getYear()==date.getYear()&&endTime.getMonth()==date.getMonth()
+                            &&date.getDay()-endTime.getDay()<7){
+                        SinglePeopleInfo singlePeopleInfo = new SinglePeopleInfo();
+                        int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
+                        singlePeopleInfo.setTimeLen(dataLen);
+                        singlePeopleInfo.setStartTime(signin.getSignTime());
+                        singlePeopleInfo.setEndTime(signin.getSignoutTime());
+                        singlePeopleInfo.setScore(dataLen * 0.5f);
+                        singlePeopleInfo.setClasz(this.classesService.findClassesById(student.getClassesId()).getClassName());
+                        singlePeopleInfos.add(singlePeopleInfo);
+                    }
+                }
+            }
+            resultBean.setData(singlePeopleInfos);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setMsg("失败！");
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
 }
