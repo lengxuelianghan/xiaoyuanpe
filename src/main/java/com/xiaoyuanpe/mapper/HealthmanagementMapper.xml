@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuanpe.mapper.HealthmanagementMapper">
+  <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.Healthmanagement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="lungcapacity" jdbcType="INTEGER" property="lungcapacity" />
+    <result column="kilometre" jdbcType="REAL" property="kilometre" />
+    <result column="steptest" jdbcType="INTEGER" property="steptest" />
+    <result column="fiftymeters" jdbcType="INTEGER" property="fiftymeters" />
+    <result column="standinglongjump" jdbcType="REAL" property="standinglongjump" />
+    <result column="throwsolidsphere" jdbcType="REAL" property="throwsolidsphere" />
+    <result column="grip" jdbcType="INTEGER" property="grip" />
+    <result column="pull_ups" jdbcType="INTEGER" property="pullUps" />
+    <result column="sittingforwardbending" jdbcType="INTEGER" property="sittingforwardbending" />
+    <result column="ropeskipping" jdbcType="INTEGER" property="ropeskipping" />
+    <result column="basketball" jdbcType="INTEGER" property="basketball" />
+    <result column="football" jdbcType="INTEGER" property="football" />
+    <result column="volleyball" jdbcType="INTEGER" property="volleyball" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, student_id, lungcapacity, kilometre, steptest, fiftymeters, standinglongjump, 
+    throwsolidsphere, grip, pull_ups, sittingforwardbending, ropeskipping, basketball, 
+    football, volleyball
+  </sql>
+  <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.HealthmanagementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from healthmanagement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from healthmanagement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from healthmanagement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiaoyuanpe.pojo.HealthmanagementExample">
+    delete from healthmanagement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Healthmanagement">
+    insert into healthmanagement (id, student_id, lungcapacity, 
+      kilometre, steptest, fiftymeters, 
+      standinglongjump, throwsolidsphere, grip, 
+      pull_ups, sittingforwardbending, ropeskipping, 
+      basketball, football, volleyball
+      )
+    values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{lungcapacity,jdbcType=INTEGER}, 
+      #{kilometre,jdbcType=REAL}, #{steptest,jdbcType=INTEGER}, #{fiftymeters,jdbcType=INTEGER}, 
+      #{standinglongjump,jdbcType=REAL}, #{throwsolidsphere,jdbcType=REAL}, #{grip,jdbcType=INTEGER}, 
+      #{pullUps,jdbcType=INTEGER}, #{sittingforwardbending,jdbcType=INTEGER}, #{ropeskipping,jdbcType=INTEGER}, 
+      #{basketball,jdbcType=INTEGER}, #{football,jdbcType=INTEGER}, #{volleyball,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Healthmanagement">
+    insert into healthmanagement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="lungcapacity != null">
+        lungcapacity,
+      </if>
+      <if test="kilometre != null">
+        kilometre,
+      </if>
+      <if test="steptest != null">
+        steptest,
+      </if>
+      <if test="fiftymeters != null">
+        fiftymeters,
+      </if>
+      <if test="standinglongjump != null">
+        standinglongjump,
+      </if>
+      <if test="throwsolidsphere != null">
+        throwsolidsphere,
+      </if>
+      <if test="grip != null">
+        grip,
+      </if>
+      <if test="pullUps != null">
+        pull_ups,
+      </if>
+      <if test="sittingforwardbending != null">
+        sittingforwardbending,
+      </if>
+      <if test="ropeskipping != null">
+        ropeskipping,
+      </if>
+      <if test="basketball != null">
+        basketball,
+      </if>
+      <if test="football != null">
+        football,
+      </if>
+      <if test="volleyball != null">
+        volleyball,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="lungcapacity != null">
+        #{lungcapacity,jdbcType=INTEGER},
+      </if>
+      <if test="kilometre != null">
+        #{kilometre,jdbcType=REAL},
+      </if>
+      <if test="steptest != null">
+        #{steptest,jdbcType=INTEGER},
+      </if>
+      <if test="fiftymeters != null">
+        #{fiftymeters,jdbcType=INTEGER},
+      </if>
+      <if test="standinglongjump != null">
+        #{standinglongjump,jdbcType=REAL},
+      </if>
+      <if test="throwsolidsphere != null">
+        #{throwsolidsphere,jdbcType=REAL},
+      </if>
+      <if test="grip != null">
+        #{grip,jdbcType=INTEGER},
+      </if>
+      <if test="pullUps != null">
+        #{pullUps,jdbcType=INTEGER},
+      </if>
+      <if test="sittingforwardbending != null">
+        #{sittingforwardbending,jdbcType=INTEGER},
+      </if>
+      <if test="ropeskipping != null">
+        #{ropeskipping,jdbcType=INTEGER},
+      </if>
+      <if test="basketball != null">
+        #{basketball,jdbcType=INTEGER},
+      </if>
+      <if test="football != null">
+        #{football,jdbcType=INTEGER},
+      </if>
+      <if test="volleyball != null">
+        #{volleyball,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xiaoyuanpe.pojo.HealthmanagementExample" resultType="java.lang.Long">
+    select count(*) from healthmanagement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update healthmanagement
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentId != null">
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lungcapacity != null">
+        lungcapacity = #{record.lungcapacity,jdbcType=INTEGER},
+      </if>
+      <if test="record.kilometre != null">
+        kilometre = #{record.kilometre,jdbcType=REAL},
+      </if>
+      <if test="record.steptest != null">
+        steptest = #{record.steptest,jdbcType=INTEGER},
+      </if>
+      <if test="record.fiftymeters != null">
+        fiftymeters = #{record.fiftymeters,jdbcType=INTEGER},
+      </if>
+      <if test="record.standinglongjump != null">
+        standinglongjump = #{record.standinglongjump,jdbcType=REAL},
+      </if>
+      <if test="record.throwsolidsphere != null">
+        throwsolidsphere = #{record.throwsolidsphere,jdbcType=REAL},
+      </if>
+      <if test="record.grip != null">
+        grip = #{record.grip,jdbcType=INTEGER},
+      </if>
+      <if test="record.pullUps != null">
+        pull_ups = #{record.pullUps,jdbcType=INTEGER},
+      </if>
+      <if test="record.sittingforwardbending != null">
+        sittingforwardbending = #{record.sittingforwardbending,jdbcType=INTEGER},
+      </if>
+      <if test="record.ropeskipping != null">
+        ropeskipping = #{record.ropeskipping,jdbcType=INTEGER},
+      </if>
+      <if test="record.basketball != null">
+        basketball = #{record.basketball,jdbcType=INTEGER},
+      </if>
+      <if test="record.football != null">
+        football = #{record.football,jdbcType=INTEGER},
+      </if>
+      <if test="record.volleyball != null">
+        volleyball = #{record.volleyball,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update healthmanagement
+    set id = #{record.id,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      lungcapacity = #{record.lungcapacity,jdbcType=INTEGER},
+      kilometre = #{record.kilometre,jdbcType=REAL},
+      steptest = #{record.steptest,jdbcType=INTEGER},
+      fiftymeters = #{record.fiftymeters,jdbcType=INTEGER},
+      standinglongjump = #{record.standinglongjump,jdbcType=REAL},
+      throwsolidsphere = #{record.throwsolidsphere,jdbcType=REAL},
+      grip = #{record.grip,jdbcType=INTEGER},
+      pull_ups = #{record.pullUps,jdbcType=INTEGER},
+      sittingforwardbending = #{record.sittingforwardbending,jdbcType=INTEGER},
+      ropeskipping = #{record.ropeskipping,jdbcType=INTEGER},
+      basketball = #{record.basketball,jdbcType=INTEGER},
+      football = #{record.football,jdbcType=INTEGER},
+      volleyball = #{record.volleyball,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.Healthmanagement">
+    update healthmanagement
+    <set>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="lungcapacity != null">
+        lungcapacity = #{lungcapacity,jdbcType=INTEGER},
+      </if>
+      <if test="kilometre != null">
+        kilometre = #{kilometre,jdbcType=REAL},
+      </if>
+      <if test="steptest != null">
+        steptest = #{steptest,jdbcType=INTEGER},
+      </if>
+      <if test="fiftymeters != null">
+        fiftymeters = #{fiftymeters,jdbcType=INTEGER},
+      </if>
+      <if test="standinglongjump != null">
+        standinglongjump = #{standinglongjump,jdbcType=REAL},
+      </if>
+      <if test="throwsolidsphere != null">
+        throwsolidsphere = #{throwsolidsphere,jdbcType=REAL},
+      </if>
+      <if test="grip != null">
+        grip = #{grip,jdbcType=INTEGER},
+      </if>
+      <if test="pullUps != null">
+        pull_ups = #{pullUps,jdbcType=INTEGER},
+      </if>
+      <if test="sittingforwardbending != null">
+        sittingforwardbending = #{sittingforwardbending,jdbcType=INTEGER},
+      </if>
+      <if test="ropeskipping != null">
+        ropeskipping = #{ropeskipping,jdbcType=INTEGER},
+      </if>
+      <if test="basketball != null">
+        basketball = #{basketball,jdbcType=INTEGER},
+      </if>
+      <if test="football != null">
+        football = #{football,jdbcType=INTEGER},
+      </if>
+      <if test="volleyball != null">
+        volleyball = #{volleyball,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.Healthmanagement">
+    update healthmanagement
+    set student_id = #{studentId,jdbcType=INTEGER},
+      lungcapacity = #{lungcapacity,jdbcType=INTEGER},
+      kilometre = #{kilometre,jdbcType=REAL},
+      steptest = #{steptest,jdbcType=INTEGER},
+      fiftymeters = #{fiftymeters,jdbcType=INTEGER},
+      standinglongjump = #{standinglongjump,jdbcType=REAL},
+      throwsolidsphere = #{throwsolidsphere,jdbcType=REAL},
+      grip = #{grip,jdbcType=INTEGER},
+      pull_ups = #{pullUps,jdbcType=INTEGER},
+      sittingforwardbending = #{sittingforwardbending,jdbcType=INTEGER},
+      ropeskipping = #{ropeskipping,jdbcType=INTEGER},
+      basketball = #{basketball,jdbcType=INTEGER},
+      football = #{football,jdbcType=INTEGER},
+      volleyball = #{volleyball,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
