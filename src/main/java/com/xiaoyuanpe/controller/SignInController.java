@@ -311,7 +311,6 @@ public class SignInController {
     public ResultBean getSignInByClass(HttpServletRequest httpServletRequest){
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         Date date = new Date();
-        date = new Date(date.getTime()+8*60*60*1000);
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
@@ -321,9 +320,10 @@ public class SignInController {
                 if (signin.getSportId()!=null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
                         this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date date1 = signin.getSignTime();
+                    //date1 = new Date(date1.getTime()+8*60*60*1000);
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
                         studentInfoEntries.add(this.setStudentInfoEntry(signin));
-                    resultBean.setMsg(date1.toString()+","+date.toString());
+                    resultBean.setMsg(signin.getId()+","+date1.toString()+","+date.toString());
                 }
             }
             resultBean.setData(studentInfoEntries);
