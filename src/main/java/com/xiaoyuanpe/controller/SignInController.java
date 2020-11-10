@@ -323,7 +323,7 @@ public class SignInController {
                     Date date1 = signin.getSignTime();
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
                         studentInfoEntries.add(this.setStudentInfoEntry(signin));
-                    resultBean.setMsg(date1.toString());
+                    resultBean.setMsg(date1.toString()+","+date.toString());
                 }
             }
             resultBean.setData(studentInfoEntries);
