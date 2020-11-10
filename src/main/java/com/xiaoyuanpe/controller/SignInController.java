@@ -340,7 +340,8 @@ public class SignInController {
                 Signin signin = this.signInService.findSigninById(id);
                 if (signin.getFlag()==0){
                     signin.setFlag(1);
-                    signin.setSignTime(new Date());
+                    Date date = new Date();
+                    signin.setSignTime(new Date(date.getTime()+8*60*60*1000));
                     this.signInService.ModifySignin(signin);
                 }
                 else continue;
@@ -388,7 +389,8 @@ public class SignInController {
                 Student student = this.studentService.findStudentById(signin.getStudentId());
                 if (signin.getFlag()==1){
                     signin.setFlag(2);
-                    signin.setSignoutTime(new Date());
+                    Date date = new Date();
+                    signin.setSignoutTime(new Date(date.getTime()+8*60*60*1000));
                     int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                     Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
                             student.getClassesId(),student.getId(), student.getAge());
@@ -424,6 +426,7 @@ public class SignInController {
                 if (this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date endTime = signin.getSignoutTime();
                     Date date = new Date();
+                    date = new Date(date.getTime()+8*60*60*1000);
                     if (signin.getStudentId()==student.getId()&&signin.getFlag()==2&&endTime.getYear()==date.getYear()
                             &&endTime.getMonth()==date.getMonth()&&date.getDay()-endTime.getDay()<7){
                         SinglePeopleInfo singlePeopleInfo = new SinglePeopleInfo();
