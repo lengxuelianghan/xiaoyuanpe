@@ -305,8 +305,10 @@ public class SignInController {
         studentInfoEntry.setFlag(signin.getFlag());
         studentInfoEntry.setStudentName(student.getStudentName());
         studentInfoEntry.setStudentId(signin.getStudentId());
-        studentInfoEntry.setSignTime(new Timestamp(signin.getSignTime().getTime()));
-        studentInfoEntry.setSignOutTime(new Timestamp(signin.getSignoutTime().getTime()));
+        if (signin.getSignTime()!=null)
+            studentInfoEntry.setSignTime(new Timestamp(signin.getSignTime().getTime()));
+        if (signin.getSignoutTime()!=null)
+            studentInfoEntry.setSignOutTime(new Timestamp(signin.getSignoutTime().getTime()));
         return studentInfoEntry;
     }
 
