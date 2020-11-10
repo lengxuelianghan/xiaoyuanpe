@@ -323,11 +323,14 @@ public class SignInController {
                     Date date1 = signin.getSignTime();
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
                         studentInfoEntries.add(this.setStudentInfoEntry(signin));
+                    resultBean.setMsg(date1.toString());
                 }
             }
             resultBean.setData(studentInfoEntries);
+            resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg("失败！");
+            resultBean.setCode(1);
         }
         return resultBean;
     }
