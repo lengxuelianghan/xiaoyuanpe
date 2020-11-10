@@ -2,12 +2,15 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.HealthManagementEntry;
 import com.xiaoyuanpe.pojo.Healthmanagement;
+import com.xiaoyuanpe.pojo.Student;
+import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.HeathManageService;
 import com.xiaoyuanpe.services.StudentService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +64,18 @@ public class HealthManageController {
         }
         return resultBean;
     }
-
+    @RequestMapping(value = "/updateHealthInfo", method = RequestMethod.POST)
+    public ResultBean updateHealthInfo(@RequestBody Healthmanagement healthmanagement){
+        ResultBean resultBean = new ResultBean();
+        try {
+            this.heathManageService.ModifyHealthmanagement(healthmanagement);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg("修改失败");
+        }
+        return resultBean;
+    }
     @RequestMapping(value = "/deleteHealthInfo", method = RequestMethod.POST)
     public ResultBean deleteHealthInfo(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
@@ -73,6 +87,21 @@ public class HealthManageController {
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg("删除失败");
+        }
+        return resultBean;
+    }
+    @RequestMapping(value = "/getSingleHealth")
+    public ResultBean getSingleHealth(HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        User user = (User) session.getAttribute("user");
+        try {
+            resultBean.setCode(0);
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            Healthmanagement healthmanagement = this.heathManageService.selectByPrimaryByStudentId(student.getId());
+            resultBean.setData(this.setHealthManagementEntry(healthmanagement));
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage()+"查询失败");
         }
         return resultBean;
     }

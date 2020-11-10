@@ -36,4 +36,9 @@ public class HeathManageServiceImpl implements HeathManageService {
     public void DeleteHealthmanagement(Integer id) {
         this.healthmanagementMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public Healthmanagement selectByPrimaryByStudentId(Integer id) {
+        return this.healthmanagementMapper.selectByPrimaryByStudentId(id);
+    }
 }

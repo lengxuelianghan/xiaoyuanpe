@@ -20,6 +20,8 @@ public interface HealthmanagementMapper {
 
     Healthmanagement selectByPrimaryKey(Integer id);
 
+    Healthmanagement selectByPrimaryByStudentId(Integer id);
+
     int updateByExampleSelective(@Param("record") Healthmanagement record, @Param("example") HealthmanagementExample example);
 
     int updateByExample(@Param("record") Healthmanagement record, @Param("example") HealthmanagementExample example);

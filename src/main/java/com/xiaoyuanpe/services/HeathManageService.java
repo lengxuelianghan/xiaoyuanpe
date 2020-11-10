@@ -14,4 +14,6 @@ public interface HeathManageService {
     void ModifyHealthmanagement(Healthmanagement healthmanagement);
 
     void DeleteHealthmanagement(Integer id);
+
+    Healthmanagement selectByPrimaryByStudentId(Integer id);
 }
