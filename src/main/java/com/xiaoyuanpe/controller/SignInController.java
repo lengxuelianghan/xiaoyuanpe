@@ -318,7 +318,7 @@ public class SignInController {
         try {
             List<Signin> signins = this.signInService.findSigninAll();
             for (Signin signin: signins){
-                if (signin.getSportId()!=null && signin.getSportId() == 1 && signin.getFlag() == 0 &&
+                if (signin.getSportId()!=null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
                         this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date date1 = signin.getSignTime();
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
