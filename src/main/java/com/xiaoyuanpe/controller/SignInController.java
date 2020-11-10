@@ -312,7 +312,6 @@ public class SignInController {
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         Date date = new Date();
         ResultBean resultBean = new ResultBean();
-        List<String> ss = new ArrayList<>();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
         try {
@@ -324,11 +323,9 @@ public class SignInController {
                     //date1 = new Date(date1.getTime()+8*60*60*1000);
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
                         studentInfoEntries.add(this.setStudentInfoEntry(signin));
-                    ss.add(signin.getId()+","+date1.toString()+","+date.toString());
                 }
             }
             resultBean.setData(studentInfoEntries);
-            resultBean.setMsg(ss.toString());
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg("失败！");
@@ -386,7 +383,6 @@ public class SignInController {
     @RequestMapping(value = "/setSignOutByClass")
     public ResultBean setSignOutByClass(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
-        resultBean.setMsg("失败！");
         try {
             for (Integer id: ids){
                 Signin signin = this.signInService.findSigninById(id);
