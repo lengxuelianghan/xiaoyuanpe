@@ -1,14 +1,18 @@
 package com.xiaoyuanpe.pojo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class StudentInfoEntry {
     private Integer id;
     private String studentName;
     private String studentNumber;
+    private Integer studentId;
     private Integer flag;
     private String classz;
     private String college;
+    private Timestamp signTime;
+    private Timestamp signOutTime;
+
     public Integer getId() {
         return id;
     }
@@ -55,5 +59,29 @@ public class StudentInfoEntry {
 
     public void setCollege(String college) {
         this.college = college;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public Timestamp getSignTime() {
+        return signTime;
+    }
+
+    public void setSignTime(Timestamp signTime) {
+        this.signTime = signTime;
+    }
+
+    public Timestamp getSignOutTime() {
+        return signOutTime;
+    }
+
+    public void setSignOutTime(Timestamp signOutTime) {
+        this.signOutTime = signOutTime;
     }
 }

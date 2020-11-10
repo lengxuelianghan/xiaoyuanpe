@@ -10,6 +10,7 @@ import org.springframework.web.servlet.tags.Param;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -303,6 +304,9 @@ public class SignInController {
         studentInfoEntry.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
         studentInfoEntry.setFlag(signin.getFlag());
         studentInfoEntry.setStudentName(student.getStudentName());
+        studentInfoEntry.setStudentId(signin.getStudentId());
+        studentInfoEntry.setSignTime(new Timestamp(signin.getSignTime().getTime()));
+        studentInfoEntry.setSignOutTime(new Timestamp(signin.getSignoutTime().getTime()));
         return studentInfoEntry;
     }
 

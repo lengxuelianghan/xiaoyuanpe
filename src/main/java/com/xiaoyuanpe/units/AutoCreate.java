@@ -72,12 +72,6 @@ public class AutoCreate {
             List<Activity> activityList =  this.activityService.findActivityAllList();
             for (Activity activity: activityList){
 
-//                System.out.println(date.toString());
-//                System.out.println(activity.getRegistrationStartTime().toString());
-//                System.out.println(activity.getRegistrationClosingTime().toString());
-//                System.out.println(activity.getStartTime().toString());
-//                System.out.println(activity.getEndTime().toString());
-//                System.out.println("-----------------------------------");
                 // 0 未审核 1 已审核
                 if (activity.getStatus()==1 && date.compareTo(activity.getRegistrationStartTime())>0 && date.compareTo(activity.getRegistrationClosingTime())<0){
                     activity.setStatus(2);//报名阶段
