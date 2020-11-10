@@ -346,7 +346,7 @@ public class SignInController {
                 if (signin.getFlag()==0){
                     signin.setFlag(1);
                     Date date = new Date();
-                    signin.setSignTime(new Date(date.getTime()+8*60*60*1000));
+                    signin.setSignTime(new Date(date.getTime()));
                     this.signInService.ModifySignin(signin);
                 }
                 else continue;
@@ -363,7 +363,6 @@ public class SignInController {
     public ResultBean getSignOutByClass(HttpServletRequest httpServletRequest){
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         Date date = new Date();
-        date = new Date(date.getTime()+8*60*60*1000);
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
@@ -394,8 +393,7 @@ public class SignInController {
                 Student student = this.studentService.findStudentById(signin.getStudentId());
                 if (signin.getFlag()==1){
                     signin.setFlag(2);
-                    Date date = new Date();
-                    signin.setSignoutTime(new Date(date.getTime()+8*60*60*1000));
+                    signin.setSignoutTime(new Date());
                     int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                     Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
                             student.getClassesId(),student.getId(), student.getAge());
@@ -431,7 +429,6 @@ public class SignInController {
                 if (this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date endTime = signin.getSignoutTime();
                     Date date = new Date();
-                    date = new Date(date.getTime()+8*60*60*1000);
                     if (signin.getStudentId()==student.getId()&&signin.getFlag()==2&&endTime.getYear()==date.getYear()
                             &&endTime.getMonth()==date.getMonth()&&date.getDay()-endTime.getDay()<7){
                         SinglePeopleInfo singlePeopleInfo = new SinglePeopleInfo();
