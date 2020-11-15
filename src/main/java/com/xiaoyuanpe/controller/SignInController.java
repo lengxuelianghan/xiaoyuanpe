@@ -329,7 +329,7 @@ public class SignInController {
                     //date1 = new Date(date1.getTime()+8*60*60*1000);
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDate()==date.getDate())
                     {
-                        resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
+                        //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
                         studentInfoEntries.add(this.setStudentInfoEntry(signin));}
                 }
             }
