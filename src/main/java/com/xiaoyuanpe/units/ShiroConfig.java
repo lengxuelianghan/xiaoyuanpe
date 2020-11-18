@@ -31,7 +31,7 @@ public class ShiroConfig {
         map.put("/school/querySchoolList", "anon");
         map.put("/**", "authc");
         //map.put("/**", "perms[]");
-//        shiroFilterFactoryBean.setLoginUrl("/login/login");
+        shiroFilterFactoryBean.setLoginUrl("/login/loginFaild");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

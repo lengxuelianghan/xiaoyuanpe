@@ -98,5 +98,12 @@ public class LoginController {
         }
         return resultBean;
     }
+    @RequestMapping("/loginFaild")
+    public ResultBean loginFaild(){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(-1);
+        resultBean.setMsg("您已退出登录！");
+        return resultBean;
+    }
 
 }
