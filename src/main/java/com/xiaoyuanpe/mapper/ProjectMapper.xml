@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuanpe.mapper.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.Project">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="team" jdbcType="VARCHAR" property="team" />
+    <result column="maximum" jdbcType="INTEGER" property="maximum" />
+    <result column="integral_set" jdbcType="INTEGER" property="integralSet" />
+    <result column="signing_condition" jdbcType="VARCHAR" property="signingCondition" />
+    <result column="venue" jdbcType="VARCHAR" property="venue" />
+    <result column="team_size" jdbcType="DOUBLE" property="teamSize" />
+    <result column="entry_fee" jdbcType="INTEGER" property="entryFee" />
+    <result column="judge" jdbcType="VARCHAR" property="judge" />
+    <result column="referee_conditions" jdbcType="VARCHAR" property="refereeConditions" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, project_name, team, maximum, integral_set, signing_condition, venue, team_size, 
+    entry_fee, judge, referee_conditions, activity_id
+  </sql>
+  <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ProjectExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiaoyuanpe.pojo.ProjectExample">
+    delete from project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Project">
+    insert into project (id, project_name, team, 
+      maximum, integral_set, signing_condition, 
+      venue, team_size, entry_fee, 
+      judge, referee_conditions, activity_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{team,jdbcType=VARCHAR}, 
+      #{maximum,jdbcType=INTEGER}, #{integralSet,jdbcType=INTEGER}, #{signingCondition,jdbcType=VARCHAR}, 
+      #{venue,jdbcType=VARCHAR}, #{teamSize,jdbcType=DOUBLE}, #{entryFee,jdbcType=INTEGER}, 
+      #{judge,jdbcType=VARCHAR}, #{refereeConditions,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Project">
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="team != null">
+        team,
+      </if>
+      <if test="maximum != null">
+        maximum,
+      </if>
+      <if test="integralSet != null">
+        integral_set,
+      </if>
+      <if test="signingCondition != null">
+        signing_condition,
+      </if>
+      <if test="venue != null">
+        venue,
+      </if>
+      <if test="teamSize != null">
+        team_size,
+      </if>
+      <if test="entryFee != null">
+        entry_fee,
+      </if>
+      <if test="judge != null">
+        judge,
+      </if>
+      <if test="refereeConditions != null">
+        referee_conditions,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="team != null">
+        #{team,jdbcType=VARCHAR},
+      </if>
+      <if test="maximum != null">
+        #{maximum,jdbcType=INTEGER},
+      </if>
+      <if test="integralSet != null">
+        #{integralSet,jdbcType=INTEGER},
+      </if>
+      <if test="signingCondition != null">
+        #{signingCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="venue != null">
+        #{venue,jdbcType=VARCHAR},
+      </if>
+      <if test="teamSize != null">
+        #{teamSize,jdbcType=DOUBLE},
+      </if>
+      <if test="entryFee != null">
+        #{entryFee,jdbcType=INTEGER},
+      </if>
+      <if test="judge != null">
+        #{judge,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeConditions != null">
+        #{refereeConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xiaoyuanpe.pojo.ProjectExample" resultType="java.lang.Long">
+    select count(*) from project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update project
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectName != null">
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.team != null">
+        team = #{record.team,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maximum != null">
+        maximum = #{record.maximum,jdbcType=INTEGER},
+      </if>
+      <if test="record.integralSet != null">
+        integral_set = #{record.integralSet,jdbcType=INTEGER},
+      </if>
+      <if test="record.signingCondition != null">
+        signing_condition = #{record.signingCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.venue != null">
+        venue = #{record.venue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teamSize != null">
+        team_size = #{record.teamSize,jdbcType=DOUBLE},
+      </if>
+      <if test="record.entryFee != null">
+        entry_fee = #{record.entryFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.judge != null">
+        judge = #{record.judge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refereeConditions != null">
+        referee_conditions = #{record.refereeConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null">
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update project
+    set id = #{record.id,jdbcType=INTEGER},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      team = #{record.team,jdbcType=VARCHAR},
+      maximum = #{record.maximum,jdbcType=INTEGER},
+      integral_set = #{record.integralSet,jdbcType=INTEGER},
+      signing_condition = #{record.signingCondition,jdbcType=VARCHAR},
+      venue = #{record.venue,jdbcType=VARCHAR},
+      team_size = #{record.teamSize,jdbcType=DOUBLE},
+      entry_fee = #{record.entryFee,jdbcType=INTEGER},
+      judge = #{record.judge,jdbcType=VARCHAR},
+      referee_conditions = #{record.refereeConditions,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.Project">
+    update project
+    <set>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="team != null">
+        team = #{team,jdbcType=VARCHAR},
+      </if>
+      <if test="maximum != null">
+        maximum = #{maximum,jdbcType=INTEGER},
+      </if>
+      <if test="integralSet != null">
+        integral_set = #{integralSet,jdbcType=INTEGER},
+      </if>
+      <if test="signingCondition != null">
+        signing_condition = #{signingCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="venue != null">
+        venue = #{venue,jdbcType=VARCHAR},
+      </if>
+      <if test="teamSize != null">
+        team_size = #{teamSize,jdbcType=DOUBLE},
+      </if>
+      <if test="entryFee != null">
+        entry_fee = #{entryFee,jdbcType=INTEGER},
+      </if>
+      <if test="judge != null">
+        judge = #{judge,jdbcType=VARCHAR},
+      </if>
+      <if test="refereeConditions != null">
+        referee_conditions = #{refereeConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.Project">
+    update project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      team = #{team,jdbcType=VARCHAR},
+      maximum = #{maximum,jdbcType=INTEGER},
+      integral_set = #{integralSet,jdbcType=INTEGER},
+      signing_condition = #{signingCondition,jdbcType=VARCHAR},
+      venue = #{venue,jdbcType=VARCHAR},
+      team_size = #{teamSize,jdbcType=DOUBLE},
+      entry_fee = #{entryFee,jdbcType=INTEGER},
+      judge = #{judge,jdbcType=VARCHAR},
+      referee_conditions = #{refereeConditions,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
