@@ -330,7 +330,15 @@ public class SignInController {
                     if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDate()==date.getDate())
                     {
                         //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
-                        studentInfoEntries.add(this.setStudentInfoEntry(signin));}
+                        studentInfoEntries.add(this.setStudentInfoEntry(signin));
+                    }
+                    if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&(date.getDate()-date1.getDate()==1))
+                    {
+                        //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
+                        signin.setFlag(3);
+                        this.signInService.ModifySignin(signin);
+                    }
+
                 }
             }
             resultBean.setData(studentInfoEntries);
