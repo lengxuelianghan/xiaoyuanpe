@@ -1,6 +1,7 @@
 package com.xiaoyuanpe.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Activity {
     private Integer id;
@@ -56,6 +57,8 @@ public class Activity {
     private String signout;
 
     private String fieldClock;
+
+    private List<Project> projects;
 
     public Integer getId() {
         return id;
@@ -271,5 +274,13 @@ public class Activity {
 
     public void setFieldClock(String fieldClock) {
         this.fieldClock = fieldClock == null ? null : fieldClock.trim();
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }

@@ -33,6 +33,8 @@ public class ActivityController {
     private SchoolService schoolService;
     @Autowired
     private SignInService signInService;
+    @Autowired
+    private ProjectService projectService;
 
 //    @PostMapping("/addActivity")
 //    public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity){
@@ -64,8 +66,14 @@ public class ActivityController {
     public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
                                   HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
-        Integer uid = user.getId();
         ResultBean resultBean = new ResultBean();
+        Integer uid = 0;
+        if (user!=null)
+            uid = user.getId();
+        else {
+            resultBean.setCode(1);
+            resultBean.setMsg("用户不存在");
+        }
         try {
             if (pictureFile != null){
                 String filepath = getUploadPath();
@@ -82,6 +90,13 @@ public class ActivityController {
                 out.close();
             }
             this.activityService.addActivity(activity);
+
+            if (activity.getProjects()!=null && activity.getProjects().size()>0){
+                for (Project project: activity.getProjects()){
+                    project.setActivityId(activity.getId());
+                    this.projectService.addProject(project);
+                }
+            }
 
             ActivityStud activityStud = new ActivityStud();
             String num = this.userService.findUsersById(uid).getUserNumber();
@@ -101,6 +116,7 @@ public class ActivityController {
         }
         return resultBean;
     }
+
 
     @GetMapping("/queryActivity/{id}")
     public ResultBean queryActivity(@PathVariable Integer id){
