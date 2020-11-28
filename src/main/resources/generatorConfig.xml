@@ -52,7 +52,7 @@
 <!--        <table schema="" tableName="score"></table>-->
 <!--        <table schema="" tableName="video"></table>-->
 <!--        <table schema="" tableName="student"></table>-->
-        <table schema="" tableName="project"></table>
+        <table schema="" tableName="projectSignIn"></table>
 <!--        <table schema="" tableName="semester"></table>-->
 <!--        <table schema="" tableName="college"></table>-->
     </context>

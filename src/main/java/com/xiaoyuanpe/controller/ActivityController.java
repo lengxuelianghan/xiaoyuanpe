@@ -35,6 +35,8 @@ public class ActivityController {
     private SignInService signInService;
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private ProjectSignInService projectSignInService;
 
 //    @PostMapping("/addActivity")
 //    public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity){
@@ -389,7 +391,51 @@ public class ActivityController {
                 signin.setActivityId(aid);
                 this.signInService.addSignin(signin);
                 this.activityStudService.addActivityStud(activityStud);
+            }
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    //根据id批量参与活动和项目
+    @PostMapping("/signUpListWithProject/{aid}/{projectId}")
+    public ResultBean signUpListWithProject(@RequestBody List<Integer> ids, @PathVariable Integer aid,
+                                            @PathVariable Integer projectId){
+        ResultBean resultBean = new ResultBean();
+        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+        Map<Integer,List<Integer>> map = new HashMap<>();
+        for (ActivityStud activityStud:activityStuds){
+            if (map.containsKey(activityStud.getActivityId())) {
+                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+            }
+            else
+                map.get(activityStud.getActivityId()).add(activityStud.getStudentId());
+        }
+        try {
+            for (Integer id: ids) {
+                if (map.containsKey(aid) && map.get(aid).contains(id))
+                    continue;
+                ActivityStud activityStud = new ActivityStud();
+                String num = this.userService.findUsersById(id).getUserNumber();
+                int sid = this.studentService.findStudentByNumber(num).getId();
+                activityStud.setStudentId(sid);
+                activityStud.setActivityId(aid);
+                activityStud.setCharacters("参与者");
+                Signin signin = new Signin();
+                signin.setFlag(0);
+                signin.setStudentId(sid);
+                signin.setActivityId(aid);
+                Projectsignin projectsignin = new Projectsignin();
+                this.signInService.addSignin(signin);
                 this.activityStudService.addActivityStud(activityStud);
+                projectsignin.setActivityid(aid);
+                projectsignin.setProjectid(projectId);
+                projectsignin.setSigninid(signin.getId());
+                projectsignin.setStudentid(sid);
+                this.projectSignInService.addProjectSignIn(projectsignin);
             }
             resultBean.setCode(0);
         }catch (Exception e){
@@ -585,6 +631,11 @@ public class ActivityController {
                 if(activityStud.getCharacters().equals("参与者")&&student.getId()==activityStud.getStudentId()){
                     ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
                     if (activityStudEntry!=null) {
+                        List<Projectsignin> projectByActivityId =
+                                this.projectSignInService.findProjectByActivityId(activityStud.getActivityId());
+                        if (projectByActivityId!=null){
+                            activityStudEntry.setProjectsignins(projectByActivityId);
+                        }
                         activityStudList.add(activityStudEntry);
                     }
                 }
@@ -610,6 +661,11 @@ public class ActivityController {
                 if(activityStud.getCharacters().equals("签到员")&&student.getId()==activityStud.getStudentId()) {
                     ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
                     if (activityStudEntry != null) {
+                        List<Projectsignin> projectByActivityId =
+                                this.projectSignInService.findProjectByActivityId(activityStud.getActivityId());
+                        if (projectByActivityId!=null){
+                            activityStudEntry.setProjectsignins(projectByActivityId);
+                        }
                         activityStudList.add(activityStudEntry);
                     }
                 }

@@ -1,5 +1,7 @@
 package com.xiaoyuanpe.pojo;
 
+import java.util.List;
+
 public class ActivityStudEntry {
 
     private Integer id;
@@ -19,6 +21,8 @@ public class ActivityStudEntry {
     private Integer studentIDNum;
 
     private Integer signId;
+
+    private List<Projectsignin> projectsignins;
 
     public Integer getId() {
         return id;
@@ -90,5 +94,13 @@ public class ActivityStudEntry {
 
     public void setSignId(Integer signId) {
         this.signId = signId;
+    }
+
+    public List<Projectsignin> getProjectsignins() {
+        return projectsignins;
+    }
+
+    public void setProjectsignins(List<Projectsignin> projectsignins) {
+        this.projectsignins = projectsignins;
     }
 }

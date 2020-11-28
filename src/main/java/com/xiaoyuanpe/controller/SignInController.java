@@ -38,7 +38,9 @@ public class SignInController {
     private SportService sportService;
     @Autowired
     private CollegeService collegeService;
-
+    @Autowired
+    private ProjectSignInService projectSignInService;
+    //查找当前活动当前学生的签到信息并签到。
     @GetMapping("/addSportSignIn/{activityId}")
     public ResultBean addSportSignIn(@PathVariable Integer activityId, HttpSession session){
         User user = (User) session.getAttribute("user");
@@ -65,7 +67,7 @@ public class SignInController {
         }
         return resultBean;
     }
-
+    //
     @PostMapping("/addSportSignInList/{activityId}")
     public ResultBean addSportSignInList(@PathVariable Integer activityId, @RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
@@ -96,7 +98,7 @@ public class SignInController {
         }
         return resultBean;
     }
-
+    //活动签退根据id
     @PostMapping("/updateSignOutList/{activityId}")
     public ResultBean updateSignOut(@PathVariable Integer activityId, @RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
@@ -122,7 +124,7 @@ public class SignInController {
         }
         return resultBean;
     }
-
+    //活动签到根据很多id
     @PostMapping("/updateSignInList")
     public ResultBean updateSignInList(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
@@ -132,6 +134,12 @@ public class SignInController {
                 signin.setFlag(1);
                 signin.setSignTime(new Date());
                 this.signInService.ModifySignin(signin);
+                Projectsignin projectsignin =
+                        this.projectSignInService.findProjectBySignInIdAndStudentId(signin.getId(),signin.getStudentId());
+                if (projectsignin!=null&&projectsignin.getSigninstatus()==0){
+                    projectsignin.setSigninstatus(1);
+                    this.projectSignInService.ModifyProjectsignin(projectsignin);
+                }
             }
             resultBean.setCode(0);
         }
@@ -142,7 +150,7 @@ public class SignInController {
         }
         return resultBean;
     }
-
+    //活动签退
     @PostMapping("/updateSignOutList")
     public ResultBean updateSignOutList(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
@@ -154,7 +162,12 @@ public class SignInController {
                     Date date = new Date();
                     signin.setSignoutTime(date);
                     this.signInService.ModifySignin(signin);
-
+                    Projectsignin projectsignin =
+                            this.projectSignInService.findProjectBySignInIdAndStudentId(signin.getId(),signin.getStudentId());
+                    if (projectsignin!=null&&projectsignin.getSigninstatus()==1){
+                        projectsignin.setSigninstatus(2);
+                        this.projectSignInService.ModifyProjectsignin(projectsignin);
+                    }
                     int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                     List<Semester> semesters = this.semesterService.findSemesterAll();
                     System.out.println(dataLen);
@@ -185,7 +198,7 @@ public class SignInController {
         }
         return resultBean;
     }
-
+    //根据id信息插叙活动签到信息
     @RequestMapping("/querySignInByActivity/{aid}")
     public ResultBean querySignInByOrigination(@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
