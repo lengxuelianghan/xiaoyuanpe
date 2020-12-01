@@ -22,6 +22,8 @@ public class ActivityStudEntry {
 
     private Integer signId;
 
+    private Integer status;
+
     private List<Projectsignin> projectsignins;
 
     public Integer getId() {
@@ -98,6 +100,14 @@ public class ActivityStudEntry {
 
     public List<Projectsignin> getProjectsignins() {
         return projectsignins;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public void setProjectsignins(List<Projectsignin> projectsignins) {

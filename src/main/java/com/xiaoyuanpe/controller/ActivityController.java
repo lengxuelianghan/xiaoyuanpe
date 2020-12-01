@@ -77,6 +77,29 @@ public class ActivityController {
         }
         return b;
     }
+    //获取当前用户未发布活动
+    @GetMapping("/getPreActivity")
+    public ResultBean preActivityList(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            List<Activity> activityByUserId = this.activityService.findActivityByUserId(user.getId());
+            List<Activity> activityList = new ArrayList<>();
+            if (activityByUserId!=null && !activityByUserId.isEmpty()){
+                for (Activity activity: activityByUserId){
+                    if (activity.getStatus()==5){
+                        activityList.add(activity);
+                    }
+                }
+                resultBean.setData(activityList);
+                resultBean.setCode(0);
+            }
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg("失败");
+        }
+        return resultBean;
+    }
 
     @PostMapping("/addActivity")
     public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
@@ -686,6 +709,7 @@ public class ActivityController {
             activityStudEntry.setStudentNumber(student.getStudentNumber());
             activityStudEntry.setSignStatus(signStatus);
             activityStudEntry.setSignId(signId);
+            activityStudEntry.setStatus(activity.getStatus());
             activityStudEntry.setStudentIDNum(student.getId());
             return activityStudEntry;
         }catch (Exception e){
