@@ -88,6 +88,10 @@ public class ActivityController {
             if (activityByUserId!=null && !activityByUserId.isEmpty()){
                 for (Activity activity: activityByUserId){
                     if (activity.getStatus()==5){
+                        List<Project> projects = this.projectService.findProjectByActivityId(activity.getId());
+                        if (projects!=null){
+                            activity.setProjects(projects);
+                        }
                         activityList.add(activity);
                     }
                 }
