@@ -193,6 +193,7 @@ public class ActivityController {
                 activityEntry.setStartTime(activity.getStartTime()==null?new Date():activity.getStartTime());
                 activityEntry.setStatus(activity.getStatus()==null?0:activity.getStatus());
                 activityEntry.setWayRegistration(activity.getWayRegistration()==null?"":activity.getWayRegistration());
+                activityEntry.setProjectList(activity.getProjects());
                 activityEntries.add(activityEntry);
             }
             resultBean.setData(activityEntries);
