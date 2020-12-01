@@ -64,6 +64,20 @@ public class ActivityController {
 //        return resultBean;
 //    }
 
+    private boolean addOrNot(Integer uid){
+        boolean b = false;
+        List<Activity> activityByUserId = this.activityService.findActivityByUserId(uid);
+        if (activityByUserId!=null && !activityByUserId.isEmpty()){
+            for (Activity activity: activityByUserId){
+                if (activity.getStatus()==5){
+                    b=true;
+                    break;
+                }
+            }
+        }
+        return b;
+    }
+
     @PostMapping("/addActivity")
     public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
                                   HttpServletRequest request){
@@ -75,6 +89,11 @@ public class ActivityController {
         else {
             resultBean.setCode(1);
             resultBean.setMsg("用户不存在");
+        }
+        if (this.addOrNot(uid)){
+            resultBean.setCode(1);
+            resultBean.setMsg("您有一个未发布活动，不能新建");
+            return resultBean;
         }
         try {
             if (pictureFile != null){
@@ -119,6 +138,27 @@ public class ActivityController {
         return resultBean;
     }
 
+    //点击发布
+    @GetMapping("/release/{activityId}")
+    public ResultBean release(@PathVariable Integer activityId, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try{
+            Activity activity = this.activityService.findActivityById(activityId);
+            if (user.getId()==activity.getPublisherId() && activity.getStatus()==5){
+                resultBean.setCode(0);
+                activity.setStatus(0);
+                this.activityService.ModifyActivity(activity);
+            }
+            else resultBean.setCode(1);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    //暂存发布数据
     @PostMapping("/preAddActivity")
     public ResultBean preAddActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
                                   HttpServletRequest request){
@@ -130,6 +170,11 @@ public class ActivityController {
         else {
             resultBean.setCode(1);
             resultBean.setMsg("用户不存在");
+        }
+        if (this.addOrNot(uid)){
+            resultBean.setCode(1);
+            resultBean.setMsg("您有一个未发布活动，不能新建");
+            return resultBean;
         }
         try {
             if (pictureFile != null){

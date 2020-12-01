@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,6 +66,18 @@ public class ActivityServiceImpl implements ActivityService {
     public List<Activity> findActivityAllList() {
         ActivityExample activityExample = new ActivityExample();
         return this.activityMapper.selectByExample(activityExample);
+    }
+
+    @Override
+    public List<Activity> findActivityByUserId(Integer userId) {
+        List<Activity> activityList = this.activityMapper.selectByExample(new ActivityExample());
+        List<Activity> activities = new ArrayList<>();
+        for (Activity activity: activityList){
+            if (activity.getPublisherId() == userId){
+                activities.add(activity);
+            }
+        }
+        return activities;
     }
 
 }

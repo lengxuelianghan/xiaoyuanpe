@@ -19,4 +19,6 @@ public interface ActivityService {
 
     List<Activity>  findActivityAllList();
 
+    List<Activity>  findActivityByUserId(Integer userId);
+
 }
