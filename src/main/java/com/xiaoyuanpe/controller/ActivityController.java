@@ -119,6 +119,61 @@ public class ActivityController {
         return resultBean;
     }
 
+    @PostMapping("/preAddActivity")
+    public ResultBean preAddActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
+                                  HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        Integer uid = 0;
+        if (user!=null)
+            uid = user.getId();
+        else {
+            resultBean.setCode(1);
+            resultBean.setMsg("用户不存在");
+        }
+        try {
+            if (pictureFile != null){
+                String filepath = getUploadPath();
+                String filename=pictureFile.getOriginalFilename();
+                String fileName = getFileName(filename);
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
+                System.out.println("C:\\nginx\\img\\"+ fileName);
+                activity.setImagePath("C:\\nginx\\img\\"+ fileName);
+                activity.setStatus(5);
+                activity.setPublisherId(uid);
+                out.write(pictureFile.getBytes());
+                out.flush();
+                out.close();
+            }
+            this.activityService.addActivity(activity);
+
+            if (activity.getProjects()!=null && activity.getProjects().size()>0){
+                for (Project project: activity.getProjects()){
+                    project.setActivityId(activity.getId());
+                    this.projectService.addProject(project);
+                }
+            }
+
+            ActivityStud activityStud = new ActivityStud();
+            String num = this.userService.findUsersById(uid).getUserNumber();
+            int id = this.studentService.findStudentByNumber(num).getId();
+            activityStud.setStudentId(id);
+            activityStud.setActivityId(activity.getId());
+            activityStud.setCharacters("发起人");
+            this.activityStudService.addActivityStud(activityStud);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getClass().toString());
+            if (e.getClass().toString().equals("java.sql.SQLIntegrityConstraintViolationException")){
+                resultBean.setMsg("学校信息或用户信息不存在");
+            }
+        }
+        return resultBean;
+    }
+
 
     @GetMapping("/queryActivity/{id}")
     public ResultBean queryActivity(@PathVariable Integer id){
