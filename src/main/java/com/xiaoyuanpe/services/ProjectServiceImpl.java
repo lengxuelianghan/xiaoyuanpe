@@ -6,6 +6,7 @@ import com.xiaoyuanpe.pojo.ProjectExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +26,17 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project findProjectById(Integer id) {
         return this.projectMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Project> findProjectByActivityId(Integer activityId) {
+        List<Project> projectList = this.projectMapper.selectByExample(new ProjectExample());
+        List<Project> projects = new ArrayList<>();
+        for (Project project: projectList){
+            if (project.getActivityId()==activityId)
+                projects.add(project);
+        }
+        return projects;
     }
 
     @Override

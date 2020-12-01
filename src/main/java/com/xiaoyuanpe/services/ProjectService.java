@@ -16,4 +16,6 @@ public interface ProjectService {
     void DeleteProject(Integer id);
 
     void DeleteProjectList(List<Integer> ids);
+
+    public List<Project> findProjectByActivityId(Integer activityId);
 }

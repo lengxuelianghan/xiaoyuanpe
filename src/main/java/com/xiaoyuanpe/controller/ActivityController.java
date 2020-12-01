@@ -163,6 +163,7 @@ public class ActivityController {
             List<Activity> activityList = this.activityService.findActivityAllList();
             List<ActivityEntry> activityEntries = new ArrayList<>();
             for (Activity activity: activityList){
+                List<Project> projectList = this.projectService.findProjectByActivityId(activity.getId());
                 ActivityEntry activityEntry = new ActivityEntry();
                 activityEntry.setId(activity.getId());
                 activityEntry.setActivityName(activity.getActivityName());
@@ -193,7 +194,8 @@ public class ActivityController {
                 activityEntry.setStartTime(activity.getStartTime()==null?new Date():activity.getStartTime());
                 activityEntry.setStatus(activity.getStatus()==null?0:activity.getStatus());
                 activityEntry.setWayRegistration(activity.getWayRegistration()==null?"":activity.getWayRegistration());
-                activityEntry.setProjectList(activity.getProjects());
+                if (projectList!=null)
+                    activityEntry.setProjectList(projectList);
                 activityEntries.add(activityEntry);
             }
             resultBean.setData(activityEntries);
