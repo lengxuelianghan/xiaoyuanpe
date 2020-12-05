@@ -9,6 +9,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="opening_time" jdbcType="VARCHAR" property="openingTime" />
     <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaoyuanpe.pojo.Venue">
     <result column="imgs" jdbcType="LONGVARCHAR" property="imgs" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, venue_name, Introduction, contact, phone, opening_time, description
+    id, venue_name, Introduction, contact, phone, opening_time, description, school_id
   </sql>
   <sql id="Blob_Column_List">
     imgs
@@ -128,10 +129,12 @@
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Venue">
     insert into venue (id, venue_name, Introduction, 
       contact, phone, opening_time, 
-      description, imgs)
+      description, school_id, imgs
+      )
     values (#{id,jdbcType=INTEGER}, #{venueName,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
       #{contact,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{openingTime,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{imgs,jdbcType=LONGVARCHAR})
+      #{description,jdbcType=VARCHAR}, #{schoolId,jdbcType=INTEGER}, #{imgs,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Venue">
     insert into venue
@@ -156,6 +159,9 @@
       </if>
       <if test="description != null">
         description,
+      </if>
+      <if test="schoolId != null">
+        school_id,
       </if>
       <if test="imgs != null">
         imgs,
@@ -182,6 +188,9 @@
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="imgs != null">
         #{imgs,jdbcType=LONGVARCHAR},
@@ -218,6 +227,9 @@
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
       </if>
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
+      </if>
       <if test="record.imgs != null">
         imgs = #{record.imgs,jdbcType=LONGVARCHAR},
       </if>
@@ -235,6 +247,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       opening_time = #{record.openingTime,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
       imgs = #{record.imgs,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +261,8 @@
       contact = #{record.contact,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       opening_time = #{record.openingTime,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR}
+      description = #{record.description,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -274,6 +288,9 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
+      </if>
       <if test="imgs != null">
         imgs = #{imgs,jdbcType=LONGVARCHAR},
       </if>
@@ -288,6 +305,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       opening_time = #{openingTime,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=INTEGER},
       imgs = #{imgs,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -298,7 +316,8 @@
       contact = #{contact,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       opening_time = #{openingTime,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR}
+      description = #{description,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

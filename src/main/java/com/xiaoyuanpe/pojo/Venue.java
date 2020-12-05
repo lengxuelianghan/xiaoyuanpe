@@ -15,6 +15,8 @@ public class Venue {
 
     private String description;
 
+    private Integer schoolId;
+
     private String imgs;
 
     public Integer getId() {
@@ -71,6 +73,14 @@ public class Venue {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
     }
 
     public String getImgs() {
