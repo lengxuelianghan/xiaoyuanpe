@@ -244,62 +244,52 @@ public class ProjectExample {
             return (Criteria) this;
         }
 
-        public Criteria andTeamEqualTo(String value) {
+        public Criteria andTeamEqualTo(Integer value) {
             addCriterion("team =", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNotEqualTo(String value) {
+        public Criteria andTeamNotEqualTo(Integer value) {
             addCriterion("team <>", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamGreaterThan(String value) {
+        public Criteria andTeamGreaterThan(Integer value) {
             addCriterion("team >", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamGreaterThanOrEqualTo(String value) {
+        public Criteria andTeamGreaterThanOrEqualTo(Integer value) {
             addCriterion("team >=", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamLessThan(String value) {
+        public Criteria andTeamLessThan(Integer value) {
             addCriterion("team <", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamLessThanOrEqualTo(String value) {
+        public Criteria andTeamLessThanOrEqualTo(Integer value) {
             addCriterion("team <=", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamLike(String value) {
-            addCriterion("team like", value, "team");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamNotLike(String value) {
-            addCriterion("team not like", value, "team");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamIn(List<String> values) {
+        public Criteria andTeamIn(List<Integer> values) {
             addCriterion("team in", values, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNotIn(List<String> values) {
+        public Criteria andTeamNotIn(List<Integer> values) {
             addCriterion("team not in", values, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamBetween(String value1, String value2) {
+        public Criteria andTeamBetween(Integer value1, Integer value2) {
             addCriterion("team between", value1, value2, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNotBetween(String value1, String value2) {
+        public Criteria andTeamNotBetween(Integer value1, Integer value2) {
             addCriterion("team not between", value1, value2, "team");
             return (Criteria) this;
         }
@@ -374,52 +364,62 @@ public class ProjectExample {
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetEqualTo(Integer value) {
+        public Criteria andIntegralSetEqualTo(String value) {
             addCriterion("integral_set =", value, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetNotEqualTo(Integer value) {
+        public Criteria andIntegralSetNotEqualTo(String value) {
             addCriterion("integral_set <>", value, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetGreaterThan(Integer value) {
+        public Criteria andIntegralSetGreaterThan(String value) {
             addCriterion("integral_set >", value, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIntegralSetGreaterThanOrEqualTo(String value) {
             addCriterion("integral_set >=", value, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetLessThan(Integer value) {
+        public Criteria andIntegralSetLessThan(String value) {
             addCriterion("integral_set <", value, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetLessThanOrEqualTo(Integer value) {
+        public Criteria andIntegralSetLessThanOrEqualTo(String value) {
             addCriterion("integral_set <=", value, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetIn(List<Integer> values) {
+        public Criteria andIntegralSetLike(String value) {
+            addCriterion("integral_set like", value, "integralSet");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralSetNotLike(String value) {
+            addCriterion("integral_set not like", value, "integralSet");
+            return (Criteria) this;
+        }
+
+        public Criteria andIntegralSetIn(List<String> values) {
             addCriterion("integral_set in", values, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetNotIn(List<Integer> values) {
+        public Criteria andIntegralSetNotIn(List<String> values) {
             addCriterion("integral_set not in", values, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetBetween(Integer value1, Integer value2) {
+        public Criteria andIntegralSetBetween(String value1, String value2) {
             addCriterion("integral_set between", value1, value2, "integralSet");
             return (Criteria) this;
         }
 
-        public Criteria andIntegralSetNotBetween(Integer value1, Integer value2) {
+        public Criteria andIntegralSetNotBetween(String value1, String value2) {
             addCriterion("integral_set not between", value1, value2, "integralSet");
             return (Criteria) this;
         }
@@ -881,6 +881,76 @@ public class ProjectExample {
 
         public Criteria andActivityIdNotBetween(Integer value1, Integer value2) {
             addCriterion("activity_id not between", value1, value2, "activityId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleIsNull() {
+            addCriterion("team_people is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleIsNotNull() {
+            addCriterion("team_people is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleEqualTo(String value) {
+            addCriterion("team_people =", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleNotEqualTo(String value) {
+            addCriterion("team_people <>", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleGreaterThan(String value) {
+            addCriterion("team_people >", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleGreaterThanOrEqualTo(String value) {
+            addCriterion("team_people >=", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleLessThan(String value) {
+            addCriterion("team_people <", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleLessThanOrEqualTo(String value) {
+            addCriterion("team_people <=", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleLike(String value) {
+            addCriterion("team_people like", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleNotLike(String value) {
+            addCriterion("team_people not like", value, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleIn(List<String> values) {
+            addCriterion("team_people in", values, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleNotIn(List<String> values) {
+            addCriterion("team_people not in", values, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleBetween(String value1, String value2) {
+            addCriterion("team_people between", value1, value2, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andTeamPeopleNotBetween(String value1, String value2) {
+            addCriterion("team_people not between", value1, value2, "teamPeople");
             return (Criteria) this;
         }
     }

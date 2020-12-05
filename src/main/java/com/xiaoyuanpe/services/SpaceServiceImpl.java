@@ -1,0 +1,47 @@
+package com.xiaoyuanpe.services;
+
+import com.xiaoyuanpe.mapper.SpaceMapper;
+import com.xiaoyuanpe.pojo.Space;
+import com.xiaoyuanpe.pojo.SpaceExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class SpaceServiceImpl implements SpaceService {
+    @Autowired
+    private SpaceMapper spaceMapper;
+
+    @Override
+    public void addSpace(Space space) {
+        this.spaceMapper.insert(space);
+    }
+
+    @Override
+    public List<Space> findSpaceAll() {
+        return this.spaceMapper.selectByExample(new SpaceExample());
+    }
+
+    @Override
+    public Space findSpaceById(Integer id) {
+        return this.spaceMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void ModifySpace(Space space) {
+        this.spaceMapper.updateByPrimaryKey(space);
+    }
+
+    @Override
+    public void DeleteSpace(Integer id) {
+
+    }
+
+    @Override
+    public void DeleteSpaceList(List<Integer> ids) {
+        for (Integer id :ids){
+            this.spaceMapper.deleteByPrimaryKey(id);
+        }
+    }
+}

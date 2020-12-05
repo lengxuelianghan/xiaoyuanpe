@@ -104,7 +104,7 @@ public class ActivityController {
         }
         return resultBean;
     }
-
+    //添加并发布活动
     @PostMapping("/addActivity")
     public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
                                   HttpServletRequest request){

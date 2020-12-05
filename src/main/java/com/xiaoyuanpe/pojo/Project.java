@@ -5,11 +5,11 @@ public class Project {
 
     private String projectName;
 
-    private String team;
+    private Integer team;
 
     private Integer maximum;
 
-    private Integer integralSet;
+    private String integralSet;
 
     private String signingCondition;
 
@@ -24,6 +24,8 @@ public class Project {
     private String refereeConditions;
 
     private Integer activityId;
+
+    private String teamPeople;
 
     public Integer getId() {
         return id;
@@ -41,12 +43,12 @@ public class Project {
         this.projectName = projectName == null ? null : projectName.trim();
     }
 
-    public String getTeam() {
+    public Integer getTeam() {
         return team;
     }
 
-    public void setTeam(String team) {
-        this.team = team == null ? null : team.trim();
+    public void setTeam(Integer team) {
+        this.team = team;
     }
 
     public Integer getMaximum() {
@@ -57,12 +59,12 @@ public class Project {
         this.maximum = maximum;
     }
 
-    public Integer getIntegralSet() {
+    public String getIntegralSet() {
         return integralSet;
     }
 
-    public void setIntegralSet(Integer integralSet) {
-        this.integralSet = integralSet;
+    public void setIntegralSet(String integralSet) {
+        this.integralSet = integralSet == null ? null : integralSet.trim();
     }
 
     public String getSigningCondition() {
@@ -119,5 +121,13 @@ public class Project {
 
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
+    }
+
+    public String getTeamPeople() {
+        return teamPeople;
+    }
+
+    public void setTeamPeople(String teamPeople) {
+        this.teamPeople = teamPeople == null ? null : teamPeople.trim();
     }
 }

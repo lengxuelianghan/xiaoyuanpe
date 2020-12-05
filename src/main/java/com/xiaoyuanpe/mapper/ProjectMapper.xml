@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.Project">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="project_name" jdbcType="VARCHAR" property="projectName" />
-    <result column="team" jdbcType="VARCHAR" property="team" />
+    <result column="team" jdbcType="INTEGER" property="team" />
     <result column="maximum" jdbcType="INTEGER" property="maximum" />
-    <result column="integral_set" jdbcType="INTEGER" property="integralSet" />
+    <result column="integral_set" jdbcType="VARCHAR" property="integralSet" />
     <result column="signing_condition" jdbcType="VARCHAR" property="signingCondition" />
     <result column="venue" jdbcType="VARCHAR" property="venue" />
     <result column="team_size" jdbcType="DOUBLE" property="teamSize" />
@@ -14,6 +14,7 @@
     <result column="judge" jdbcType="VARCHAR" property="judge" />
     <result column="referee_conditions" jdbcType="VARCHAR" property="refereeConditions" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="team_people" jdbcType="VARCHAR" property="teamPeople" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, project_name, team, maximum, integral_set, signing_condition, venue, team_size, 
-    entry_fee, judge, referee_conditions, activity_id
+    entry_fee, judge, referee_conditions, activity_id, team_people
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ProjectExample" resultMap="BaseResultMap">
     select
@@ -111,13 +112,13 @@
     insert into project (id, project_name, team, 
       maximum, integral_set, signing_condition, 
       venue, team_size, entry_fee, 
-      judge, referee_conditions, activity_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{team,jdbcType=VARCHAR}, 
-      #{maximum,jdbcType=INTEGER}, #{integralSet,jdbcType=INTEGER}, #{signingCondition,jdbcType=VARCHAR}, 
+      judge, referee_conditions, activity_id, 
+      team_people)
+    values (#{id,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{team,jdbcType=INTEGER}, 
+      #{maximum,jdbcType=INTEGER}, #{integralSet,jdbcType=VARCHAR}, #{signingCondition,jdbcType=VARCHAR}, 
       #{venue,jdbcType=VARCHAR}, #{teamSize,jdbcType=DOUBLE}, #{entryFee,jdbcType=INTEGER}, 
-      #{judge,jdbcType=VARCHAR}, #{refereeConditions,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}
-      )
+      #{judge,jdbcType=VARCHAR}, #{refereeConditions,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, 
+      #{teamPeople,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Project">
     insert into project
@@ -158,6 +159,9 @@
       <if test="activityId != null">
         activity_id,
       </if>
+      <if test="teamPeople != null">
+        team_people,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -167,13 +171,13 @@
         #{projectName,jdbcType=VARCHAR},
       </if>
       <if test="team != null">
-        #{team,jdbcType=VARCHAR},
+        #{team,jdbcType=INTEGER},
       </if>
       <if test="maximum != null">
         #{maximum,jdbcType=INTEGER},
       </if>
       <if test="integralSet != null">
-        #{integralSet,jdbcType=INTEGER},
+        #{integralSet,jdbcType=VARCHAR},
       </if>
       <if test="signingCondition != null">
         #{signingCondition,jdbcType=VARCHAR},
@@ -196,6 +200,9 @@
       <if test="activityId != null">
         #{activityId,jdbcType=INTEGER},
       </if>
+      <if test="teamPeople != null">
+        #{teamPeople,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.xiaoyuanpe.pojo.ProjectExample" resultType="java.lang.Long">
@@ -214,13 +221,13 @@
         project_name = #{record.projectName,jdbcType=VARCHAR},
       </if>
       <if test="record.team != null">
-        team = #{record.team,jdbcType=VARCHAR},
+        team = #{record.team,jdbcType=INTEGER},
       </if>
       <if test="record.maximum != null">
         maximum = #{record.maximum,jdbcType=INTEGER},
       </if>
       <if test="record.integralSet != null">
-        integral_set = #{record.integralSet,jdbcType=INTEGER},
+        integral_set = #{record.integralSet,jdbcType=VARCHAR},
       </if>
       <if test="record.signingCondition != null">
         signing_condition = #{record.signingCondition,jdbcType=VARCHAR},
@@ -243,6 +250,9 @@
       <if test="record.activityId != null">
         activity_id = #{record.activityId,jdbcType=INTEGER},
       </if>
+      <if test="record.teamPeople != null">
+        team_people = #{record.teamPeople,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -252,16 +262,17 @@
     update project
     set id = #{record.id,jdbcType=INTEGER},
       project_name = #{record.projectName,jdbcType=VARCHAR},
-      team = #{record.team,jdbcType=VARCHAR},
+      team = #{record.team,jdbcType=INTEGER},
       maximum = #{record.maximum,jdbcType=INTEGER},
-      integral_set = #{record.integralSet,jdbcType=INTEGER},
+      integral_set = #{record.integralSet,jdbcType=VARCHAR},
       signing_condition = #{record.signingCondition,jdbcType=VARCHAR},
       venue = #{record.venue,jdbcType=VARCHAR},
       team_size = #{record.teamSize,jdbcType=DOUBLE},
       entry_fee = #{record.entryFee,jdbcType=INTEGER},
       judge = #{record.judge,jdbcType=VARCHAR},
       referee_conditions = #{record.refereeConditions,jdbcType=VARCHAR},
-      activity_id = #{record.activityId,jdbcType=INTEGER}
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      team_people = #{record.teamPeople,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -273,13 +284,13 @@
         project_name = #{projectName,jdbcType=VARCHAR},
       </if>
       <if test="team != null">
-        team = #{team,jdbcType=VARCHAR},
+        team = #{team,jdbcType=INTEGER},
       </if>
       <if test="maximum != null">
         maximum = #{maximum,jdbcType=INTEGER},
       </if>
       <if test="integralSet != null">
-        integral_set = #{integralSet,jdbcType=INTEGER},
+        integral_set = #{integralSet,jdbcType=VARCHAR},
       </if>
       <if test="signingCondition != null">
         signing_condition = #{signingCondition,jdbcType=VARCHAR},
@@ -302,22 +313,26 @@
       <if test="activityId != null">
         activity_id = #{activityId,jdbcType=INTEGER},
       </if>
+      <if test="teamPeople != null">
+        team_people = #{teamPeople,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.Project">
     update project
     set project_name = #{projectName,jdbcType=VARCHAR},
-      team = #{team,jdbcType=VARCHAR},
+      team = #{team,jdbcType=INTEGER},
       maximum = #{maximum,jdbcType=INTEGER},
-      integral_set = #{integralSet,jdbcType=INTEGER},
+      integral_set = #{integralSet,jdbcType=VARCHAR},
       signing_condition = #{signingCondition,jdbcType=VARCHAR},
       venue = #{venue,jdbcType=VARCHAR},
       team_size = #{teamSize,jdbcType=DOUBLE},
       entry_fee = #{entryFee,jdbcType=INTEGER},
       judge = #{judge,jdbcType=VARCHAR},
       referee_conditions = #{refereeConditions,jdbcType=VARCHAR},
-      activity_id = #{activityId,jdbcType=INTEGER}
+      activity_id = #{activityId,jdbcType=INTEGER},
+      team_people = #{teamPeople,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
