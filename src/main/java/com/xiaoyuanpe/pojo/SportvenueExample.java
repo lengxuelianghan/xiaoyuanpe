@@ -544,6 +544,66 @@ public class SportvenueExample {
             addCriterion("other not between", value1, value2, "other");
             return (Criteria) this;
         }
+
+        public Criteria andVenueIdIsNull() {
+            addCriterion("venue_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdIsNotNull() {
+            addCriterion("venue_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdEqualTo(Integer value) {
+            addCriterion("venue_id =", value, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdNotEqualTo(Integer value) {
+            addCriterion("venue_id <>", value, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdGreaterThan(Integer value) {
+            addCriterion("venue_id >", value, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("venue_id >=", value, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdLessThan(Integer value) {
+            addCriterion("venue_id <", value, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdLessThanOrEqualTo(Integer value) {
+            addCriterion("venue_id <=", value, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdIn(List<Integer> values) {
+            addCriterion("venue_id in", values, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdNotIn(List<Integer> values) {
+            addCriterion("venue_id not in", values, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdBetween(Integer value1, Integer value2) {
+            addCriterion("venue_id between", value1, value2, "venueId");
+            return (Criteria) this;
+        }
+
+        public Criteria andVenueIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("venue_id not between", value1, value2, "venueId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

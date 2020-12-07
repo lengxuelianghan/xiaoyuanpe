@@ -244,52 +244,52 @@ public class ProjectExample {
             return (Criteria) this;
         }
 
-        public Criteria andTeamEqualTo(Integer value) {
+        public Criteria andTeamEqualTo(Boolean value) {
             addCriterion("team =", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNotEqualTo(Integer value) {
+        public Criteria andTeamNotEqualTo(Boolean value) {
             addCriterion("team <>", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamGreaterThan(Integer value) {
+        public Criteria andTeamGreaterThan(Boolean value) {
             addCriterion("team >", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTeamGreaterThanOrEqualTo(Boolean value) {
             addCriterion("team >=", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamLessThan(Integer value) {
+        public Criteria andTeamLessThan(Boolean value) {
             addCriterion("team <", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamLessThanOrEqualTo(Integer value) {
+        public Criteria andTeamLessThanOrEqualTo(Boolean value) {
             addCriterion("team <=", value, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamIn(List<Integer> values) {
+        public Criteria andTeamIn(List<Boolean> values) {
             addCriterion("team in", values, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNotIn(List<Integer> values) {
+        public Criteria andTeamNotIn(List<Boolean> values) {
             addCriterion("team not in", values, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamBetween(Integer value1, Integer value2) {
+        public Criteria andTeamBetween(Boolean value1, Boolean value2) {
             addCriterion("team between", value1, value2, "team");
             return (Criteria) this;
         }
 
-        public Criteria andTeamNotBetween(Integer value1, Integer value2) {
+        public Criteria andTeamNotBetween(Boolean value1, Boolean value2) {
             addCriterion("team not between", value1, value2, "team");
             return (Criteria) this;
         }
@@ -561,66 +561,6 @@ public class ProjectExample {
 
         public Criteria andVenueNotBetween(String value1, String value2) {
             addCriterion("venue not between", value1, value2, "venue");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeIsNull() {
-            addCriterion("team_size is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeIsNotNull() {
-            addCriterion("team_size is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeEqualTo(Double value) {
-            addCriterion("team_size =", value, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeNotEqualTo(Double value) {
-            addCriterion("team_size <>", value, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeGreaterThan(Double value) {
-            addCriterion("team_size >", value, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeGreaterThanOrEqualTo(Double value) {
-            addCriterion("team_size >=", value, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeLessThan(Double value) {
-            addCriterion("team_size <", value, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeLessThanOrEqualTo(Double value) {
-            addCriterion("team_size <=", value, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeIn(List<Double> values) {
-            addCriterion("team_size in", values, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeNotIn(List<Double> values) {
-            addCriterion("team_size not in", values, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeBetween(Double value1, Double value2) {
-            addCriterion("team_size between", value1, value2, "teamSize");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamSizeNotBetween(Double value1, Double value2) {
-            addCriterion("team_size not between", value1, value2, "teamSize");
             return (Criteria) this;
         }
 

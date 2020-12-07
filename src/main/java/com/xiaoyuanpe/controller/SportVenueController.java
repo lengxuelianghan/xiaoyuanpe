@@ -1,7 +1,9 @@
 package com.xiaoyuanpe.controller;
 
+import com.xiaoyuanpe.pojo.Sportvenue;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.Venue;
+import com.xiaoyuanpe.services.SportVenueService;
 import com.xiaoyuanpe.services.VenueService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/venue")
-public class VenueController {
+@RequestMapping("/sportVenue")
+public class SportVenueController {
     @Autowired
-    private VenueService venueService;
+    private SportVenueService sportVenueService;
 
     private String getFileName(String fileName) {
         int index = fileName.lastIndexOf(".");
@@ -48,9 +50,9 @@ public class VenueController {
         return upload.getAbsolutePath();
     }
 
-    @RequestMapping(value = "/addVenue", method = RequestMethod.POST)
-    public ResultBean addVenue(@RequestParam(value="files", required=false) MultipartFile[] files,
-                               Venue venue, HttpServletRequest request){
+    @RequestMapping(value = "/addSportVenue", method = RequestMethod.POST)
+    public ResultBean addSportVenue(@RequestParam(value="files", required=false) MultipartFile[] files,
+                                    Sportvenue venue, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
@@ -74,8 +76,8 @@ public class VenueController {
                 }
                 venue.setImgs(imageName);
             }
-            venue.setSchoolId(user.getSchoolId());
-            this.venueService.addVenue(venue);
+            //venue.setSchoolId(user.getSchoolId());
+            this.sportVenueService.addSportvenue(venue);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg(e.getMessage());
@@ -83,11 +85,11 @@ public class VenueController {
         }
         return resultBean;
     }
-    @RequestMapping(value = "/updateVenue", method = RequestMethod.POST)
-    public ResultBean updateVenue(@RequestBody Venue venue){
+    @RequestMapping(value = "/updateSportVenue", method = RequestMethod.POST)
+    public ResultBean updateSportVenue(@RequestBody Sportvenue venue){
         ResultBean resultBean = new ResultBean();
         try {
-            this.venueService.ModifyVenue(venue);
+            this.sportVenueService.ModifySportvenue(venue);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
@@ -95,11 +97,11 @@ public class VenueController {
         }
         return resultBean;
     }
-    @RequestMapping(value = "/queryVenueById/{id}")
-    public ResultBean queryVenueById(@PathVariable Integer id){
+    @RequestMapping(value = "/querySportVenueById/{id}")
+    public ResultBean querySportVenueById(@PathVariable Integer id){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.venueService.findVenueById(id));
+            resultBean.setData(this.sportVenueService.findSportvenueById(id));
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
@@ -107,11 +109,11 @@ public class VenueController {
         }
         return resultBean;
     }
-    @RequestMapping(value = "/queryVenueAll")
-    public ResultBean queryVenueAll(){
+    @RequestMapping(value = "/querySportVenueAll")
+    public ResultBean querySportVenueAll(){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.venueService.findVenueAll());
+            resultBean.setData(this.sportVenueService.findSportvenueAll());
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
@@ -119,11 +121,11 @@ public class VenueController {
         }
         return resultBean;
     }
-    @RequestMapping(value = "/deleteVenue", method = RequestMethod.POST)
-    public ResultBean updateVenue(@RequestBody List<Integer> ids){
+    @RequestMapping(value = "/deleteSportVenue", method = RequestMethod.POST)
+    public ResultBean updateSportVenue(@RequestBody List<Integer> ids){
         ResultBean resultBean = new ResultBean();
         try {
-            this.venueService.DeleteVenueList(ids);
+            this.sportVenueService.DeleteSportvenueList(ids);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);

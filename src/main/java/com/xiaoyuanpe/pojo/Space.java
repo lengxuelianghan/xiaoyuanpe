@@ -19,6 +19,8 @@ public class Space {
 
     private String note;
 
+    private Integer sportvenueId;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class Space {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public Integer getSportvenueId() {
+        return sportvenueId;
+    }
+
+    public void setSportvenueId(Integer sportvenueId) {
+        this.sportvenueId = sportvenueId;
     }
 }

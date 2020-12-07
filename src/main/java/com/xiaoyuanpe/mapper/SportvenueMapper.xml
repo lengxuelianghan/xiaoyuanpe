@@ -9,6 +9,7 @@
     <result column="area" jdbcType="DOUBLE" property="area" />
     <result column="construction_time" jdbcType="TIMESTAMP" property="constructionTime" />
     <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="venue_id" jdbcType="INTEGER" property="venueId" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaoyuanpe.pojo.Sportvenue">
     <result column="imgs" jdbcType="LONGVARCHAR" property="imgs" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, sport_name, site_size, number_venues, area, construction_time, other
+    id, sport_name, site_size, number_venues, area, construction_time, other, venue_id
   </sql>
   <sql id="Blob_Column_List">
     imgs
@@ -128,10 +129,12 @@
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Sportvenue">
     insert into sportvenue (id, sport_name, site_size, 
       number_venues, area, construction_time, 
-      other, imgs)
+      other, venue_id, imgs
+      )
     values (#{id,jdbcType=INTEGER}, #{sportName,jdbcType=VARCHAR}, #{siteSize,jdbcType=DOUBLE}, 
       #{numberVenues,jdbcType=INTEGER}, #{area,jdbcType=DOUBLE}, #{constructionTime,jdbcType=TIMESTAMP}, 
-      #{other,jdbcType=VARCHAR}, #{imgs,jdbcType=LONGVARCHAR})
+      #{other,jdbcType=VARCHAR}, #{venueId,jdbcType=INTEGER}, #{imgs,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Sportvenue">
     insert into sportvenue
@@ -156,6 +159,9 @@
       </if>
       <if test="other != null">
         other,
+      </if>
+      <if test="venueId != null">
+        venue_id,
       </if>
       <if test="imgs != null">
         imgs,
@@ -182,6 +188,9 @@
       </if>
       <if test="other != null">
         #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="venueId != null">
+        #{venueId,jdbcType=INTEGER},
       </if>
       <if test="imgs != null">
         #{imgs,jdbcType=LONGVARCHAR},
@@ -218,6 +227,9 @@
       <if test="record.other != null">
         other = #{record.other,jdbcType=VARCHAR},
       </if>
+      <if test="record.venueId != null">
+        venue_id = #{record.venueId,jdbcType=INTEGER},
+      </if>
       <if test="record.imgs != null">
         imgs = #{record.imgs,jdbcType=LONGVARCHAR},
       </if>
@@ -235,6 +247,7 @@
       area = #{record.area,jdbcType=DOUBLE},
       construction_time = #{record.constructionTime,jdbcType=TIMESTAMP},
       other = #{record.other,jdbcType=VARCHAR},
+      venue_id = #{record.venueId,jdbcType=INTEGER},
       imgs = #{record.imgs,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +261,8 @@
       number_venues = #{record.numberVenues,jdbcType=INTEGER},
       area = #{record.area,jdbcType=DOUBLE},
       construction_time = #{record.constructionTime,jdbcType=TIMESTAMP},
-      other = #{record.other,jdbcType=VARCHAR}
+      other = #{record.other,jdbcType=VARCHAR},
+      venue_id = #{record.venueId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -274,6 +288,9 @@
       <if test="other != null">
         other = #{other,jdbcType=VARCHAR},
       </if>
+      <if test="venueId != null">
+        venue_id = #{venueId,jdbcType=INTEGER},
+      </if>
       <if test="imgs != null">
         imgs = #{imgs,jdbcType=LONGVARCHAR},
       </if>
@@ -288,6 +305,7 @@
       area = #{area,jdbcType=DOUBLE},
       construction_time = #{constructionTime,jdbcType=TIMESTAMP},
       other = #{other,jdbcType=VARCHAR},
+      venue_id = #{venueId,jdbcType=INTEGER},
       imgs = #{imgs,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -298,7 +316,9 @@
       number_venues = #{numberVenues,jdbcType=INTEGER},
       area = #{area,jdbcType=DOUBLE},
       construction_time = #{constructionTime,jdbcType=TIMESTAMP},
-      other = #{other,jdbcType=VARCHAR}
+      other = #{other,jdbcType=VARCHAR},
+      venue_id = #{venueId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

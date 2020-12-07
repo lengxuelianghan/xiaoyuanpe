@@ -17,6 +17,8 @@ public class Sportvenue {
 
     private String other;
 
+    private Integer venueId;
+
     private String imgs;
 
     public Integer getId() {
@@ -73,6 +75,14 @@ public class Sportvenue {
 
     public void setOther(String other) {
         this.other = other == null ? null : other.trim();
+    }
+
+    public Integer getVenueId() {
+        return venueId;
+    }
+
+    public void setVenueId(Integer venueId) {
+        this.venueId = venueId;
     }
 
     public String getImgs() {

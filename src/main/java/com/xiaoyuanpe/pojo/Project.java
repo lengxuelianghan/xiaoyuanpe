@@ -5,7 +5,7 @@ public class Project {
 
     private String projectName;
 
-    private Integer team;
+    private Boolean team;
 
     private Integer maximum;
 
@@ -14,8 +14,6 @@ public class Project {
     private String signingCondition;
 
     private String venue;
-
-    private Double teamSize;
 
     private Integer entryFee;
 
@@ -43,11 +41,11 @@ public class Project {
         this.projectName = projectName == null ? null : projectName.trim();
     }
 
-    public Integer getTeam() {
+    public Boolean getTeam() {
         return team;
     }
 
-    public void setTeam(Integer team) {
+    public void setTeam(Boolean team) {
         this.team = team;
     }
 
@@ -81,14 +79,6 @@ public class Project {
 
     public void setVenue(String venue) {
         this.venue = venue == null ? null : venue.trim();
-    }
-
-    public Double getTeamSize() {
-        return teamSize;
-    }
-
-    public void setTeamSize(Double teamSize) {
-        this.teamSize = teamSize;
     }
 
     public Integer getEntryFee() {
