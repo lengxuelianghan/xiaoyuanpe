@@ -77,12 +77,13 @@ public class UserVenueController {
         return resultBean;
     }
     // 预约场馆
-    @RequestMapping(value = "/addUserVenue", method = RequestMethod.POST)
+    @RequestMapping(value = "/addUserVenue/{spaceId}", method = RequestMethod.POST)
     public ResultBean addUserVenue(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate,
-                                   @RequestBody Space space, HttpServletRequest request){
+                                   @PathVariable Integer spaceId, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
+            Space space = this.spaceService.findSpaceById(spaceId);
             UserVenue userVenue = new UserVenue();
             userVenue.setEndTime(endDate);
             userVenue.setStartTime(startDate);
