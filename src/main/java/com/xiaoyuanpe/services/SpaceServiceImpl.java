@@ -34,7 +34,7 @@ public class SpaceServiceImpl implements SpaceService {
         List<Space> spaces = this.spaceMapper.selectByExample(new SpaceExample());
         List<Space> spaceList = new ArrayList<>();
         for (Space space : spaces){
-            if (space.getId()==id){
+            if (space.getSportvenueId()==id){
                 spaceList.add(space);
             }
         }

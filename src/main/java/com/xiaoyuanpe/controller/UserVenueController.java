@@ -65,10 +65,10 @@ public class UserVenueController {
                     }
                 }
                 if (b == 0) {
-                    resultBean.setCode(0);
                     spaceList.add(space);
                 }
             }
+            resultBean.setCode(0);
             resultBean.setData(spaceList);
         }catch (Exception e){
             resultBean.setCode(1);
