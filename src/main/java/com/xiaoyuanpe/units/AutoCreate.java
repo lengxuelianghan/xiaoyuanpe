@@ -1,10 +1,8 @@
 package com.xiaoyuanpe.units;
 
-import com.xiaoyuanpe.pojo.Activity;
-import com.xiaoyuanpe.pojo.Signin;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.StudentExample;
+import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.ActivityService;
+import com.xiaoyuanpe.services.ReservationService;
 import com.xiaoyuanpe.services.SignInService;
 import com.xiaoyuanpe.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,8 @@ public class AutoCreate {
     private SignInService signInService;
     @Autowired
     private ActivityService activityService;
+    @Autowired
+    private ReservationService reservationService;
 
     @Scheduled(cron = "0 10 5 ? * MON-FRI")
     public void addSignIn(){
@@ -38,6 +38,20 @@ public class AutoCreate {
                 signin1.setStudentId(student.getId());
                 signin1.setSportId(1);
                 this.signInService.addSignin(signin1);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Scheduled(cron = "0 0 23 * * ?")
+    public void InitReservation(){
+        try{
+            System.out.println("你好");
+            for (Reservation reservation: this.reservationService.findReservationAll()){
+                reservation.setStatus(0);
+                this.reservationService.ModifyReservation(reservation);
             }
         }
         catch (Exception e){
