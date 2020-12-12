@@ -31,7 +31,7 @@ public class SpaceController {
     @Autowired
     private ReservationService reservationService;
     @RequestMapping(value = "/addSpace", method = RequestMethod.POST)
-    public ResultBean addSpace(Space space, HttpServletRequest request){
+    public ResultBean addSpace(@RequestBody Space space, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
