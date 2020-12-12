@@ -104,7 +104,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Space">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Space" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into space (id, space_name, start_time, 
       end_time, reservation_status, description, 
       size, note, sportvenue_id
