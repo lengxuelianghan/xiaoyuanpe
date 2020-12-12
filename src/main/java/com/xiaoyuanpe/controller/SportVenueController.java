@@ -87,8 +87,7 @@ public class SportVenueController {
     }
 
     @RequestMapping(value = "/addSportVenue", method = RequestMethod.POST)
-    public ResultBean addSportVenue(@RequestParam(value="files", required=false) MultipartFile[] files,
-                                    Sportvenue venue, HttpServletRequest request){
+    public ResultBean addSportVenue(Sportvenue venue, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
