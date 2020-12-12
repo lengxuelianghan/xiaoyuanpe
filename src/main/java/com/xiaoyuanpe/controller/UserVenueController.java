@@ -46,7 +46,8 @@ public class UserVenueController {
     }
     //查询当前时间范围可预约场地
     @PostMapping("/queryReservation/{sportVenueId}")
-    public ResultBean queryReservation(Date startDate , Date endDate, @PathVariable Integer sportVenueId){
+    public ResultBean queryReservation(@RequestParam Date startDate , @RequestParam Date endDate,
+                                       @PathVariable Integer sportVenueId){
         ResultBean resultBean = new ResultBean();
         try {
             resultBean.setCode(1);
