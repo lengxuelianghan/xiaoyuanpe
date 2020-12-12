@@ -67,9 +67,9 @@ public class UserVenueController {
                 if (b == 0) {
                     resultBean.setCode(0);
                     spaceList.add(space);
-                    resultBean.setData(spaceList);
                 }
             }
+            resultBean.setData(spaceList);
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg("查询失败");
