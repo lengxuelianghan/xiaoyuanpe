@@ -52,16 +52,16 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation findReservationById(Integer id) {
-        return null;
+        return  this.reservationMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public void ModifyReservation(Reservation reservation) {
-
+        this.reservationMapper.updateByPrimaryKey(reservation);
     }
 
     @Override
     public void DeleteReservation(Integer id) {
-
+        this.reservationMapper.deleteByPrimaryKey(id);
     }
 }
