@@ -6,7 +6,7 @@
     <result column="space_name" jdbcType="VARCHAR" property="spaceName" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="reservation status" jdbcType="INTEGER" property="reservationStatus" />
+    <result column="reservation_status" jdbcType="INTEGER" property="reservationStatus" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="size" jdbcType="DOUBLE" property="size" />
     <result column="note" jdbcType="VARCHAR" property="note" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, space_name, start_time, end_time, "reservation status", description, size, note, 
+    id, space_name, start_time, end_time, reservation_status, description, size, note, 
     sportvenue_id
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.SpaceExample" resultMap="BaseResultMap">
@@ -104,9 +104,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Space" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Space">
     insert into space (id, space_name, start_time, 
-      end_time, "reservation status", description, 
+      end_time, reservation_status, description, 
       size, note, sportvenue_id
       )
     values (#{id,jdbcType=INTEGER}, #{spaceName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
@@ -130,7 +130,7 @@
         end_time,
       </if>
       <if test="reservationStatus != null">
-        "reservation status",
+        reservation_status,
       </if>
       <if test="description != null">
         description,
@@ -197,7 +197,7 @@
         end_time = #{record.endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.reservationStatus != null">
-        "reservation status" = #{record.reservationStatus,jdbcType=INTEGER},
+        reservation_status = #{record.reservationStatus,jdbcType=INTEGER},
       </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
       space_name = #{record.spaceName,jdbcType=VARCHAR},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      "reservation status" = #{record.reservationStatus,jdbcType=INTEGER},
+      reservation_status = #{record.reservationStatus,jdbcType=INTEGER},
       description = #{record.description,jdbcType=VARCHAR},
       size = #{record.size,jdbcType=DOUBLE},
       note = #{record.note,jdbcType=VARCHAR},
@@ -244,7 +244,7 @@
         end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
       <if test="reservationStatus != null">
-        "reservation status" = #{reservationStatus,jdbcType=INTEGER},
+        reservation_status = #{reservationStatus,jdbcType=INTEGER},
       </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
@@ -266,12 +266,11 @@
     set space_name = #{spaceName,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      "reservation status" = #{reservationStatus,jdbcType=INTEGER},
+      reservation_status = #{reservationStatus,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
       size = #{size,jdbcType=DOUBLE},
       note = #{note,jdbcType=VARCHAR},
       sportvenue_id = #{sportvenueId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
 </mapper>

@@ -356,62 +356,62 @@ public class SpaceExample {
         }
 
         public Criteria andReservationStatusIsNull() {
-            addCriterion("\"reservation status\" is null");
+            addCriterion("reservation_status is null");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusIsNotNull() {
-            addCriterion("\"reservation status\" is not null");
+            addCriterion("reservation_status is not null");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusEqualTo(Integer value) {
-            addCriterion("\"reservation status\" =", value, "reservationStatus");
+            addCriterion("reservation_status =", value, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusNotEqualTo(Integer value) {
-            addCriterion("\"reservation status\" <>", value, "reservationStatus");
+            addCriterion("reservation_status <>", value, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusGreaterThan(Integer value) {
-            addCriterion("\"reservation status\" >", value, "reservationStatus");
+            addCriterion("reservation_status >", value, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("\"reservation status\" >=", value, "reservationStatus");
+            addCriterion("reservation_status >=", value, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusLessThan(Integer value) {
-            addCriterion("\"reservation status\" <", value, "reservationStatus");
+            addCriterion("reservation_status <", value, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("\"reservation status\" <=", value, "reservationStatus");
+            addCriterion("reservation_status <=", value, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusIn(List<Integer> values) {
-            addCriterion("\"reservation status\" in", values, "reservationStatus");
+            addCriterion("reservation_status in", values, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusNotIn(List<Integer> values) {
-            addCriterion("\"reservation status\" not in", values, "reservationStatus");
+            addCriterion("reservation_status not in", values, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusBetween(Integer value1, Integer value2) {
-            addCriterion("\"reservation status\" between", value1, value2, "reservationStatus");
+            addCriterion("reservation_status between", value1, value2, "reservationStatus");
             return (Criteria) this;
         }
 
         public Criteria andReservationStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("\"reservation status\" not between", value1, value2, "reservationStatus");
+            addCriterion("reservation_status not between", value1, value2, "reservationStatus");
             return (Criteria) this;
         }
 
