@@ -19,6 +19,8 @@ public class Sportvenue {
 
     private Integer venueId;
 
+    private String imgName;
+
     private String imgs;
 
     public Integer getId() {
@@ -83,6 +85,14 @@ public class Sportvenue {
 
     public void setVenueId(Integer venueId) {
         this.venueId = venueId;
+    }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName == null ? null : imgName.trim();
     }
 
     public String getImgs() {

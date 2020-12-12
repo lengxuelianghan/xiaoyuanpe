@@ -1,9 +1,11 @@
 package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.mapper.SpaceMapper;
+import com.xiaoyuanpe.pojo.Reservation;
 import com.xiaoyuanpe.pojo.Space;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.Venue;
+import com.xiaoyuanpe.services.ReservationService;
 import com.xiaoyuanpe.services.SpaceService;
 import com.xiaoyuanpe.services.VenueService;
 import com.xiaoyuanpe.units.ResultBean;
@@ -26,14 +28,19 @@ import java.util.List;
 public class SpaceController {
     @Autowired
     private SpaceService spaceService;
-
+    @Autowired
+    private ReservationService reservationService;
     @RequestMapping(value = "/addSpace", method = RequestMethod.POST)
     public ResultBean addSpace(Space space, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
             this.spaceService.addSpace(space);
-
+            Reservation reservation = new Reservation();
+            reservation.setSpaceId(space.getId());
+            reservation.setSportvenueId(space.getSportvenueId());
+            reservation.setStatus(0);
+            this.reservationService.addReservation(reservation);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg(e.getMessage());

@@ -50,8 +50,8 @@ public class SportVenueController {
         return upload.getAbsolutePath();
     }
 
-    @RequestMapping(value = "/addSportVenue", method = RequestMethod.POST)
-    public ResultBean addSportVenue(@RequestParam(value="files", required=false) MultipartFile[] files,
+    @RequestMapping(value = "/addSportVenueWithImg", method = RequestMethod.POST)
+    public ResultBean addSportVenueWithImg(@RequestParam(value="files", required=false) MultipartFile[] files,
                                     Sportvenue venue, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
@@ -77,6 +77,21 @@ public class SportVenueController {
                 venue.setImgs(imageName);
             }
             //venue.setSchoolId(user.getSchoolId());
+            this.sportVenueService.addSportvenue(venue);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setMsg(e.getMessage());
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/addSportVenue", method = RequestMethod.POST)
+    public ResultBean addSportVenue(@RequestParam(value="files", required=false) MultipartFile[] files,
+                                    Sportvenue venue, HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
             this.sportVenueService.addSportvenue(venue);
             resultBean.setCode(0);
         }catch (Exception e){

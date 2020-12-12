@@ -17,6 +17,8 @@ public class Venue {
 
     private Integer schoolId;
 
+    private String imgName;
+
     private String imgs;
 
     public Integer getId() {
@@ -81,6 +83,14 @@ public class Venue {
 
     public void setSchoolId(Integer schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName == null ? null : imgName.trim();
     }
 
     public String getImgs() {

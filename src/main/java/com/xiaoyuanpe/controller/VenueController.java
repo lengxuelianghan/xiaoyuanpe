@@ -48,8 +48,8 @@ public class VenueController {
         return upload.getAbsolutePath();
     }
 
-    @RequestMapping(value = "/addVenue", method = RequestMethod.POST)
-    public ResultBean addVenue(@RequestParam(value="files", required=false) MultipartFile[] files,
+    @RequestMapping(value = "/addVenueWithImg", method = RequestMethod.POST)
+    public ResultBean addVenueWithImg(@RequestParam(value="files", required=false) MultipartFile[] files,
                                Venue venue, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
@@ -83,6 +83,21 @@ public class VenueController {
         }
         return resultBean;
     }
+    @RequestMapping(value = "/addVenue", method = RequestMethod.POST)
+    public ResultBean addVenue(Venue venue, HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            venue.setSchoolId(user.getSchoolId());
+            this.venueService.addVenue(venue);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setMsg(e.getMessage());
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
+
     @RequestMapping(value = "/updateVenue", method = RequestMethod.POST)
     public ResultBean updateVenue(@RequestBody Venue venue){
         ResultBean resultBean = new ResultBean();
