@@ -78,20 +78,20 @@ public class UserVenueController {
     }
     // 预约场馆
     @RequestMapping(value = "/addUserVenue", method = RequestMethod.POST)
-    public ResultBean addUserVenue(@RequestParam("startTime") Date startTime, @RequestParam("endDate") Date endTime,
+    public ResultBean addUserVenue(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate,
                                    @RequestBody Space space, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
             UserVenue userVenue = new UserVenue();
-            userVenue.setEndTime(endTime);
-            userVenue.setStartTime(startTime);
+            userVenue.setEndTime(endDate);
+            userVenue.setStartTime(startDate);
             userVenue.setSpaceId(space.getId());
             userVenue.setSportvenueId(space.getSportvenueId());
             userVenue.setUserId(user.getId());
             this.userVenueService.addUserVenue(userVenue);
-            int sTime = startTime.getHours();
-            int eTime = endTime.getHours();
+            int sTime = startDate.getHours();
+            int eTime = endDate.getHours();
             List<Reservation> reservationAllBySpaceId =
                     this.reservationService.findReservationAllBySpaceId(space.getId());
             for (Reservation reservation: reservationAllBySpaceId) {
