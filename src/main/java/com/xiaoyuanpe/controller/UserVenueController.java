@@ -77,7 +77,7 @@ public class UserVenueController {
         return resultBean;
     }
     // 预约场馆
-    @GetMapping(value = "/addUserVenue/{spaceId}")
+    @RequestMapping(value = "/addUserVenue/{spaceId}", method = RequestMethod.POST)
     public ResultBean addUserVenue(@PathVariable Integer spaceId,@RequestParam("startDate") Date startDate,
                                    @RequestParam("endDate") Date endDate, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
