@@ -84,7 +84,7 @@ public class VenueController {
         return resultBean;
     }
     @RequestMapping(value = "/addVenue", method = RequestMethod.POST)
-    public ResultBean addVenue(Venue venue, HttpServletRequest request){
+    public ResultBean addVenue(@RequestBody Venue venue, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
