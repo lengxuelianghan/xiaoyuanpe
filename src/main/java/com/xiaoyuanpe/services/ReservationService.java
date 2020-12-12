@@ -9,6 +9,10 @@ public interface ReservationService {
 
     List<Reservation> findReservationAll();
 
+    List<Reservation> findReservationAllBySportId(Integer id);
+
+    List<Reservation> findReservationAllBySpaceId(Integer id);
+
     Reservation findReservationById(Integer id);
 
     void ModifyReservation(Reservation reservation);

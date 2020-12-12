@@ -464,6 +464,126 @@ public class ReservationExample {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andHourIndexIsNull() {
+            addCriterion("hour_index is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexIsNotNull() {
+            addCriterion("hour_index is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexEqualTo(Integer value) {
+            addCriterion("hour_index =", value, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexNotEqualTo(Integer value) {
+            addCriterion("hour_index <>", value, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexGreaterThan(Integer value) {
+            addCriterion("hour_index >", value, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexGreaterThanOrEqualTo(Integer value) {
+            addCriterion("hour_index >=", value, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexLessThan(Integer value) {
+            addCriterion("hour_index <", value, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexLessThanOrEqualTo(Integer value) {
+            addCriterion("hour_index <=", value, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexIn(List<Integer> values) {
+            addCriterion("hour_index in", values, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexNotIn(List<Integer> values) {
+            addCriterion("hour_index not in", values, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexBetween(Integer value1, Integer value2) {
+            addCriterion("hour_index between", value1, value2, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andHourIndexNotBetween(Integer value1, Integer value2) {
+            addCriterion("hour_index not between", value1, value2, "hourIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexIsNull() {
+            addCriterion("day_index is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexIsNotNull() {
+            addCriterion("day_index is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexEqualTo(Integer value) {
+            addCriterion("day_index =", value, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexNotEqualTo(Integer value) {
+            addCriterion("day_index <>", value, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexGreaterThan(Integer value) {
+            addCriterion("day_index >", value, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexGreaterThanOrEqualTo(Integer value) {
+            addCriterion("day_index >=", value, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexLessThan(Integer value) {
+            addCriterion("day_index <", value, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexLessThanOrEqualTo(Integer value) {
+            addCriterion("day_index <=", value, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexIn(List<Integer> values) {
+            addCriterion("day_index in", values, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexNotIn(List<Integer> values) {
+            addCriterion("day_index not in", values, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexBetween(Integer value1, Integer value2) {
+            addCriterion("day_index between", value1, value2, "dayIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDayIndexNotBetween(Integer value1, Integer value2) {
+            addCriterion("day_index not between", value1, value2, "dayIndex");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

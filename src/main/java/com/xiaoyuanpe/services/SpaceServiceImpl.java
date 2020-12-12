@@ -6,6 +6,7 @@ import com.xiaoyuanpe.pojo.SpaceExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,6 +27,18 @@ public class SpaceServiceImpl implements SpaceService {
     @Override
     public Space findSpaceById(Integer id) {
         return this.spaceMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Space> findSpaceBySportId(Integer id) {
+        List<Space> spaces = this.spaceMapper.selectByExample(new SpaceExample());
+        List<Space> spaceList = new ArrayList<>();
+        for (Space space : spaces){
+            if (space.getId()==id){
+                spaceList.add(space);
+            }
+        }
+        return spaceList;
     }
 
     @Override

@@ -15,6 +15,10 @@ public class Reservation {
 
     private Integer status;
 
+    private Integer hourIndex;
+
+    private Integer dayIndex;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +65,21 @@ public class Reservation {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getHourIndex() {
+        return hourIndex;
+    }
+
+    public void setHourIndex(Integer hourIndex) {
+        this.hourIndex = hourIndex;
+    }
+
+    public Integer getDayIndex() {
+        return dayIndex;
+    }
+
+    public void setDayIndex(Integer dayIndex) {
+        this.dayIndex = dayIndex;
     }
 }

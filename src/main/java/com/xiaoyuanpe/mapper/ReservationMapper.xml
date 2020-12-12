@@ -8,6 +8,8 @@
     <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
     <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="hour_index" jdbcType="INTEGER" property="hourIndex" />
+    <result column="day_index" jdbcType="INTEGER" property="dayIndex" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, sportvenue_id, space_id, starttime, endtime, status
+    id, sportvenue_id, space_id, starttime, endtime, status, hour_index, day_index
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ReservationExample" resultMap="BaseResultMap">
     select
@@ -102,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Reservation">
     insert into reservation (id, sportvenue_id, space_id, 
-      starttime, endtime, status
-      )
+      starttime, endtime, status, 
+      hour_index, day_index)
     values (#{id,jdbcType=INTEGER}, #{sportvenueId,jdbcType=INTEGER}, #{spaceId,jdbcType=INTEGER}, 
-      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
-      )
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{hourIndex,jdbcType=INTEGER}, #{dayIndex,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Reservation">
     insert into reservation
@@ -129,6 +131,12 @@
       <if test="status != null">
         status,
       </if>
+      <if test="hourIndex != null">
+        hour_index,
+      </if>
+      <if test="dayIndex != null">
+        day_index,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -148,6 +156,12 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="hourIndex != null">
+        #{hourIndex,jdbcType=INTEGER},
+      </if>
+      <if test="dayIndex != null">
+        #{dayIndex,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -178,6 +192,12 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.hourIndex != null">
+        hour_index = #{record.hourIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.dayIndex != null">
+        day_index = #{record.dayIndex,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +210,9 @@
       space_id = #{record.spaceId,jdbcType=INTEGER},
       starttime = #{record.starttime,jdbcType=TIMESTAMP},
       endtime = #{record.endtime,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      hour_index = #{record.hourIndex,jdbcType=INTEGER},
+      day_index = #{record.dayIndex,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +235,12 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="hourIndex != null">
+        hour_index = #{hourIndex,jdbcType=INTEGER},
+      </if>
+      <if test="dayIndex != null">
+        day_index = #{dayIndex,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -222,7 +250,9 @@
       space_id = #{spaceId,jdbcType=INTEGER},
       starttime = #{starttime,jdbcType=TIMESTAMP},
       endtime = #{endtime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      hour_index = #{hourIndex,jdbcType=INTEGER},
+      day_index = #{dayIndex,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

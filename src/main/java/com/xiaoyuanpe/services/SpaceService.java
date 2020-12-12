@@ -11,6 +11,8 @@ public interface SpaceService {
 
     Space findSpaceById(Integer id);
 
+    List<Space> findSpaceBySportId(Integer id);
+
     void ModifySpace(Space space);
 
     void DeleteSpace(Integer id);

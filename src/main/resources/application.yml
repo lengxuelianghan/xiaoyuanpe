@@ -15,4 +15,3 @@ spring:
 #  type-aliases-package:
 logging:
   config: classpath:logback-spring.xml
-
