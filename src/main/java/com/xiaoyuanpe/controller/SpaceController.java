@@ -7,6 +7,7 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.Venue;
 import com.xiaoyuanpe.services.ReservationService;
 import com.xiaoyuanpe.services.SpaceService;
+import com.xiaoyuanpe.services.SportVenueService;
 import com.xiaoyuanpe.services.VenueService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class SpaceController {
     private SpaceService spaceService;
     @Autowired
     private ReservationService reservationService;
+    @Autowired
+    private VenueService venueService;
+    @Autowired
+    private SportVenueService sportVenueService;
     @RequestMapping(value = "/addSpace", method = RequestMethod.POST)
     public ResultBean addSpace(@RequestBody Space space, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
@@ -40,7 +45,9 @@ public class SpaceController {
             reservation.setSpaceId(space.getId());
             reservation.setSportvenueId(space.getSportvenueId());
             reservation.setStatus(0);
-            this.reservationService.addReservation(reservation);
+            String hours[] = this.venueService.findVenueById(this.reservationService.findReservationById(space.getSportvenueId()).getSpaceId()).
+                    getOpeningTime().split("-");
+            this.reservationService.addReservation(reservation, Integer.parseInt(hours[0]),Integer.parseInt(hours[1]));
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg(e.getMessage());

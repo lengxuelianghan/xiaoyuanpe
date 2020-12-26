@@ -69,6 +69,18 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public List<Activity> findActivityAllListAfterDate() {
+        List<Activity> activityList = new ArrayList<>();
+        ActivityExample activityExample = new ActivityExample();
+        for (Activity activity: this.activityMapper.selectByExample(activityExample)){
+            if (activity.getEndTime().after(new Date())){
+                activityList.add(activity);
+            }
+        }
+        return activityList;
+    }
+
+    @Override
     public List<Activity> findActivityByUserId(Integer userId) {
         List<Activity> activityList = this.activityMapper.selectByExample(new ActivityExample());
         List<Activity> activities = new ArrayList<>();

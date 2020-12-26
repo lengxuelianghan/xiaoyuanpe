@@ -49,7 +49,8 @@ public class AutoCreate {
     public void InitReservation(){
         try{
             System.out.println("你好");
-            for (Reservation reservation: this.reservationService.findReservationAll()){
+            int dayInWeek = new Date().getDay();
+            for (Reservation reservation: this.reservationService.findReservationAllByDay(dayInWeek)){
                 reservation.setStatus(0);
                 this.reservationService.ModifyReservation(reservation);
             }

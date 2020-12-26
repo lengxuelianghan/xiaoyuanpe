@@ -19,6 +19,8 @@ public interface ActivityService {
 
     List<Activity>  findActivityAllList();
 
+    List<Activity>  findActivityAllListAfterDate();
+
     List<Activity>  findActivityByUserId(Integer userId);
 
 }

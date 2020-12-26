@@ -5,12 +5,18 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="venue_name" jdbcType="VARCHAR" property="venueName" />
     <result column="Introduction" jdbcType="VARCHAR" property="introduction" />
-    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="per_price" jdbcType="VARCHAR" property="perPrice" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="closing_date_start" jdbcType="TIMESTAMP" property="closingDateStart" />
+    <result column="closing_date_end" jdbcType="TIMESTAMP" property="closingDateEnd" />
+    <result column="opening_date_start" jdbcType="TIMESTAMP" property="openingDateStart" />
+    <result column="opening_date_end" jdbcType="TIMESTAMP" property="openingDateEnd" />
     <result column="opening_time" jdbcType="VARCHAR" property="openingTime" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="venue_addr" jdbcType="VARCHAR" property="venueAddr" />
     <result column="school_id" jdbcType="INTEGER" property="schoolId" />
     <result column="img_name" jdbcType="VARCHAR" property="imgName" />
+    <result column="the_bus" jdbcType="VARCHAR" property="theBus" />
+    <result column="subway" jdbcType="VARCHAR" property="subway" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaoyuanpe.pojo.Venue">
     <result column="imgs" jdbcType="LONGVARCHAR" property="imgs" />
@@ -74,8 +80,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, venue_name, Introduction, contact, phone, opening_time, description, school_id, 
-    img_name
+    id, venue_name, Introduction, per_price, phone, closing_date_start, closing_date_end, 
+    opening_date_start, opening_date_end, opening_time, venue_addr, school_id, img_name, 
+    the_bus, subway
   </sql>
   <sql id="Blob_Column_List">
     imgs
@@ -130,12 +137,16 @@
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Venue">
     insert into venue (id, venue_name, Introduction, 
-      contact, phone, opening_time, 
-      description, school_id, img_name, 
+      per_price, phone, closing_date_start, 
+      closing_date_end, opening_date_start, opening_date_end, 
+      opening_time, venue_addr, school_id, 
+      img_name, the_bus, subway, 
       imgs)
     values (#{id,jdbcType=INTEGER}, #{venueName,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
-      #{contact,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{openingTime,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{schoolId,jdbcType=INTEGER}, #{imgName,jdbcType=VARCHAR}, 
+      #{perPrice,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{closingDateStart,jdbcType=TIMESTAMP}, 
+      #{closingDateEnd,jdbcType=TIMESTAMP}, #{openingDateStart,jdbcType=TIMESTAMP}, #{openingDateEnd,jdbcType=TIMESTAMP}, 
+      #{openingTime,jdbcType=VARCHAR}, #{venueAddr,jdbcType=VARCHAR}, #{schoolId,jdbcType=INTEGER}, 
+      #{imgName,jdbcType=VARCHAR}, #{theBus,jdbcType=VARCHAR}, #{subway,jdbcType=VARCHAR}, 
       #{imgs,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Venue">
@@ -150,23 +161,41 @@
       <if test="introduction != null">
         Introduction,
       </if>
-      <if test="contact != null">
-        contact,
+      <if test="perPrice != null">
+        per_price,
       </if>
       <if test="phone != null">
         phone,
       </if>
+      <if test="closingDateStart != null">
+        closing_date_start,
+      </if>
+      <if test="closingDateEnd != null">
+        closing_date_end,
+      </if>
+      <if test="openingDateStart != null">
+        opening_date_start,
+      </if>
+      <if test="openingDateEnd != null">
+        opening_date_end,
+      </if>
       <if test="openingTime != null">
         opening_time,
       </if>
-      <if test="description != null">
-        description,
+      <if test="venueAddr != null">
+        venue_addr,
       </if>
       <if test="schoolId != null">
         school_id,
       </if>
       <if test="imgName != null">
         img_name,
+      </if>
+      <if test="theBus != null">
+        the_bus,
+      </if>
+      <if test="subway != null">
+        subway,
       </if>
       <if test="imgs != null">
         imgs,
@@ -182,23 +211,41 @@
       <if test="introduction != null">
         #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="contact != null">
-        #{contact,jdbcType=VARCHAR},
+      <if test="perPrice != null">
+        #{perPrice,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
+      <if test="closingDateStart != null">
+        #{closingDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closingDateEnd != null">
+        #{closingDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openingDateStart != null">
+        #{openingDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openingDateEnd != null">
+        #{openingDateEnd,jdbcType=TIMESTAMP},
+      </if>
       <if test="openingTime != null">
         #{openingTime,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
+      <if test="venueAddr != null">
+        #{venueAddr,jdbcType=VARCHAR},
       </if>
       <if test="schoolId != null">
         #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="imgName != null">
         #{imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="theBus != null">
+        #{theBus,jdbcType=VARCHAR},
+      </if>
+      <if test="subway != null">
+        #{subway,jdbcType=VARCHAR},
       </if>
       <if test="imgs != null">
         #{imgs,jdbcType=LONGVARCHAR},
@@ -223,23 +270,41 @@
       <if test="record.introduction != null">
         Introduction = #{record.introduction,jdbcType=VARCHAR},
       </if>
-      <if test="record.contact != null">
-        contact = #{record.contact,jdbcType=VARCHAR},
+      <if test="record.perPrice != null">
+        per_price = #{record.perPrice,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
+      <if test="record.closingDateStart != null">
+        closing_date_start = #{record.closingDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.closingDateEnd != null">
+        closing_date_end = #{record.closingDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openingDateStart != null">
+        opening_date_start = #{record.openingDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openingDateEnd != null">
+        opening_date_end = #{record.openingDateEnd,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.openingTime != null">
         opening_time = #{record.openingTime,jdbcType=VARCHAR},
       </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
+      <if test="record.venueAddr != null">
+        venue_addr = #{record.venueAddr,jdbcType=VARCHAR},
       </if>
       <if test="record.schoolId != null">
         school_id = #{record.schoolId,jdbcType=INTEGER},
       </if>
       <if test="record.imgName != null">
         img_name = #{record.imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.theBus != null">
+        the_bus = #{record.theBus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subway != null">
+        subway = #{record.subway,jdbcType=VARCHAR},
       </if>
       <if test="record.imgs != null">
         imgs = #{record.imgs,jdbcType=LONGVARCHAR},
@@ -254,12 +319,18 @@
     set id = #{record.id,jdbcType=INTEGER},
       venue_name = #{record.venueName,jdbcType=VARCHAR},
       Introduction = #{record.introduction,jdbcType=VARCHAR},
-      contact = #{record.contact,jdbcType=VARCHAR},
+      per_price = #{record.perPrice,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
+      closing_date_start = #{record.closingDateStart,jdbcType=TIMESTAMP},
+      closing_date_end = #{record.closingDateEnd,jdbcType=TIMESTAMP},
+      opening_date_start = #{record.openingDateStart,jdbcType=TIMESTAMP},
+      opening_date_end = #{record.openingDateEnd,jdbcType=TIMESTAMP},
       opening_time = #{record.openingTime,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
+      venue_addr = #{record.venueAddr,jdbcType=VARCHAR},
       school_id = #{record.schoolId,jdbcType=INTEGER},
       img_name = #{record.imgName,jdbcType=VARCHAR},
+      the_bus = #{record.theBus,jdbcType=VARCHAR},
+      subway = #{record.subway,jdbcType=VARCHAR},
       imgs = #{record.imgs,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -270,12 +341,18 @@
     set id = #{record.id,jdbcType=INTEGER},
       venue_name = #{record.venueName,jdbcType=VARCHAR},
       Introduction = #{record.introduction,jdbcType=VARCHAR},
-      contact = #{record.contact,jdbcType=VARCHAR},
+      per_price = #{record.perPrice,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
+      closing_date_start = #{record.closingDateStart,jdbcType=TIMESTAMP},
+      closing_date_end = #{record.closingDateEnd,jdbcType=TIMESTAMP},
+      opening_date_start = #{record.openingDateStart,jdbcType=TIMESTAMP},
+      opening_date_end = #{record.openingDateEnd,jdbcType=TIMESTAMP},
       opening_time = #{record.openingTime,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
+      venue_addr = #{record.venueAddr,jdbcType=VARCHAR},
       school_id = #{record.schoolId,jdbcType=INTEGER},
-      img_name = #{record.imgName,jdbcType=VARCHAR}
+      img_name = #{record.imgName,jdbcType=VARCHAR},
+      the_bus = #{record.theBus,jdbcType=VARCHAR},
+      subway = #{record.subway,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -289,23 +366,41 @@
       <if test="introduction != null">
         Introduction = #{introduction,jdbcType=VARCHAR},
       </if>
-      <if test="contact != null">
-        contact = #{contact,jdbcType=VARCHAR},
+      <if test="perPrice != null">
+        per_price = #{perPrice,jdbcType=VARCHAR},
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
+      <if test="closingDateStart != null">
+        closing_date_start = #{closingDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closingDateEnd != null">
+        closing_date_end = #{closingDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openingDateStart != null">
+        opening_date_start = #{openingDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openingDateEnd != null">
+        opening_date_end = #{openingDateEnd,jdbcType=TIMESTAMP},
+      </if>
       <if test="openingTime != null">
         opening_time = #{openingTime,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
+      <if test="venueAddr != null">
+        venue_addr = #{venueAddr,jdbcType=VARCHAR},
       </if>
       <if test="schoolId != null">
         school_id = #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="imgName != null">
         img_name = #{imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="theBus != null">
+        the_bus = #{theBus,jdbcType=VARCHAR},
+      </if>
+      <if test="subway != null">
+        subway = #{subway,jdbcType=VARCHAR},
       </if>
       <if test="imgs != null">
         imgs = #{imgs,jdbcType=LONGVARCHAR},
@@ -317,12 +412,18 @@
     update venue
     set venue_name = #{venueName,jdbcType=VARCHAR},
       Introduction = #{introduction,jdbcType=VARCHAR},
-      contact = #{contact,jdbcType=VARCHAR},
+      per_price = #{perPrice,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
+      closing_date_start = #{closingDateStart,jdbcType=TIMESTAMP},
+      closing_date_end = #{closingDateEnd,jdbcType=TIMESTAMP},
+      opening_date_start = #{openingDateStart,jdbcType=TIMESTAMP},
+      opening_date_end = #{openingDateEnd,jdbcType=TIMESTAMP},
       opening_time = #{openingTime,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
+      venue_addr = #{venueAddr,jdbcType=VARCHAR},
       school_id = #{schoolId,jdbcType=INTEGER},
       img_name = #{imgName,jdbcType=VARCHAR},
+      the_bus = #{theBus,jdbcType=VARCHAR},
+      subway = #{subway,jdbcType=VARCHAR},
       imgs = #{imgs,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -330,12 +431,18 @@
     update venue
     set venue_name = #{venueName,jdbcType=VARCHAR},
       Introduction = #{introduction,jdbcType=VARCHAR},
-      contact = #{contact,jdbcType=VARCHAR},
+      per_price = #{perPrice,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
+      closing_date_start = #{closingDateStart,jdbcType=TIMESTAMP},
+      closing_date_end = #{closingDateEnd,jdbcType=TIMESTAMP},
+      opening_date_start = #{openingDateStart,jdbcType=TIMESTAMP},
+      opening_date_end = #{openingDateEnd,jdbcType=TIMESTAMP},
       opening_time = #{openingTime,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
+      venue_addr = #{venueAddr,jdbcType=VARCHAR},
       school_id = #{schoolId,jdbcType=INTEGER},
-      img_name = #{imgName,jdbcType=VARCHAR}
+      img_name = #{imgName,jdbcType=VARCHAR},
+      the_bus = #{theBus,jdbcType=VARCHAR},
+      subway = #{subway,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -45,8 +45,8 @@ public class UserVenueController {
         return userVenueEntry;
     }
     //查询当前时间范围可预约场地
-    @PostMapping("/queryReservation/{sportVenueId}")
-    public ResultBean queryReservation(@RequestParam Date startDate , @RequestParam Date endDate,
+    @PostMapping("/queryReservationToSpace/{sportVenueId}")
+    public ResultBean queryReservationToSpace(@RequestParam Date startDate , @RequestParam Date endDate,
                                        @PathVariable Integer sportVenueId){
         ResultBean resultBean = new ResultBean();
         try {
@@ -73,6 +73,89 @@ public class UserVenueController {
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg("查询失败");
+        }
+        return resultBean;
+    }
+    //查询场地和时间预约信息
+    @PostMapping("/queryReservation/{sportVenueId}")
+    public ResultBean queryReservation(@RequestParam Date queryDate, @PathVariable Integer sportVenueId){
+        int dayInWeek = queryDate.getDay();
+        ResultBean resultBean = new ResultBean();
+        try {
+            resultBean.setCode(1);
+            String days[] = this.venueService.findVenueById(this.sportVenueService.findSportvenueById(sportVenueId).getVenueId()).
+                    getOpeningTime().split("-");
+            int startHour = Integer.parseInt(days[0]);
+            int endHour = Integer.parseInt(days[1]);
+            List<Space> spaces = this.spaceService.findSpaceBySportId(sportVenueId);
+            List<Space> spaceList = new ArrayList<>();
+            List<SpaceTime> spaceTimes = new ArrayList<>();
+            for (Space space : spaces) {
+                List<Reservation> reservations = this.reservationService.findReservationAllBySpaceIdAndDay(space.getId(),dayInWeek);
+                int b = 0;
+                SpaceTime spaceTime = new SpaceTime();
+                spaceTime.setSpaceId(space.getId());
+                spaceTime.setSpaceName(space.getSpaceName());
+                for (Reservation reservation : reservations) {
+                    for (int i=startHour; i<endHour; i++) {
+                        if (reservation.getHourIndex() >= i && reservation.getHourIndex() < i+1) {
+                            if (reservation.getStatus() == 1){
+                                continue;
+                            }
+                            else {
+                                //spaceTime.setSpaceStatus("可预约");
+                                if (spaceTime.getDataList()==null){
+                                    spaceTime.setDataList(new ArrayList<>());
+                                }
+                                spaceTime.getDataList().add(i+"");
+                            }
+                        }
+                    }
+                }
+            }
+            resultBean.setCode(0);
+            resultBean.setData(spaceList);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg("查询失败");
+        }
+        return resultBean;
+    }
+    // 预约场馆,需改后
+    @RequestMapping(value = "/addUserVenues/{spaceId}", method = RequestMethod.POST)
+    public ResultBean addUserVenues(@RequestBody List<SpaceTime> spaceTimes,
+                                   @PathVariable Integer spaceId, HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            resultBean.setCode(1);
+            for (SpaceTime spaceTime: spaceTimes) {
+                int dayInWeek = spaceTime.getDate().getDay();
+                Space space = this.spaceService.findSpaceById(spaceId);
+                UserVenue userVenue = new UserVenue();
+                //userVenue.setEndTime(endDate);
+                //userVenue.setStartTime(startDate);
+                userVenue.setSpaceId(space.getId());
+                userVenue.setSportvenueId(space.getSportvenueId());
+                userVenue.setUserId(user.getId());
+                this.userVenueService.addUserVenue(userVenue);
+                for (String s:spaceTime.getDataList()) {
+                    int sTime = Integer.parseInt(s);//startDate.getHours();
+                    int eTime = sTime+1;
+                    List<Reservation> reservationAllBySpaceId =
+                            this.reservationService.findReservationAllBySpaceIdAndDay(space.getId(), dayInWeek);
+                    for (Reservation reservation : reservationAllBySpaceId) {
+                        if ((reservation.getHourIndex() >= sTime) && (reservation.getHourIndex() < eTime) && reservation.getStatus()==0) {
+                            reservation.setStatus(1);
+                            this.reservationService.ModifyReservation(reservation);
+                        }
+                    }
+                }
+            }
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setMsg(e.getMessage());
+            resultBean.setCode(1);
         }
         return resultBean;
     }
