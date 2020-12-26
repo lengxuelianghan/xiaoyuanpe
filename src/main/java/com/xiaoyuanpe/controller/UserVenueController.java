@@ -113,6 +113,9 @@ public class UserVenueController {
                         }
                     }
                 }
+                if (spaceTime.getDataList()!=null){
+                    spaceTimes.add(spaceTime);
+                }
             }
             resultBean.setCode(0);
             resultBean.setData(spaceTimes);
