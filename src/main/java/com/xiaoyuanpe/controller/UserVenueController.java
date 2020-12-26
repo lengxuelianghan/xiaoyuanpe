@@ -234,18 +234,12 @@ public class UserVenueController {
         ResultBean resultBean = new ResultBean();
         try {
             for (Integer id: ids) {
-                this.userVenueService.DeleteUserVenue(id);
-                UserVenue userVenue = this.userVenueService.findUserVenueById(id);
-                int sTime = userVenue.getStartTime().getHours();
-                int eTime = userVenue.getEndTime().getHours();
-                List<Reservation> reservationAllBySpaceId =
-                        this.reservationService.findReservationAllBySpaceId(userVenue.getSpaceId());
-                for (Reservation reservation : reservationAllBySpaceId) {
-                    if ((reservation.getHourIndex() >= sTime) && (reservation.getHourIndex() < eTime)) {
-                        reservation.setStatus(0);
-                        this.reservationService.ModifyReservation(reservation);
-                    }
+                Reservation reservation = this.reservationService.findReservationById(id);
+                if (reservation.getStatus()==1) {
+                    reservation.setStatus(0);
+                    this.reservationService.ModifyReservation(reservation);
                 }
+
             }
             resultBean.setCode(0);
         }catch (Exception e){
