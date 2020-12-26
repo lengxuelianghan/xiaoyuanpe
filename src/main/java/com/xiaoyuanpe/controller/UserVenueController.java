@@ -127,8 +127,7 @@ public class UserVenueController {
     }
     // 预约场馆,需改后
     @RequestMapping(value = "/addUserVenues", method = RequestMethod.POST)
-    public ResultBean addUserVenues(@RequestBody List<SpaceTime> spaceTimes,
-                                   @PathVariable Integer spaceId, HttpServletRequest request){
+    public ResultBean addUserVenues(@RequestBody List<SpaceTime> spaceTimes, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
