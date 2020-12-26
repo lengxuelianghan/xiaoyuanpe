@@ -126,7 +126,7 @@ public class UserVenueController {
         return resultBean;
     }
     // 预约场馆,需改后
-    @RequestMapping(value = "/addUserVenues/{spaceId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/addUserVenues", method = RequestMethod.POST)
     public ResultBean addUserVenues(@RequestBody List<SpaceTime> spaceTimes,
                                    @PathVariable Integer spaceId, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
@@ -135,7 +135,7 @@ public class UserVenueController {
             resultBean.setCode(1);
             for (SpaceTime spaceTime: spaceTimes) {
                 int dayInWeek = spaceTime.getDate().getDay();
-                Space space = this.spaceService.findSpaceById(spaceId);
+                Space space = this.spaceService.findSpaceById(spaceTime.getSpaceId());
                 UserVenue userVenue = new UserVenue();
                 //userVenue.setEndTime(endDate);
                 //userVenue.setStartTime(startDate);
