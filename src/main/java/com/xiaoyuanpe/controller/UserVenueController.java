@@ -85,6 +85,7 @@ public class UserVenueController {
             resultBean.setCode(1);
             String days[] = this.venueService.findVenueById(this.sportVenueService.findSportvenueById(sportVenueId).getVenueId()).
                     getOpeningTime().split("-");
+            resultBean.setMsg("dayInWeek"+dayInWeek);
             int startHour = Integer.parseInt(days[0]);
             int endHour = Integer.parseInt(days[1]);
             List<Space> spaces = this.spaceService.findSpaceBySportId(sportVenueId);
@@ -114,7 +115,7 @@ public class UserVenueController {
                 }
             }
             resultBean.setCode(0);
-            resultBean.setData(spaceList);
+            resultBean.setData(spaceTimes);
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg("查询失败");
