@@ -45,7 +45,7 @@ public class SpaceController {
             reservation.setSpaceId(space.getId());
             reservation.setSportvenueId(space.getSportvenueId());
             reservation.setStatus(0);
-            String hours[] = this.venueService.findVenueById(this.reservationService.findReservationById(space.getSportvenueId()).getSpaceId()).
+            String hours[] = this.venueService.findVenueById(this.sportVenueService.findSportvenueById(space.getSportvenueId()).getVenueId()).
                     getOpeningTime().split("-");
             resultBean.setMsg("before addReservation"+hours[0]+","+hours[1]);
             this.reservationService.addReservation(reservation, Integer.parseInt(hours[0]),Integer.parseInt(hours[1]));
