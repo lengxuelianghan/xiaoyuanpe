@@ -135,7 +135,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Venue">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Venue" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into venue (id, venue_name, Introduction, 
       per_price, phone, closing_date_start, 
       closing_date_end, opening_date_start, opening_date_end, 

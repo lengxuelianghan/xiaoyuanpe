@@ -157,7 +157,7 @@
       #{invoice,jdbcType=VARCHAR}, #{parking,jdbcType=VARCHAR}, #{imgs,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Sportvenue">
+  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Sportvenue" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into sportvenue
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

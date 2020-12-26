@@ -102,7 +102,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.UserSport">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.UserSport" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into user_sport (id, college_id, school_id, 
       sport_id, organizers, times, 
       student_number, flag)
