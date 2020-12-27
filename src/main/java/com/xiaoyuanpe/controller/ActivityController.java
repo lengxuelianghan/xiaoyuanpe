@@ -14,7 +14,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -117,11 +116,11 @@ public class ActivityController {
             resultBean.setCode(1);
             resultBean.setMsg("用户不存在");
         }
-        if (this.addOrNot(uid)){
-            resultBean.setCode(1);
-            resultBean.setMsg("您有一个未发布活动，不能新建");
-            return resultBean;
-        }
+//        if (this.addOrNot(uid)){
+//            resultBean.setCode(1);
+//            resultBean.setMsg("您有一个未发布活动，不能新建");
+//            return resultBean;
+//        }
         try {
             if (pictureFile != null){
                 String filepath = getUploadPath();
@@ -172,9 +171,9 @@ public class ActivityController {
         ResultBean resultBean = new ResultBean();
         try{
             Activity activity = this.activityService.findActivityById(activityId);
-            if (user.getId()==activity.getPublisherId() && activity.getStatus()==5){
+            if (user.getId() == activity.getPublisherId() && activity.getStatus()==5){
                 resultBean.setCode(0);
-                activity.setStatus(0);
+                activity.setStatus(1);
                 this.activityService.ModifyActivity(activity);
             }
             else resultBean.setCode(1);
