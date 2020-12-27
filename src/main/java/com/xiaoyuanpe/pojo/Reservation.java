@@ -19,6 +19,8 @@ public class Reservation {
 
     private Integer dayIndex;
 
+    private Integer userId;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class Reservation {
 
     public void setDayIndex(Integer dayIndex) {
         this.dayIndex = dayIndex;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

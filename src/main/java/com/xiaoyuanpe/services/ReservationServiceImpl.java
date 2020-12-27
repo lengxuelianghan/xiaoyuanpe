@@ -79,6 +79,18 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public List<Reservation> findReservationAllByUserId(int userId) {
+        List<Reservation> reservations = this.reservationMapper.selectByExample(new ReservationExample());
+        List<Reservation> reservationList = new ArrayList<>();
+        for (Reservation reservation : reservations){
+            if(reservation.getUserId()==userId){
+                reservationList.add(reservation);
+            }
+        }
+        return reservationList;
+    }
+
+    @Override
     public Reservation findReservationById(Integer id) {
         return  this.reservationMapper.selectByPrimaryKey(id);
     }

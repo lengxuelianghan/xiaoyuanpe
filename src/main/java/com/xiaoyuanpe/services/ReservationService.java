@@ -17,6 +17,8 @@ public interface ReservationService {
 
     List<Reservation> findReservationAllByDay(int day);
 
+    List<Reservation> findReservationAllByUserId(int userId);
+
     Reservation findReservationById(Integer id);
 
     void ModifyReservation(Reservation reservation);

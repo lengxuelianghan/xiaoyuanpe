@@ -11,16 +11,6 @@
     <result column="other" jdbcType="VARCHAR" property="other" />
     <result column="venue_id" jdbcType="INTEGER" property="venueId" />
     <result column="img_name" jdbcType="VARCHAR" property="imgName" />
-    <result column="floor" jdbcType="VARCHAR" property="floor" />
-    <result column="light" jdbcType="VARCHAR" property="light" />
-    <result column="rest_area" jdbcType="VARCHAR" property="restArea" />
-    <result column="equipment_rental" jdbcType="VARCHAR" property="equipmentRental" />
-    <result column="equipment_maintenance" jdbcType="VARCHAR" property="equipmentMaintenance" />
-    <result column="more_services" jdbcType="VARCHAR" property="moreServices" />
-    <result column="bathing_facilities" jdbcType="VARCHAR" property="bathingFacilities" />
-    <result column="venue_sales" jdbcType="VARCHAR" property="venueSales" />
-    <result column="invoice" jdbcType="VARCHAR" property="invoice" />
-    <result column="parking" jdbcType="VARCHAR" property="parking" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaoyuanpe.pojo.Sportvenue">
     <result column="imgs" jdbcType="LONGVARCHAR" property="imgs" />
@@ -85,8 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, sport_name, site_size, number_venues, area, construction_time, other, venue_id, 
-    img_name, floor, light, rest_area, equipment_rental, equipment_maintenance, more_services, 
-    bathing_facilities, venue_sales, invoice, parking
+    img_name
   </sql>
   <sql id="Blob_Column_List">
     imgs
@@ -143,21 +132,13 @@
     insert into sportvenue (id, sport_name, site_size, 
       number_venues, area, construction_time, 
       other, venue_id, img_name, 
-      floor, light, rest_area, 
-      equipment_rental, equipment_maintenance, 
-      more_services, bathing_facilities, venue_sales, 
-      invoice, parking, imgs
-      )
+      imgs)
     values (#{id,jdbcType=INTEGER}, #{sportName,jdbcType=VARCHAR}, #{siteSize,jdbcType=DOUBLE}, 
       #{numberVenues,jdbcType=INTEGER}, #{area,jdbcType=DOUBLE}, #{constructionTime,jdbcType=TIMESTAMP}, 
       #{other,jdbcType=VARCHAR}, #{venueId,jdbcType=INTEGER}, #{imgName,jdbcType=VARCHAR}, 
-      #{floor,jdbcType=VARCHAR}, #{light,jdbcType=VARCHAR}, #{restArea,jdbcType=VARCHAR}, 
-      #{equipmentRental,jdbcType=VARCHAR}, #{equipmentMaintenance,jdbcType=VARCHAR}, 
-      #{moreServices,jdbcType=VARCHAR}, #{bathingFacilities,jdbcType=VARCHAR}, #{venueSales,jdbcType=VARCHAR}, 
-      #{invoice,jdbcType=VARCHAR}, #{parking,jdbcType=VARCHAR}, #{imgs,jdbcType=LONGVARCHAR}
-      )
+      #{imgs,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Sportvenue" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+  <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Sportvenue">
     insert into sportvenue
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -186,36 +167,6 @@
       </if>
       <if test="imgName != null">
         img_name,
-      </if>
-      <if test="floor != null">
-        floor,
-      </if>
-      <if test="light != null">
-        light,
-      </if>
-      <if test="restArea != null">
-        rest_area,
-      </if>
-      <if test="equipmentRental != null">
-        equipment_rental,
-      </if>
-      <if test="equipmentMaintenance != null">
-        equipment_maintenance,
-      </if>
-      <if test="moreServices != null">
-        more_services,
-      </if>
-      <if test="bathingFacilities != null">
-        bathing_facilities,
-      </if>
-      <if test="venueSales != null">
-        venue_sales,
-      </if>
-      <if test="invoice != null">
-        invoice,
-      </if>
-      <if test="parking != null">
-        parking,
       </if>
       <if test="imgs != null">
         imgs,
@@ -248,36 +199,6 @@
       </if>
       <if test="imgName != null">
         #{imgName,jdbcType=VARCHAR},
-      </if>
-      <if test="floor != null">
-        #{floor,jdbcType=VARCHAR},
-      </if>
-      <if test="light != null">
-        #{light,jdbcType=VARCHAR},
-      </if>
-      <if test="restArea != null">
-        #{restArea,jdbcType=VARCHAR},
-      </if>
-      <if test="equipmentRental != null">
-        #{equipmentRental,jdbcType=VARCHAR},
-      </if>
-      <if test="equipmentMaintenance != null">
-        #{equipmentMaintenance,jdbcType=VARCHAR},
-      </if>
-      <if test="moreServices != null">
-        #{moreServices,jdbcType=VARCHAR},
-      </if>
-      <if test="bathingFacilities != null">
-        #{bathingFacilities,jdbcType=VARCHAR},
-      </if>
-      <if test="venueSales != null">
-        #{venueSales,jdbcType=VARCHAR},
-      </if>
-      <if test="invoice != null">
-        #{invoice,jdbcType=VARCHAR},
-      </if>
-      <if test="parking != null">
-        #{parking,jdbcType=VARCHAR},
       </if>
       <if test="imgs != null">
         #{imgs,jdbcType=LONGVARCHAR},
@@ -320,36 +241,6 @@
       <if test="record.imgName != null">
         img_name = #{record.imgName,jdbcType=VARCHAR},
       </if>
-      <if test="record.floor != null">
-        floor = #{record.floor,jdbcType=VARCHAR},
-      </if>
-      <if test="record.light != null">
-        light = #{record.light,jdbcType=VARCHAR},
-      </if>
-      <if test="record.restArea != null">
-        rest_area = #{record.restArea,jdbcType=VARCHAR},
-      </if>
-      <if test="record.equipmentRental != null">
-        equipment_rental = #{record.equipmentRental,jdbcType=VARCHAR},
-      </if>
-      <if test="record.equipmentMaintenance != null">
-        equipment_maintenance = #{record.equipmentMaintenance,jdbcType=VARCHAR},
-      </if>
-      <if test="record.moreServices != null">
-        more_services = #{record.moreServices,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bathingFacilities != null">
-        bathing_facilities = #{record.bathingFacilities,jdbcType=VARCHAR},
-      </if>
-      <if test="record.venueSales != null">
-        venue_sales = #{record.venueSales,jdbcType=VARCHAR},
-      </if>
-      <if test="record.invoice != null">
-        invoice = #{record.invoice,jdbcType=VARCHAR},
-      </if>
-      <if test="record.parking != null">
-        parking = #{record.parking,jdbcType=VARCHAR},
-      </if>
       <if test="record.imgs != null">
         imgs = #{record.imgs,jdbcType=LONGVARCHAR},
       </if>
@@ -369,16 +260,6 @@
       other = #{record.other,jdbcType=VARCHAR},
       venue_id = #{record.venueId,jdbcType=INTEGER},
       img_name = #{record.imgName,jdbcType=VARCHAR},
-      floor = #{record.floor,jdbcType=VARCHAR},
-      light = #{record.light,jdbcType=VARCHAR},
-      rest_area = #{record.restArea,jdbcType=VARCHAR},
-      equipment_rental = #{record.equipmentRental,jdbcType=VARCHAR},
-      equipment_maintenance = #{record.equipmentMaintenance,jdbcType=VARCHAR},
-      more_services = #{record.moreServices,jdbcType=VARCHAR},
-      bathing_facilities = #{record.bathingFacilities,jdbcType=VARCHAR},
-      venue_sales = #{record.venueSales,jdbcType=VARCHAR},
-      invoice = #{record.invoice,jdbcType=VARCHAR},
-      parking = #{record.parking,jdbcType=VARCHAR},
       imgs = #{record.imgs,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -394,17 +275,7 @@
       construction_time = #{record.constructionTime,jdbcType=TIMESTAMP},
       other = #{record.other,jdbcType=VARCHAR},
       venue_id = #{record.venueId,jdbcType=INTEGER},
-      img_name = #{record.imgName,jdbcType=VARCHAR},
-      floor = #{record.floor,jdbcType=VARCHAR},
-      light = #{record.light,jdbcType=VARCHAR},
-      rest_area = #{record.restArea,jdbcType=VARCHAR},
-      equipment_rental = #{record.equipmentRental,jdbcType=VARCHAR},
-      equipment_maintenance = #{record.equipmentMaintenance,jdbcType=VARCHAR},
-      more_services = #{record.moreServices,jdbcType=VARCHAR},
-      bathing_facilities = #{record.bathingFacilities,jdbcType=VARCHAR},
-      venue_sales = #{record.venueSales,jdbcType=VARCHAR},
-      invoice = #{record.invoice,jdbcType=VARCHAR},
-      parking = #{record.parking,jdbcType=VARCHAR}
+      img_name = #{record.imgName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -436,36 +307,6 @@
       <if test="imgName != null">
         img_name = #{imgName,jdbcType=VARCHAR},
       </if>
-      <if test="floor != null">
-        floor = #{floor,jdbcType=VARCHAR},
-      </if>
-      <if test="light != null">
-        light = #{light,jdbcType=VARCHAR},
-      </if>
-      <if test="restArea != null">
-        rest_area = #{restArea,jdbcType=VARCHAR},
-      </if>
-      <if test="equipmentRental != null">
-        equipment_rental = #{equipmentRental,jdbcType=VARCHAR},
-      </if>
-      <if test="equipmentMaintenance != null">
-        equipment_maintenance = #{equipmentMaintenance,jdbcType=VARCHAR},
-      </if>
-      <if test="moreServices != null">
-        more_services = #{moreServices,jdbcType=VARCHAR},
-      </if>
-      <if test="bathingFacilities != null">
-        bathing_facilities = #{bathingFacilities,jdbcType=VARCHAR},
-      </if>
-      <if test="venueSales != null">
-        venue_sales = #{venueSales,jdbcType=VARCHAR},
-      </if>
-      <if test="invoice != null">
-        invoice = #{invoice,jdbcType=VARCHAR},
-      </if>
-      <if test="parking != null">
-        parking = #{parking,jdbcType=VARCHAR},
-      </if>
       <if test="imgs != null">
         imgs = #{imgs,jdbcType=LONGVARCHAR},
       </if>
@@ -482,16 +323,6 @@
       other = #{other,jdbcType=VARCHAR},
       venue_id = #{venueId,jdbcType=INTEGER},
       img_name = #{imgName,jdbcType=VARCHAR},
-      floor = #{floor,jdbcType=VARCHAR},
-      light = #{light,jdbcType=VARCHAR},
-      rest_area = #{restArea,jdbcType=VARCHAR},
-      equipment_rental = #{equipmentRental,jdbcType=VARCHAR},
-      equipment_maintenance = #{equipmentMaintenance,jdbcType=VARCHAR},
-      more_services = #{moreServices,jdbcType=VARCHAR},
-      bathing_facilities = #{bathingFacilities,jdbcType=VARCHAR},
-      venue_sales = #{venueSales,jdbcType=VARCHAR},
-      invoice = #{invoice,jdbcType=VARCHAR},
-      parking = #{parking,jdbcType=VARCHAR},
       imgs = #{imgs,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -504,17 +335,7 @@
       construction_time = #{constructionTime,jdbcType=TIMESTAMP},
       other = #{other,jdbcType=VARCHAR},
       venue_id = #{venueId,jdbcType=INTEGER},
-      img_name = #{imgName,jdbcType=VARCHAR},
-      floor = #{floor,jdbcType=VARCHAR},
-      light = #{light,jdbcType=VARCHAR},
-      rest_area = #{restArea,jdbcType=VARCHAR},
-      equipment_rental = #{equipmentRental,jdbcType=VARCHAR},
-      equipment_maintenance = #{equipmentMaintenance,jdbcType=VARCHAR},
-      more_services = #{moreServices,jdbcType=VARCHAR},
-      bathing_facilities = #{bathingFacilities,jdbcType=VARCHAR},
-      venue_sales = #{venueSales,jdbcType=VARCHAR},
-      invoice = #{invoice,jdbcType=VARCHAR},
-      parking = #{parking,jdbcType=VARCHAR}
+      img_name = #{imgName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

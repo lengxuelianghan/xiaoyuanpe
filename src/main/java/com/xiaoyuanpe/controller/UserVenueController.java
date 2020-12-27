@@ -125,7 +125,7 @@ public class UserVenueController {
         }
         return resultBean;
     }
-    // 预约场馆,需改后
+    // 预约场馆,修改后
     @RequestMapping(value = "/addUserVenues", method = RequestMethod.POST)
     public ResultBean addUserVenues(@RequestBody List<SpaceTime> spaceTimes, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
@@ -150,6 +150,7 @@ public class UserVenueController {
                     for (Reservation reservation : reservationAllBySpaceId) {
                         if ((reservation.getHourIndex() >= sTime) && (reservation.getHourIndex() < eTime) && reservation.getStatus()==0) {
                             reservation.setStatus(1);
+                            reservation.setUserId(user.getId());
                             this.reservationService.ModifyReservation(reservation);
                         }
                     }
@@ -228,6 +229,22 @@ public class UserVenueController {
         }
         return resultBean;
     }
+    //查询预约场馆
+//    @RequestMapping(value = "/queryReservation")
+//    public ResultBean queryReservation(HttpSession session){
+//        User user = (User) session.getAttribute("user");
+//        ResultBean resultBean = new ResultBean();
+//        List<SpaceTime> spaceTimes = new ArrayList<>();
+//        try {
+//            this.reservationService.findReservationAllByUserId(user.getId());
+//            for ()
+//            resultBean.setCode(0);
+//        }catch (Exception e){
+//            resultBean.setCode(1);
+//            resultBean.setMsg("查找失败");
+//        }
+//        return resultBean;
+//    }
     //取消预约
     @RequestMapping(value = "/deleteUserVenue", method = RequestMethod.POST)
     public ResultBean updateUserVenue(@RequestBody List<Integer> ids){
@@ -239,7 +256,6 @@ public class UserVenueController {
                     reservation.setStatus(0);
                     this.reservationService.ModifyReservation(reservation);
                 }
-
             }
             resultBean.setCode(0);
         }catch (Exception e){
