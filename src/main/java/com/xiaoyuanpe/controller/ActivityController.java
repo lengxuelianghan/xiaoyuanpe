@@ -345,8 +345,9 @@ public class ActivityController {
             List<ActivityEntry> activityEntries = new ArrayList<>();
             Date nowDate = new Date();
             for (Activity activity: activityList){
-                if (activity.getSchoolId()==userSession.getSchoolId() && activity.getRegistrationStartTime().before(nowDate)
-                        && activity.getRegistrationClosingTime().after(nowDate))
+                if (activity.getSchoolId()==userSession.getSchoolId() &&
+                        activity.getRegistrationStartTime().before(nowDate)
+                        && activity.getRegistrationClosingTime().after(nowDate) && activity.getStatus()==2)
                 {
                     List<Project> projectList = this.projectService.findProjectByActivityId(activity.getId());
                     ActivityEntry activityEntry = new ActivityEntry();
