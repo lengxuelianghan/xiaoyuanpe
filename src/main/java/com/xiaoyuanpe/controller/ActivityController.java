@@ -496,7 +496,7 @@ public class ActivityController {
             if (HasRole.hasOneRole(booleans)) {
                 for (Activity activity : activitys) {
                     if (activity.getSchoolId()==user.getSchoolId() && activity.getStatus() == 0 &&
-                            activity.getRegistrationStartTime().before(new Date())) {
+                            activity.getRegistrationStartTime().compareTo(new Date())<0) {
                         activityList.add(activity);
                     }
                 }
@@ -545,7 +545,8 @@ public class ActivityController {
                 resultBean.setCode(1);
                 resultBean.setMsg("报名人数已满！");
             }
-            else if (activity.getRegistrationStartTime().before(nowDate) && activity.getRegistrationClosingTime().after(nowDate)){
+            else if (activity.getRegistrationStartTime().compareTo(nowDate)<0 &&
+                    activity.getRegistrationClosingTime().compareTo(nowDate)>0){
                 activityStud.setStudentId(id);
                 activityStud.setActivityId(aid);
                 activityStud.setCharacters("参与者");
