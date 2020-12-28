@@ -136,6 +136,7 @@ public class ActivityController {
                 System.out.println("C:\\nginx\\img\\"+ fileName);
                 activity.setImagePath("C:\\nginx\\img\\"+ fileName);
                 activity.setStatus(0);
+                activity.setSignNum(0);
                 activity.setPublisherId(uid);
                 activity.setPublishData(new Date());
                 activity.setSchoolId(user.getSchoolId());
@@ -221,6 +222,7 @@ public class ActivityController {
                 activity.setImagePath("C:\\nginx\\img\\"+ fileName);
                 activity.setStatus(5);
                 activity.setPublisherId(uid);
+                activity.setSignNum(0);
                 out.write(pictureFile.getBytes());
                 out.flush();
                 out.close();
