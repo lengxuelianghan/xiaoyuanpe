@@ -264,7 +264,7 @@ public class ActivityController {
         }
         return resultBean;
     }
-
+    //查询个人发布的活动
     @GetMapping("/queryActivityList")
     public ResultBean queryActivityList(HttpSession session){
         User user = (User) session.getAttribute("user");

@@ -118,7 +118,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Activity">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Activity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into activity (id, activity_name, activity_content, 
       image_path, publisher_id, publish_data, 
       school_id, college_id, start_time, 
