@@ -318,6 +318,7 @@ public class ActivityController {
                     activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
                     activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
                     activityEntry.setSignNum(activity.getSignNum());
+                    activityEntry.setActivityArea(activity.getActivityArea());
                     if (projectList != null) {
                         activity.setProjects(projectList);
                         activityEntry.setProjectList(projectList);
@@ -369,6 +370,7 @@ public class ActivityController {
                     activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
                     activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
                     activityEntry.setSignNum(activity.getSignNum());
+                    activityEntry.setActivityArea(activity.getActivityArea());
                     if (projectList != null) {
                         activity.setProjects(projectList);
                         activityEntry.setProjectList(projectList);
