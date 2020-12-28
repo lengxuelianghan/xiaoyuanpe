@@ -83,7 +83,7 @@ public class AutoCreate {
         try{
             //System.out.println("123321");
             Date date = new Date();
-            date = new Date(date.getTime()+8*60*60*1000);
+            date = new Date(date.getTime());
             List<Activity> activityList =  this.activityService.findActivityAllList();
             for (Activity activity: activityList){
 
