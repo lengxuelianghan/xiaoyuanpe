@@ -795,73 +795,73 @@ public class ActivityExample {
             return (Criteria) this;
         }
 
-        public Criteria andCollegeIsNull() {
-            addCriterion("college is null");
+        public Criteria andActivityAreaIsNull() {
+            addCriterion("activity_area is null");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeIsNotNull() {
-            addCriterion("college is not null");
+        public Criteria andActivityAreaIsNotNull() {
+            addCriterion("activity_area is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeEqualTo(String value) {
-            addCriterion("college =", value, "college");
+        public Criteria andActivityAreaEqualTo(String value) {
+            addCriterion("activity_area =", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeNotEqualTo(String value) {
-            addCriterion("college <>", value, "college");
+        public Criteria andActivityAreaNotEqualTo(String value) {
+            addCriterion("activity_area <>", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeGreaterThan(String value) {
-            addCriterion("college >", value, "college");
+        public Criteria andActivityAreaGreaterThan(String value) {
+            addCriterion("activity_area >", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeGreaterThanOrEqualTo(String value) {
-            addCriterion("college >=", value, "college");
+        public Criteria andActivityAreaGreaterThanOrEqualTo(String value) {
+            addCriterion("activity_area >=", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeLessThan(String value) {
-            addCriterion("college <", value, "college");
+        public Criteria andActivityAreaLessThan(String value) {
+            addCriterion("activity_area <", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeLessThanOrEqualTo(String value) {
-            addCriterion("college <=", value, "college");
+        public Criteria andActivityAreaLessThanOrEqualTo(String value) {
+            addCriterion("activity_area <=", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeLike(String value) {
-            addCriterion("college like", value, "college");
+        public Criteria andActivityAreaLike(String value) {
+            addCriterion("activity_area like", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeNotLike(String value) {
-            addCriterion("college not like", value, "college");
+        public Criteria andActivityAreaNotLike(String value) {
+            addCriterion("activity_area not like", value, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeIn(List<String> values) {
-            addCriterion("college in", values, "college");
+        public Criteria andActivityAreaIn(List<String> values) {
+            addCriterion("activity_area in", values, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeNotIn(List<String> values) {
-            addCriterion("college not in", values, "college");
+        public Criteria andActivityAreaNotIn(List<String> values) {
+            addCriterion("activity_area not in", values, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeBetween(String value1, String value2) {
-            addCriterion("college between", value1, value2, "college");
+        public Criteria andActivityAreaBetween(String value1, String value2) {
+            addCriterion("activity_area between", value1, value2, "activityArea");
             return (Criteria) this;
         }
 
-        public Criteria andCollegeNotBetween(String value1, String value2) {
-            addCriterion("college not between", value1, value2, "college");
+        public Criteria andActivityAreaNotBetween(String value1, String value2) {
+            addCriterion("activity_area not between", value1, value2, "activityArea");
             return (Criteria) this;
         }
 
@@ -1382,6 +1382,66 @@ public class ActivityExample {
 
         public Criteria andActivityClassNotBetween(Integer value1, Integer value2) {
             addCriterion("activity_class not between", value1, value2, "activityClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumIsNull() {
+            addCriterion("sign_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumIsNotNull() {
+            addCriterion("sign_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumEqualTo(Integer value) {
+            addCriterion("sign_num =", value, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumNotEqualTo(Integer value) {
+            addCriterion("sign_num <>", value, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumGreaterThan(Integer value) {
+            addCriterion("sign_num >", value, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sign_num >=", value, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumLessThan(Integer value) {
+            addCriterion("sign_num <", value, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumLessThanOrEqualTo(Integer value) {
+            addCriterion("sign_num <=", value, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumIn(List<Integer> values) {
+            addCriterion("sign_num in", values, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumNotIn(List<Integer> values) {
+            addCriterion("sign_num not in", values, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumBetween(Integer value1, Integer value2) {
+            addCriterion("sign_num between", value1, value2, "signNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSignNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("sign_num not between", value1, value2, "signNum");
             return (Criteria) this;
         }
     }

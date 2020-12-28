@@ -36,6 +36,8 @@ public class ActivityController {
     private ProjectService projectService;
     @Autowired
     private ProjectSignInService projectSignInService;
+    @Autowired
+    private CollegeService collegeService;
 
 //    @PostMapping("/addActivity")
 //    public ResultBean addActivity(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity){
@@ -301,7 +303,7 @@ public class ActivityController {
                     User user = this.userService.findUsersById(activity.getPublisherId());
                     activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
                     activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
-                    activityEntry.setCollege(activity.getCollege() == null ? "" : activity.getCollege());
+                    activityEntry.setCollege(this.collegeService.findCollegeById(activity.getCollegeId()).getCollegeName());
                     activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
                     activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
                     activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
@@ -315,6 +317,7 @@ public class ActivityController {
                     //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
                     activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
                     activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
+                    activityEntry.setSignNum(activity.getSignNum());
                     if (projectList != null) {
                         activity.setProjects(projectList);
                         activityEntry.setProjectList(projectList);
@@ -351,7 +354,7 @@ public class ActivityController {
                     User user = this.userService.findUsersById(activity.getPublisherId());
                     activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
                     activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
-                    activityEntry.setCollege(activity.getCollege() == null ? "" : activity.getCollege());
+                    activityEntry.setCollege(this.collegeService.findCollegeById(activity.getCollegeId()).getCollegeName());
                     activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
                     activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
                     activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
@@ -365,6 +368,7 @@ public class ActivityController {
                     //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
                     activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
                     activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
+                    activityEntry.setSignNum(activity.getSignNum());
                     if (projectList != null) {
                         activity.setProjects(projectList);
                         activityEntry.setProjectList(projectList);
@@ -513,6 +517,8 @@ public class ActivityController {
                 map.put(activityStud.getActivityId(),arrList);
             }
         }
+        Activity activity = this.activityService.findActivityById(aid);
+        Date nowDate = new Date();
         try {
             ActivityStud activityStud = new ActivityStud();
             String num = this.userService.findUsersById(user.getId()).getUserNumber();
@@ -521,7 +527,11 @@ public class ActivityController {
                 resultBean.setCode(1);
                 resultBean.setMsg("已报名参加！");
             }
-            else {
+            else if (activity.getSignNum()+1>activity.getPeopleNum()){
+                resultBean.setCode(1);
+                resultBean.setMsg("报名人数已满！");
+            }
+            else if (activity.getRegistrationStartTime().before(nowDate) && activity.getRegistrationClosingTime().after(nowDate)){
                 activityStud.setStudentId(id);
                 activityStud.setActivityId(aid);
                 activityStud.setCharacters("参与者");
@@ -529,9 +539,16 @@ public class ActivityController {
                 signin.setFlag(0);
                 signin.setStudentId(id);
                 signin.setActivityId(aid);
+                Activity activityById = this.activityService.findActivityById(aid);
+                activityById.setSignNum(activityById.getSignNum()+1);
+                this.activityService.ModifyActivity(activityById);
                 this.signInService.addSignin(signin);
                 this.activityStudService.addActivityStud(activityStud);
                 resultBean.setCode(0);
+            }
+            else {
+                resultBean.setCode(1);
+                resultBean.setMsg("报名时间已过！");
             }
         }catch (Exception e){
             resultBean.setCode(1);

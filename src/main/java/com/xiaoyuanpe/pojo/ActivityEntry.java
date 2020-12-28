@@ -46,6 +46,8 @@ public class ActivityEntry {
     private String cost;
     private Integer activityClass;
 
+    private Integer signNum;
+
 
     private List<Project> projectList;
 
@@ -226,5 +228,13 @@ public class ActivityEntry {
 
     public void setActivityClass(Integer activityClass) {
         this.activityClass = activityClass;
+    }
+
+    public Integer getSignNum() {
+        return signNum;
+    }
+
+    public void setSignNum(Integer signNum) {
+        this.signNum = signNum;
     }
 }

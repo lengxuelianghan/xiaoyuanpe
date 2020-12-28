@@ -26,7 +26,7 @@ public class Activity {
 
     private Integer status;
 
-    private String college;
+    private String activityArea;
 
     private Date registrationClosingTime;
 
@@ -44,7 +44,18 @@ public class Activity {
 
     private Integer activityClass;
 
+    private Integer signNum;
+
     private List<Project> projects;
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
 
     public Integer getId() {
         return id;
@@ -134,12 +145,12 @@ public class Activity {
         this.status = status;
     }
 
-    public String getCollege() {
-        return college;
+    public String getActivityArea() {
+        return activityArea;
     }
 
-    public void setCollege(String college) {
-        this.college = college == null ? null : college.trim();
+    public void setActivityArea(String activityArea) {
+        this.activityArea = activityArea == null ? null : activityArea.trim();
     }
 
     public Date getRegistrationClosingTime() {
@@ -206,11 +217,11 @@ public class Activity {
         this.activityClass = activityClass;
     }
 
-    public List<Project> getProjects() {
-        return projects;
+    public Integer getSignNum() {
+        return signNum;
     }
 
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
+    public void setSignNum(Integer signNum) {
+        this.signNum = signNum;
     }
 }
