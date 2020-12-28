@@ -2,7 +2,10 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
+import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
@@ -481,27 +484,35 @@ public class ActivityController {
         return resultBean;
     }
 
-//    @GetMapping("/selectReview")
-//    public ResultBean selectReview(HttpSession session){
-//        User user = (User) session.getAttribute("user");
-//        ResultBean resultBean = new ResultBean();
-//        try {
-//            List<Activity> activityList = new ArrayList<>();
-//            List<Activity> activitys = this.activityService.findActivityAllList();
-//            for(Activity activity: activitys){
-//                System.out.println(activity.getReviewerId()+"."+user.getId());
-//                if (activity.getReviewerId()!=null && Integer.parseInt(activity.getReviewerId())==user.getId()){
-//                    activityList.add(activity);
-//                }
-//            }
-//            resultBean.setData(activityList);
-//            resultBean.setCode(0);
-//        }catch (Exception e){
-//            resultBean.setCode(1);
-//            resultBean.setMsg(e.getMessage());
-//        }
-//        return resultBean;
-//    }
+    @GetMapping("/selectReview")
+    public ResultBean selectReview(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager"));
+        try {
+            List<Activity> activityList = new ArrayList<>();
+            List<Activity> activitys = this.activityService.findActivityAllList();
+            if (HasRole.hasOneRole(booleans)) {
+                for (Activity activity : activitys) {
+                    if (activity.getSchoolId()==user.getSchoolId() && activity.getStatus() == 0 &&
+                            activity.getRegistrationStartTime().before(new Date())) {
+                        activityList.add(activity);
+                    }
+                }
+                resultBean.setData(activityList);
+                resultBean.setCode(0);
+            }
+            else {
+                resultBean.setCode(1);
+                resultBean.setMsg("您没有权限");
+            }
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+        }
+        return resultBean;
+    }
     //个人报名参加活动
     @GetMapping("/signUp/{aid}")
     public ResultBean signUp(@PathVariable Integer aid, HttpSession session){
