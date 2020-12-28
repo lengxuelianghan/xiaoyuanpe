@@ -558,9 +558,9 @@ public class ActivityController {
                 signin.setFlag(0);
                 signin.setStudentId(id);
                 signin.setActivityId(aid);
-                Activity activityById = this.activityService.findActivityById(aid);
-                activityById.setSignNum(activityById.getSignNum()+1);
-                this.activityService.ModifyActivity(activityById);
+
+                activity.setSignNum(activity.getSignNum()+1);
+                this.activityService.ModifyActivity(activity);
                 this.signInService.addSignin(signin);
                 this.activityStudService.addActivityStud(activityStud);
                 resultBean.setCode(0);
