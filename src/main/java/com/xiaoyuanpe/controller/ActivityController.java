@@ -132,6 +132,9 @@ public class ActivityController {
                 activity.setImagePath("C:\\nginx\\img\\"+ fileName);
                 activity.setStatus(0);
                 activity.setPublisherId(uid);
+                activity.setPublishData(new Date());
+                activity.setSchoolId(user.getSchoolId());
+                activity.setCollegeId(this.studentService.findStudentByNumber(user.getUserNumber()).getCollegeId());
                 out.write(pictureFile.getBytes());
                 out.flush();
                 out.close();
@@ -291,6 +294,56 @@ public class ActivityController {
             List<ActivityEntry> activityEntries = new ArrayList<>();
             for (Activity activity: activityList){
                 if (activity.getSchoolId()==userSession.getSchoolId()) {
+                    List<Project> projectList = this.projectService.findProjectByActivityId(activity.getId());
+                    ActivityEntry activityEntry = new ActivityEntry();
+                    activityEntry.setId(activity.getId());
+                    activityEntry.setActivityName(activity.getActivityName());
+                    User user = this.userService.findUsersById(activity.getPublisherId());
+                    activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
+                    activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
+                    activityEntry.setCollege(activity.getCollege() == null ? "" : activity.getCollege());
+                    activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
+                    activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
+                    activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
+                    activityEntry.setEndTime(activity.getEndTime() == null ? new Date() : activity.getEndTime());
+                    activityEntry.setImagePath(activity.getImagePath() == null ? "" : activity.getImagePath());
+                    activityEntry.setPeopleNum(activity.getPeopleNum() == null ? 0 : activity.getPeopleNum());
+                    activityEntry.setPublishData(activity.getPublishData() == null ? new Date() : activity.getPublishData());
+                    activityEntry.setRegistrationClosingTime(activity.getRegistrationClosingTime() == null ? new Date() : activity.getRegistrationClosingTime());
+                    activityEntry.setRegistrationStartTime(activity.getRegistrationStartTime() == null ? new Date() : activity.getRegistrationStartTime());
+                    activityEntry.setSchoolId(activity.getSchoolId() == null ? "" : this.schoolService.findSchoolById(activity.getSchoolId()).getSchoolName());
+                    //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
+                    activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
+                    activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
+                    if (projectList != null) {
+                        activity.setProjects(projectList);
+                        activityEntry.setProjectList(projectList);
+                    }
+                    activityEntries.add(activityEntry);
+                }
+            }
+            resultBean.setData(activityEntries);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+    //获取可报名活动
+    @GetMapping("/queryActivityListSignIn")
+    public ResultBean queryActivityListSignIn(HttpSession session){
+        User userSession = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            List<Activity> activityList = this.activityService.findActivityAllList();
+            List<ActivityEntry> activityEntries = new ArrayList<>();
+            Date nowDate = new Date();
+            for (Activity activity: activityList){
+                if (activity.getSchoolId()==userSession.getSchoolId() && activity.getRegistrationStartTime().before(nowDate)
+                        && activity.getRegistrationClosingTime().after(nowDate))
+                {
                     List<Project> projectList = this.projectService.findProjectByActivityId(activity.getId());
                     ActivityEntry activityEntry = new ActivityEntry();
                     activityEntry.setId(activity.getId());
