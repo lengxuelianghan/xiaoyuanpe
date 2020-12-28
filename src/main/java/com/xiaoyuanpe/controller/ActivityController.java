@@ -320,7 +320,7 @@ public class ActivityController {
                     //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
                     activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
                     activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
-                    activityEntry.setSignNum(activity.getSignNum());
+                    activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
                     activityEntry.setActivityArea(activity.getActivityArea());
                     if (projectList != null) {
                         activity.setProjects(projectList);
@@ -373,7 +373,7 @@ public class ActivityController {
                     //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
                     activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
                     activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
-                    activityEntry.setSignNum(activity.getSignNum());
+                    activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
                     activityEntry.setActivityArea(activity.getActivityArea());
                     if (projectList != null) {
                         activity.setProjects(projectList);
@@ -555,6 +555,9 @@ public class ActivityController {
                 signin.setStudentId(id);
                 signin.setActivityId(aid);
                 Activity activityById = this.activityService.findActivityById(aid);
+                if (activity.getSignNum()==null){
+                    activity.setSignNum(1);
+                }
                 activityById.setSignNum(activityById.getSignNum()+1);
                 this.activityService.ModifyActivity(activityById);
                 this.signInService.addSignin(signin);
