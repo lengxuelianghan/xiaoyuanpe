@@ -532,6 +532,8 @@ public class ActivityController {
             }
         }
         Activity activity = this.activityService.findActivityById(aid);
+        if (activity.getSignNum()==null)
+            activity.setSignNum(0);
         Date nowDate = new Date();
         try {
             ActivityStud activityStud = new ActivityStud();
@@ -554,13 +556,9 @@ public class ActivityController {
                 signin.setFlag(0);
                 signin.setStudentId(id);
                 signin.setActivityId(aid);
-//                Activity activityById = this.activityService.findActivityById(aid);
-//                if (activity.getSignNum()==null){
-//                    activity.setSignNum(1);
-//                }
-//                else
-//                    activityById.setSignNum(activityById.getSignNum()+1);
-//                this.activityService.ModifyActivity(activityById);
+                Activity activityById = this.activityService.findActivityById(aid);
+                activityById.setSignNum(activityById.getSignNum()+1);
+                this.activityService.ModifyActivity(activityById);
                 this.signInService.addSignin(signin);
                 this.activityStudService.addActivityStud(activityStud);
                 resultBean.setCode(0);
