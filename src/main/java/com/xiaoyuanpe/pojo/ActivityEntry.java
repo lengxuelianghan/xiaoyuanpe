@@ -33,31 +33,19 @@ public class ActivityEntry {
 
     private Date registrationStartTime;
 
-    private String reviewerId;
-
-    private String contact;
-
     private String contactPhone;
-
-    private String wayRegistration;
 
     private String activityArea;
 
-    private String eventLocation;
-
-    private String activityClassification;
-
-    private String participationFee;
-
     private String collegeList;
-
-    private String classList;
 
     private Integer peopleNum;
 
-    private String signout;
+    private String costDescription;
 
-    private String fieldClock;
+    private String cost;
+    private Integer activityClass;
+
 
     private List<Project> projectList;
 
@@ -181,21 +169,6 @@ public class ActivityEntry {
         this.registrationStartTime = registrationStartTime;
     }
 
-    public String getReviewerId() {
-        return reviewerId;
-    }
-
-    public void setReviewerId(String reviewerId) {
-        this.reviewerId = reviewerId;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
 
     public String getContactPhone() {
         return contactPhone;
@@ -205,13 +178,6 @@ public class ActivityEntry {
         this.contactPhone = contactPhone;
     }
 
-    public String getWayRegistration() {
-        return wayRegistration;
-    }
-
-    public void setWayRegistration(String wayRegistration) {
-        this.wayRegistration = wayRegistration;
-    }
 
     public String getActivityArea() {
         return activityArea;
@@ -219,30 +185,6 @@ public class ActivityEntry {
 
     public void setActivityArea(String activityArea) {
         this.activityArea = activityArea;
-    }
-
-    public String getEventLocation() {
-        return eventLocation;
-    }
-
-    public void setEventLocation(String eventLocation) {
-        this.eventLocation = eventLocation;
-    }
-
-    public String getActivityClassification() {
-        return activityClassification;
-    }
-
-    public void setActivityClassification(String activityClassification) {
-        this.activityClassification = activityClassification;
-    }
-
-    public String getParticipationFee() {
-        return participationFee;
-    }
-
-    public void setParticipationFee(String participationFee) {
-        this.participationFee = participationFee;
     }
 
     public String getCollegeList() {
@@ -253,13 +195,6 @@ public class ActivityEntry {
         this.collegeList = collegeList;
     }
 
-    public String getClassList() {
-        return classList;
-    }
-
-    public void setClassList(String classList) {
-        this.classList = classList;
-    }
 
     public Integer getPeopleNum() {
         return peopleNum;
@@ -269,19 +204,27 @@ public class ActivityEntry {
         this.peopleNum = peopleNum;
     }
 
-    public String getSignout() {
-        return signout;
+    public String getCostDescription() {
+        return costDescription;
     }
 
-    public void setSignout(String signout) {
-        this.signout = signout;
+    public void setCostDescription(String costDescription) {
+        this.costDescription = costDescription;
     }
 
-    public String getFieldClock() {
-        return fieldClock;
+    public String getCost() {
+        return cost;
     }
 
-    public void setFieldClock(String fieldClock) {
-        this.fieldClock = fieldClock;
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
+
+    public Integer getActivityClass() {
+        return activityClass;
+    }
+
+    public void setActivityClass(Integer activityClass) {
+        this.activityClass = activityClass;
     }
 }

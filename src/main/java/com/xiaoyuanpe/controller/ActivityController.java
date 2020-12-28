@@ -295,35 +295,27 @@ public class ActivityController {
                     ActivityEntry activityEntry = new ActivityEntry();
                     activityEntry.setId(activity.getId());
                     activityEntry.setActivityName(activity.getActivityName());
-                    activityEntry.setContact(activity.getContact() == null ? "" : activity.getContact());
                     User user = this.userService.findUsersById(activity.getPublisherId());
                     activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
-                    activityEntry.setActivityArea(activity.getActivityArea() == null ? "" : activity.getActivityArea());
                     activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
-                    activityEntry.setActivityClassification(activity.getActivityClassification() == null ? "" : activity.getActivityClassification());
-                    activityEntry.setClassList(activity.getClassList() == null ? "" : activity.getClassList());
                     activityEntry.setCollege(activity.getCollege() == null ? "" : activity.getCollege());
                     activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
                     activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
                     activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
                     activityEntry.setEndTime(activity.getEndTime() == null ? new Date() : activity.getEndTime());
-                    activityEntry.setEventLocation(activity.getEventLocation() == null ? "" : activity.getEventLocation());
-                    activityEntry.setFieldClock(activity.getFieldClock() == null ? "" : activity.getFieldClock());
                     activityEntry.setImagePath(activity.getImagePath() == null ? "" : activity.getImagePath());
-                    activityEntry.setParticipationFee(activity.getParticipationFee() == null ? "" : activity.getParticipationFee());
                     activityEntry.setPeopleNum(activity.getPeopleNum() == null ? 0 : activity.getPeopleNum());
                     activityEntry.setPublishData(activity.getPublishData() == null ? new Date() : activity.getPublishData());
                     activityEntry.setRegistrationClosingTime(activity.getRegistrationClosingTime() == null ? new Date() : activity.getRegistrationClosingTime());
                     activityEntry.setRegistrationStartTime(activity.getRegistrationStartTime() == null ? new Date() : activity.getRegistrationStartTime());
-                    activityEntry.setReviewerId(activity.getReviewerId() == null ? "" : activity.getReviewerId());
                     activityEntry.setSchoolId(activity.getSchoolId() == null ? "" : this.schoolService.findSchoolById(activity.getSchoolId()).getSchoolName());
                     //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
-                    activityEntry.setSignout(activity.getSignout() == null ? "" : activity.getSignout());
                     activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
                     activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
-                    activityEntry.setWayRegistration(activity.getWayRegistration() == null ? "" : activity.getWayRegistration());
-                    if (projectList != null)
+                    if (projectList != null) {
+                        activity.setProjects(projectList);
                         activityEntry.setProjectList(projectList);
+                    }
                     activityEntries.add(activityEntry);
                 }
             }
@@ -429,27 +421,27 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/selectReview")
-    public ResultBean selectReview(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        ResultBean resultBean = new ResultBean();
-        try {
-            List<Activity> activityList = new ArrayList<>();
-            List<Activity> activitys = this.activityService.findActivityAllList();
-            for(Activity activity: activitys){
-                System.out.println(activity.getReviewerId()+"."+user.getId());
-                if (activity.getReviewerId()!=null && Integer.parseInt(activity.getReviewerId())==user.getId()){
-                    activityList.add(activity);
-                }
-            }
-            resultBean.setData(activityList);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            resultBean.setCode(1);
-            resultBean.setMsg(e.getMessage());
-        }
-        return resultBean;
-    }
+//    @GetMapping("/selectReview")
+//    public ResultBean selectReview(HttpSession session){
+//        User user = (User) session.getAttribute("user");
+//        ResultBean resultBean = new ResultBean();
+//        try {
+//            List<Activity> activityList = new ArrayList<>();
+//            List<Activity> activitys = this.activityService.findActivityAllList();
+//            for(Activity activity: activitys){
+//                System.out.println(activity.getReviewerId()+"."+user.getId());
+//                if (activity.getReviewerId()!=null && Integer.parseInt(activity.getReviewerId())==user.getId()){
+//                    activityList.add(activity);
+//                }
+//            }
+//            resultBean.setData(activityList);
+//            resultBean.setCode(0);
+//        }catch (Exception e){
+//            resultBean.setCode(1);
+//            resultBean.setMsg(e.getMessage());
+//        }
+//        return resultBean;
+//    }
     //个人报名参加活动
     @GetMapping("/signUp/{aid}")
     public ResultBean signUp(@PathVariable Integer aid, HttpSession session){

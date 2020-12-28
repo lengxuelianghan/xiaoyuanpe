@@ -32,31 +32,17 @@ public class Activity {
 
     private Date registrationStartTime;
 
-    private String reviewerId;
-
-    private String contact;
-
     private String contactPhone;
 
-    private String wayRegistration;
+    private String costDescription;
 
-    private String activityArea;
-
-    private String eventLocation;
-
-    private String activityClassification;
-
-    private String participationFee;
+    private String cost;
 
     private String collegeList;
 
-    private String classList;
-
     private Integer peopleNum;
 
-    private String signout;
-
-    private String fieldClock;
+    private Integer activityClass;
 
     private List<Project> projects;
 
@@ -172,22 +158,6 @@ public class Activity {
         this.registrationStartTime = registrationStartTime;
     }
 
-    public String getReviewerId() {
-        return reviewerId;
-    }
-
-    public void setReviewerId(String reviewerId) {
-        this.reviewerId = reviewerId == null ? null : reviewerId.trim();
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact == null ? null : contact.trim();
-    }
-
     public String getContactPhone() {
         return contactPhone;
     }
@@ -196,44 +166,20 @@ public class Activity {
         this.contactPhone = contactPhone == null ? null : contactPhone.trim();
     }
 
-    public String getWayRegistration() {
-        return wayRegistration;
+    public String getCostDescription() {
+        return costDescription;
     }
 
-    public void setWayRegistration(String wayRegistration) {
-        this.wayRegistration = wayRegistration == null ? null : wayRegistration.trim();
+    public void setCostDescription(String costDescription) {
+        this.costDescription = costDescription == null ? null : costDescription.trim();
     }
 
-    public String getActivityArea() {
-        return activityArea;
+    public String getCost() {
+        return cost;
     }
 
-    public void setActivityArea(String activityArea) {
-        this.activityArea = activityArea == null ? null : activityArea.trim();
-    }
-
-    public String getEventLocation() {
-        return eventLocation;
-    }
-
-    public void setEventLocation(String eventLocation) {
-        this.eventLocation = eventLocation == null ? null : eventLocation.trim();
-    }
-
-    public String getActivityClassification() {
-        return activityClassification;
-    }
-
-    public void setActivityClassification(String activityClassification) {
-        this.activityClassification = activityClassification == null ? null : activityClassification.trim();
-    }
-
-    public String getParticipationFee() {
-        return participationFee;
-    }
-
-    public void setParticipationFee(String participationFee) {
-        this.participationFee = participationFee == null ? null : participationFee.trim();
+    public void setCost(String cost) {
+        this.cost = cost == null ? null : cost.trim();
     }
 
     public String getCollegeList() {
@@ -244,14 +190,6 @@ public class Activity {
         this.collegeList = collegeList == null ? null : collegeList.trim();
     }
 
-    public String getClassList() {
-        return classList;
-    }
-
-    public void setClassList(String classList) {
-        this.classList = classList == null ? null : classList.trim();
-    }
-
     public Integer getPeopleNum() {
         return peopleNum;
     }
@@ -260,20 +198,12 @@ public class Activity {
         this.peopleNum = peopleNum;
     }
 
-    public String getSignout() {
-        return signout;
+    public Integer getActivityClass() {
+        return activityClass;
     }
 
-    public void setSignout(String signout) {
-        this.signout = signout == null ? null : signout.trim();
-    }
-
-    public String getFieldClock() {
-        return fieldClock;
-    }
-
-    public void setFieldClock(String fieldClock) {
-        this.fieldClock = fieldClock == null ? null : fieldClock.trim();
+    public void setActivityClass(Integer activityClass) {
+        this.activityClass = activityClass;
     }
 
     public List<Project> getProjects() {
