@@ -47,7 +47,15 @@ public class ActivityEntry {
     private Integer activityClass;
 
     private Integer signNum;
+    private Date reviewTime;
 
+    public Date getReviewTime() {
+        return reviewTime;
+    }
+
+    public void setReviewTime(Date reviewTime) {
+        this.reviewTime = reviewTime;
+    }
 
     private List<Project> projectList;
 

@@ -379,6 +379,7 @@ public class ActivityController {
         activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
         activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
         activityEntry.setActivityArea(activity.getActivityArea());
+        activityEntry.setReviewTime(activity.getReviewTime());
         if (projectList != null) {
             activity.setProjects(projectList);
             activityEntry.setProjectList(projectList);
@@ -496,11 +497,13 @@ public class ActivityController {
             if (activity.getStatus()==0){
                 if (code==1) {
                     activity.setStatus(1);
+                    activity.setReviewTime(new Date());
                     resultBean.setCode(0);
                     this.activityService.ModifyActivity(activity);
                 }
                 else if (code==6) {
                     activity.setStatus(6);
+                    activity.setReviewTime(new Date());
                     resultBean.setCode(0);
                     this.activityService.ModifyActivity(activity);
                 }

@@ -1444,6 +1444,66 @@ public class ActivityExample {
             addCriterion("sign_num not between", value1, value2, "signNum");
             return (Criteria) this;
         }
+
+        public Criteria andReviewTimeIsNull() {
+            addCriterion("review_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeIsNotNull() {
+            addCriterion("review_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeEqualTo(Date value) {
+            addCriterion("review_time =", value, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeNotEqualTo(Date value) {
+            addCriterion("review_time <>", value, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeGreaterThan(Date value) {
+            addCriterion("review_time >", value, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("review_time >=", value, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeLessThan(Date value) {
+            addCriterion("review_time <", value, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeLessThanOrEqualTo(Date value) {
+            addCriterion("review_time <=", value, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeIn(List<Date> values) {
+            addCriterion("review_time in", values, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeNotIn(List<Date> values) {
+            addCriterion("review_time not in", values, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeBetween(Date value1, Date value2) {
+            addCriterion("review_time between", value1, value2, "reviewTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewTimeNotBetween(Date value1, Date value2) {
+            addCriterion("review_time not between", value1, value2, "reviewTime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
