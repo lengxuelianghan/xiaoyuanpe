@@ -355,6 +355,37 @@ public class ActivityController {
         return resultBean;
     }
 
+    private ActivityEntry toActivity(Activity activity){
+        List<Project> projectList = this.projectService.findProjectByActivityId(activity.getId());
+        ActivityEntry activityEntry = new ActivityEntry();
+        activityEntry.setId(activity.getId());
+        activityEntry.setActivityName(activity.getActivityName());
+        User user = this.userService.findUsersById(activity.getPublisherId());
+        activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
+        activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
+        activityEntry.setCollege(this.collegeService.findCollegeById(activity.getCollegeId()).getCollegeName());
+        activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
+        activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
+        activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
+        activityEntry.setEndTime(activity.getEndTime() == null ? new Date() : activity.getEndTime());
+        activityEntry.setImagePath(activity.getImagePath() == null ? "" : activity.getImagePath());
+        activityEntry.setPeopleNum(activity.getPeopleNum() == null ? 0 : activity.getPeopleNum());
+        activityEntry.setPublishData(activity.getPublishData() == null ? new Date() : activity.getPublishData());
+        activityEntry.setRegistrationClosingTime(activity.getRegistrationClosingTime() == null ? new Date() : activity.getRegistrationClosingTime());
+        activityEntry.setRegistrationStartTime(activity.getRegistrationStartTime() == null ? new Date() : activity.getRegistrationStartTime());
+        activityEntry.setSchoolId(activity.getSchoolId() == null ? "" : this.schoolService.findSchoolById(activity.getSchoolId()).getSchoolName());
+        //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
+        activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
+        activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
+        activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
+        activityEntry.setActivityArea(activity.getActivityArea());
+        if (projectList != null) {
+            activity.setProjects(projectList);
+            activityEntry.setProjectList(projectList);
+        }
+        return activityEntry;
+    }
+
     @GetMapping("/queryActivityListAll")
     public ResultBean queryActivityListAll(HttpSession session){
         User userSession = (User) session.getAttribute("user");
@@ -364,34 +395,8 @@ public class ActivityController {
             List<ActivityEntry> activityEntries = new ArrayList<>();
             for (Activity activity: activityList){
                 if (activity.getSchoolId()==userSession.getSchoolId()) {
-                    List<Project> projectList = this.projectService.findProjectByActivityId(activity.getId());
-                    ActivityEntry activityEntry = new ActivityEntry();
-                    activityEntry.setId(activity.getId());
-                    activityEntry.setActivityName(activity.getActivityName());
-                    User user = this.userService.findUsersById(activity.getPublisherId());
-                    activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
-                    activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
-                    activityEntry.setCollege(this.collegeService.findCollegeById(activity.getCollegeId()).getCollegeName());
-                    activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
-                    activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
-                    activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
-                    activityEntry.setEndTime(activity.getEndTime() == null ? new Date() : activity.getEndTime());
-                    activityEntry.setImagePath(activity.getImagePath() == null ? "" : activity.getImagePath());
-                    activityEntry.setPeopleNum(activity.getPeopleNum() == null ? 0 : activity.getPeopleNum());
-                    activityEntry.setPublishData(activity.getPublishData() == null ? new Date() : activity.getPublishData());
-                    activityEntry.setRegistrationClosingTime(activity.getRegistrationClosingTime() == null ? new Date() : activity.getRegistrationClosingTime());
-                    activityEntry.setRegistrationStartTime(activity.getRegistrationStartTime() == null ? new Date() : activity.getRegistrationStartTime());
-                    activityEntry.setSchoolId(activity.getSchoolId() == null ? "" : this.schoolService.findSchoolById(activity.getSchoolId()).getSchoolName());
-                    //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
-                    activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
-                    activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
-                    activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
-                    activityEntry.setActivityArea(activity.getActivityArea());
-                    if (projectList != null) {
-                        activity.setProjects(projectList);
-                        activityEntry.setProjectList(projectList);
-                    }
-                    activityEntries.add(activityEntry);
+
+                    activityEntries.add(this.toActivity(activity));
                 }
             }
             resultBean.setData(activityEntries);
@@ -417,34 +422,7 @@ public class ActivityController {
                         activity.getRegistrationStartTime().compareTo(nowDate)<0
                         && activity.getRegistrationClosingTime().compareTo(nowDate)>0 && activity.getStatus()==2)
                 {
-                    List<Project> projectList = this.projectService.findProjectByActivityId(activity.getId());
-                    ActivityEntry activityEntry = new ActivityEntry();
-                    activityEntry.setId(activity.getId());
-                    activityEntry.setActivityName(activity.getActivityName());
-                    User user = this.userService.findUsersById(activity.getPublisherId());
-                    activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
-                    activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
-                    activityEntry.setCollege(this.collegeService.findCollegeById(activity.getCollegeId()).getCollegeName());
-                    activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
-                    activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
-                    activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
-                    activityEntry.setEndTime(activity.getEndTime() == null ? new Date() : activity.getEndTime());
-                    activityEntry.setImagePath(activity.getImagePath() == null ? "" : activity.getImagePath());
-                    activityEntry.setPeopleNum(activity.getPeopleNum() == null ? 0 : activity.getPeopleNum());
-                    activityEntry.setPublishData(activity.getPublishData() == null ? new Date() : activity.getPublishData());
-                    activityEntry.setRegistrationClosingTime(activity.getRegistrationClosingTime() == null ? new Date() : activity.getRegistrationClosingTime());
-                    activityEntry.setRegistrationStartTime(activity.getRegistrationStartTime() == null ? new Date() : activity.getRegistrationStartTime());
-                    activityEntry.setSchoolId(activity.getSchoolId() == null ? "" : this.schoolService.findSchoolById(activity.getSchoolId()).getSchoolName());
-                    //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
-                    activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
-                    activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
-                    activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
-                    activityEntry.setActivityArea(activity.getActivityArea());
-                    if (projectList != null) {
-                        activity.setProjects(projectList);
-                        activityEntry.setProjectList(projectList);
-                    }
-                    activityEntries.add(activityEntry);
+                    activityEntries.add(this.toActivity(activity));
                 }
             }
             resultBean.setData(activityEntries);
@@ -508,16 +486,24 @@ public class ActivityController {
         if (!upload.exists()) upload.mkdirs();
         return upload.getAbsolutePath();
     }
-
-    @GetMapping("/reviewById/{id}")
-    public ResultBean reviewById(@PathVariable Integer id){
+    //表示拒绝或者同意审核
+    @GetMapping("/reviewById/{id}/{code}")
+    public ResultBean reviewById(@PathVariable Integer id, @PathVariable Integer code){
         ResultBean resultBean = new ResultBean();
+        resultBean.setCode(1);
         try {
             Activity activity = this.activityService.findActivityById(id);
             if (activity.getStatus()==0){
-                activity.setStatus(1);
-                resultBean.setCode(0);
-                this.activityService.ModifyActivity(activity);
+                if (code==1) {
+                    activity.setStatus(1);
+                    resultBean.setCode(0);
+                    this.activityService.ModifyActivity(activity);
+                }
+                else if (code==6) {
+                    activity.setStatus(6);
+                    resultBean.setCode(0);
+                    this.activityService.ModifyActivity(activity);
+                }
             }
             else {
                 resultBean.setCode(1);
@@ -556,16 +542,16 @@ public class ActivityController {
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager"));
         try {
-            List<Activity> activityList = new ArrayList<>();
             List<Activity> activitys = this.activityService.findActivityAllList();
+            List<ActivityEntry> activityEntries = new ArrayList<>();
             if (HasRole.hasOneRole(booleans)) {
                 for (Activity activity : activitys) {
                     if (activity.getSchoolId()==user.getSchoolId() && activity.getStatus() == 0 &&
                             activity.getRegistrationStartTime().compareTo(new Date())<0) {
-                        activityList.add(activity);
+                        activityEntries.add(this.toActivity(activity));
                     }
                 }
-                resultBean.setData(activityList);
+                resultBean.setData(activityEntries);
                 resultBean.setCode(0);
             }
             else {
