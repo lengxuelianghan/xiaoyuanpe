@@ -550,7 +550,7 @@ public class ActivityController {
             if (HasRole.hasOneRole(booleans)) {
                 for (Activity activity : activitys) {
                     if (activity.getSchoolId()==user.getSchoolId() && activity.getStatus() == 0 &&
-                            activity.getRegistrationStartTime().compareTo(new Date())<0) {
+                            activity.getRegistrationStartTime().compareTo(new Date())>0) {
                         activityEntries.add(this.toActivity(activity));
                     }
                 }
