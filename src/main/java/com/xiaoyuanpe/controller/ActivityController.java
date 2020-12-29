@@ -380,6 +380,8 @@ public class ActivityController {
         activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
         activityEntry.setActivityArea(activity.getActivityArea());
         activityEntry.setReviewTime(activity.getReviewTime());
+        activityEntry.setCost(activity.getCost());
+        activityEntry.setCostDescription(activity.getCostDescription());
         if (projectList != null) {
             activity.setProjects(projectList);
             activityEntry.setProjectList(projectList);
