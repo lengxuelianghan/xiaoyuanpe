@@ -121,11 +121,72 @@ public class ActivityController {
             resultBean.setCode(1);
             resultBean.setMsg("用户不存在");
         }
-//        if (this.addOrNot(uid)){
-//            resultBean.setCode(1);
-//            resultBean.setMsg("您有一个未发布活动，不能新建");
-//            return resultBean;
-//        }
+        try {
+            if (pictureFile != null){
+                String filepath = getUploadPath();
+                String filename=pictureFile.getOriginalFilename();
+                String fileName = getFileName(filename);
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File("C:\\nginx\\img\\"+ fileName)));
+                System.out.println("C:\\nginx\\img\\"+ fileName);
+                activity.setImagePath("C:\\nginx\\img\\"+ fileName);
+                activity.setStatus(0);
+                activity.setSignNum(0);
+                activity.setPublisherId(uid);
+                activity.setActivityClass(0);
+                activity.setPublishData(new Date());
+                activity.setSchoolId(user.getSchoolId());
+                activity.setCollegeId(this.studentService.findStudentByNumber(user.getUserNumber()).getCollegeId());
+                out.write(pictureFile.getBytes());
+                out.flush();
+                out.close();
+            }
+            this.activityService.addActivity(activity);
+
+            if (activity.getProjects()!=null && activity.getProjects().size()>0){
+                for (Project project: activity.getProjects()){
+                    project.setActivityId(activity.getId());
+                    this.projectService.addProject(project);
+                }
+            }
+
+            ActivityStud activityStud = new ActivityStud();
+            String num = this.userService.findUsersById(uid).getUserNumber();
+            int id = this.studentService.findStudentByNumber(num).getId();
+            activityStud.setStudentId(id);
+            activityStud.setActivityId(activity.getId());
+            activityStud.setCharacters("发起人");
+            this.activityStudService.addActivityStud(activityStud);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getClass().toString());
+            if (e.getClass().toString().equals("java.sql.SQLIntegrityConstraintViolationException")){
+                resultBean.setMsg("学校信息或用户信息不存在");
+            }
+        }
+        return resultBean;
+    }
+
+    //添加并发布比赛
+    @PostMapping("/addGame")
+    public ResultBean addGame(@RequestParam("pictureFile") MultipartFile pictureFile, Activity activity,
+                                  HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        Integer uid = 0;
+        if (user!=null)
+            uid = user.getId();
+        else {
+            resultBean.setCode(1);
+            resultBean.setMsg("用户不存在");
+        }
+        if (this.addOrNot(uid)){
+            resultBean.setCode(1);
+            resultBean.setMsg("您有一个未发布活动，不能新建");
+            return resultBean;
+        }
         try {
             if (pictureFile != null){
                 String filepath = getUploadPath();
@@ -140,6 +201,7 @@ public class ActivityController {
                 activity.setPublisherId(uid);
                 activity.setPublishData(new Date());
                 activity.setSchoolId(user.getSchoolId());
+                activity.setActivityClass(1);
                 activity.setCollegeId(this.studentService.findStudentByNumber(user.getUserNumber()).getCollegeId());
                 out.write(pictureFile.getBytes());
                 out.flush();
@@ -223,6 +285,7 @@ public class ActivityController {
                 activity.setStatus(5);
                 activity.setPublisherId(uid);
                 activity.setSignNum(0);
+                activity.setActivityClass(1);
                 out.write(pictureFile.getBytes());
                 out.flush();
                 out.close();
