@@ -320,9 +320,9 @@ public class SignInController {
         studentInfoEntry.setStudentName(student.getStudentName());
         studentInfoEntry.setStudentId(signin.getStudentId());
         if (signin.getSignTime()!=null)
-            studentInfoEntry.setSignTime(new Timestamp(signin.getSignTime().getTime()+8*60*60*1000));
+            studentInfoEntry.setSignTime(new Timestamp(signin.getSignTime().getTime()));
         if (signin.getSignoutTime()!=null)
-            studentInfoEntry.setSignOutTime(new Timestamp(signin.getSignoutTime().getTime()+8*60*60*1000));
+            studentInfoEntry.setSignOutTime(new Timestamp(signin.getSignoutTime().getTime()));
         return studentInfoEntry;
     }
 
