@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.controller;
 
+import com.xiaoyuanpe.pojo.School;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserEntry;
 import com.xiaoyuanpe.services.LoginService;
@@ -25,11 +26,15 @@ public class LoginController {
     private SchoolService schoolService;
 
     @PostMapping("/login")
-    public ResultBean Login(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
+    public ResultBean Login(@RequestParam Integer schoolId, @RequestParam String usernumber,
+                            @RequestParam String password, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
             int pageSize = (int)this.userService.Count();
-            String info = this.loginService.login(usernumber, password);
+            String info = "登陆失败";
+            if (schoolId==this.userService.findUsersByStudentNum(usernumber).getSchoolId()) {
+                info = this.loginService.login(usernumber, password);
+            }
             if (info.equals("登陆成功")) {
                 resultBean.setCode(0);
                 for (User user : this.userService.findUsersAll(1, pageSize).getContent()) {
