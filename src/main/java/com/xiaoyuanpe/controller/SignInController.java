@@ -171,6 +171,7 @@ public class SignInController {
                     int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                     List<Semester> semesters = this.semesterService.findSemesterAll();
                     System.out.println(dataLen);
+                    resultBean.setTotal(dataLen);
                     for (Semester semester: semesters){
                         Student student = this.studentService.findStudentById(signin.getStudentId());
                         resultBean.setData(semester);
