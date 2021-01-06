@@ -23,7 +23,9 @@ public class Project {
 
     private Integer activityId;
 
-    private String teamPeople;
+    private Integer teamPeople;
+
+    private Integer minmum;
 
     public Integer getId() {
         return id;
@@ -113,11 +115,19 @@ public class Project {
         this.activityId = activityId;
     }
 
-    public String getTeamPeople() {
+    public Integer getTeamPeople() {
         return teamPeople;
     }
 
-    public void setTeamPeople(String teamPeople) {
-        this.teamPeople = teamPeople == null ? null : teamPeople.trim();
+    public void setTeamPeople(Integer teamPeople) {
+        this.teamPeople = teamPeople;
+    }
+
+    public Integer getMinmum() {
+        return minmum;
+    }
+
+    public void setMinmum(Integer minmum) {
+        this.minmum = minmum;
     }
 }

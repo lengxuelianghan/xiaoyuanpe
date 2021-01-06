@@ -834,63 +834,113 @@ public class ProjectExample {
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleEqualTo(String value) {
+        public Criteria andTeamPeopleEqualTo(Integer value) {
             addCriterion("team_people =", value, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleNotEqualTo(String value) {
+        public Criteria andTeamPeopleNotEqualTo(Integer value) {
             addCriterion("team_people <>", value, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleGreaterThan(String value) {
+        public Criteria andTeamPeopleGreaterThan(Integer value) {
             addCriterion("team_people >", value, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleGreaterThanOrEqualTo(String value) {
+        public Criteria andTeamPeopleGreaterThanOrEqualTo(Integer value) {
             addCriterion("team_people >=", value, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleLessThan(String value) {
+        public Criteria andTeamPeopleLessThan(Integer value) {
             addCriterion("team_people <", value, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleLessThanOrEqualTo(String value) {
+        public Criteria andTeamPeopleLessThanOrEqualTo(Integer value) {
             addCriterion("team_people <=", value, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleLike(String value) {
-            addCriterion("team_people like", value, "teamPeople");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamPeopleNotLike(String value) {
-            addCriterion("team_people not like", value, "teamPeople");
-            return (Criteria) this;
-        }
-
-        public Criteria andTeamPeopleIn(List<String> values) {
+        public Criteria andTeamPeopleIn(List<Integer> values) {
             addCriterion("team_people in", values, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleNotIn(List<String> values) {
+        public Criteria andTeamPeopleNotIn(List<Integer> values) {
             addCriterion("team_people not in", values, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleBetween(String value1, String value2) {
+        public Criteria andTeamPeopleBetween(Integer value1, Integer value2) {
             addCriterion("team_people between", value1, value2, "teamPeople");
             return (Criteria) this;
         }
 
-        public Criteria andTeamPeopleNotBetween(String value1, String value2) {
+        public Criteria andTeamPeopleNotBetween(Integer value1, Integer value2) {
             addCriterion("team_people not between", value1, value2, "teamPeople");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumIsNull() {
+            addCriterion("minmum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumIsNotNull() {
+            addCriterion("minmum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumEqualTo(Integer value) {
+            addCriterion("minmum =", value, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumNotEqualTo(Integer value) {
+            addCriterion("minmum <>", value, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumGreaterThan(Integer value) {
+            addCriterion("minmum >", value, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("minmum >=", value, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumLessThan(Integer value) {
+            addCriterion("minmum <", value, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumLessThanOrEqualTo(Integer value) {
+            addCriterion("minmum <=", value, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumIn(List<Integer> values) {
+            addCriterion("minmum in", values, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumNotIn(List<Integer> values) {
+            addCriterion("minmum not in", values, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumBetween(Integer value1, Integer value2) {
+            addCriterion("minmum between", value1, value2, "minmum");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinmumNotBetween(Integer value1, Integer value2) {
+            addCriterion("minmum not between", value1, value2, "minmum");
             return (Criteria) this;
         }
     }

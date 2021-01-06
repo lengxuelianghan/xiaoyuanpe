@@ -13,7 +13,8 @@
     <result column="judge" jdbcType="VARCHAR" property="judge" />
     <result column="referee_conditions" jdbcType="VARCHAR" property="refereeConditions" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
-    <result column="team_people" jdbcType="VARCHAR" property="teamPeople" />
+    <result column="team_people" jdbcType="INTEGER" property="teamPeople" />
+    <result column="minmum" jdbcType="INTEGER" property="minmum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, project_name, team, maximum, integral_set, signing_condition, venue, entry_fee, 
-    judge, referee_conditions, activity_id, team_people
+    judge, referee_conditions, activity_id, team_people, minmum
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.ProjectExample" resultMap="BaseResultMap">
     select
@@ -111,13 +112,13 @@
     insert into project (id, project_name, team, 
       maximum, integral_set, signing_condition, 
       venue, entry_fee, judge, 
-      referee_conditions, activity_id, team_people
-      )
+      referee_conditions, activity_id, team_people, 
+      minmum)
     values (#{id,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{team,jdbcType=BIT}, 
       #{maximum,jdbcType=INTEGER}, #{integralSet,jdbcType=VARCHAR}, #{signingCondition,jdbcType=VARCHAR}, 
       #{venue,jdbcType=VARCHAR}, #{entryFee,jdbcType=INTEGER}, #{judge,jdbcType=VARCHAR}, 
-      #{refereeConditions,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, #{teamPeople,jdbcType=VARCHAR}
-      )
+      #{refereeConditions,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, #{teamPeople,jdbcType=INTEGER}, 
+      #{minmum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Project">
     insert into project
@@ -158,6 +159,9 @@
       <if test="teamPeople != null">
         team_people,
       </if>
+      <if test="minmum != null">
+        minmum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -194,7 +198,10 @@
         #{activityId,jdbcType=INTEGER},
       </if>
       <if test="teamPeople != null">
-        #{teamPeople,jdbcType=VARCHAR},
+        #{teamPeople,jdbcType=INTEGER},
+      </if>
+      <if test="minmum != null">
+        #{minmum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -241,7 +248,10 @@
         activity_id = #{record.activityId,jdbcType=INTEGER},
       </if>
       <if test="record.teamPeople != null">
-        team_people = #{record.teamPeople,jdbcType=VARCHAR},
+        team_people = #{record.teamPeople,jdbcType=INTEGER},
+      </if>
+      <if test="record.minmum != null">
+        minmum = #{record.minmum,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -261,7 +271,8 @@
       judge = #{record.judge,jdbcType=VARCHAR},
       referee_conditions = #{record.refereeConditions,jdbcType=VARCHAR},
       activity_id = #{record.activityId,jdbcType=INTEGER},
-      team_people = #{record.teamPeople,jdbcType=VARCHAR}
+      team_people = #{record.teamPeople,jdbcType=INTEGER},
+      minmum = #{record.minmum,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -300,7 +311,10 @@
         activity_id = #{activityId,jdbcType=INTEGER},
       </if>
       <if test="teamPeople != null">
-        team_people = #{teamPeople,jdbcType=VARCHAR},
+        team_people = #{teamPeople,jdbcType=INTEGER},
+      </if>
+      <if test="minmum != null">
+        minmum = #{minmum,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -317,7 +331,8 @@
       judge = #{judge,jdbcType=VARCHAR},
       referee_conditions = #{refereeConditions,jdbcType=VARCHAR},
       activity_id = #{activityId,jdbcType=INTEGER},
-      team_people = #{teamPeople,jdbcType=VARCHAR}
+      team_people = #{teamPeople,jdbcType=INTEGER},
+      minmum = #{minmum,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
