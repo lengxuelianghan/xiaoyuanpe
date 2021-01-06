@@ -208,6 +208,7 @@ public class ActivityController {
                 out.close();
             }
             this.activityService.addActivity(activity);
+            resultBean.setData(activity.getId());
 
             if (activity.getProjects()!=null && activity.getProjects().size()>0){
                 for (Project project: activity.getProjects()){
@@ -291,6 +292,8 @@ public class ActivityController {
                 out.close();
             }
             this.activityService.addActivity(activity);
+
+            resultBean.setData(activity.getId());
 
             if (activity.getProjects()!=null && activity.getProjects().size()>0){
                 for (Project project: activity.getProjects()){
