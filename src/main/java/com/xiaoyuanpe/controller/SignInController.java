@@ -478,11 +478,11 @@ public class SignInController {
                             if (this.activityService.findActivityById(signin.getId()).getActivityClass()==0){
                                 activity.setScore(activity.getScore()+dataLen * 0.5f);
                             }else {
-                                game.setScore(activity.getScore()+dataLen * 0.5f);
+                                game.setScore(game.getScore()+dataLen * 0.5f);
                             }
                         }
                         else if (signin.getSportId()!=null){
-                            sport.setScore(activity.getScore()+dataLen * 0.5f);
+                            sport.setScore(sport.getScore()+dataLen * 0.5f);
                         }
                     }
                 }
