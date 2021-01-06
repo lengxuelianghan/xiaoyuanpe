@@ -474,6 +474,7 @@ public class SignInController {
                             singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
                         singlePeopleInfos.add(singlePeopleInfo);
 
+                        resultBean.setData("c俄式是");
                         if (signin.getActivityId()!=null){
                             if (this.activityService.findActivityById(signin.getActivityId()).getActivityClass()==0){
                                 activity.setScore(activity.getScore()+dataLen * 0.5f);
