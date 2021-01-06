@@ -458,8 +458,10 @@ public class SignInController {
                 if (this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date endTime = signin.getSignoutTime();
                     Date date = new Date();
+                    resultBean.setData("A俄式是");
                     if (signin.getStudentId()==student.getId()&&signin.getFlag()==2&&endTime.getYear()==date.getYear()
                             &&endTime.getMonth()==date.getMonth()&&date.getDay()-endTime.getDay()<7){
+                        resultBean.setData("b俄式是");
                         SinglePeopleInfo singlePeopleInfo = new SinglePeopleInfo();
                         int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                         singlePeopleInfo.setTimeLen(dataLen);
