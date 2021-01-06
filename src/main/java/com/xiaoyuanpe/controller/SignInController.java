@@ -448,9 +448,11 @@ public class SignInController {
         ResultBean resultBean = new ResultBean();
         User user = (User) session.getAttribute("user");
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+        resultBean.setData("ASS");
         ScorePerWeek activity = new ScorePerWeek("活动",0.0f);
         ScorePerWeek game = new ScorePerWeek("比赛",0.0f);
         ScorePerWeek sport = new ScorePerWeek("运动",0.0f);
+        resultBean.setData("s俄式是");
         try {
             List<SinglePeopleInfo> singlePeopleInfos = new ArrayList<>();
             List<Signin> signins = this.signInService.findSigninAll();
