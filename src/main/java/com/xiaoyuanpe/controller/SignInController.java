@@ -472,10 +472,19 @@ public class SignInController {
                         singlePeopleInfo.setScore(dataLen * 0.5f);
                         singlePeopleInfo.setClasz(this.classesService.findClassesById(student.getClassesId()).getClassName());
                         if (signin.getActivityId()!=null) {
+                            if (this.activityService.findActivityById(signin.getActivityId()).getActivityClass()==0){
+                                singlePeopleInfo.setClasz("活动");
+                                n1+=dataLen * 0.5f;
+                            }else {
+                                singlePeopleInfo.setClasz("运动");
+                                n2+=dataLen * 0.5f;
+                            }
                             singlePeopleInfo.setActivityOrSportName(this.activityService.findActivityById(signin.getActivityId()).getActivityName());
                         }
-                        else if(signin.getSportId()!=null)
+                        else if(signin.getSportId()!=null) {
+                            singlePeopleInfo.setClasz("运动");
                             singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
+                        }
                         singlePeopleInfos.add(singlePeopleInfo);
 
                         resultBean.setTotal(dataLen);
