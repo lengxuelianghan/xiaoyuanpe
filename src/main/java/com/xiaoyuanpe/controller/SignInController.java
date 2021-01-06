@@ -474,14 +474,14 @@ public class SignInController {
                             singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
                         singlePeopleInfos.add(singlePeopleInfo);
 
-                        if (signin.getActivityId()!=null&&signin.getActivityId()!=0){
+                        if (signin.getActivityId()!=null){
                             if (this.activityService.findActivityById(signin.getId()).getActivityClass()==0){
                                 activity.setScore(activity.getScore()+dataLen * 0.5f);
                             }else {
                                 game.setScore(activity.getScore()+dataLen * 0.5f);
                             }
                         }
-                        else if (signin.getSportId()!=null&&signin.getSportId()!=0){
+                        else if (signin.getSportId()!=null){
                             sport.setScore(activity.getScore()+dataLen * 0.5f);
                         }
                     }
