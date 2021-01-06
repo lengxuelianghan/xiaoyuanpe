@@ -451,6 +451,9 @@ public class SignInController {
         ScorePerWeek activity = new ScorePerWeek("活动",0.0f);
         ScorePerWeek game = new ScorePerWeek("比赛",0.0f);
         ScorePerWeek sport = new ScorePerWeek("运动",0.0f);
+        float n1=0;
+        float n2=0;
+        float n3=0;
         try {
             List<SinglePeopleInfo> singlePeopleInfos = new ArrayList<>();
             List<Signin> signins = this.signInService.findSigninAll();
@@ -459,10 +462,8 @@ public class SignInController {
                 if (this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
                     Date endTime = signin.getSignoutTime();
                     Date date = new Date();
-                    resultBean.setData("A俄式是");
                     if (signin.getStudentId()==student.getId()&&signin.getFlag()==2&&endTime.getYear()==date.getYear()
                             &&endTime.getMonth()==date.getMonth()&&date.getDay()-endTime.getDay()<7){
-                        resultBean.setData("b俄式是");
                         SinglePeopleInfo singlePeopleInfo = new SinglePeopleInfo();
                         int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                         singlePeopleInfo.setTimeLen(dataLen);
@@ -480,18 +481,21 @@ public class SignInController {
                         resultBean.setData("c俄式是");
                         if (signin.getActivityId()!=null){
                             if (this.activityService.findActivityById(signin.getActivityId()).getActivityClass()==0){
-                                activity.setScore(activity.getScore()+dataLen * 0.5f);
+                                n1+=dataLen * 0.5f;
                             }else {
-                                game.setScore(game.getScore()+dataLen * 0.5f);
+                                n2+=dataLen * 0.5f;
                             }
                         }
                         else if (signin.getSportId()!=null){
-                            sport.setScore(sport.getScore()+dataLen * 0.5f);
+                            n3+=dataLen * 0.5f;
                         }
                     }
                 }
             }
             List<ScorePerWeek> scorePerWeeks = new ArrayList<>();
+            activity.setScore(n1);
+            game.setScore(n2);
+            sport.setScore(n3);
             scorePerWeeks.add(activity);
             scorePerWeeks.add(game);
             scorePerWeeks.add(sport);
