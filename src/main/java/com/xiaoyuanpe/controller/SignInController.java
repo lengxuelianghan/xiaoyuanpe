@@ -475,7 +475,7 @@ public class SignInController {
                         singlePeopleInfos.add(singlePeopleInfo);
 
                         if (signin.getActivityId()!=null){
-                            if (this.activityService.findActivityById(signin.getId()).getActivityClass()==0){
+                            if (this.activityService.findActivityById(signin.getActivityId()).getActivityClass()==0){
                                 activity.setScore(activity.getScore()+dataLen * 0.5f);
                             }else {
                                 game.setScore(game.getScore()+dataLen * 0.5f);

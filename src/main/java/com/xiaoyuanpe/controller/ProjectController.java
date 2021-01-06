@@ -56,6 +56,7 @@ public class ProjectController {
                 }
             });
             resultBean.setData(projectList);
+            resultBean.setTotal(projectList.size());
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
