@@ -17,7 +17,7 @@ public class Project {
 
     private Integer entryFee;
 
-    private String judge;
+    private Byte judge;
 
     private String refereeConditions;
 
@@ -91,12 +91,12 @@ public class Project {
         this.entryFee = entryFee;
     }
 
-    public String getJudge() {
+    public Byte getJudge() {
         return judge;
     }
 
-    public void setJudge(String judge) {
-        this.judge = judge == null ? null : judge.trim();
+    public void setJudge(Byte judge) {
+        this.judge = judge;
     }
 
     public String getRefereeConditions() {

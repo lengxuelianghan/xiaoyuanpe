@@ -10,7 +10,7 @@
     <result column="signing_condition" jdbcType="VARCHAR" property="signingCondition" />
     <result column="venue" jdbcType="VARCHAR" property="venue" />
     <result column="entry_fee" jdbcType="INTEGER" property="entryFee" />
-    <result column="judge" jdbcType="VARCHAR" property="judge" />
+    <result column="judge" jdbcType="TINYINT" property="judge" />
     <result column="referee_conditions" jdbcType="VARCHAR" property="refereeConditions" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="team_people" jdbcType="INTEGER" property="teamPeople" />
@@ -116,7 +116,7 @@
       minmum)
     values (#{id,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{team,jdbcType=BIT}, 
       #{maximum,jdbcType=INTEGER}, #{integralSet,jdbcType=VARCHAR}, #{signingCondition,jdbcType=VARCHAR}, 
-      #{venue,jdbcType=VARCHAR}, #{entryFee,jdbcType=INTEGER}, #{judge,jdbcType=VARCHAR}, 
+      #{venue,jdbcType=VARCHAR}, #{entryFee,jdbcType=INTEGER}, #{judge,jdbcType=TINYINT}, 
       #{refereeConditions,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, #{teamPeople,jdbcType=INTEGER}, 
       #{minmum,jdbcType=INTEGER})
   </insert>
@@ -189,7 +189,7 @@
         #{entryFee,jdbcType=INTEGER},
       </if>
       <if test="judge != null">
-        #{judge,jdbcType=VARCHAR},
+        #{judge,jdbcType=TINYINT},
       </if>
       <if test="refereeConditions != null">
         #{refereeConditions,jdbcType=VARCHAR},
@@ -239,7 +239,7 @@
         entry_fee = #{record.entryFee,jdbcType=INTEGER},
       </if>
       <if test="record.judge != null">
-        judge = #{record.judge,jdbcType=VARCHAR},
+        judge = #{record.judge,jdbcType=TINYINT},
       </if>
       <if test="record.refereeConditions != null">
         referee_conditions = #{record.refereeConditions,jdbcType=VARCHAR},
@@ -268,7 +268,7 @@
       signing_condition = #{record.signingCondition,jdbcType=VARCHAR},
       venue = #{record.venue,jdbcType=VARCHAR},
       entry_fee = #{record.entryFee,jdbcType=INTEGER},
-      judge = #{record.judge,jdbcType=VARCHAR},
+      judge = #{record.judge,jdbcType=TINYINT},
       referee_conditions = #{record.refereeConditions,jdbcType=VARCHAR},
       activity_id = #{record.activityId,jdbcType=INTEGER},
       team_people = #{record.teamPeople,jdbcType=INTEGER},
@@ -302,7 +302,7 @@
         entry_fee = #{entryFee,jdbcType=INTEGER},
       </if>
       <if test="judge != null">
-        judge = #{judge,jdbcType=VARCHAR},
+        judge = #{judge,jdbcType=TINYINT},
       </if>
       <if test="refereeConditions != null">
         referee_conditions = #{refereeConditions,jdbcType=VARCHAR},
@@ -328,7 +328,7 @@
       signing_condition = #{signingCondition,jdbcType=VARCHAR},
       venue = #{venue,jdbcType=VARCHAR},
       entry_fee = #{entryFee,jdbcType=INTEGER},
-      judge = #{judge,jdbcType=VARCHAR},
+      judge = #{judge,jdbcType=TINYINT},
       referee_conditions = #{refereeConditions,jdbcType=VARCHAR},
       activity_id = #{activityId,jdbcType=INTEGER},
       team_people = #{teamPeople,jdbcType=INTEGER},

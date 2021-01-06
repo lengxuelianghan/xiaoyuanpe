@@ -634,62 +634,52 @@ public class ProjectExample {
             return (Criteria) this;
         }
 
-        public Criteria andJudgeEqualTo(String value) {
+        public Criteria andJudgeEqualTo(Byte value) {
             addCriterion("judge =", value, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeNotEqualTo(String value) {
+        public Criteria andJudgeNotEqualTo(Byte value) {
             addCriterion("judge <>", value, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeGreaterThan(String value) {
+        public Criteria andJudgeGreaterThan(Byte value) {
             addCriterion("judge >", value, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeGreaterThanOrEqualTo(String value) {
+        public Criteria andJudgeGreaterThanOrEqualTo(Byte value) {
             addCriterion("judge >=", value, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeLessThan(String value) {
+        public Criteria andJudgeLessThan(Byte value) {
             addCriterion("judge <", value, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeLessThanOrEqualTo(String value) {
+        public Criteria andJudgeLessThanOrEqualTo(Byte value) {
             addCriterion("judge <=", value, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeLike(String value) {
-            addCriterion("judge like", value, "judge");
-            return (Criteria) this;
-        }
-
-        public Criteria andJudgeNotLike(String value) {
-            addCriterion("judge not like", value, "judge");
-            return (Criteria) this;
-        }
-
-        public Criteria andJudgeIn(List<String> values) {
+        public Criteria andJudgeIn(List<Byte> values) {
             addCriterion("judge in", values, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeNotIn(List<String> values) {
+        public Criteria andJudgeNotIn(List<Byte> values) {
             addCriterion("judge not in", values, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeBetween(String value1, String value2) {
+        public Criteria andJudgeBetween(Byte value1, Byte value2) {
             addCriterion("judge between", value1, value2, "judge");
             return (Criteria) this;
         }
 
-        public Criteria andJudgeNotBetween(String value1, String value2) {
+        public Criteria andJudgeNotBetween(Byte value1, Byte value2) {
             addCriterion("judge not between", value1, value2, "judge");
             return (Criteria) this;
         }
