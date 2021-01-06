@@ -102,7 +102,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Signin">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Signin" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into signin (id, student_id, sign_time, 
       flag, signout_time, activity_id, 
       sport_id, term)
