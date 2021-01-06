@@ -448,6 +448,9 @@ public class SignInController {
         ResultBean resultBean = new ResultBean();
         User user = (User) session.getAttribute("user");
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+        ScorePerWeek activity = new ScorePerWeek("活动",0.0f);
+        ScorePerWeek game = new ScorePerWeek("比赛",0.0f);
+        ScorePerWeek sport = new ScorePerWeek("运动",0.0f);
         try {
             List<SinglePeopleInfo> singlePeopleInfos = new ArrayList<>();
             List<Signin> signins = this.signInService.findSigninAll();
@@ -470,10 +473,25 @@ public class SignInController {
                         else if(signin.getSportId()!=null)
                             singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
                         singlePeopleInfos.add(singlePeopleInfo);
+
+                        if (signin.getActivityId()!=null&&signin.getActivityId()!=0){
+                            if (this.activityService.findActivityById(signin.getId()).getActivityClass()==0){
+                                activity.setScore(activity.getScore()+dataLen * 0.5f);
+                            }else {
+                                game.setScore(activity.getScore()+dataLen * 0.5f);
+                            }
+                        }
+                        else if (signin.getSportId()!=null&&signin.getSportId()!=0){
+                            sport.setScore(activity.getScore()+dataLen * 0.5f);
+                        }
                     }
                 }
             }
-            resultBean.setData(singlePeopleInfos);
+            List<ScorePerWeek> scorePerWeeks = new ArrayList<>();
+            scorePerWeeks.add(activity);
+            scorePerWeeks.add(game);
+            scorePerWeeks.add(sport);
+            resultBean.setData(scorePerWeeks);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg("失败！");

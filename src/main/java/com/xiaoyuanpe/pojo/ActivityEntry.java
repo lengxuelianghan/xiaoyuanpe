@@ -42,6 +42,7 @@ public class ActivityEntry {
     private Integer peopleNum;
 
     private String costDescription;
+    private String contact;
 
     private String cost;
     private Integer activityClass;
@@ -244,5 +245,13 @@ public class ActivityEntry {
 
     public void setSignNum(Integer signNum) {
         this.signNum = signNum;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }

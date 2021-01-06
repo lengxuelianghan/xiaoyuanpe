@@ -41,7 +41,7 @@
 <!--        <table schema="" tableName="sports"></table>-->
 
 <!--        <table schema="" tableName="permissions"></table>-->
-        <table schema="" tableName="activity"></table>
+<!--        <table schema="" tableName="activity"></table>-->
 <!--        <table schema="" tableName="activity_stud"></table>-->
 <!--        <table schema="" tableName="class_year"></table>-->
 <!--        <table schema="" tableName="info"></table>-->
@@ -62,6 +62,7 @@
 <!--        <table schema="" tableName="college"></table>-->
 <!--        <table schema="" tableName="venue"></table>-->
 <!--        <table schema="" tableName="sportvenue_item"></table>-->
+        <table schema="" tableName="signin"></table>
     </context>
 
 </generatorConfiguration>

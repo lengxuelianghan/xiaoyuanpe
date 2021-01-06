@@ -46,8 +46,9 @@ public class Activity {
 
     private Integer signNum;
 
-    private Date reviewTime;
+    private String contact;
 
+    private Date reviewTime;
     private List<Project> projects;
 
     public List<Project> getProjects() {
@@ -57,7 +58,6 @@ public class Activity {
     public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
-
     public Integer getId() {
         return id;
     }
@@ -224,6 +224,14 @@ public class Activity {
 
     public void setSignNum(Integer signNum) {
         this.signNum = signNum;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact == null ? null : contact.trim();
     }
 
     public Date getReviewTime() {

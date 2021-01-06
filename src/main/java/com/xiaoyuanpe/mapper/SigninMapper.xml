@@ -9,6 +9,7 @@
     <result column="signout_time" jdbcType="TIMESTAMP" property="signoutTime" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="sport_id" jdbcType="INTEGER" property="sportId" />
+    <result column="term" jdbcType="INTEGER" property="term" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, student_id, sign_time, flag, signout_time, activity_id, sport_id
+    id, student_id, sign_time, flag, signout_time, activity_id, sport_id, term
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.SigninExample" resultMap="BaseResultMap">
     select
@@ -101,13 +102,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Signin" keyProperty="id" useGeneratedKeys="true" keyColumn="id">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Signin">
     insert into signin (id, student_id, sign_time, 
       flag, signout_time, activity_id, 
-      sport_id)
+      sport_id, term)
     values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{signTime,jdbcType=TIMESTAMP}, 
       #{flag,jdbcType=INTEGER}, #{signoutTime,jdbcType=TIMESTAMP}, #{activityId,jdbcType=INTEGER}, 
-      #{sportId,jdbcType=INTEGER})
+      #{sportId,jdbcType=INTEGER}, #{term,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Signin">
     insert into signin
@@ -133,6 +134,9 @@
       <if test="sportId != null">
         sport_id,
       </if>
+      <if test="term != null">
+        term,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -155,6 +159,9 @@
       </if>
       <if test="sportId != null">
         #{sportId,jdbcType=INTEGER},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.sportId != null">
         sport_id = #{record.sportId,jdbcType=INTEGER},
       </if>
+      <if test="record.term != null">
+        term = #{record.term,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       flag = #{record.flag,jdbcType=INTEGER},
       signout_time = #{record.signoutTime,jdbcType=TIMESTAMP},
       activity_id = #{record.activityId,jdbcType=INTEGER},
-      sport_id = #{record.sportId,jdbcType=INTEGER}
+      sport_id = #{record.sportId,jdbcType=INTEGER},
+      term = #{record.term,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="sportId != null">
         sport_id = #{sportId,jdbcType=INTEGER},
       </if>
+      <if test="term != null">
+        term = #{term,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +251,8 @@
       flag = #{flag,jdbcType=INTEGER},
       signout_time = #{signoutTime,jdbcType=TIMESTAMP},
       activity_id = #{activityId,jdbcType=INTEGER},
-      sport_id = #{sportId,jdbcType=INTEGER}
+      sport_id = #{sportId,jdbcType=INTEGER},
+      term = #{term,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

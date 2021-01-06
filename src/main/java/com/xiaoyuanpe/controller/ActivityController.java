@@ -384,6 +384,7 @@ public class ActivityController {
         activityEntry.setActivityArea(activity.getActivityArea());
         activityEntry.setReviewTime(activity.getReviewTime());
         activityEntry.setCost(activity.getCost());
+        activityEntry.setContact(activity.getContact());
         activityEntry.setActivityClass(activity.getActivityClass());
         activityEntry.setReviewTime(activity.getReviewTime()==null?new Date():activity.getReviewTime());
         activityEntry.setCostDescription(activity.getCostDescription());

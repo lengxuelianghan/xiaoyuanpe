@@ -1,7 +1,6 @@
 package com.xiaoyuanpe.pojo;
 
 import java.util.Date;
-import java.util.List;
 
 public class Signin {
     private Integer id;
@@ -18,7 +17,7 @@ public class Signin {
 
     private Integer sportId;
 
-    private List<ProjectSignInEntry> projectSignInEntryList;
+    private Integer term;
 
     public Integer getId() {
         return id;
@@ -76,11 +75,11 @@ public class Signin {
         this.sportId = sportId;
     }
 
-    public List<ProjectSignInEntry> getProjectSignInEntryList() {
-        return projectSignInEntryList;
+    public Integer getTerm() {
+        return term;
     }
 
-    public void setProjectSignInEntryList(List<ProjectSignInEntry> projectSignInEntryList) {
-        this.projectSignInEntryList = projectSignInEntryList;
+    public void setTerm(Integer term) {
+        this.term = term;
     }
 }
