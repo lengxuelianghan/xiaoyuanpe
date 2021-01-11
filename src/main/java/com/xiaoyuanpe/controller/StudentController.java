@@ -120,7 +120,7 @@ public class StudentController {
         }
         return resultBean;
     }
-
+    //添加学生
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
     public ResultBean addStudent(@RequestBody Student student){
         ResultBean resultBean = new ResultBean();
@@ -142,7 +142,7 @@ public class StudentController {
                 user.setUserNumber(student.getStudentNumber());
                 user.setSex(student.getSex());
                 user.setUsername(student.getStudentName());
-                user.setPassword("123456");
+                user.setPassword(student.getStudentNumber());
                 user.setSchoolId(student.getShcoolId());
                 user.setIdentity("学生");
                 this.userService.addUser(user);

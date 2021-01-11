@@ -53,7 +53,7 @@ public class ExcelUtil {
                         studentInfo1.setSex("无");
                         studentInfo1.setAge(0);
                         studentInfo1.setPhone("无");
-                        studentInfo1.setPassword("123456");
+                        studentInfo1.setPassword(ExcelUtil.getCell(sheet.getRow(j).getCell(1)));
                         BOM.add(studentInfo1);
                     }
                 }
@@ -79,7 +79,7 @@ public class ExcelUtil {
                                 studentInfo.setSex("无");
                                 studentInfo.setAge(0);
                                 studentInfo.setPhone("无");
-                                studentInfo.setPassword("123456");
+                                studentInfo.setPassword(String.valueOf(Integer.parseInt(cell.getRawValue())));
                                 //studentInfo.setName(cell.toString());
                                 break;
 //                            case 2:
