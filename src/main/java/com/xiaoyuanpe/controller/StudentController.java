@@ -213,7 +213,7 @@ public class StudentController {
                         studentList.add(this.toStudentInfo(student));
                     }
                 }
-                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize());
+                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
                 PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
                 resultBean.setData(studentInfoPage);
                 resultBean.setCode(0);
@@ -245,7 +245,7 @@ public class StudentController {
                         studentList.add(this.toStudentInfo(student));
                     }
                 }
-                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize());
+                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
                 PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
                 resultBean.setData(studentInfoPage);
                 resultBean.setCode(0);
@@ -278,8 +278,11 @@ public class StudentController {
                         studentList.add(this.toStudentInfo(student));
                     }
                 }
-                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize());
+                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
                 PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
+                com.github.pagehelper.Page<StudentInfo> sp = new com.github.pagehelper.Page<>();
+                sp.setPageNum(page.getCurrentPageNumber());
+                sp.setPageSize(page.getPageSize());
                 resultBean.setData(studentInfoPage);
                 resultBean.setCode(0);
             } catch (Exception e) {
