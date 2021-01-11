@@ -315,7 +315,7 @@ public class StudentController {
             studentInfo.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
             studentInfo.setSchool(this.schoolService.findSchoolById(student.getShcoolId()).getSchoolName());
             studentInfo.setNumber(student.getStudentNumber());
-            studentInfo.setAge(student.getAge());
+            studentInfo.setSex(student.getSex());
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
