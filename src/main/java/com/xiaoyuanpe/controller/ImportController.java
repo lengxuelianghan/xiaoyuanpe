@@ -67,7 +67,7 @@ public class ImportController  {
                 user1.setIdentity("学生");
                 user1.setAge(studentInfo.getAge());
                 user1.setUserNumber(Utils.IntegerToString(user.getSchoolId())+studentInfo.getNumber());
-                user1.setPassword(studentInfo.getPassword());
+                user1.setPassword(Utils.IntegerToString(user.getSchoolId())+studentInfo.getPassword());
                 user1.setUsername(studentInfo.getName());
                 user1.setSchoolId(sId);
                 user1.setPhone(studentInfo.getPhone());

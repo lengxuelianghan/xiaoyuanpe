@@ -132,7 +132,6 @@ public class StudentController {
                 student.setStudentNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 this.studentService.addStudent(student);
                 Semester semester = new Semester();
-                resultBean.setData(student.getId()+"hh");
                 semester.setSudentId(student.getId());
                 semester.setClassesId(student.getClassesId());
                 semester.setScore(0);
@@ -143,7 +142,7 @@ public class StudentController {
                 User user = new User();
                 user.setUserNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 user.setSex(student.getSex());
-                user.setUsername(student.getStudentName());
+                user.setUsername(Utils.IntegerToString(student.getShcoolId())+student.getStudentName());
                 user.setPassword(student.getStudentNumber());
                 user.setSchoolId(student.getShcoolId());
                 user.setIdentity("学生");
@@ -191,8 +190,9 @@ public class StudentController {
         return resultBean;
     }
 
-    @RequestMapping("/queryStudentInfoBySchool/{sid}")
-    public ResultBean queryStudentInfoBySchool(@PathVariable Integer sid, HttpSession session){
+    @RequestMapping("/queryStudentInfoBySchool")
+    public ResultBean queryStudentInfoBySchool(HttpSession session){
+        User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         ResultBean resultBean = new ResultBean();
@@ -201,7 +201,7 @@ public class StudentController {
                 List<Student> studentList = new ArrayList<>();
                 List<Student> students = this.studentService.findStudentAll();
                 for (Student student : students) {
-                    if (student.getShcoolId() == sid) {
+                    if (student.getShcoolId() == user.getSchoolId()) {
                         studentList.add(student);
                     }
                 }
@@ -219,18 +219,19 @@ public class StudentController {
         return resultBean;
     }
 
-    @RequestMapping("/queryStudentInfoByCollege/{sid}/{cid}")
-    public ResultBean queryStudentInfoByCollege(@PathVariable Integer sid, @PathVariable Integer cid,
-                                                HttpSession session){
+    @RequestMapping("/queryStudentInfoByCollege")
+    public ResultBean queryStudentInfoByCollege(HttpSession session){
+        User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         ResultBean resultBean = new ResultBean();
+        Student student1 = this.studentService.findStudentByNumber(user.getUserNumber());
         if (HasRole.hasOneRole(booleans)) {
             try {
                 List<Student> studentList = new ArrayList<>();
                 List<Student> students = this.studentService.findStudentAll();
                 for (Student student : students) {
-                    if (student.getShcoolId() == sid && student.getCollegeId() == cid) {
+                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()) {
                         studentList.add(student);
                     }
                 }
@@ -248,18 +249,20 @@ public class StudentController {
         return resultBean;
     }
     // 查询本学院所有班级信息
-    @RequestMapping("/queryStudentInfoByClass/{sid}/{cid}/{ccid}")
-    public ResultBean queryStudentInfoByClass(@PathVariable Integer sid, @PathVariable Integer cid,
-                                              @PathVariable Integer ccid, HttpSession session){
+    @RequestMapping("/queryStudentInfoByClass")
+    public ResultBean queryStudentInfoByClass(HttpSession session){
         ResultBean resultBean = new ResultBean();
+        User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","classmanager","teacher"));
         if (HasRole.hasOneRole(booleans)) {
+            Student student1 = this.studentService.findStudentByNumber(user.getUserNumber());
             try {
                 List<Student> studentList = new ArrayList<>();
                 List<Student> students = this.studentService.findStudentAll();
                 for (Student student : students) {
-                    if (student.getShcoolId() == sid && student.getCollegeId() == cid && student.getClassesId() == ccid) {
+                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()
+                            && student.getClassesId() == student1.getClassesId()) {
                         studentList.add(student);
                     }
                 }
