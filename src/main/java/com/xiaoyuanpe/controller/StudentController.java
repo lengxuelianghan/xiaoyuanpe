@@ -27,6 +27,12 @@ public class StudentController {
     private UserRoleService userRoleService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ClassesService classesService;
+    @Autowired
+    private CollegeService collegeService;
+    @Autowired
+    private SchoolService schoolService;
 
     // 查询当前学期学生成绩
     @RequestMapping("/StudentSportInfo")
@@ -198,11 +204,11 @@ public class StudentController {
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)) {
             try {
-                List<Student> studentList = new ArrayList<>();
+                List<StudentInfo> studentList = new ArrayList<>();
                 List<Student> students = this.studentService.findStudentAll();
                 for (Student student : students) {
                     if (student.getShcoolId() == user.getSchoolId()) {
-                        studentList.add(student);
+                        studentList.add(this.toStudentInfo(student));
                     }
                 }
                 resultBean.setData(studentList);
@@ -228,11 +234,11 @@ public class StudentController {
         Student student1 = this.studentService.findStudentByNumber(user.getUserNumber());
         if (HasRole.hasOneRole(booleans)) {
             try {
-                List<Student> studentList = new ArrayList<>();
+                List<StudentInfo> studentList = new ArrayList<>();
                 List<Student> students = this.studentService.findStudentAll();
                 for (Student student : students) {
                     if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()) {
-                        studentList.add(student);
+                        studentList.add(this.toStudentInfo(student));
                     }
                 }
                 resultBean.setData(studentList);
@@ -258,12 +264,12 @@ public class StudentController {
         if (HasRole.hasOneRole(booleans)) {
             Student student1 = this.studentService.findStudentByNumber(user.getUserNumber());
             try {
-                List<Student> studentList = new ArrayList<>();
+                List<StudentInfo> studentList = new ArrayList<>();
                 List<Student> students = this.studentService.findStudentAll();
                 for (Student student : students) {
                     if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()
                             && student.getClassesId() == student1.getClassesId()) {
-                        studentList.add(student);
+                        studentList.add(this.toStudentInfo(student));
                     }
                 }
                 resultBean.setData(studentList);
@@ -299,6 +305,21 @@ public class StudentController {
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
+    }
+
+    public StudentInfo toStudentInfo(Student student){
+        StudentInfo studentInfo = new StudentInfo();
+        try {
+            studentInfo.setName(student.getStudentName());
+            studentInfo.setClasses(this.classesService.findClassesById(student.getClassesId()).getClassName());
+            studentInfo.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
+            studentInfo.setSchool(this.schoolService.findSchoolById(student.getShcoolId()).getSchoolName());
+            studentInfo.setNumber(student.getStudentNumber());
+            studentInfo.setAge(student.getAge());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return studentInfo;
     }
 
 }
