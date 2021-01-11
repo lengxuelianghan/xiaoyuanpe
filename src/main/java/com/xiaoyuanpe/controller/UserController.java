@@ -4,6 +4,7 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.Pager;
 import com.xiaoyuanpe.units.ResultBean;
+import com.xiaoyuanpe.units.Utils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserController {
     public ResultBean addUser(@RequestBody User user){
         ResultBean resultBean = new ResultBean();
         try {
+            user.setUserNumber(Utils.IntegerToString(user.getSchoolId())+user.getUserNumber());
             this.userService.addUser(user);
             resultBean.setCode(0);
         }catch (Exception se){

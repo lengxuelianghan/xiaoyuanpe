@@ -4,6 +4,7 @@ import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import com.xiaoyuanpe.units.Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,6 +129,7 @@ public class StudentController {
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
+                student.setStudentNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 this.studentService.addStudent(student);
                 Semester semester = new Semester();
                 resultBean.setData(student.getId()+"hh");
@@ -139,7 +141,7 @@ public class StudentController {
                 semester.setCollegeId(student.getCollegeId());
                 semester.setSchoolId(student.getShcoolId());
                 User user = new User();
-                user.setUserNumber(student.getStudentNumber());
+                user.setUserNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 user.setSex(student.getSex());
                 user.setUsername(student.getStudentName());
                 user.setPassword(student.getStudentNumber());

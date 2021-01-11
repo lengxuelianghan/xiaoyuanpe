@@ -56,45 +56,54 @@ public class CollegeController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryCollegeList")
-    public ResultBean queryCollegeList(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        ResultBean resultBean = new ResultBean();
-        try {
-            List<College> collegeList = new ArrayList<>();
-            List<College> colleges = this.collegeService.findCollegeAll();
-            for (College college : colleges){
-                if (college.getShcoolId() == user.getSchoolId()){
-                    collegeList.add(college);
-                }
-            }
-            resultBean.setData(collegeList);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-            resultBean.setCode(1);
-            resultBean.setMsg("学院列表信息查找失败");
-        }
-        return resultBean;
-    }
+//    @RequestMapping(value = "/queryCollegeList")
+//    public ResultBean queryCollegeList(HttpSession session){
+//        User user = (User) session.getAttribute("user");
+//        ResultBean resultBean = new ResultBean();
+//        try {
+//            List<College> collegeList = new ArrayList<>();
+//            List<College> colleges = this.collegeService.findCollegeAll();
+//            for (College college : colleges){
+//                if (college.getShcoolId() == user.getSchoolId()){
+//                    collegeList.add(college);
+//                }
+//            }
+//            resultBean.setData(collegeList);
+//            resultBean.setCode(0);
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//            resultBean.setCode(1);
+//            resultBean.setMsg("学院列表信息查找失败");
+//        }
+//        return resultBean;
+//    }
 
-    @RequestMapping(value = "/queryCollegeList/{sid}")
-    public ResultBean queryCollegeListBySchool(@PathVariable Integer sid){
+    @RequestMapping(value = "/queryCollegeList")
+    public ResultBean queryCollegeListBySchool(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager"));
         ResultBean resultBean = new ResultBean();
-        try {
-            List<College> collegeList = new ArrayList<>();
-            List<College> colleges = this.collegeService.findCollegeAll();
-            for (College college : colleges){
-                if (college.getShcoolId() == sid){
-                    collegeList.add(college);
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                List<College> collegeList = new ArrayList<>();
+                List<College> colleges = this.collegeService.findCollegeAll();
+                for (College college : colleges) {
+                    if (college.getShcoolId() == user.getSchoolId()) {
+                        collegeList.add(college);
+                    }
                 }
+                resultBean.setData(collegeList);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学院列表信息查找失败");
             }
-            resultBean.setData(collegeList);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        }
+        else {
             resultBean.setCode(1);
-            resultBean.setMsg("学院列表信息查找失败");
+            resultBean.setMsg("没有权限");
         }
         return resultBean;
     }

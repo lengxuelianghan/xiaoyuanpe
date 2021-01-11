@@ -5,6 +5,7 @@ import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.ReadExcel;
 import com.xiaoyuanpe.units.ReadExcelClass;
 import com.xiaoyuanpe.units.ResultBean;
+import com.xiaoyuanpe.units.Utils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
@@ -39,6 +40,7 @@ public class ImportController  {
     @RequestMapping(value = "/readExcel", method = RequestMethod.POST)
     public ResultBean ImportFile(@RequestParam Integer sId, @RequestParam Integer cId, @RequestParam Integer ccId,
                                  @RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest req){
+        User user = (User) req.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         String fileName = "";
         System.out.println(12321);
@@ -64,7 +66,7 @@ public class ImportController  {
                 User user1 = new User();
                 user1.setIdentity("学生");
                 user1.setAge(studentInfo.getAge());
-                user1.setUserNumber(studentInfo.getNumber());
+                user1.setUserNumber(Utils.IntegerToString(user.getSchoolId())+studentInfo.getNumber());
                 user1.setPassword(studentInfo.getPassword());
                 user1.setUsername(studentInfo.getName());
                 user1.setSchoolId(sId);
@@ -78,7 +80,7 @@ public class ImportController  {
                 student.setClassesId(ccId);
                 student.setAge(studentInfo.getAge());
                 student.setStudentName(studentInfo.getName());
-                student.setStudentNumber(studentInfo.getNumber());
+                student.setStudentNumber(Utils.IntegerToString(user.getSchoolId())+studentInfo.getNumber());
                 student.setSex(studentInfo.getSex());
                 this.studentService.addStudent(student);
 
