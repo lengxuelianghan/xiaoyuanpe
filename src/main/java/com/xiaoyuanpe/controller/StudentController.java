@@ -258,7 +258,7 @@ public class StudentController {
         return resultBean;
     }
     // 查询本学院所有班级信息
-    @RequestMapping("/queryStudentInfoByClass")
+    @RequestMapping(value = "/queryStudentInfoByClass",method = RequestMethod.POST)
     public ResultBean queryStudentInfoByClass(@RequestParam Integer currentPageNumber, @RequestParam Integer pageSize,
                                               @RequestParam String sort, HttpSession session){
         ResultBean resultBean = new ResultBean();
