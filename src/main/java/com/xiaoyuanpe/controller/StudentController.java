@@ -1,6 +1,5 @@
 package com.xiaoyuanpe.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.*;
@@ -199,8 +198,8 @@ public class StudentController {
         return resultBean;
     }
 
-    @RequestMapping("/queryStudentInfoBySchool")
-    public ResultBean queryStudentInfoBySchool(HttpSession session){
+    @RequestMapping(value = "/queryStudentInfoBySchool", method = RequestMethod.POST)
+    public ResultBean queryStudentInfoBySchool(@RequestBody Page page, HttpSession session){
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
@@ -214,7 +213,9 @@ public class StudentController {
                         studentList.add(this.toStudentInfo(student));
                     }
                 }
-                resultBean.setData(studentList);
+                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize());
+                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
+                resultBean.setData(studentInfoPage);
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -228,8 +229,8 @@ public class StudentController {
         return resultBean;
     }
 
-    @RequestMapping("/queryStudentInfoByCollege")
-    public ResultBean queryStudentInfoByCollege(HttpSession session){
+    @RequestMapping(value = "/queryStudentInfoByCollege", method = RequestMethod.POST)
+    public ResultBean queryStudentInfoByCollege(@RequestBody Page page, HttpSession session){
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
@@ -244,7 +245,9 @@ public class StudentController {
                         studentList.add(this.toStudentInfo(student));
                     }
                 }
-                resultBean.setData(studentList);
+                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize());
+                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
+                resultBean.setData(studentInfoPage);
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -259,8 +262,7 @@ public class StudentController {
     }
     // 查询本学院所有班级信息
     @RequestMapping(value = "/queryStudentInfoByClass",method = RequestMethod.POST)
-    public ResultBean queryStudentInfoByClass(@RequestParam Integer currentPageNumber, @RequestParam Integer pageSize,
-                                              @RequestParam String sort, HttpSession session){
+    public ResultBean queryStudentInfoByClass(@RequestBody Page page, HttpSession session){
         ResultBean resultBean = new ResultBean();
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
@@ -276,7 +278,7 @@ public class StudentController {
                         studentList.add(this.toStudentInfo(student));
                     }
                 }
-                PageHelper.startPage(currentPageNumber,pageSize);
+                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize());
                 PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
                 resultBean.setData(studentInfoPage);
                 resultBean.setCode(0);
@@ -316,6 +318,7 @@ public class StudentController {
     public StudentInfo toStudentInfo(Student student){
         StudentInfo studentInfo = new StudentInfo();
         try {
+            studentInfo.setId(student.getId());
             studentInfo.setName(student.getStudentName());
             studentInfo.setClasses(this.classesService.findClassesById(student.getClassesId()).getClassName());
             studentInfo.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());

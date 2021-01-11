@@ -1,6 +1,7 @@
 package com.xiaoyuanpe.pojo;
 
 public class StudentInfo {
+    private Integer id;
     private String name;
     private String number;
     private String password;
@@ -21,6 +22,14 @@ public class StudentInfo {
     }
 
     public StudentInfo(){}
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
