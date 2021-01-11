@@ -1,5 +1,8 @@
 package com.xiaoyuanpe.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.HasRole;
@@ -256,7 +259,8 @@ public class StudentController {
     }
     // 查询本学院所有班级信息
     @RequestMapping("/queryStudentInfoByClass")
-    public ResultBean queryStudentInfoByClass(HttpSession session){
+    public ResultBean queryStudentInfoByClass(@RequestParam Integer currentPageNumber, @RequestParam Integer pageSize,
+                                              @RequestParam String sort, HttpSession session){
         ResultBean resultBean = new ResultBean();
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
@@ -272,7 +276,9 @@ public class StudentController {
                         studentList.add(this.toStudentInfo(student));
                     }
                 }
-                resultBean.setData(studentList);
+                PageHelper.startPage(currentPageNumber,pageSize);
+                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
+                resultBean.setData(studentInfoPage);
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
