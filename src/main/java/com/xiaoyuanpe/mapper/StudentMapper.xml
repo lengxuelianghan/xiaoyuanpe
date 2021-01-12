@@ -119,7 +119,22 @@
       from student, school, college, classes
     where student.shcool_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
+  </select>
 
+  <select id="selectByCollege" parameterType="java.lang.Integer" resultMap="StudentResultMap">
+    select student.id, student.student_name as name, student.student_number as number, student.sex as sex,
+    school.school_name as school, college.college_name as college, classes.class_name as classes
+      from student, school, college, classes
+    where student.college_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
+     and student.college_id=college.id and student.classes_id=classes.id
+  </select>
+
+  <select id="selectByClass" parameterType="java.lang.Integer" resultMap="StudentResultMap">
+    select student.id, student.student_name as name, student.student_number as number, student.sex as sex,
+    school.school_name as school, college.college_name as college, classes.class_name as classes
+      from student, school, college, classes
+    where student.classes_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
+     and student.college_id=college.id and student.classes_id=classes.id
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

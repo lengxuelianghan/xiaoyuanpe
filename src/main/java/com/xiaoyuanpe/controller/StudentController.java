@@ -238,16 +238,16 @@ public class StudentController {
         Student student1 = this.studentService.findStudentByNumber(user.getUserNumber());
         if (HasRole.hasOneRole(booleans)) {
             try {
-                List<StudentInfo> studentList = new ArrayList<>();
-                List<Student> students = this.studentService.findStudentAll();
-                for (Student student : students) {
-                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()) {
-                        studentList.add(this.toStudentInfo(student));
-                    }
-                }
-                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
-                resultBean.setData(studentInfoPage);
+//                List<StudentInfo> studentList = new ArrayList<>();
+//                List<Student> students = this.studentService.findStudentAll();
+//                for (Student student : students) {
+//                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()) {
+//                        studentList.add(this.toStudentInfo(student));
+//                    }
+//                }
+//                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+//                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
+                resultBean.setData(this.studentService.findStudentByCollege(student1.getCollegeId(),page));
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -270,20 +270,17 @@ public class StudentController {
         if (HasRole.hasOneRole(booleans)) {
             Student student1 = this.studentService.findStudentByNumber(user.getUserNumber());
             try {
-                List<StudentInfo> studentList = new ArrayList<>();
-                List<Student> students = this.studentService.findStudentAll();
-                for (Student student : students) {
-                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()
-                            && student.getClassesId() == student1.getClassesId()) {
-                        studentList.add(this.toStudentInfo(student));
-                    }
-                }
-                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
-                com.github.pagehelper.Page<StudentInfo> sp = new com.github.pagehelper.Page<>();
-                sp.setPageNum(page.getCurrentPageNumber());
-                sp.setPageSize(page.getPageSize());
-                resultBean.setData(studentInfoPage);
+//                List<StudentInfo> studentList = new ArrayList<>();
+//                List<Student> students = this.studentService.findStudentAll();
+//                for (Student student : students) {
+//                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()
+//                            && student.getClassesId() == student1.getClassesId()) {
+//                        studentList.add(this.toStudentInfo(student));
+//                    }
+//                }
+//                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+//                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
+                resultBean.setData(this.studentService.findStudentByClass(student1.getClassesId(),page));
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
