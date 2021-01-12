@@ -44,9 +44,9 @@ public class StudentController {
         int sid = this.studentService.findStudentByNumber(user.getUserNumber()).getId();
         Student student = this.studentService.findStudentById(sid);
         try {
-            if (student.getAge()!=0) {
+            if (student.getTerm()!=0) {
                 Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),
-                        student.getCollegeId(), student.getClassesId(), student.getId(), student.getAge());
+                        student.getCollegeId(), student.getClassesId(), student.getId(), student.getTerm());
                 resultBean.setData(semester);
                 resultBean.setCode(0);
             }
@@ -206,16 +206,16 @@ public class StudentController {
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)) {
             try {
-                List<StudentInfo> studentList = new ArrayList<>();
-                List<Student> students = this.studentService.findStudentAll();
-                for (Student student : students) {
-                    if (student.getShcoolId() == user.getSchoolId()) {
-                        studentList.add(this.toStudentInfo(student));
-                    }
-                }
-                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
-                resultBean.setData(studentInfoPage);
+//                List<StudentInfo> studentList = new ArrayList<>();
+//                List<Student> students = this.studentService.findStudentAll();
+//                for (Student student : students) {
+//                    if (student.getShcoolId() == user.getSchoolId()) {
+//                        studentList.add(this.toStudentInfo(student));
+//                    }
+//                }
+//                PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+//                PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(studentList);
+                resultBean.setData(this.studentService.findStudentBySchool(user.getSchoolId(),page));
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());

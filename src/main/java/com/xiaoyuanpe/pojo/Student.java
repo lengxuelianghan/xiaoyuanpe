@@ -1,5 +1,7 @@
 package com.xiaoyuanpe.pojo;
 
+import java.util.Date;
+
 public class Student {
     private Integer id;
 
@@ -13,9 +15,13 @@ public class Student {
 
     private String studentNumber;
 
-    private Integer age;
+    private Integer term;
 
     private String sex;
+
+    private Date startYear;
+
+    private Date birthday;
 
     public Integer getId() {
         return id;
@@ -65,12 +71,12 @@ public class Student {
         this.studentNumber = studentNumber == null ? null : studentNumber.trim();
     }
 
-    public Integer getAge() {
-        return age;
+    public Integer getTerm() {
+        return term;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setTerm(Integer term) {
+        this.term = term;
     }
 
     public String getSex() {
@@ -79,5 +85,21 @@ public class Student {
 
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
+    }
+
+    public Date getStartYear() {
+        return startYear;
+    }
+
+    public void setStartYear(Date startYear) {
+        this.startYear = startYear;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

@@ -484,66 +484,136 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgeIsNull() {
-            addCriterion("age is null");
+        public Criteria andTermIsNull() {
+            addCriterion("term is null");
             return (Criteria) this;
         }
 
-        public Criteria andAgeIsNotNull() {
-            addCriterion("age is not null");
+        public Criteria andTermIsNotNull() {
+            addCriterion("term is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAgeEqualTo(Integer value) {
-            addCriterion("age =", value, "age");
+        public Criteria andTermEqualTo(Integer value) {
+            addCriterion("term =", value, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeNotEqualTo(Integer value) {
-            addCriterion("age <>", value, "age");
+        public Criteria andTermNotEqualTo(Integer value) {
+            addCriterion("term <>", value, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeGreaterThan(Integer value) {
-            addCriterion("age >", value, "age");
+        public Criteria andTermGreaterThan(Integer value) {
+            addCriterion("term >", value, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("age >=", value, "age");
+        public Criteria andTermGreaterThanOrEqualTo(Integer value) {
+            addCriterion("term >=", value, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeLessThan(Integer value) {
-            addCriterion("age <", value, "age");
+        public Criteria andTermLessThan(Integer value) {
+            addCriterion("term <", value, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeLessThanOrEqualTo(Integer value) {
-            addCriterion("age <=", value, "age");
+        public Criteria andTermLessThanOrEqualTo(Integer value) {
+            addCriterion("term <=", value, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeIn(List<Integer> values) {
-            addCriterion("age in", values, "age");
+        public Criteria andTermIn(List<Integer> values) {
+            addCriterion("term in", values, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeNotIn(List<Integer> values) {
-            addCriterion("age not in", values, "age");
+        public Criteria andTermNotIn(List<Integer> values) {
+            addCriterion("term not in", values, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeBetween(Integer value1, Integer value2) {
-            addCriterion("age between", value1, value2, "age");
+        public Criteria andtermBetween(Integer value1, Integer value2) {
+            addCriterion("term between", value1, value2, "term");
             return (Criteria) this;
         }
 
-        public Criteria andAgeNotBetween(Integer value1, Integer value2) {
-            addCriterion("age not between", value1, value2, "age");
+        public Criteria andTermNotBetween(Integer value1, Integer value2) {
+            addCriterion("term not between", value1, value2, "term");
             return (Criteria) this;
         }
 
+        public Criteria andBirthdayIsNull() {
+            addCriterion("birthday is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayIsNotNull() {
+            addCriterion("birthday is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayEqualTo(String value) {
+            addCriterion("birthday =", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayNotEqualTo(String value) {
+            addCriterion("birthday <>", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayGreaterThan(String value) {
+            addCriterion("birthday >", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayGreaterThanOrEqualTo(String value) {
+            addCriterion("birthday >=", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayLessThan(String value) {
+            addCriterion("birthday <", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayLessThanOrEqualTo(String value) {
+            addCriterion("birthday <=", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayLike(String value) {
+            addCriterion("birthday like", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayNotLike(String value) {
+            addCriterion("birthday not like", value, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayIn(List<String> values) {
+            addCriterion("birthday in", values, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayNotIn(List<String> values) {
+            addCriterion("birthday not in", values, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayBetween(String value1, String value2) {
+            addCriterion("birthday between", value1, value2, "birthday");
+            return (Criteria) this;
+        }
+
+        public Criteria andBirthdayNotBetween(String value1, String value2) {
+            addCriterion("birthday not between", value1, value2, "birthday");
+            return (Criteria) this;
+        }
+//
         public Criteria andSexIsNull() {
             addCriterion("sex is null");
             return (Criteria) this;
@@ -611,6 +681,76 @@ public class StudentExample {
 
         public Criteria andSexNotBetween(String value1, String value2) {
             addCriterion("sex not between", value1, value2, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearIsNull() {
+            addCriterion("start_year is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearIsNotNull() {
+            addCriterion("start_year is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearEqualTo(String value) {
+            addCriterion("start_year =", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearNotEqualTo(String value) {
+            addCriterion("start_year <>", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearGreaterThan(String value) {
+            addCriterion("start_year >", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearGreaterThanOrEqualTo(String value) {
+            addCriterion("start_year >=", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearLessThan(String value) {
+            addCriterion("start_year <", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearLessThanOrEqualTo(String value) {
+            addCriterion("start_year <=", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearLike(String value) {
+            addCriterion("start_year like", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearNotLike(String value) {
+            addCriterion("start_year not like", value, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearIn(List<String> values) {
+            addCriterion("start_year in", values, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearNotIn(List<String> values) {
+            addCriterion("start_year not in", values, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearBetween(String value1, String value2) {
+            addCriterion("start_year between", value1, value2, "start_year");
+            return (Criteria) this;
+        }
+
+        public Criteria andStartYearNotBetween(String value1, String value2) {
+            addCriterion("start_year not between", value1, value2, "start_year");
             return (Criteria) this;
         }
     }

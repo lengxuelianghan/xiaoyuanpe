@@ -1,8 +1,12 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.StudentMapper;
+import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.pojo.Student;
 import com.xiaoyuanpe.pojo.StudentExample;
+import com.xiaoyuanpe.pojo.StudentInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +55,24 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findStudentLast() {
         return this.studentMapper.selectLast();
+    }
+
+    @Override
+    public PageInfo<StudentInfo> findStudentByClass(Integer id, Page page) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id));
+        return studentInfoPage;
+    }
+
+    @Override
+    public PageInfo<StudentInfo> findStudentByCollege(Integer id, Page page) {
+        return null;
+    }
+
+    @Override
+    public PageInfo<StudentInfo> findStudentBySchool(Integer id, Page page) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<StudentInfo> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id));
+        return studentInfoPage;
     }
 }
