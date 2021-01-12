@@ -151,7 +151,11 @@ public class StudentController {
                 semester.setExerciseTime(0);
                 semester.setCollegeId(student.getCollegeId());
                 semester.setSchoolId(student.getShcoolId());
-                resultBean.setMsg("这里");
+                int i = 0;
+                for (i = 0; i < 8; i++) {
+                    semester.setTerm(i + 1);
+                    this.semesterService.addSemester(semester);
+                }
                 User user = new User();
                 user.setUserNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 user.setSex(student.getSex());
@@ -164,11 +168,6 @@ public class StudentController {
                 userRole.setUserId(user.getId());
                 userRole.setRoleId(5);
                 this.userRoleService.addUserRole(userRole);
-                int i = 0;
-                for (i = 0; i < 8; i++) {
-                    semester.setTerm(i + 1);
-                    this.semesterService.addSemester(semester);
-                }
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
