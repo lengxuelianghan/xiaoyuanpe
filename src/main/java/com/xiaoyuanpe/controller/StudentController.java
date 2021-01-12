@@ -220,7 +220,7 @@ public class StudentController {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 resultBean.setCode(1);
-                resultBean.setMsg("学生信息新增失败");
+                resultBean.setMsg("学生信息查询失败");
             }
         }else {
             resultBean.setCode(1);

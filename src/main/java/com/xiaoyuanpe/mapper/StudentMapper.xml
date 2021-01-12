@@ -83,7 +83,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, shcool_id, college_id, classes_id, student_name, student_number, age, sex
+    id, shcool_id, college_id, classes_id, student_name, student_number, term, sex, start_year, birthday
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.StudentExample" resultMap="BaseResultMap">
     select
@@ -161,7 +161,7 @@
       <if test="studentNumber != null">
         student_number,
       </if>
-      <if test="age != null">
+      <if test="term != null">
         term,
       </if>
       <if test="sex != null">
@@ -193,8 +193,8 @@
       <if test="studentNumber != null">
         #{studentNumber,jdbcType=VARCHAR},
       </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
+      <if test="term != null">
+        #{term,jdbcType=INTEGER},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
@@ -234,8 +234,8 @@
       <if test="record.studentNumber != null">
         student_number = #{record.studentNumber,jdbcType=VARCHAR},
       </if>
-      <if test="record.age != null">
-        age = #{record.age,jdbcType=INTEGER},
+      <if test="record.term != null">
+        term = #{record.term,jdbcType=INTEGER},
       </if>
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=VARCHAR},
@@ -259,7 +259,7 @@
       classes_id = #{record.classesId,jdbcType=INTEGER},
       student_name = #{record.studentName,jdbcType=VARCHAR},
       student_number = #{record.studentNumber,jdbcType=VARCHAR},
-      age = #{record.age,jdbcType=INTEGER},
+      term = #{record.term,jdbcType=INTEGER},
       sex = #{record.sex,jdbcType=VARCHAR},
       start_year = #{startYear,jdbcType=TIMESTAMP},
       birthday = #{birthday,jdbcType=TIMESTAMP}
@@ -286,7 +286,7 @@
         student_number = #{studentNumber,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
+        term = #{term,jdbcType=INTEGER},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=VARCHAR},
@@ -307,7 +307,7 @@
       classes_id = #{classesId,jdbcType=INTEGER},
       student_name = #{studentName,jdbcType=VARCHAR},
       student_number = #{studentNumber,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER},
+      term = #{term,jdbcType=INTEGER},
       sex = #{sex,jdbcType=VARCHAR},
       start_year = #{startYear,jdbcType=TIMESTAMP},
       birthday = #{birthday,jdbcType=TIMESTAMP}
