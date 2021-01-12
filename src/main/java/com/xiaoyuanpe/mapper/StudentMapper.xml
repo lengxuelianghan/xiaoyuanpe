@@ -12,6 +12,10 @@
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="start_year" jdbcType="TIMESTAMP" property="startYear" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="grade_number" jdbcType="INTEGER" property="gradeNumber" />
+    <result column="national_code" jdbcType="INTEGER" property="nationalCode" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
   </resultMap>
 
   <resultMap id="StudentResultMap" type="com.xiaoyuanpe.pojo.StudentInfo">
@@ -83,7 +87,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, shcool_id, college_id, classes_id, student_name, student_number, term, sex, start_year, birthday
+    id, shcool_id, college_id, classes_id, student_name, student_number, term, sex, start_year, birthday, grade_number, national_code, id_card, address
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.StudentExample" resultMap="BaseResultMap">
     select
@@ -148,12 +152,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Student" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-    insert into student (id, shcool_id, college_id, 
-      classes_id, student_name, student_number,
-      term, sex, start_year, birthday)
+    insert into student (id, shcool_id, college_id, classes_id, student_name, student_number,
+      term, sex, start_year, birthday, grade_number, national_code, id_card, address)
     values (#{id,jdbcType=INTEGER}, #{shcoolId,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, 
       #{classesId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{studentNumber,jdbcType=VARCHAR}, 
-      #{term,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{startYear,jdbcType=TIMESTAMP},#{birthday,jdbcType=TIMESTAMP})
+      #{term,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{startYear,jdbcType=TIMESTAMP},#{birthday,jdbcType=TIMESTAMP},
+      #{gradeNumber,jdbcType=INTEGER}, #{nationalCode,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Student">
     insert into student
@@ -277,7 +282,11 @@
       term = #{record.term,jdbcType=INTEGER},
       sex = #{record.sex,jdbcType=VARCHAR},
       start_year = #{startYear,jdbcType=TIMESTAMP},
-      birthday = #{birthday,jdbcType=TIMESTAMP}
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      grade_number = #{gradeNumber,jdbcType=INTEGER},
+      national_code = #{nationalCode,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -325,7 +334,11 @@
       term = #{term,jdbcType=INTEGER},
       sex = #{sex,jdbcType=VARCHAR},
       start_year = #{startYear,jdbcType=TIMESTAMP},
-      birthday = #{birthday,jdbcType=TIMESTAMP}
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      grade_number = #{gradeNumber,jdbcType=INTEGER},
+      national_code = #{nationalCode,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
