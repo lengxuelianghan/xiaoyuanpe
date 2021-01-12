@@ -16,9 +16,9 @@
 
   <resultMap id="StudentResultMap" type="com.xiaoyuanpe.pojo.StudentInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="school" jdbcType="INTEGER" property="school" />
-    <result column="college" jdbcType="INTEGER" property="college" />
-    <result column="classes" jdbcType="INTEGER" property="classes" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="college" jdbcType="VARCHAR" property="college" />
+    <result column="classes" jdbcType="VARCHAR" property="classes" />
     <result column="student_name" jdbcType="VARCHAR" property="name" />
     <result column="student_number" jdbcType="VARCHAR" property="number" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
@@ -114,8 +114,8 @@
   </select>
 
   <select id="selectBySchool" parameterType="java.lang.Integer" resultMap="StudentResultMap">
-    select id, student_name as name, student_number as number, sex, school.school_name as school,
-    college.college_name as college, classes.class_name as classes
+    select student.id, student.student_name as name, student.student_number as number, student.sex as sex,
+    school.school_name as school, college.college_name as college, classes.class_name as classes
       from student, school, college, classes
     where student.shcool_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
