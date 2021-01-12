@@ -151,12 +151,12 @@ public class StudentController {
                 semester.setExerciseTime(0);
                 semester.setCollegeId(student.getCollegeId());
                 semester.setSchoolId(student.getShcoolId());
-
+                resultBean.setMsg("这里");
                 User user = new User();
                 user.setUserNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 user.setSex(student.getSex());
-                user.setUsername(Utils.IntegerToString(student.getShcoolId())+student.getStudentName());
-                user.setPassword(student.getStudentNumber());
+                user.setUsername(student.getStudentName());
+                user.setPassword(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 user.setSchoolId(student.getShcoolId());
                 user.setIdentity("学生");
                 this.userService.addUser(user);
