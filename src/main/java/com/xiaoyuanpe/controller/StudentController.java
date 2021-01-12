@@ -12,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -131,12 +132,15 @@ public class StudentController {
     }
     //添加学生
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-    public ResultBean addStudent(@RequestBody Student student){
+    public ResultBean addStudent(@RequestBody Student student, HttpServletRequest servletRequest){
+        User user1 = (User) servletRequest.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
+                student.setShcoolId(user1.getSchoolId());
+                student.setTerm(1);
                 student.setStudentNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 this.studentService.addStudent(student);
                 Semester semester = new Semester();
@@ -147,6 +151,7 @@ public class StudentController {
                 semester.setExerciseTime(0);
                 semester.setCollegeId(student.getCollegeId());
                 semester.setSchoolId(student.getShcoolId());
+
                 User user = new User();
                 user.setUserNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
                 user.setSex(student.getSex());
