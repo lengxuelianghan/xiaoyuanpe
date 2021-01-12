@@ -157,12 +157,13 @@ public class StudentController {
                     this.semesterService.addSemester(semester);
                 }
                 User user = new User();
-                user.setUserNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
+                user.setUserNumber(student.getStudentNumber());
                 user.setSex(student.getSex());
                 user.setUsername(student.getStudentName());
-                user.setPassword(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
+                user.setPassword(student.getStudentNumber());
                 user.setSchoolId(student.getShcoolId());
                 user.setIdentity("学生");
+
                 this.userService.addUser(user);
                 UserRole userRole = new UserRole();
                 userRole.setUserId(user.getId());

@@ -28,7 +28,7 @@ public class UserController {
         ResultBean resultBean = new ResultBean();
         try {
             user.setUserNumber(Utils.IntegerToString(user.getSchoolId())+user.getUserNumber());
-            user.setPassword(Utils.IntegerToString(user.getSchoolId())+user.getUserNumber());
+            user.setPassword(user.getUserNumber());
             this.userService.addUser(user);
             resultBean.setCode(0);
         }catch (Exception se){
