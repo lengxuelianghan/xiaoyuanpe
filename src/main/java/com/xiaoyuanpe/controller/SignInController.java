@@ -2,17 +2,22 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
+import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.apache.xmlbeans.impl.tool.Extension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.tags.Param;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +45,9 @@ public class SignInController {
     private CollegeService collegeService;
     @Autowired
     private ProjectSignInService projectSignInService;
+    @Autowired
+    private SportStudService sportStudService;
+
     //查找当前活动当前学生的签到信息并签到。
     @GetMapping("/addSportSignIn/{activityId}")
     public ResultBean addSportSignIn(@PathVariable Integer activityId, HttpSession session){
@@ -330,57 +338,74 @@ public class SignInController {
     @RequestMapping(value = "/getSignInByClass")
     public ResultBean getSignInByClass(HttpServletRequest httpServletRequest){
         User user = (User) httpServletRequest.getSession().getAttribute("user");
+        Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("classmanager"));
         Date date = new Date();
         ResultBean resultBean = new ResultBean();
-        Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-        List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
-        try {
-            List<Signin> signins = this.signInService.findSigninAll();
-            for (Signin signin: signins){
-                if (signin.getSportId()!=null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
-                        this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
-                    Date date1 = signin.getSignTime();
-                    //date1 = new Date(date1.getTime()+8*60*60*1000);
-                    if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDate()==date.getDate())
-                    {
-                        //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
-                        studentInfoEntries.add(this.setStudentInfoEntry(signin));
-                    }
-                    if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&(date.getDate()-date1.getDate()==1))
-                    {
-                        //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
-                        signin.setFlag(3);
-                        this.signInService.ModifySignin(signin);
-                    }
+        if (HasRole.hasOneRole(booleans)||
+                this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
+            List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
+            try {
+                List<Signin> signins = this.signInService.findSigninAll();
+                for (Signin signin : signins) {
+                    if (signin.getSportId() != null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
+                            this.studentService.findStudentById(signin.getStudentId()).getClassesId() == student.getClassesId()) {
+                        Date date1 = signin.getSignTime();
+                        //date1 = new Date(date1.getTime()+8*60*60*1000);
+                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && date1.getDate() == date.getDate()) {
+                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
+                            studentInfoEntries.add(this.setStudentInfoEntry(signin));
+                        }
+                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && (date.getDate() - date1.getDate() == 1)) {
+                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
+                            signin.setFlag(3);
+                            this.signInService.ModifySignin(signin);
+                        }
 
+                    }
                 }
+                resultBean.setData(studentInfoEntries);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                resultBean.setMsg("失败！");
+                resultBean.setCode(1);
             }
-            resultBean.setData(studentInfoEntries);
-            resultBean.setCode(0);
-        }catch (Exception e){
-            resultBean.setMsg("失败！");
+        }
+        else {
+            resultBean.setMsg("没有权限！");
             resultBean.setCode(1);
         }
         return resultBean;
     }
-    // 批量签到
+    // 批量签到，运动的
     @RequestMapping(value = "/setSignInByClass")
-    public ResultBean setSignInByClass(@RequestBody List<Integer> ids){
+    public ResultBean setSignInByClass(@RequestBody List<Integer> ids, HttpServletRequest httpServlet){
+        User user = (User) httpServlet.getSession().getAttribute("user");
+        Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         ResultBean resultBean = new ResultBean();
-        try {
-            for (Integer id: ids){
-                Signin signin = this.signInService.findSigninById(id);
-                if (signin.getFlag()==0){
-                    signin.setFlag(1);
-                    Date date = new Date();
-                    signin.setSignTime(new Date(date.getTime()));
-                    this.signInService.ModifySignin(signin);
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("classmanager"));
+        if (HasRole.hasOneRole(booleans)||
+                this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
+            try {
+                for (Integer id : ids) {
+                    Signin signin = this.signInService.findSigninById(id);
+                    if (signin.getFlag() == 0) {
+                        signin.setFlag(1);
+                        Date date = new Date();
+                        signin.setSignTime(new Date(date.getTime()));
+                        this.signInService.ModifySignin(signin);
+                    } else continue;
                 }
-                else continue;
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                resultBean.setMsg("失败！");
+                resultBean.setCode(1);
             }
-            resultBean.setCode(0);
-        }catch (Exception e){
-            resultBean.setMsg("失败！");
+        }
+        else {
+            resultBean.setMsg("没有权限！");
             resultBean.setCode(1);
         }
         return resultBean;
@@ -393,19 +418,28 @@ public class SignInController {
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
-        try {
-            List<Signin> signins = this.signInService.findSigninAll();
-            for (Signin signin: signins){
-                if (signin.getSportId()!=null && signin.getSportId() == 1 && signin.getFlag() == 1 &&
-                        this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
-                    Date date1 = signin.getSignTime();
-                    if (date1.getYear()==date.getYear()&&date1.getMonth()==date.getMonth()&&date1.getDay()==date.getDay())
-                        studentInfoEntries.add(this.setStudentInfoEntry(signin));
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("classmanager"));
+        if (HasRole.hasOneRole(booleans)||
+                this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
+            try {
+                List<Signin> signins = this.signInService.findSigninAll();
+                for (Signin signin : signins) {
+                    if (signin.getSportId() != null && signin.getSportId() == 1 && signin.getFlag() == 1 &&
+                            this.studentService.findStudentById(signin.getStudentId()).getClassesId() == student.getClassesId()) {
+                        Date date1 = signin.getSignTime();
+                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && date1.getDay() == date.getDay())
+                            studentInfoEntries.add(this.setStudentInfoEntry(signin));
+                    }
                 }
+                resultBean.setData(studentInfoEntries);
+            } catch (Exception e) {
+                resultBean.setMsg("失败！");
             }
-            resultBean.setData(studentInfoEntries);
-        }catch (Exception e){
-            resultBean.setMsg("失败！");
+        }
+        else {
+            resultBean.setMsg("没有权限！");
+            resultBean.setCode(1);
         }
         return resultBean;
     }
@@ -442,7 +476,7 @@ public class SignInController {
         }
         return resultBean;
     }
-
+    //查询最近一周的活动记录
     @RequestMapping(value = "/searchActivityOneWeek")
     public ResultBean searchActivityOneWeek(HttpSession session){
         ResultBean resultBean = new ResultBean();
