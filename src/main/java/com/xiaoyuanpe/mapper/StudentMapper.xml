@@ -19,8 +19,8 @@
     <result column="school" jdbcType="VARCHAR" property="school" />
     <result column="college" jdbcType="VARCHAR" property="college" />
     <result column="classes" jdbcType="VARCHAR" property="classes" />
-    <result column="student_name" jdbcType="VARCHAR" property="name" />
-    <result column="student_number" jdbcType="VARCHAR" property="number" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
   </resultMap>
 
@@ -114,7 +114,7 @@
   </select>
 
   <select id="selectBySchool" parameterType="java.lang.Integer" resultMap="StudentResultMap">
-    select student.id, student.student_name as name, student.student_number as number, student.sex as sex,
+    select student.id as id, student.student_name as name, student.student_number as number, student.sex as sex,
     school.school_name as school, college.college_name as college, classes.class_name as classes
       from student, school, college, classes
     where student.shcool_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
@@ -122,7 +122,7 @@
   </select>
 
   <select id="selectByCollege" parameterType="java.lang.Integer" resultMap="StudentResultMap">
-    select student.id, student.student_name as name, student.student_number as number, student.sex as sex,
+    select student.id as id, student.student_name as name, student.student_number as number, student.sex as sex,
     school.school_name as school, college.college_name as college, classes.class_name as classes
       from student, school, college, classes
     where student.college_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
@@ -130,7 +130,7 @@
   </select>
 
   <select id="selectByClass" parameterType="java.lang.Integer" resultMap="StudentResultMap">
-    select student.id, student.student_name as name, student.student_number as number, student.sex as sex,
+    select student.id as id, student.student_name as name, student.student_number as number, student.sex as sex,
     school.school_name as school, college.college_name as college, classes.class_name as classes
       from student, school, college, classes
     where student.classes_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
