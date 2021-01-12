@@ -78,7 +78,7 @@ public class ImportController  {
                 student.setShcoolId(sId);
                 student.setCollegeId(cId);
                 student.setClassesId(ccId);
-                student.setAge(studentInfo.getAge());
+                student.setTerm(studentInfo.getAge());
                 student.setStudentName(studentInfo.getName());
                 student.setStudentNumber(Utils.IntegerToString(user.getSchoolId())+studentInfo.getNumber());
                 student.setSex(studentInfo.getSex());

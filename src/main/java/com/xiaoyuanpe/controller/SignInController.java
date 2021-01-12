@@ -175,7 +175,7 @@ public class SignInController {
                     for (Semester semester: semesters){
                         Student student = this.studentService.findStudentById(signin.getStudentId());
                         resultBean.setData(semester);
-                        if (semester.getTerm() == student.getAge()&&signin.getStudentId() == semester.getSudentId()){
+                        if (semester.getTerm() == student.getTerm()&&signin.getStudentId() == semester.getSudentId()){
                             int ss = semester.getExerciseTime();
                             semester.setExerciseTime(ss - dataLen);
                             int s = semester.getScore() + (int) (dataLen * 0.5);
@@ -422,7 +422,7 @@ public class SignInController {
                     signin.setSignoutTime(new Date());
                     int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
                     Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
-                            student.getClassesId(),student.getId(), student.getAge());
+                            student.getClassesId(),student.getId(), student.getTerm());
                     if (semester!=null) {
                         //resultBean.setMsg(semester.getExerciseTime()+","+semester.getClassesId());
                         int score = semester.getExerciseTime();

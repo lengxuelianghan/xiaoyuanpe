@@ -40,7 +40,7 @@ public class SemesterController {
             List<Semester> semesters = this.semesterService.findSemesterAll();
             for (Semester semester: semesters){
                 Student s  =this.studentService.findStudentById(semester.getSudentId());
-                if (s.getAge() == semester.getTerm()
+                if (s.getTerm() == semester.getTerm()
                         &&semester.getSchoolId() == schoolId){
                     SemesterEntry semesterEntry = new SemesterEntry();
                     semesterEntry.setId(semester.getId());
@@ -75,7 +75,7 @@ public class SemesterController {
             List<Semester> semesters = this.semesterService.findSemesterAll();
             for (Semester semester: semesters){
                 Student s  =this.studentService.findStudentById(semester.getSudentId());
-                if (s.getAge() == semester.getTerm()&&student.getClassesId()==semester.getClassesId()){
+                if (s.getTerm() == semester.getTerm()&&student.getClassesId()==semester.getClassesId()){
                     SemesterEntry semesterEntry = new SemesterEntry();
                     semesterEntry.setId(semester.getId());
                     semesterEntry.setName(s.getStudentName());
@@ -108,7 +108,7 @@ public class SemesterController {
             List<Semester> semesters = this.semesterService.findSemesterByStudent(student.getShcoolId(), student.getCollegeId(), student.getClassesId(), student.getId());
             Semester semester = new Semester();
             for (Semester sem: semesters){
-                if (student.getAge() == sem.getTerm()) {
+                if (student.getTerm() == sem.getTerm()) {
                     semester = sem;
                     break;
                 }
