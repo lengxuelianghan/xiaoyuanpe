@@ -61,8 +61,8 @@ public class CollegeController {
     }
 
     @RequestMapping(value = "/queryCollegeList", method = RequestMethod.POST)
-    public ResultBean queryCollegeListBySchool(@RequestBody Page page, HttpSession session){
-        User user = (User) session.getAttribute("user");
+    public ResultBean queryCollegeListBySchool(@RequestBody Page page, HttpServletRequest session){
+        User user = (User) session.getSession().getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager"));
         ResultBean resultBean = new ResultBean();
