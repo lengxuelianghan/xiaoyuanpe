@@ -7,6 +7,7 @@
     <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
     <result column="score" jdbcType="INTEGER" property="score" />
     <result column="college_info" jdbcType="VARCHAR" property="collegeInfo" />
+    <result column="college_number" jdbcType="VARCHAR" property="collegeNumber" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, shcool_id, college_name, score, college_info
+    id, shcool_id, college_name, score, college_info,college_number
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.CollegeExample" resultMap="BaseResultMap">
     select
@@ -89,6 +90,13 @@
     from college
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectBySchool" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    from college
+    where school_id = #{id,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from college
     where id = #{id,jdbcType=INTEGER}
@@ -101,9 +109,9 @@
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.College">
     insert into college (id, shcool_id, college_name, 
-      score, college_info)
+      score, college_info, college_number)
     values (#{id,jdbcType=INTEGER}, #{shcoolId,jdbcType=INTEGER}, #{collegeName,jdbcType=VARCHAR}, 
-      #{score,jdbcType=INTEGER}, #{collegeInfo,jdbcType=VARCHAR})
+      #{score,jdbcType=INTEGER}, #{collegeInfo,jdbcType=VARCHAR},#{collegeNumber,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.College">
     insert into college
@@ -205,7 +213,8 @@
     set shcool_id = #{shcoolId,jdbcType=INTEGER},
       college_name = #{collegeName,jdbcType=VARCHAR},
       score = #{score,jdbcType=INTEGER},
-      college_info = #{collegeInfo,jdbcType=VARCHAR}
+      college_info = #{collegeInfo,jdbcType=VARCHAR},
+      college_number = #{collegeNumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 

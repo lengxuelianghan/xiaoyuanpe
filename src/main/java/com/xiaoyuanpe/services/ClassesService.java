@@ -1,6 +1,8 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.Classes;
+import com.xiaoyuanpe.pojo.Page;
 
 import java.util.List;
 
@@ -16,4 +18,8 @@ public interface ClassesService {
     void DeleteClasses(Integer id);
 
     void DeleteClassesList(List<Integer> ids);
+
+    PageInfo<Classes> selectBySchool(Page page, Integer id);
+
+    PageInfo<Classes> selectByCollege(Page page, Integer id);
 }

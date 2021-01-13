@@ -7,6 +7,7 @@
     <result column="school_address" jdbcType="VARCHAR" property="schoolAddress" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="school_zip_code" jdbcType="VARCHAR" property="schoolZipCode" />
+    <result column="school_number" jdbcType="VARCHAR" property="schoolNumber" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaoyuanpe.pojo.School">
     <result column="school_introduction" jdbcType="LONGVARCHAR" property="schoolIntroduction" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, school_name, school_address, phone, school_zip_code
+    id, school_name, school_address, phone, school_zip_code,school_number
   </sql>
   <sql id="Blob_Column_List">
     school_introduction
@@ -125,11 +126,11 @@
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.School">
     insert into school (id, school_name, school_address, 
-      phone, school_zip_code, school_introduction
+      phone, school_zip_code, school_introduction,school_number
       )
     values (#{id,jdbcType=INTEGER}, #{schoolName,jdbcType=VARCHAR}, #{schoolAddress,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{schoolZipCode,jdbcType=VARCHAR}, #{schoolIntroduction,jdbcType=LONGVARCHAR}
-      )
+      ,#{school_number,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.School">
     insert into school
@@ -213,7 +214,8 @@
       school_address = #{record.schoolAddress,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       school_zip_code = #{record.schoolZipCode,jdbcType=VARCHAR},
-      school_introduction = #{record.schoolIntroduction,jdbcType=LONGVARCHAR}
+      school_introduction = #{record.schoolIntroduction,jdbcType=LONGVARCHAR},
+      school_number = #{record.schoolNumber,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,7 +226,9 @@
       school_name = #{record.schoolName,jdbcType=VARCHAR},
       school_address = #{record.schoolAddress,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      school_zip_code = #{record.schoolZipCode,jdbcType=VARCHAR}
+      school_zip_code = #{record.schoolZipCode,jdbcType=VARCHAR},
+      school_introduction = #{record.schoolIntroduction,jdbcType=LONGVARCHAR},
+      school_number = #{record.schoolNumber,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -256,7 +260,8 @@
       school_address = #{schoolAddress,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       school_zip_code = #{schoolZipCode,jdbcType=VARCHAR},
-      school_introduction = #{schoolIntroduction,jdbcType=LONGVARCHAR}
+      school_introduction = #{schoolIntroduction,jdbcType=LONGVARCHAR},
+      school_number = #{schoolNumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.School">
@@ -264,7 +269,9 @@
     set school_name = #{schoolName,jdbcType=VARCHAR},
       school_address = #{schoolAddress,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      school_zip_code = #{schoolZipCode,jdbcType=VARCHAR}
+      school_zip_code = #{schoolZipCode,jdbcType=VARCHAR},
+      school_introduction = #{schoolIntroduction,jdbcType=LONGVARCHAR},
+      school_number = #{schoolNumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <delete id="deleteByPrimaryKeys" parameterType="java.util.List">

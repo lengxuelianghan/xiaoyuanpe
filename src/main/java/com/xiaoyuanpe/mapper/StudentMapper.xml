@@ -13,7 +13,7 @@
     <result column="start_year" jdbcType="TIMESTAMP" property="startYear" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="grade_number" jdbcType="INTEGER" property="gradeNumber" />
-    <result column="national_code" jdbcType="INTEGER" property="nationalCode" />
+    <result column="national_code" jdbcType="VARCHAR" property="nationalCode" />
     <result column="id_card" jdbcType="VARCHAR" property="idCard" />
     <result column="address" jdbcType="VARCHAR" property="address" />
   </resultMap>
@@ -157,7 +157,7 @@
     values (#{id,jdbcType=INTEGER}, #{shcoolId,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, 
       #{classesId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{studentNumber,jdbcType=VARCHAR}, 
       #{term,jdbcType=INTEGER}, #{sex,jdbcType=VARCHAR}, #{startYear,jdbcType=TIMESTAMP},#{birthday,jdbcType=TIMESTAMP},
-      #{gradeNumber,jdbcType=INTEGER}, #{nationalCode,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR},
+      #{gradeNumber,jdbcType=INTEGER}, #{nationalCode,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR},
       #{address,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Student">
@@ -284,7 +284,7 @@
       start_year = #{startYear,jdbcType=TIMESTAMP},
       birthday = #{birthday,jdbcType=TIMESTAMP},
       grade_number = #{gradeNumber,jdbcType=INTEGER},
-      national_code = #{nationalCode,jdbcType=INTEGER},
+      national_code = #{nationalCode,jdbcType=VARCHAR},
       id_card = #{idCard,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -336,7 +336,7 @@
       start_year = #{startYear,jdbcType=TIMESTAMP},
       birthday = #{birthday,jdbcType=TIMESTAMP},
       grade_number = #{gradeNumber,jdbcType=INTEGER},
-      national_code = #{nationalCode,jdbcType=INTEGER},
+      national_code = #{nationalCode,jdbcType=VARCHAR},
       id_card = #{idCard,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

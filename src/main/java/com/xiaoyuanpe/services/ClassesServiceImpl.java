@@ -1,8 +1,11 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.ClassesMapper;
 import com.xiaoyuanpe.pojo.Classes;
 import com.xiaoyuanpe.pojo.ClassesExample;
+import com.xiaoyuanpe.pojo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +45,19 @@ public class ClassesServiceImpl implements ClassesService {
     @Override
     public void DeleteClassesList(List<Integer> ids) {
         this.classesMapper.deleteByPrimaryKeys(ids);
+    }
+
+    @Override
+    public PageInfo<Classes> selectBySchool(Page page, Integer id) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<Classes> classesPageInfo = new PageInfo<>(this.classesMapper.selectBySchool(id));
+        return classesPageInfo;
+    }
+
+    @Override
+    public PageInfo<Classes> selectByCollege(Page page, Integer id) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<Classes> classesPageInfo = new PageInfo<>(this.classesMapper.selectByCollege(id));
+        return classesPageInfo;
     }
 }

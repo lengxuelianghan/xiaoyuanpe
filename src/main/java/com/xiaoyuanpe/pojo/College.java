@@ -11,6 +11,8 @@ public class College {
 
     private String collegeInfo;
 
+    private String collegeNumber;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class College {
 
     public void setCollegeInfo(String collegeInfo) {
         this.collegeInfo = collegeInfo == null ? null : collegeInfo.trim();
+    }
+
+    public String getCollegeNumber() {
+        return collegeNumber;
+    }
+
+    public void setCollegeNumber(String collegeNumber) {
+        this.collegeNumber = collegeNumber;
     }
 }

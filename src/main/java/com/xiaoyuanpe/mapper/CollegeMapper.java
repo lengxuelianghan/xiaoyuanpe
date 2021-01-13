@@ -29,4 +29,6 @@ public interface CollegeMapper {
     int updateByPrimaryKey(College record);
 
     int deleteByPrimaryKeys(List<Integer> id);
+
+    List<College> selectBySchool(Integer id);
 }

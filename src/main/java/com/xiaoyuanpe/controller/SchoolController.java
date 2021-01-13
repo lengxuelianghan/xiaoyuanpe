@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.controller;
 
+import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.pojo.School;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.SchoolService;
@@ -74,11 +75,11 @@ public class SchoolController {
         return resultBean;
     }
 
-    @RequestMapping("/querySchoolList")
-    public ResultBean querySchoolList(){
+    @RequestMapping(value = "/querySchoolList", method = RequestMethod.POST)
+    public ResultBean querySchoolList(@RequestBody Page page){
         ResultBean resultBean = new ResultBean();
                 try {
-                    resultBean.setData(this.schoolService.findSchoolAll());
+                    resultBean.setData(this.schoolService.findSchoolAll(page));
                     resultBean.setCode(0);
                 } catch (Exception e) {
                     System.out.println("错误" + e.getMessage());

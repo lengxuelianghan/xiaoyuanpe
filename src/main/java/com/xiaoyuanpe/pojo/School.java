@@ -13,6 +13,8 @@ public class School {
 
     private String schoolIntroduction;
 
+    private String schoolNumber;
+
     public Integer getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class School {
 
     public void setSchoolIntroduction(String schoolIntroduction) {
         this.schoolIntroduction = schoolIntroduction == null ? null : schoolIntroduction.trim();
+    }
+
+    public String getSchoolNumber() {
+        return schoolNumber;
+    }
+
+    public void setSchoolNumber(String schoolNumber) {
+        this.schoolNumber = schoolNumber;
     }
 }

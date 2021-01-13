@@ -1,8 +1,11 @@
 package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.Classes;
+import com.xiaoyuanpe.pojo.Page;
+import com.xiaoyuanpe.pojo.Student;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.ClassesService;
+import com.xiaoyuanpe.services.StudentService;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
 import org.apache.shiro.SecurityUtils;
@@ -10,6 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +24,8 @@ import java.util.List;
 public class ClassesController {
     @Autowired
     private ClassesService classesService;
+    @Autowired
+    private StudentService studentService;
     @RequestMapping(value = "/addClasses", method = RequestMethod.POST)
     public ResultBean addClasses(@RequestBody Classes classes){
         Subject subject = SecurityUtils.getSubject();
@@ -56,19 +62,12 @@ public class ClassesController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryClassesList/{cid}")
-    public ResultBean queryClassesList(@PathVariable Integer cid, HttpSession session){
-        User user = (User) session.getAttribute("user");
+    @RequestMapping(value = "/queryClassesListBySchool", method = RequestMethod.POST)
+    public ResultBean queryClassesListBySchool(@RequestBody Page page, HttpServletRequest session){
+        User user = (User) session.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-            List<Classes> classesList = new ArrayList<>();
-            List<Classes> classes = this.classesService.findClassesAll();
-            for (Classes classes1: classes){
-                if ((classes1.getCollegeId()==cid)&&(classes1.getSchoolId()==user.getSchoolId())){
-                    classesList.add(classes1);
-                }
-            }
-            resultBean.setData(classesList);
+            resultBean.setData(this.classesService.selectBySchool(page, user.getSchoolId()));
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -78,18 +77,13 @@ public class ClassesController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryClassesList/{sid}/{cid}")
-    public ResultBean queryClassesListByList(@PathVariable Integer sid, @PathVariable Integer cid){
+    @RequestMapping(value = "/queryClassesListByCollege")
+    public ResultBean queryClassesListByList(@RequestBody Page page, HttpServletRequest session){
+        User user = (User) session.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-            List<Classes> classesList = new ArrayList<>();
-            List<Classes> classes = this.classesService.findClassesAll();
-            for (Classes classes1: classes){
-                if ((classes1.getCollegeId()==cid)&&(classes1.getSchoolId()==sid)){
-                    classesList.add(classes1);
-                }
-            }
-            resultBean.setData(classesList);
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            resultBean.setData(this.classesService.selectByCollege(page, student.getCollegeId()));
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());

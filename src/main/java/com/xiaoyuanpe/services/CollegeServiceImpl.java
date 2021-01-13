@@ -1,8 +1,11 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.CollegeMapper;
 import com.xiaoyuanpe.pojo.College;
 import com.xiaoyuanpe.pojo.CollegeExample;
+import com.xiaoyuanpe.pojo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +22,10 @@ public class CollegeServiceImpl implements CollegeService {
     }
 
     @Override
-    public List<College> findCollegeAll() {
-        CollegeExample collegeExample = new CollegeExample();
-        return this.collegeMapper.selectByExample(collegeExample);
+    public PageInfo<College> findCollegeAll(Page page, Integer id) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<College> collegePageInfo = new PageInfo<>(this.collegeMapper.selectBySchool(id));
+        return collegePageInfo;
     }
 
     @Override

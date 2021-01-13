@@ -25,11 +25,17 @@ public class Student {
 
     private Integer gradeNumber;
 
-    private Integer nationalCode;
+    private String nationalCode;
 
     private String idCard;
 
     private String  address;
+
+    private Integer schoolName;
+
+    private Integer collegeName;
+
+    private Integer classesName;
 
     public Integer getId() {
         return id;
@@ -119,11 +125,11 @@ public class Student {
         this.gradeNumber = gradeNumber;
     }
 
-    public Integer getNationalCode() {
+    public String getNationalCode() {
         return nationalCode;
     }
 
-    public void setNationalCode(Integer nationalCode) {
+    public void setNationalCode(String nationalCode) {
         this.nationalCode = nationalCode;
     }
 
@@ -141,5 +147,29 @@ public class Student {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Integer getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(Integer schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public Integer getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(Integer collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public Integer getClassesName() {
+        return classesName;
+    }
+
+    public void setClassesName(Integer classesName) {
+        this.classesName = classesName;
     }
 }

@@ -35,4 +35,6 @@ public interface SchoolMapper {
     int updateByPrimaryKeyWithBLOBs(School record);
 
     int updateByPrimaryKey(School record);
+
+    List<School> findSchoolBySchoolId(Integer id);
 }

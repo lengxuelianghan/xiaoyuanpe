@@ -1,6 +1,7 @@
 package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.College;
+import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.CollegeService;
 import com.xiaoyuanpe.units.HasRole;
@@ -10,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +24,14 @@ public class CollegeController {
     private CollegeService collegeService;
 
     @RequestMapping(value = "/addCollege", method = RequestMethod.POST)
-    public ResultBean addCollege(@RequestBody College college){
+    public ResultBean addCollege(@RequestBody College college, HttpServletRequest servletRequest){
+        User user = (User) servletRequest.getSession().getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)) {
             try {
+                college.setShcoolId(user.getSchoolId());
                 this.collegeService.addCollege(college);
                 resultBean.setCode(0);
             } catch (Exception e) {
@@ -56,44 +60,15 @@ public class CollegeController {
         return resultBean;
     }
 
-//    @RequestMapping(value = "/queryCollegeList")
-//    public ResultBean queryCollegeList(HttpSession session){
-//        User user = (User) session.getAttribute("user");
-//        ResultBean resultBean = new ResultBean();
-//        try {
-//            List<College> collegeList = new ArrayList<>();
-//            List<College> colleges = this.collegeService.findCollegeAll();
-//            for (College college : colleges){
-//                if (college.getShcoolId() == user.getSchoolId()){
-//                    collegeList.add(college);
-//                }
-//            }
-//            resultBean.setData(collegeList);
-//            resultBean.setCode(0);
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//            resultBean.setCode(1);
-//            resultBean.setMsg("学院列表信息查找失败");
-//        }
-//        return resultBean;
-//    }
-
-    @RequestMapping(value = "/queryCollegeList")
-    public ResultBean queryCollegeListBySchool(HttpSession session){
+    @RequestMapping(value = "/queryCollegeList", method = RequestMethod.POST)
+    public ResultBean queryCollegeListBySchool(@RequestBody Page page, HttpSession session){
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager"));
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)) {
             try {
-                List<College> collegeList = new ArrayList<>();
-                List<College> colleges = this.collegeService.findCollegeAll();
-                for (College college : colleges) {
-                    if (college.getShcoolId() == user.getSchoolId()) {
-                        collegeList.add(college);
-                    }
-                }
-                resultBean.setData(collegeList);
+                resultBean.setData(this.collegeService.findCollegeAll(page, user.getSchoolId()));
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println(e.getMessage());

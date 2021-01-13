@@ -11,6 +11,8 @@ public class Classes {
 
     private Integer termYear;
 
+    private String classNumber;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Classes {
 
     public void setTermYear(Integer termYear) {
         this.termYear = termYear;
+    }
+
+    public String getClassNumber() {
+        return classNumber;
+    }
+
+    public void setClassNumber(String classNumber) {
+        this.classNumber = classNumber;
     }
 }

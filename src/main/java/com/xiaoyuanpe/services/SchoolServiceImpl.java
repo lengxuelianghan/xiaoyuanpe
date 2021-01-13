@@ -1,6 +1,9 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.SchoolMapper;
+import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.pojo.School;
 import com.xiaoyuanpe.pojo.SchoolExample;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +21,11 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public List<School> findSchoolAll() {
+    public PageInfo<School> findSchoolAll(Page page) {
         SchoolExample example = new SchoolExample();
-        return this.schoolMapper.selectByExample(example);
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<School> schoolPageInfo = new PageInfo<>(this.schoolMapper.selectByExample(example));
+        return schoolPageInfo;
     }
 
     @Override
@@ -41,5 +46,10 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public void DeleteSchoolList(List<Integer> ids) {
         this.schoolMapper.deleteByPrimaryKeys(ids);
+    }
+
+    @Override
+    public List<School> findSchoolBySchoolId() {
+        return null;
     }
 }
