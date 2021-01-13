@@ -73,7 +73,7 @@ public class CollegeController {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 resultBean.setCode(1);
-                resultBean.setMsg("学院列表信息查找失败");
+                resultBean.setMsg("学院列表信息查找失败"+e.getMessage());
             }
         }
         else {

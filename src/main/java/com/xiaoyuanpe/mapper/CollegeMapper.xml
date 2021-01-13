@@ -93,6 +93,7 @@
 
   <select id="selectBySchool" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
+    <include refid="Base_Column_List" />
     from college
     where shcool_id = #{id,jdbcType=INTEGER}
   </select>
