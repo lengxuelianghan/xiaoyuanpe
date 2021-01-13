@@ -29,6 +29,11 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
+    public List<School> findSchoolAll() {
+        return this.schoolMapper.selectByExample(new SchoolExample());
+    }
+
+    @Override
     public School findSchoolById(Integer id) {
         return this.schoolMapper.selectByPrimaryKey(id);
     }

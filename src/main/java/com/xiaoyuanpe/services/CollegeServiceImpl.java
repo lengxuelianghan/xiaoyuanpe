@@ -29,6 +29,11 @@ public class CollegeServiceImpl implements CollegeService {
     }
 
     @Override
+    public List<College> findCollegeAll() {
+        return this.collegeMapper.selectByExample(new CollegeExample());
+    }
+
+    @Override
     public College findCollegeById(Integer id) {
         return this.collegeMapper.selectByPrimaryKey(id);
     }

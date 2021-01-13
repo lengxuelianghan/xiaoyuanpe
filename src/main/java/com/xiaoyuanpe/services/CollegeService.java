@@ -11,6 +11,8 @@ public interface CollegeService {
 
     PageInfo<College> findCollegeAll(Page page, Integer id);
 
+    List<College> findCollegeAll();
+
     College findCollegeById(Integer id);
 
     void ModifyCollege(College college);

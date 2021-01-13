@@ -11,6 +11,8 @@ public interface SchoolService {
 
     PageInfo<School> findSchoolAll(Page page);
 
+    List<School> findSchoolAll();
+
     School findSchoolById(Integer id);
 
     void ModifySchool(School school);
