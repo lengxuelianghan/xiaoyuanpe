@@ -77,7 +77,7 @@ public class ClassesController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryClassesListByCollege")
+    @RequestMapping(value = "/queryClassesListByCollege", method = RequestMethod.POST)
     public ResultBean queryClassesListByList(@RequestBody Page page, HttpServletRequest session){
         User user = (User) session.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
