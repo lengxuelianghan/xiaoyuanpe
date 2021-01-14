@@ -115,4 +115,9 @@ public class UserServiceImpl implements UserService {
     public List<Permissions> findPermsByRoleId(Integer id) {
         return this.usersMapper.findPermsByRoleId(id);
     }
+
+    @Override
+    public void addBatch(List<User> list) {
+        this.usersMapper.insertBatch(list);
+    }
 }

@@ -59,14 +59,6 @@ public class ExcelUtil {
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(1)),
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(11)),
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(12)));
-//                        Student student1 = new Student();
-//                        student1.setStudentName(ExcelUtil.getCell(sheet.getRow(j).getCell(0)));
-//                        student1.setStudentNumber(ExcelUtil.getCell(sheet.getRow(j).getCell(5)));
-//
-//                        studentInfo1.setSex("无");
-//                        studentInfo1.setAge(0);
-//                        studentInfo1.setPhone("无");
-//                        studentInfo1.setPassword(ExcelUtil.getCell(sheet.getRow(j).getCell(1)));
                         BOM.add(student1);
                     }
                 }
@@ -88,22 +80,49 @@ public class ExcelUtil {
                                 student.setGradeNumber(Integer.parseInt(cell.toString()));
                                 break;
                             case 1:
-                                student.setClassNumber(cell.getRawValue().toString());
+                                student.setClassNumber(cell.toString());
                                 break;
                             case 2:
                                 student.setClassesName(cell.toString());
                                 break;
                             case 3:
                                 student.setStudentNumber(cell.toString());
+                                student.setTerm(1);
+                                student.setSchoolId(0);
+                                student.setStartYear(new Date());
+                                student.setCollegeId(0);
+                                student.setClassesId(0);
                                 break;
                             case 4:
                                 student.setNationalCode(cell.toString());
                                 break;
                             case 5:
-                                student.setStudentName(cell.getRawValue());
+                                student.setStudentName(cell.toString());
                                 break;
                             case 6:
-                                student.setPhone(cell.getRawValue());
+                                student.setSex(cell.toString());
+                                break;
+                            case 7:
+                                SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
+                                String cell1 = cell.toString();
+                                cell1.replace("/","-");
+                                Date birthday = formatter.parse(cell1);
+                                student.setBirthday(birthday);
+                                break;
+                            case 8:
+                                student.setAddress(cell.toString());
+                                break;
+                            case 9:
+                                student.setCollegeName(cell.toString());
+                                break;
+                            case 10:
+                                student.setIdCard(cell.toString());
+                                break;
+                            case 11:
+                                student.setPhone(cell.toString());
+                                break;
+                            case 12:
+                                student.setEmail(cell.toString());
                                 break;
                             default:
                                 // TODO 数据格式有误

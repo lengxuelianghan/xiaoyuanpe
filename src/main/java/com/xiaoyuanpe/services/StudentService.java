@@ -30,4 +30,8 @@ public interface StudentService {
     PageInfo<Student> findStudentByCollege(Integer id, Page page);
 
     PageInfo<Student> findStudentBySchool(Integer id, Page page);
+
+    void addBatch(List<Student> list);
+
+    Student findStudentByNumberAndSchool(String snumber, int id);
 }

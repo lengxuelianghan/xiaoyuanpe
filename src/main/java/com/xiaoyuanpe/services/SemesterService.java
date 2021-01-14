@@ -25,4 +25,6 @@ public interface SemesterService {
 
     List<Semester> selectByPrimarySchool(Integer schoolId, Integer term);
 
+    void addBatch(List<Semester> semesters);
+
 }

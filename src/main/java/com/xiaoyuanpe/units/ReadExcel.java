@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.units;
 
+import com.xiaoyuanpe.pojo.Student;
 import com.xiaoyuanpe.pojo.StudentInfo;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -19,11 +20,11 @@ import java.util.List;
 public class ReadExcel {
     private int num = 0;
 
-    public List<StudentInfo> importExcel(String filePath) {
+    public List<Student> importExcel(String filePath) {
         File file = new File(filePath);
         if (file != null) {
             this.num=1;
-            List<StudentInfo> studentInfos = openFile(file);
+            List<Student> studentInfos = openFile(file);
             return studentInfos;
         }
         else {
@@ -40,8 +41,8 @@ public class ReadExcel {
         this.num = num;
     }
 
-    public List<StudentInfo> openFile(File file) {
-        List<StudentInfo> studentInfos = new ArrayList<>();
+    public List<Student> openFile(File file) {
+        List<Student> studentInfos = new ArrayList<>();
         Workbook wb = this.getExcel(file.toString());
         try {
             studentInfos = ExcelUtil.importExcel(wb);

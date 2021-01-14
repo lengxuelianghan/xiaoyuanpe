@@ -63,4 +63,9 @@ public class SemesterServiceImpl implements SemesterService {
     public List<Semester> selectByPrimarySchool(Integer schoolId, Integer term) {
         return this.semesterMapper.selectByPrimarySchool(schoolId,term);
     }
+
+    @Override
+    public void addBatch(List<Semester> semesters) {
+        this.semesterMapper.insertBatch(semesters);
+    }
 }

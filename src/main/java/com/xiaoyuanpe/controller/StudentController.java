@@ -142,38 +142,44 @@ public class StudentController {
                 student.setSchoolId(user1.getSchoolId());
                 student.setTerm(1);
                 student.setStudentNumber(student.getStudentNumber());
-                this.studentService.addStudent(student);
-                Semester semester = new Semester();
-                semester.setSudentId(student.getId());
-                semester.setClassesId(student.getClassesId());
-                semester.setScore(0);
-                semester.setTerm(1);
-                semester.setExerciseTime(0);
-                semester.setCollegeId(student.getCollegeId());
-                semester.setSchoolId(student.getSchoolId());
-                int i = 0;
-                for (i = 0; i < 8; i++) {
-                    semester.setTerm(i + 1);
-                    this.semesterService.addSemester(semester);
-                }
-                User user = new User();
-                user.setUserNumber(student.getStudentNumber());
-                user.setSex(student.getSex());
-                user.setUsername(student.getStudentName());
-                user.setPassword(student.getStudentNumber());
-                user.setSchoolId(student.getSchoolId());
-                user.setIdentity("学生");
+                if (this.studentService.findStudentByNumberAndSchool(student.getStudentNumber(), user1.getSchoolId())!=null) {
+                    this.studentService.addStudent(student);
+                    Semester semester = new Semester();
+                    semester.setSudentId(student.getId());
+                    semester.setClassesId(student.getClassesId());
+                    semester.setScore(0);
+                    semester.setTerm(1);
+                    semester.setExerciseTime(0);
+                    semester.setCollegeId(student.getCollegeId());
+                    semester.setSchoolId(student.getSchoolId());
+                    int i = 0;
+                    for (i = 0; i < 8; i++) {
+                        semester.setTerm(i + 1);
+                        this.semesterService.addSemester(semester);
+                    }
+                    User user = new User();
+                    user.setUserNumber(student.getStudentNumber());
+                    user.setSex(student.getSex());
+                    user.setUsername(student.getStudentName());
+                    user.setPassword(student.getStudentNumber());
+                    user.setSchoolId(student.getSchoolId());
+                    user.setIdentity("学生");
 
-                this.userService.addUser(user);
-                UserRole userRole = new UserRole();
-                userRole.setUserId(user.getId());
-                userRole.setRoleId(5);
-                this.userRoleService.addUserRole(userRole);
-                resultBean.setCode(0);
+                    this.userService.addUser(user);
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(user.getId());
+                    userRole.setRoleId(5);
+                    this.userRoleService.addUserRole(userRole);
+                    resultBean.setCode(0);
+                }
+                else {
+                    resultBean.setCode(0);
+                    resultBean.setMsg("学号重复");
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 resultBean.setCode(1);
-                resultBean.setMsg("学生信息插入失败");
+                resultBean.setMsg("学生信息插入失败"+e.getMessage());
             }
         }else {
             resultBean.setCode(1);

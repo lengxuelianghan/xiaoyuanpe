@@ -50,4 +50,6 @@ public interface SemesterMapper {
     int updateByPrimaryKeySelective(Semester record);
 
     int updateByPrimaryKey(Semester record);
+
+    int insertBatch(List<Semester> list);
 }

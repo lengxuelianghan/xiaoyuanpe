@@ -110,6 +110,18 @@
       #{classesId,jdbcType=INTEGER}, #{term,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
       #{exerciseTime,jdbcType=INTEGER}, #{sudentId,jdbcType=INTEGER})
   </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="userId">
+    insert into semester (id, school_id, college_id,
+    classes_id, term, score,
+    exercise_time, sudent_id)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.schoolId,jdbcType=INTEGER}, #{item.collegeId,jdbcType=INTEGER},
+      #{item.classesId,jdbcType=INTEGER}, #{item.term,jdbcType=INTEGER}, #{item.score,jdbcType=INTEGER},
+      #{item.exerciseTime,jdbcType=INTEGER}, #{item.sudentId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Semester">
     insert into semester
     <trim prefix="(" suffix=")" suffixOverrides=",">

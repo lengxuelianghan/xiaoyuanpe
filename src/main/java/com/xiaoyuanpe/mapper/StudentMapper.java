@@ -36,6 +36,12 @@ public interface StudentMapper {
     int updateByPrimaryKey(Student record);
 
     List<Student> selectBySchool(Integer id);
+
     List<Student> selectByCollege(Integer id);
+
     List<Student> selectByClass(Integer id);
+
+    int insertBatch(List<Student> students);
+
+    Student selectByNumberAndSchool(@Param("number") String number, @Param("id") Integer id);
 }

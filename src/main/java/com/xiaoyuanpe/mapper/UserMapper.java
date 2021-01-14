@@ -40,4 +40,6 @@ public interface UserMapper {
     List<Permissions> findPermsByRoleId(Integer id);
 
     User selectByStudentNumAndSchool(@Param("num") String num, @Param("id") Integer id);
+
+    int insertBatch(List<User> list);
 }

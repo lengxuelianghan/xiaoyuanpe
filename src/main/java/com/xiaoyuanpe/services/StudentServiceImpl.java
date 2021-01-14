@@ -15,7 +15,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
     @Override
     public void addStudent(Student student) {
-        this.studentMapper.insert(student);
+            this.studentMapper.insert(student);
     }
 
     @Override
@@ -73,5 +73,15 @@ public class StudentServiceImpl implements StudentService {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
         PageInfo<Student> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id));
         return studentInfoPage;
+    }
+
+    @Override
+    public void addBatch(List<Student> list) {
+        this.studentMapper.insertBatch(list);
+    }
+
+    @Override
+    public Student findStudentByNumberAndSchool(String snumber, int id) {
+        return this.studentMapper.selectByNumberAndSchool(snumber, id);
     }
 }

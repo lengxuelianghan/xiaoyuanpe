@@ -32,4 +32,6 @@ public interface UserService {
     User findRolesByUsername(String userNumber);
 
     List<Permissions> findPermsByRoleId(Integer id);
+
+    void addBatch(List<User> list);
 }

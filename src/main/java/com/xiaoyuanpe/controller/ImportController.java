@@ -37,9 +37,26 @@ public class ImportController  {
     @Autowired
     private ClassesService classesService;
 
+    private Map<String,Integer> mapCollege(){
+        Map<String,Integer> map = new HashMap<>();
+        List<College> collegeAll = this.collegeService.findCollegeAll();
+        for (College college:collegeAll){
+            map.put(college.getCollegeName(),college.getId());
+        }
+        return map;
+    }
+
+    private Map<String,Integer> mapClass(){
+        Map<String,Integer> map = new HashMap<>();
+        List<Classes> classes = this.classesService.findClassesAll();
+        for (Classes classes1:classes){
+            map.put(classes1.getClassName(),classes1.getId());
+        }
+        return map;
+    }
+
     @RequestMapping(value = "/readExcel", method = RequestMethod.POST)
-    public ResultBean ImportFile(@RequestParam Integer sId, @RequestParam Integer cId, @RequestParam Integer ccId,
-                                 @RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest req){
+    public ResultBean ImportFile(@RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest req){
         User user = (User) req.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         String fileName = "";
@@ -57,45 +74,82 @@ public class ImportController  {
                 out.write(excelFile.getBytes());
                 out.flush();
             }
+            Map<String, Integer> mapCollege = this.mapCollege();
+            Map<String, Integer> mapClasses = this.mapClass();
             ReadExcel readExcel = new ReadExcel();
-            List<StudentInfo> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
-            for (StudentInfo studentInfo : studentInfos) {
-                System.out.println(studentInfo.getName()+","
-                        +studentInfo.getNumber()+","+studentInfo.getPassword()+","+studentInfo.getPhone()
-                        +","+studentInfo.getAge()+","+studentInfo.getSex()+","+1);
+            List<User> users = new ArrayList<>();
+            int j=0;
+            boolean flag = true;
+            List<Student> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
+            for (Student studentInfo : studentInfos) {
+                j++;
+                System.out.println(studentInfo.getStudentName()+","
+                        +studentInfo.getStudentNumber());
                 User user1 = new User();
                 user1.setIdentity("学生");
-                user1.setAge(studentInfo.getAge());
-                user1.setUserNumber(studentInfo.getNumber());
-                user1.setPassword(studentInfo.getPassword());
-                user1.setUsername(studentInfo.getName());
-                user1.setSchoolId(sId);
+                user1.setUserNumber(studentInfo.getStudentNumber());
+                user1.setPassword(studentInfo.getStudentNumber());
+                user1.setUsername(studentInfo.getStudentName());
+                user1.setSchoolId(user.getSchoolId());
                 user1.setPhone(studentInfo.getPhone());
                 user1.setSex(studentInfo.getSex());
-                this.userService.addUser(user1);
+                user1.setPhone(studentInfo.getPhone());
+                user1.setEmail(studentInfo.getEmail());
+                users.add(user1);
+                //this.userService.addUser(user1);
 
-                Student student = new Student();
-                student.setSchoolId(sId);
-                student.setCollegeId(cId);
-                student.setClassesId(ccId);
-                student.setTerm(studentInfo.getAge());
-                student.setStudentName(studentInfo.getName());
-                student.setStudentNumber(studentInfo.getNumber());
-                student.setSex(studentInfo.getSex());
-                this.studentService.addStudent(student);
-
-                Semester semester = new Semester();
-                semester.setSudentId(student.getId());
-                semester.setClassesId(student.getClassesId());
-                semester.setScore(0);
-                semester.setExerciseTime(0);
-                semester.setCollegeId(student.getCollegeId());
-                semester.setSchoolId(student.getSchoolId());
-                int i = 0;
-                for (i = 0; i < 8; i++) {
-                    semester.setTerm(i + 1);
-                    this.semesterService.addSemester(semester);
+                studentInfo.setSchoolId(user.getSchoolId());
+                if (mapCollege.containsKey(studentInfo.getCollegeName()))
+                    studentInfo.setCollegeId(mapCollege.get(studentInfo.getCollegeName()));
+                else {
+                    resultBean.setCode(1);
+                    flag = false;
+                    resultBean.setMsg("第"+j+"条数据,"+studentInfo.getCollegeName()+"错误");
+                    break;
                 }
+                if (mapClasses.containsKey(studentInfo.getClassesName()))
+                    studentInfo.setClassesId(mapClasses.get(studentInfo.getClassesName()));
+                else {
+                    resultBean.setCode(1);
+                    flag = false;
+                    resultBean.setMsg("第"+j+"条数据,"+studentInfo.getClassesName()+"错误");
+                    break;
+                }
+                //this.studentService.addStudent(studentInfo);
+
+//                Semester semester = new Semester();
+//                semester.setSudentId(studentInfo.getId());
+//                semester.setClassesId(studentInfo.getClassesId());
+//                semester.setScore(0);
+//                semester.setExerciseTime(0);
+//                semester.setCollegeId(studentInfo.getCollegeId());
+//                semester.setSchoolId(studentInfo.getSchoolId());
+//                int i = 0;
+//                for (i = 0; i < 8; i++) {
+//                    semester.setTerm(i + 1);
+//                    this.semesterService.addSemester(semester);
+//                }
+            }
+            if (flag){
+                this.studentService.addBatch(studentInfos);
+                this.userService.addBatch(users);
+                List<Semester> semesters = new ArrayList<>();
+                for (Student student: studentInfos){
+                    Semester semester = new Semester();
+                    semester.setSudentId(student.getId());
+                    semester.setClassesId(student.getClassesId());
+                    semester.setScore(0);
+                    semester.setExerciseTime(0);
+                    semester.setCollegeId(student.getCollegeId());
+                    semester.setSchoolId(student.getSchoolId());
+                    int i = 0;
+                    for (i = 0; i < 8; i++) {
+                        semester.setTerm(i + 1);
+                        this.semesterService.addSemester(semester);
+                        semesters.add(semester);
+                    }
+                }
+                this.semesterService.addBatch(semesters);
             }
             resultBean.setCode(0);
         }catch (Exception e){

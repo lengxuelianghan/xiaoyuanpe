@@ -131,6 +131,21 @@
       #{unit,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{schoolId,jdbcType=INTEGER})
   </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="userId">
+    insert into user (id, user_number, username,
+    password, age, sex,
+    unit, identity, phone,
+    email, school_id)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.userNumber,jdbcType=VARCHAR}, #{item.username,jdbcType=VARCHAR},
+      #{item.password,jdbcType=VARCHAR}, #{item.age,jdbcType=INTEGER}, #{item.sex,jdbcType=VARCHAR},
+      #{item.unit,jdbcType=VARCHAR}, #{item.identity,jdbcType=VARCHAR}, #{item.phone,jdbcType=VARCHAR},
+      #{item.email,jdbcType=VARCHAR}, #{item.schoolId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
