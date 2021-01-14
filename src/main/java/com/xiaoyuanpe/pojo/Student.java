@@ -37,6 +37,28 @@ public class Student {
 
     private Integer classesName;
 
+    public Student(Integer id, Integer shcoolId, Integer collegeId, Integer classesId, String studentName,
+                   String studentNumber, Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber,
+                   String nationalCode, String idCard, String address, Integer schoolName, Integer collegeName,
+                   Integer classesName) {
+        this.id = id;
+        this.shcoolId = shcoolId;
+        this.collegeId = collegeId;
+        this.classesId = classesId;
+        this.studentName = studentName;
+        this.studentNumber = studentNumber;
+        this.term = term;
+        this.sex = sex;
+        this.startYear = startYear;
+        this.birthday = birthday;
+        this.gradeNumber = gradeNumber;
+        this.nationalCode = nationalCode;
+        this.idCard = idCard;
+        this.address = address;
+        this.schoolName = schoolName;
+        this.collegeName = collegeName;
+        this.classesName = classesName;
+    }
     public Student(){}
 
     public Integer getId() {
