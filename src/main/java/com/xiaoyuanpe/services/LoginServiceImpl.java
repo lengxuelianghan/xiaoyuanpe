@@ -17,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String login(String usenumber, String password, Integer schoolId) {
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(usenumber+"_"+schoolId,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(usenumber,password);
         String err = "登陆成功";
         try {
             subject.login(token);
