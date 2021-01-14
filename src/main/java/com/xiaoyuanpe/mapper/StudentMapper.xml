@@ -25,7 +25,6 @@
     <result column="classes_id" jdbcType="INTEGER" property="classesId" />
     <result column="student_name" jdbcType="VARCHAR" property="studentName" />
     <result column="student_number" jdbcType="VARCHAR" property="studentNumber" />
-    <result column="term" jdbcType="INTEGER" property="term" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
     <result column="grade_number" jdbcType="INTEGER" property="gradeNumber" />
