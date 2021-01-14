@@ -53,7 +53,7 @@ public class Realm extends AuthorizingRealm {
         UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
         User user = userService.findUsersByStudentNumAndSchool(username, schoolId);
         if (!ObjectUtils.isEmpty(user)){
-            return new SimpleAuthenticationInfo(principal,user.getPassword(), this.getName());
+            return new SimpleAuthenticationInfo(username,user.getPassword(), this.getName());
         }
         return null;
     }
