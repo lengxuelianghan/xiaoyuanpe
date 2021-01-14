@@ -83,6 +83,29 @@ public class CollegeController {
         return resultBean;
     }
 
+    @RequestMapping(value = "/queryCollegeList", method = RequestMethod.GET)
+    public ResultBean queryCollegeListBySchool(HttpServletRequest session){
+        User user = (User) session.getSession().getAttribute("user");
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager"));
+        ResultBean resultBean = new ResultBean();
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                resultBean.setData(this.collegeService.findCollegeAll());
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学院列表信息查找失败"+e.getMessage());
+            }
+        }
+        else {
+            resultBean.setCode(1);
+            resultBean.setMsg("没有权限");
+        }
+        return resultBean;
+    }
+
     @RequestMapping(value = "/updateCollege", method = RequestMethod.POST)
     public ResultBean updateCollege(@RequestBody College college){
         Subject subject = SecurityUtils.getSubject();
