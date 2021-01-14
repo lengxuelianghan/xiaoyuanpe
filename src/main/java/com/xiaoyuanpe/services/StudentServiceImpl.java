@@ -3,10 +3,7 @@ package com.xiaoyuanpe.services;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.StudentMapper;
-import com.xiaoyuanpe.pojo.Page;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.StudentExample;
-import com.xiaoyuanpe.pojo.StudentInfo;
+import com.xiaoyuanpe.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,23 +55,23 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public PageInfo<Student> findStudentByClass(Integer id, Page page) {
+    public PageInfo<StudentNew> findStudentByClass(Integer id, Page page) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-        PageInfo<Student> studentInfoPage = new PageInfo<>(this.studentMapper.selectByClass(id));
+        PageInfo<StudentNew> studentInfoPage = new PageInfo<>(this.studentMapper.selectByClass(id));
         return studentInfoPage;
     }
 
     @Override
-    public PageInfo<Student> findStudentByCollege(Integer id, Page page) {
+    public PageInfo<StudentNew> findStudentByCollege(Integer id, Page page) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-        PageInfo<Student> studentInfoPage = new PageInfo<>(this.studentMapper.selectByCollege(id));
+        PageInfo<StudentNew> studentInfoPage = new PageInfo<>(this.studentMapper.selectByCollege(id));
         return studentInfoPage;
     }
 
     @Override
-    public PageInfo<Student> findStudentBySchool(Integer id, Page page) {
+    public PageInfo<StudentNew> findStudentBySchool(Integer id, Page page) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-        PageInfo<Student> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id));
+        PageInfo<StudentNew> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id));
         return studentInfoPage;
     }
 }

@@ -16,12 +16,30 @@
     <result column="national_code" jdbcType="VARCHAR" property="nationalCode" />
     <result column="id_card" jdbcType="VARCHAR" property="idCard" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+
+  <resultMap id="BaseResultMapNew" type="com.xiaoyuanpe.pojo.StudentNew">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="shcool_id" jdbcType="INTEGER" property="shcoolId" />
+    <result column="college_id" jdbcType="INTEGER" property="collegeId" />
+    <result column="classes_id" jdbcType="INTEGER" property="classesId" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="student_number" jdbcType="VARCHAR" property="studentNumber" />
+    <result column="term" jdbcType="INTEGER" property="term" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="start_year" jdbcType="TIMESTAMP" property="startYear" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="grade_number" jdbcType="INTEGER" property="gradeNumber" />
+    <result column="national_code" jdbcType="VARCHAR" property="nationalCode" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
     <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
     <result column="classes_name" jdbcType="VARCHAR" property="classesName" />
   </resultMap>
 
-<!--  <resultMap id="StudentResultMap" type="com.xiaoyuanpe.pojo.Student">-->
+
+  <!--  <resultMap id="StudentResultMap" type="com.xiaoyuanpe.pojo.Student">-->
 <!--    <id column="id" jdbcType="INTEGER" property="id" />-->
 <!--    <result column="shcool_id" jdbcType="INTEGER" property="shcoolId" />-->
 <!--    <result column="college_id" jdbcType="INTEGER" property="collegeId" />-->
@@ -128,7 +146,7 @@
     where student_number = #{snumber,jdbcType=INTEGER}
   </select>
 
-  <select id="selectBySchool" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectBySchool" parameterType="java.lang.Integer" resultMap="BaseResultMapNew">
  select student.id as id, student.student_name as student_name, student.student_number as student_number,
     student.sex as sex, student.shcool_id as shcool_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
@@ -140,7 +158,7 @@
      and student.college_id=college.id and student.classes_id=classes.id
   </select>
 
-  <select id="selectByCollege" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByCollege" parameterType="java.lang.Integer" resultMap="BaseResultMapNew">
     select student.id as id, student.student_name as student_name, student.student_number as student_number,
     student.sex as sex, student.shcool_id as shcool_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
@@ -152,7 +170,7 @@
      and student.college_id=college.id and student.classes_id=classes.id
   </select>
 
-  <select id="selectByClass" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByClass" parameterType="java.lang.Integer" resultMap="BaseResultMapNew">
    select student.id as id, student.student_name as student_name, student.student_number as student_number,
     student.sex as sex, student.shcool_id as shcool_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,

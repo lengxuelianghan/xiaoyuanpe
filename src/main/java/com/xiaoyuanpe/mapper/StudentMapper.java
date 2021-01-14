@@ -1,11 +1,9 @@
 package com.xiaoyuanpe.mapper;
 
-import com.xiaoyuanpe.pojo.Page;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.StudentExample;
+import com.xiaoyuanpe.pojo.*;
+
 import java.util.List;
 
-import com.xiaoyuanpe.pojo.StudentInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface StudentMapper {
@@ -37,7 +35,7 @@ public interface StudentMapper {
 
     int updateByPrimaryKey(Student record);
 
-    List<Student> selectBySchool(Integer id);
-    List<Student> selectByCollege(Integer id);
-    List<Student> selectByClass(Integer id);
+    List<StudentNew> selectBySchool(Integer id);
+    List<StudentNew> selectByCollege(Integer id);
+    List<StudentNew> selectByClass(Integer id);
 }

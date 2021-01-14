@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.pojo.Student;
 import com.xiaoyuanpe.pojo.StudentInfo;
+import com.xiaoyuanpe.pojo.StudentNew;
 
 import java.util.List;
 
@@ -24,9 +25,9 @@ public interface StudentService {
 
     Student findStudentLast();
 
-    PageInfo<Student> findStudentByClass(Integer id, Page page);
+    PageInfo<StudentNew> findStudentByClass(Integer id, Page page);
 
-    PageInfo<Student> findStudentByCollege(Integer id, Page page);
+    PageInfo<StudentNew> findStudentByCollege(Integer id, Page page);
 
-    PageInfo<Student> findStudentBySchool(Integer id, Page page);
+    PageInfo<StudentNew> findStudentBySchool(Integer id, Page page);
 }
