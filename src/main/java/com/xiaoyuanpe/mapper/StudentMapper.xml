@@ -21,24 +21,6 @@
     <result column="classes_name" jdbcType="VARCHAR" property="classesName" />
   </resultMap>
 
-  <!--  <resultMap id="StudentResultMap" type="com.xiaoyuanpe.pojo.Student">-->
-<!--    <id column="id" jdbcType="INTEGER" property="id" />-->
-<!--    <result column="school_id" jdbcType="INTEGER" property="schoolId" />-->
-<!--    <result column="college_id" jdbcType="INTEGER" property="collegeId" />-->
-<!--    <result column="classes_id" jdbcType="INTEGER" property="classesId" />-->
-<!--    <result column="student_name" jdbcType="VARCHAR" property="studentName" />-->
-<!--    <result column="student_number" jdbcType="VARCHAR" property="studentNumber" />-->
-<!--    <result column="sex" jdbcType="VARCHAR" property="sex" />-->
-<!--    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />-->
-<!--    <result column="grade_number" jdbcType="INTEGER" property="gradeNumber" />-->
-<!--    <result column="national_code" jdbcType="VARCHAR" property="nationalCode" />-->
-<!--    <result column="id_card" jdbcType="VARCHAR" property="idCard" />-->
-<!--    <result column="address" jdbcType="VARCHAR" property="address" />-->
-<!--    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />-->
-<!--    <result column="college_name" jdbcType="VARCHAR" property="collegeName" />-->
-<!--    <result column="classes_name" jdbcType="VARCHAR" property="classesName" />-->
-<!--  </resultMap>-->
-
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

@@ -60,4 +60,9 @@ public class ClassesServiceImpl implements ClassesService {
         PageInfo<Classes> classesPageInfo = new PageInfo<>(this.classesMapper.selectByCollege(id));
         return classesPageInfo;
     }
+
+    @Override
+    public List<Classes> findClassesByCollege(Integer id) {
+        return this.classesMapper.findClassesByCollege(id);
+    }
 }

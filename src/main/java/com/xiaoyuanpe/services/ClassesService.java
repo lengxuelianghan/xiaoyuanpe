@@ -22,4 +22,6 @@ public interface ClassesService {
     PageInfo<Classes> selectBySchool(Page page, Integer id);
 
     PageInfo<Classes> selectByCollege(Page page, Integer id);
+
+    List<Classes> findClassesByCollege(Integer id);
 }

@@ -33,4 +33,6 @@ public interface ClassesMapper {
     List<Classes> selectBySchool(Integer id);
 
     List<Classes> selectByCollege(Integer id);
+
+    List<Classes> findClassesByCollege(Integer id);
 }

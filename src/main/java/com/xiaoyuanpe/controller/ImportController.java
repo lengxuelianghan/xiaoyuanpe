@@ -66,8 +66,8 @@ public class ImportController  {
                 User user1 = new User();
                 user1.setIdentity("学生");
                 user1.setAge(studentInfo.getAge());
-                user1.setUserNumber(Utils.IntegerToString(user.getSchoolId())+studentInfo.getNumber());
-                user1.setPassword(Utils.IntegerToString(user.getSchoolId())+studentInfo.getPassword());
+                user1.setUserNumber(studentInfo.getNumber());
+                user1.setPassword(studentInfo.getPassword());
                 user1.setUsername(studentInfo.getName());
                 user1.setSchoolId(sId);
                 user1.setPhone(studentInfo.getPhone());
@@ -80,7 +80,7 @@ public class ImportController  {
                 student.setClassesId(ccId);
                 student.setTerm(studentInfo.getAge());
                 student.setStudentName(studentInfo.getName());
-                student.setStudentNumber(Utils.IntegerToString(user.getSchoolId())+studentInfo.getNumber());
+                student.setStudentNumber(studentInfo.getNumber());
                 student.setSex(studentInfo.getSex());
                 this.studentService.addStudent(student);
 

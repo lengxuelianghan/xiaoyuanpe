@@ -94,6 +94,22 @@ public class ClassesController {
     }
 
 
+    @RequestMapping(value = "/queryClassesListByCollege/{collegeId}")
+    public ResultBean queryClassesListByList(@PathVariable Integer collegeId, HttpServletRequest session){
+        User user = (User) session.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            resultBean.setData(this.classesService.findClassesByCollege(collegeId));
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("班级列表信息添加失败");
+        }
+        return resultBean;
+    }
+
     @RequestMapping(value = "/updateClasses", method = RequestMethod.POST)
     public ResultBean updateClasses(@RequestBody Classes classes){
         Subject subject = SecurityUtils.getSubject();
