@@ -104,6 +104,13 @@
     where user_number = #{num, jdbcType=VARCHAR}
   </select>
 
+  <select id="selectByStudentNumAndSchool" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_number = #{num, jdbcType=VARCHAR} and school_id = #{id, jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where id = #{id,jdbcType=INTEGER}

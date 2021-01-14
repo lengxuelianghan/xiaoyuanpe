@@ -33,7 +33,7 @@ public class LoginController {
             int pageSize = (int)this.userService.Count();
             String info = "登陆失败，学校选择失败";
             if (schoolId==this.userService.findUsersByStudentNum(usernumber).getSchoolId()) {
-                info = this.loginService.login(usernumber, password);
+                info = this.loginService.login(usernumber, password, schoolId);
             }
             if (info.equals("登陆成功")) {
                 resultBean.setCode(0);

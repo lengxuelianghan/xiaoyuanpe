@@ -48,8 +48,10 @@ public class Realm extends AuthorizingRealm {
         System.out.println("认证");
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         String principal = (String) authenticationToken.getPrincipal();
+        String username = principal.split("_")[0];
+        Integer schoolId = Integer.parseInt(principal.split("_")[1]);
         UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
-        User user = userService.findUsersByStudentNum(principal);
+        User user = userService.findUsersByStudentNumAndSchool(username, schoolId);
         if (!ObjectUtils.isEmpty(user)){
             return new SimpleAuthenticationInfo(principal,user.getPassword(), this.getName());
         }

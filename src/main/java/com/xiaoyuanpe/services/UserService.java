@@ -17,6 +17,8 @@ public interface UserService {
 
     User findUsersByStudentNum(String num);
 
+    User findUsersByStudentNumAndSchool(String num, Integer id);
+
     void ModifyUser(User users);
 
     void DeleteUser(Integer id);

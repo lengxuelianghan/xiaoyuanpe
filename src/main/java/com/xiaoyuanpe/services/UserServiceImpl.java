@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUsersByStudentNumAndSchool(String num, Integer id) {
+        return this.usersMapper.selectByStudentNumAndSchool(num, id);
+    }
+
+    @Override
     @Transactional
     public void ModifyUser(User users) {
         this.usersMapper.updateByPrimaryKey(users);

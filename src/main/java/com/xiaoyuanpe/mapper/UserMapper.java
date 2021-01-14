@@ -38,4 +38,6 @@ public interface UserMapper {
     User findRolesByUsername(String userNumber);
 
     List<Permissions> findPermsByRoleId(Integer id);
+
+    User selectByStudentNumAndSchool(@Param("num") String num, @Param("id") Integer id);
 }

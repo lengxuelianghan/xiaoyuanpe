@@ -1,5 +1,5 @@
 package com.xiaoyuanpe.services;
 
 public interface LoginService {
-    String login(String username, String password);
+    String login(String username, String password, Integer schoolId);
 }
