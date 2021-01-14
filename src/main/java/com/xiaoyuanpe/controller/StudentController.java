@@ -141,7 +141,7 @@ public class StudentController {
             try {
                 student.setSchoolId(user1.getSchoolId());
                 student.setTerm(1);
-                if (this.studentService.findStudentByNumberAndSchool(student.getStudentNumber(), user1.getSchoolId())!=null) {
+                if (this.studentService.findStudentByNumberAndSchool(student.getStudentNumber(), user1.getSchoolId())==null) {
                     this.studentService.addStudent(student);
                     Semester semester = new Semester();
                     semester.setSudentId(student.getId());
