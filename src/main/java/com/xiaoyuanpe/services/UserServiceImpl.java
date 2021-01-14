@@ -22,11 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User users) {
-        Student student = new Student();
-        student.setStudentNumber(users.getUserNumber());
-        student.setStudentName(users.getUsername());
-        student.setSchoolId(users.getSchoolId());
-        this.studentMapper.insert(student);
+//        Student student = new Student();
+//        student.setStudentNumber(users.getUserNumber());
+//        student.setStudentName(users.getUsername());
+//        student.setSchoolId(users.getSchoolId());
+//        this.studentMapper.insert(student);
         this.usersMapper.insert(users);
     }
 
