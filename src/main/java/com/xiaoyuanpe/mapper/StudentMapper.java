@@ -43,5 +43,5 @@ public interface StudentMapper {
 
     int insertBatch(List<Student> students);
 
-    Student selectByNumberAndSchool(@Param("number") String number, @Param("id") Integer id);
+    Student selectByNumberAndSchool(@Param("snumber") String snumber, @Param("id") Integer id);
 }
