@@ -5,6 +5,7 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserEntry;
 import com.xiaoyuanpe.services.LoginService;
 import com.xiaoyuanpe.services.SchoolService;
+import com.xiaoyuanpe.services.StudentService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class LoginController {
     private LoginService loginService;
     @Autowired
     private SchoolService schoolService;
+    @Autowired
+    private StudentService studentService;
 
     @PostMapping("/login")
     public ResultBean Login(@RequestParam Integer schoolId, @RequestParam String usernumber,

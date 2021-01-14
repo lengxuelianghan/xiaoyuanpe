@@ -1,9 +1,8 @@
 package com.xiaoyuanpe.units;
 
+import com.xiaoyuanpe.pojo.Student;
 import com.xiaoyuanpe.pojo.StudentInfo;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.ss.usermodel.CellType;
+
 import org.apache.poi.hssf.usermodel.HSSFDataFormatter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -16,15 +15,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ExcelUtil {
-    public static List<StudentInfo> importExcel(Workbook wb) throws SQLException, ParseException {
+    public static List<Student> importExcel(Workbook wb) throws SQLException, ParseException {
 
-        StudentInfo studentInfo;
+        Student student;
 
-        List<StudentInfo> BOM = new ArrayList<>();
+        List<Student> BOM = new ArrayList<>();
         if (wb instanceof HSSFWorkbook) {
             Sheet sheet = wb.getSheetAt(0);
 
@@ -40,21 +41,33 @@ public class ExcelUtil {
                         if (sheet.getRow(j)==null){
                             continue;
                         }
-//                        StudentInfo studentInfo1 = new StudentInfo(ExcelUtil.getCell(sheet.getRow(j).getCell(1)),
-//                                ExcelUtil.getCell(sheet.getRow(j).getCell(2)),
-//                                ExcelUtil.getCell(sheet.getRow(j).getCell(3)),
-//                                ExcelUtil.getCell(sheet.getRow(j).getCell(4)),
-//                                Integer.valueOf((ExcelUtil.getCell(sheet.getRow(j).getCell(5)).equals("") ? "0" : ExcelUtil.getCell(sheet.getRow(j).getCell(5)))),
-//                                ExcelUtil.getCell(sheet.getRow(j).getCell(6)));
-                        StudentInfo studentInfo1 = new StudentInfo();
-                        studentInfo1.setName(ExcelUtil.getCell(sheet.getRow(j).getCell(0)));
-                        studentInfo1.setNumber(ExcelUtil.getCell(sheet.getRow(j).getCell(1)));
 
-                        studentInfo1.setSex("无");
-                        studentInfo1.setAge(0);
-                        studentInfo1.setPhone("无");
-                        studentInfo1.setPassword(ExcelUtil.getCell(sheet.getRow(j).getCell(1)));
-                        BOM.add(studentInfo1);
+                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
+                        String cell = ExcelUtil.getCell(sheet.getRow(j).getCell(7));
+                        cell.replace("/","-");
+                        Date birthday = formatter.parse(cell);
+
+                        Student student1 = new Student(0,0,0,ExcelUtil.getCell(sheet.getRow(j).getCell(5)),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(3)),1,
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(6)),new Date(),birthday,
+                                Integer.parseInt(ExcelUtil.getCell(sheet.getRow(j).getCell(0))),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(4)),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(10)),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(8)),"",
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(9)),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(2)),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(1)),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(11)),
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(12)));
+//                        Student student1 = new Student();
+//                        student1.setStudentName(ExcelUtil.getCell(sheet.getRow(j).getCell(0)));
+//                        student1.setStudentNumber(ExcelUtil.getCell(sheet.getRow(j).getCell(5)));
+//
+//                        studentInfo1.setSex("无");
+//                        studentInfo1.setAge(0);
+//                        studentInfo1.setPhone("无");
+//                        studentInfo1.setPassword(ExcelUtil.getCell(sheet.getRow(j).getCell(1)));
+                        BOM.add(student1);
                     }
                 }
             }
@@ -67,43 +80,38 @@ public class ExcelUtil {
                 for (int i = 1; i < lastRowNum+1; i++) {
                     //System.out.println(lastRowNum);
                     XSSFRow row = sheet.getRow(i);
-                    studentInfo = new StudentInfo();
+                    student = new Student();
                     for (int j = 0; j < row.getLastCellNum(); j++) {
                         XSSFCell cell = row.getCell(j);
                         switch (cell.getColumnIndex()) {
                             case 0:
-                                studentInfo.setName(cell.toString());
+                                student.setGradeNumber(Integer.parseInt(cell.toString()));
                                 break;
                             case 1:
-                                studentInfo.setNumber(String.valueOf(Integer.parseInt(cell.getRawValue())));
-                                studentInfo.setSex("无");
-                                studentInfo.setAge(0);
-                                studentInfo.setPhone("无");
-                                studentInfo.setPassword(String.valueOf(Integer.parseInt(cell.getRawValue())));
-                                //studentInfo.setName(cell.toString());
+                                student.setClassNumber(cell.getRawValue().toString());
                                 break;
-//                            case 2:
-//                                studentInfo.setNumber(cell.toString());
-//                                break;
-//                            case 3:
-//                                studentInfo.setPassword(cell.toString());
-//                                break;
-//                            case 4:
-//                                studentInfo.setSex(cell.toString());
-//                                break;
-//                            case 5:
-//                                studentInfo.setAge(Integer.valueOf(cell.getRawValue()));
-//                                break;
-//                            case 6:
-//                                studentInfo.setPhone(cell.getRawValue());
-//                                break;
+                            case 2:
+                                student.setClassesName(cell.toString());
+                                break;
+                            case 3:
+                                student.setStudentNumber(cell.toString());
+                                break;
+                            case 4:
+                                student.setNationalCode(cell.toString());
+                                break;
+                            case 5:
+                                student.setStudentName(cell.getRawValue());
+                                break;
+                            case 6:
+                                student.setPhone(cell.getRawValue());
+                                break;
                             default:
                                 // TODO 数据格式有误
                                 break;
                         }
                     }
                     //materiel.setMateriel_type(sheet.getSheetName());
-                    BOM.add(studentInfo);
+                    BOM.add(student);
                 }
                 break;
             }

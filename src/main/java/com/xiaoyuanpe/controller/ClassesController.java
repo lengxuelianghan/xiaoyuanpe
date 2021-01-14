@@ -62,6 +62,20 @@ public class ClassesController {
         return resultBean;
     }
 
+    @RequestMapping(value = "/queryClassesList")
+    public ResultBean queryClasses(){
+        ResultBean resultBean = new ResultBean();
+        try {
+            resultBean.setData(this.classesService.findClassesAll());
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("班级信息查找失败");
+        }
+        return resultBean;
+    }
+
     @RequestMapping(value = "/queryClassesListBySchool", method = RequestMethod.POST)
     public ResultBean queryClassesListBySchool(@RequestBody Page page, HttpServletRequest session){
         User user = (User) session.getSession().getAttribute("user");

@@ -37,10 +37,16 @@ public class Student {
 
     private String classesName;
 
+    private String classNumber;
+
+    private String email;
+
+    private String phone;
+
     public Student(Integer id, Integer schoolId, Integer collegeId, Integer classesId, String studentName,
                    String studentNumber, Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber,
                    String nationalCode, String idCard, String address, String schoolName, String collegeName,
-                   String classesName) {
+                   String classesName, String classNumber, String phone, String email) {
         this.id = id;
         this.schoolId = schoolId;
         this.collegeId = collegeId;
@@ -58,8 +64,36 @@ public class Student {
         this.schoolName = schoolName;
         this.collegeName = collegeName;
         this.classesName = classesName;
+        this.classNumber = classNumber;
+        this.phone=phone;
+        this.email = email;
     }
     public Student(){}
+
+    public Student(Integer schoolId, Integer collegeId, Integer classesId, String studentName, String studentNumber,
+                   Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber, String nationalCode,
+                   String idCard, String address, String schoolName, String collegeName, String classesName,
+                   String classNumber,String phone, String email) {
+        this.schoolId = schoolId;
+        this.collegeId = collegeId;
+        this.classesId = classesId;
+        this.studentName = studentName;
+        this.studentNumber = studentNumber;
+        this.term = term;
+        this.sex = sex;
+        this.startYear = startYear;
+        this.birthday = birthday;
+        this.gradeNumber = gradeNumber;
+        this.nationalCode = nationalCode;
+        this.idCard = idCard;
+        this.address = address;
+        this.schoolName = schoolName;
+        this.collegeName = collegeName;
+        this.classesName = classesName;
+        this.classNumber = classNumber;
+        this.phone=phone;
+        this.email = email;
+    }
 
     public Integer getId() {
         return id;
@@ -195,5 +229,29 @@ public class Student {
 
     public void setClassesName(String classesName) {
         this.classesName = classesName;
+    }
+
+    public String getClassNumber() {
+        return classNumber;
+    }
+
+    public void setClassNumber(String classNumber) {
+        this.classNumber = classNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
