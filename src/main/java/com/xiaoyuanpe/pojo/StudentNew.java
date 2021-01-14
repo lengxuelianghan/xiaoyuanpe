@@ -31,16 +31,16 @@ public class StudentNew {
 
     private String  address;
 
-    private Integer schoolName;
+    private Integer school;
 
-    private Integer collegeName;
+    private Integer college;
 
-    private Integer classesName;
+    private Integer classes;
 
     public StudentNew(Integer id, Integer shcoolId, Integer collegeId, Integer classesId, String studentName,
                    String studentNumber, Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber,
-                   String nationalCode, String idCard, String address, Integer schoolName, Integer collegeName,
-                   Integer classesName) {
+                   String nationalCode, String idCard, String address, Integer school, Integer college,
+                   Integer classes) {
         this.id = id;
         this.shcoolId = shcoolId;
         this.collegeId = collegeId;
@@ -55,9 +55,9 @@ public class StudentNew {
         this.nationalCode = nationalCode;
         this.idCard = idCard;
         this.address = address;
-        this.schoolName = schoolName;
-        this.collegeName = collegeName;
-        this.classesName = classesName;
+        this.school = school;
+        this.college = college;
+        this.classes = classes;
     }
     public StudentNew(){}
 
@@ -174,26 +174,26 @@ public class StudentNew {
     }
 
     public Integer getSchoolName() {
-        return schoolName;
+        return school;
     }
 
     public void setSchoolName(Integer schoolName) {
-        this.schoolName = schoolName;
+        this.school = schoolName;
     }
 
     public Integer getCollegeName() {
-        return collegeName;
+        return college;
     }
 
     public void setCollegeName(Integer collegeName) {
-        this.collegeName = collegeName;
+        this.college = collegeName;
     }
 
     public Integer getClassesName() {
-        return classesName;
+        return classes;
     }
 
     public void setClassesName(Integer classesName) {
-        this.classesName = classesName;
+        this.classes = classesName;
     }
 }
