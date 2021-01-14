@@ -49,7 +49,7 @@ public class ClassesController {
     }
 
     @RequestMapping(value = "/queryClasses/{id}", method = RequestMethod.POST)
-    public ResultBean queryClasses(@PathVariable Integer id, Page page){
+    public ResultBean queryClasses(@RequestBody Page page, @PathVariable Integer id){
         ResultBean resultBean = new ResultBean();
         try {
             resultBean.setData(this.classesService.selectByCollege(page, id));
