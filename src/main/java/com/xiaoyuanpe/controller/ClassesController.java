@@ -48,11 +48,11 @@ public class ClassesController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryClasses/{id}")
-    public ResultBean queryClasses(@PathVariable Integer id){
+    @RequestMapping(value = "/queryClasses/{id}", method = RequestMethod.POST)
+    public ResultBean queryClasses(@PathVariable Integer id, Page page){
         ResultBean resultBean = new ResultBean();
         try {
-            resultBean.setData(this.classesService.findClassesById(id));
+            resultBean.setData(this.classesService.selectByCollege(page, id));
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
