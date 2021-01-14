@@ -5,7 +5,7 @@ import java.util.Date;
 public class Student {
     private Integer id;
 
-    private Integer shcoolId;
+    private Integer schoolId;
 
     private Integer collegeId;
 
@@ -37,12 +37,12 @@ public class Student {
 
     private Integer classesName;
 
-    public Student(Integer id, Integer shcoolId, Integer collegeId, Integer classesId, String studentName,
+    public Student(Integer id, Integer schoolId, Integer collegeId, Integer classesId, String studentName,
                    String studentNumber, Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber,
                    String nationalCode, String idCard, String address, Integer schoolName, Integer collegeName,
                    Integer classesName) {
         this.id = id;
-        this.shcoolId = shcoolId;
+        this.schoolId = schoolId;
         this.collegeId = collegeId;
         this.classesId = classesId;
         this.studentName = studentName;
@@ -70,11 +70,11 @@ public class Student {
     }
 
     public Integer getShcoolId() {
-        return shcoolId;
+        return schoolId;
     }
 
-    public void setShcoolId(Integer shcoolId) {
-        this.shcoolId = shcoolId;
+    public void setShcoolId(Integer schoolId) {
+        this.schoolId = schoolId;
     }
 
     public Integer getCollegeId() {
