@@ -238,7 +238,7 @@ public class SignInController {
             List<Signin> signinList = this.signInService.findSigninAll();
             List<Signin> signins = new ArrayList<>();
             for (Signin signin: signinList){
-                if(this.studentService.findStudentById(signin.getStudentId()).getShcoolId()==sid){
+                if(this.studentService.findStudentById(signin.getStudentId()).getSchoolId()==sid){
                     signins.add(signin);
                 }
             }
@@ -455,7 +455,7 @@ public class SignInController {
                     signin.setFlag(2);
                     signin.setSignoutTime(new Date());
                     int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
-                    Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),student.getCollegeId(),
+                    Semester semester = this.semesterService.findSemesterByIds(student.getSchoolId(),student.getCollegeId(),
                             student.getClassesId(),student.getId(), student.getTerm());
                     if (semester!=null) {
                         //resultBean.setMsg(semester.getExerciseTime()+","+semester.getClassesId());

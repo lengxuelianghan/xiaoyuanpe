@@ -164,63 +164,63 @@ public class StudentExample {
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdIsNull() {
-            addCriterion("shcool_id is null");
+        public Criteria andSchoolIdIsNull() {
+            addCriterion("school_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdIsNotNull() {
-            addCriterion("shcool_id is not null");
+        public Criteria andSchoolIdIsNotNull() {
+            addCriterion("school_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdEqualTo(Integer value) {
-            addCriterion("shcool_id =", value, "shcoolId");
+        public Criteria andSchoolIdEqualTo(Integer value) {
+            addCriterion("school_id =", value, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdNotEqualTo(Integer value) {
-            addCriterion("shcool_id <>", value, "shcoolId");
+        public Criteria andSchoolIdNotEqualTo(Integer value) {
+            addCriterion("school_id <>", value, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdGreaterThan(Integer value) {
-            addCriterion("shcool_id >", value, "shcoolId");
+        public Criteria andSchoolIdGreaterThan(Integer value) {
+            addCriterion("school_id >", value, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("shcool_id >=", value, "shcoolId");
+        public Criteria andSchoolIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("school_id >=", value, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdLessThan(Integer value) {
-            addCriterion("shcool_id <", value, "shcoolId");
+        public Criteria andSchoolIdLessThan(Integer value) {
+            addCriterion("school_id <", value, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdLessThanOrEqualTo(Integer value) {
-            addCriterion("shcool_id <=", value, "shcoolId");
+        public Criteria andSchoolIdLessThanOrEqualTo(Integer value) {
+            addCriterion("school_id <=", value, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdIn(List<Integer> values) {
-            addCriterion("shcool_id in", values, "shcoolId");
+        public Criteria andSchoolIdIn(List<Integer> values) {
+            addCriterion("school_id in", values, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdNotIn(List<Integer> values) {
-            addCriterion("shcool_id not in", values, "shcoolId");
+        public Criteria andSchoolIdNotIn(List<Integer> values) {
+            addCriterion("school_id not in", values, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdBetween(Integer value1, Integer value2) {
-            addCriterion("shcool_id between", value1, value2, "shcoolId");
+        public Criteria andSchoolIdBetween(Integer value1, Integer value2) {
+            addCriterion("school_id between", value1, value2, "schoolId");
             return (Criteria) this;
         }
 
-        public Criteria andShcoolIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("shcool_id not between", value1, value2, "shcoolId");
+        public Criteria andSchoolIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("school_id not between", value1, value2, "schoolId");
             return (Criteria) this;
         }
 

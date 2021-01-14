@@ -105,7 +105,7 @@ public class SemesterController {
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         try {
-            List<Semester> semesters = this.semesterService.findSemesterByStudent(student.getShcoolId(), student.getCollegeId(), student.getClassesId(), student.getId());
+            List<Semester> semesters = this.semesterService.findSemesterByStudent(student.getSchoolId(), student.getCollegeId(), student.getClassesId(), student.getId());
             Semester semester = new Semester();
             for (Semester sem: semesters){
                 if (student.getTerm() == sem.getTerm()) {

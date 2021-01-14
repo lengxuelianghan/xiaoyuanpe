@@ -75,7 +75,7 @@ public class ImportController  {
                 this.userService.addUser(user1);
 
                 Student student = new Student();
-                student.setShcoolId(sId);
+                student.setSchoolId(sId);
                 student.setCollegeId(cId);
                 student.setClassesId(ccId);
                 student.setTerm(studentInfo.getAge());
@@ -90,7 +90,7 @@ public class ImportController  {
                 semester.setScore(0);
                 semester.setExerciseTime(0);
                 semester.setCollegeId(student.getCollegeId());
-                semester.setSchoolId(student.getShcoolId());
+                semester.setSchoolId(student.getSchoolId());
                 int i = 0;
                 for (i = 0; i < 8; i++) {
                     semester.setTerm(i + 1);

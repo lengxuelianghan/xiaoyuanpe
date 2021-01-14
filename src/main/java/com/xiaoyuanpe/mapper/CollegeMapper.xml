@@ -3,7 +3,7 @@
 <mapper namespace="com.xiaoyuanpe.mapper.CollegeMapper">
   <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.College">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="shcool_id" jdbcType="INTEGER" property="shcoolId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
     <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
     <result column="score" jdbcType="INTEGER" property="score" />
     <result column="college_info" jdbcType="VARCHAR" property="collegeInfo" />
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, shcool_id, college_name, score, college_info,college_number
+    id, school_id, college_name, score, college_info,college_number
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.CollegeExample" resultMap="BaseResultMap">
     select
@@ -95,7 +95,7 @@
     select
     <include refid="Base_Column_List" />
     from college
-    where shcool_id = #{id,jdbcType=INTEGER}
+    where school_id = #{id,jdbcType=INTEGER}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -109,9 +109,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.College">
-    insert into college (id, shcool_id, college_name, 
+    insert into college (id, school_id, college_name,
       score, college_info, college_number)
-    values (#{id,jdbcType=INTEGER}, #{shcoolId,jdbcType=INTEGER}, #{collegeName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, #{collegeName,jdbcType=VARCHAR},
       #{score,jdbcType=INTEGER}, #{collegeInfo,jdbcType=VARCHAR},#{collegeNumber,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.College">
@@ -120,8 +120,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="shcoolId != null">
-        shcool_id,
+      <if test="schoolId != null">
+        school_id,
       </if>
       <if test="collegeName != null">
         college_name,
@@ -137,8 +137,8 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="shcoolId != null">
-        #{shcoolId,jdbcType=INTEGER},
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="collegeName != null">
         #{collegeName,jdbcType=VARCHAR},
@@ -163,8 +163,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.shcoolId != null">
-        shcool_id = #{record.shcoolId,jdbcType=INTEGER},
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
       </if>
       <if test="record.collegeName != null">
         college_name = #{record.collegeName,jdbcType=VARCHAR},
@@ -183,7 +183,7 @@
   <update id="updateByExample" parameterType="map">
     update college
     set id = #{record.id,jdbcType=INTEGER},
-      shcool_id = #{record.shcoolId,jdbcType=INTEGER},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
       college_name = #{record.collegeName,jdbcType=VARCHAR},
       score = #{record.score,jdbcType=INTEGER},
       college_info = #{record.collegeInfo,jdbcType=VARCHAR}
@@ -194,8 +194,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.College">
     update college
     <set>
-      <if test="shcoolId != null">
-        shcool_id = #{shcoolId,jdbcType=INTEGER},
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="collegeName != null">
         college_name = #{collegeName,jdbcType=VARCHAR},
@@ -211,7 +211,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.College">
     update college
-    set shcool_id = #{shcoolId,jdbcType=INTEGER},
+    set school_id = #{schoolId,jdbcType=INTEGER},
       college_name = #{collegeName,jdbcType=VARCHAR},
       score = #{score,jdbcType=INTEGER},
       college_info = #{collegeInfo,jdbcType=VARCHAR},

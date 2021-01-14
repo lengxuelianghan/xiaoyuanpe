@@ -5,7 +5,7 @@ import java.util.Date;
 public class Transaction {
     private Integer id;
 
-    private Integer shcoolId;
+    private Integer schoolId;
 
     private Integer userId;
 
@@ -21,12 +21,12 @@ public class Transaction {
         this.id = id;
     }
 
-    public Integer getShcoolId() {
-        return shcoolId;
+    public Integer getSchoolId() {
+        return schoolId;
     }
 
-    public void setShcoolId(Integer shcoolId) {
-        this.shcoolId = shcoolId;
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
     }
 
     public Integer getUserId() {

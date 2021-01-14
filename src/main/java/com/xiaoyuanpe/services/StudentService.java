@@ -25,9 +25,9 @@ public interface StudentService {
 
     Student findStudentLast();
 
-    PageInfo<StudentNew> findStudentByClass(Integer id, Page page);
+    PageInfo<Student> findStudentByClass(Integer id, Page page);
 
-    PageInfo<StudentNew> findStudentByCollege(Integer id, Page page);
+    PageInfo<Student> findStudentByCollege(Integer id, Page page);
 
-    PageInfo<StudentNew> findStudentBySchool(Integer id, Page page);
+    PageInfo<Student> findStudentBySchool(Integer id, Page page);
 }

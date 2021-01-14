@@ -3,7 +3,7 @@ package com.xiaoyuanpe.pojo;
 public class College {
     private Integer id;
 
-    private Integer shcoolId;
+    private Integer schoolId;
 
     private String collegeName;
 
@@ -21,12 +21,12 @@ public class College {
         this.id = id;
     }
 
-    public Integer getShcoolId() {
-        return shcoolId;
+    public Integer getSchoolId() {
+        return schoolId;
     }
 
-    public void setShcoolId(Integer shcoolId) {
-        this.shcoolId = shcoolId;
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
     }
 
     public String getCollegeName() {

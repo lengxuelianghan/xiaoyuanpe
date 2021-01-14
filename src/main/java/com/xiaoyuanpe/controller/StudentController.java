@@ -46,7 +46,7 @@ public class StudentController {
         Student student = this.studentService.findStudentById(sid);
         try {
             if (student.getTerm()!=0) {
-                Semester semester = this.semesterService.findSemesterByIds(student.getShcoolId(),
+                Semester semester = this.semesterService.findSemesterByIds(student.getSchoolId(),
                         student.getCollegeId(), student.getClassesId(), student.getId(), student.getTerm());
                 resultBean.setData(semester);
                 resultBean.setCode(0);
@@ -139,9 +139,9 @@ public class StudentController {
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
-                student.setShcoolId(user1.getSchoolId());
+                student.setSchoolId(user1.getSchoolId());
                 student.setTerm(1);
-                student.setStudentNumber(Utils.IntegerToString(student.getShcoolId())+student.getStudentNumber());
+                student.setStudentNumber(Utils.IntegerToString(student.getSchoolId())+student.getStudentNumber());
                 this.studentService.addStudent(student);
                 Semester semester = new Semester();
                 semester.setSudentId(student.getId());
@@ -150,7 +150,7 @@ public class StudentController {
                 semester.setTerm(1);
                 semester.setExerciseTime(0);
                 semester.setCollegeId(student.getCollegeId());
-                semester.setSchoolId(student.getShcoolId());
+                semester.setSchoolId(student.getSchoolId());
                 int i = 0;
                 for (i = 0; i < 8; i++) {
                     semester.setTerm(i + 1);
@@ -161,7 +161,7 @@ public class StudentController {
                 user.setSex(student.getSex());
                 user.setUsername(student.getStudentName());
                 user.setPassword(student.getStudentNumber());
-                user.setSchoolId(student.getShcoolId());
+                user.setSchoolId(student.getSchoolId());
                 user.setIdentity("学生");
 
                 this.userService.addUser(user);
@@ -214,7 +214,7 @@ public class StudentController {
 //                List<StudentInfo> studentList = new ArrayList<>();
 //                List<Student> students = this.studentService.findStudentAll();
 //                for (Student student : students) {
-//                    if (student.getShcoolId() == user.getSchoolId()) {
+//                    if (student.getSchoolId() == user.getSchoolId()) {
 //                        studentList.add(this.toStudentInfo(student));
 //                    }
 //                }
@@ -246,7 +246,7 @@ public class StudentController {
 //                List<StudentInfo> studentList = new ArrayList<>();
 //                List<Student> students = this.studentService.findStudentAll();
 //                for (Student student : students) {
-//                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()) {
+//                    if (student.getSchoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()) {
 //                        studentList.add(this.toStudentInfo(student));
 //                    }
 //                }
@@ -278,7 +278,7 @@ public class StudentController {
 //                List<StudentInfo> studentList = new ArrayList<>();
 //                List<Student> students = this.studentService.findStudentAll();
 //                for (Student student : students) {
-//                    if (student.getShcoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()
+//                    if (student.getSchoolId() == user.getSchoolId() && student.getCollegeId() == student1.getCollegeId()
 //                            && student.getClassesId() == student1.getClassesId()) {
 //                        studentList.add(this.toStudentInfo(student));
 //                    }
@@ -327,7 +327,7 @@ public class StudentController {
             studentInfo.setName(student.getStudentName());
             studentInfo.setClasses(this.classesService.findClassesById(student.getClassesId()).getClassName());
             studentInfo.setCollege(this.collegeService.findCollegeById(student.getCollegeId()).getCollegeName());
-            studentInfo.setSchool(this.schoolService.findSchoolById(student.getShcoolId()).getSchoolName());
+            studentInfo.setSchool(this.schoolService.findSchoolById(student.getSchoolId()).getSchoolName());
             studentInfo.setNumber(student.getStudentNumber());
             studentInfo.setSex(student.getSex());
         }catch (Exception e){

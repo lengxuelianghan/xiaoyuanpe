@@ -31,16 +31,16 @@ public class Student {
 
     private String  address;
 
-    private Integer schoolName;
+    private String schoolName;
 
-    private Integer collegeName;
+    private String collegeName;
 
-    private Integer classesName;
+    private String classesName;
 
     public Student(Integer id, Integer schoolId, Integer collegeId, Integer classesId, String studentName,
                    String studentNumber, Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber,
-                   String nationalCode, String idCard, String address, Integer schoolName, Integer collegeName,
-                   Integer classesName) {
+                   String nationalCode, String idCard, String address, String schoolName, String collegeName,
+                   String classesName) {
         this.id = id;
         this.schoolId = schoolId;
         this.collegeId = collegeId;
@@ -69,11 +69,11 @@ public class Student {
         this.id = id;
     }
 
-    public Integer getShcoolId() {
+    public Integer getSchoolId() {
         return schoolId;
     }
 
-    public void setShcoolId(Integer schoolId) {
+    public void setSchoolId(Integer schoolId) {
         this.schoolId = schoolId;
     }
 
@@ -173,27 +173,27 @@ public class Student {
         this.address = address;
     }
 
-    public Integer getSchoolName() {
+    public String getSchoolName() {
         return schoolName;
     }
 
-    public void setSchoolName(Integer schoolName) {
+    public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
     }
 
-    public Integer getCollegeName() {
+    public String getCollegeName() {
         return collegeName;
     }
 
-    public void setCollegeName(Integer collegeName) {
+    public void setCollegeName(String collegeName) {
         this.collegeName = collegeName;
     }
 
-    public Integer getClassesName() {
+    public String getClassesName() {
         return classesName;
     }
 
-    public void setClassesName(Integer classesName) {
+    public void setClassesName(String classesName) {
         this.classesName = classesName;
     }
 }

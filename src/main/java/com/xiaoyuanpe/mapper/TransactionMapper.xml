@@ -3,7 +3,7 @@
 <mapper namespace="com.xiaoyuanpe.mapper.TransactionMapper">
   <resultMap id="BaseResultMap" type="com.xiaoyuanpe.pojo.Transaction">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="shcool_id" jdbcType="INTEGER" property="shcoolId" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="busness_id" jdbcType="INTEGER" property="busnessId" />
     <result column="purchase_date" jdbcType="TIMESTAMP" property="purchaseDate" />
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, shcool_id, user_id, busness_id, purchase_date
+    id, school_id, user_id, busness_id, purchase_date
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.TransactionExample" resultMap="BaseResultMap">
     select
@@ -100,9 +100,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Transaction">
-    insert into transaction (id, shcool_id, user_id, 
+    insert into transaction (id, school_id, user_id,
       busness_id, purchase_date)
-    values (#{id,jdbcType=INTEGER}, #{shcoolId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
       #{busnessId,jdbcType=INTEGER}, #{purchaseDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Transaction">
@@ -111,8 +111,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="shcoolId != null">
-        shcool_id,
+      <if test="schoolId != null">
+        school_id,
       </if>
       <if test="userId != null">
         user_id,
@@ -128,8 +128,8 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="shcoolId != null">
-        #{shcoolId,jdbcType=INTEGER},
+      <if test="schoolId != null">
+        #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
@@ -154,8 +154,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.shcoolId != null">
-        shcool_id = #{record.shcoolId,jdbcType=INTEGER},
+      <if test="record.schoolId != null">
+        school_id = #{record.schoolId,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
@@ -174,7 +174,7 @@
   <update id="updateByExample" parameterType="map">
     update transaction
     set id = #{record.id,jdbcType=INTEGER},
-      shcool_id = #{record.shcoolId,jdbcType=INTEGER},
+      school_id = #{record.schoolId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       busness_id = #{record.busnessId,jdbcType=INTEGER},
       purchase_date = #{record.purchaseDate,jdbcType=TIMESTAMP}
@@ -185,8 +185,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuanpe.pojo.Transaction">
     update transaction
     <set>
-      <if test="shcoolId != null">
-        shcool_id = #{shcoolId,jdbcType=INTEGER},
+      <if test="schoolId != null">
+        school_id = #{schoolId,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
@@ -202,7 +202,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.Transaction">
     update transaction
-    set shcool_id = #{shcoolId,jdbcType=INTEGER},
+    set school_id = #{schoolId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       busness_id = #{busnessId,jdbcType=INTEGER},
       purchase_date = #{purchaseDate,jdbcType=TIMESTAMP}
