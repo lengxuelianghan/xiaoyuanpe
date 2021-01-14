@@ -133,8 +133,8 @@
     student.sex as sex, student.school_id as school_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
-    student.address as address, student.term as term, school.school_name as school,
-    college.college_name as college, classes.class_name as classes
+    student.address as address, student.term as term, school.school_name as school_name,
+    college.college_name as college_name, classes.class_name as classes_name
       from student, school, college, classes
     where student.school_id=#{id, jdbcType=INTEGER} and student.school_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
@@ -145,8 +145,8 @@
     student.sex as sex, student.school_id as school_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
-    student.address as address, student.term as term, school.school_name as school,
-    college.college_name as college, classes.class_name as classes
+    student.address as address, student.term as term, school.school_name as school_name,
+    college.college_name as college_name, classes.class_name as classes_name
       from student, school, college, classes
     where student.college_id=#{id, jdbcType=INTEGER} and student.school_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
@@ -157,8 +157,8 @@
     student.sex as sex, student.school_id as school_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
-    student.address as address, student.term as term, school.school_name as school,
-    college.college_name as college, classes.class_name as classes
+    student.address as address, student.term as term, school.school_name as school_name,
+    college.college_name as college_name, classes.class_name as classes_name
       from student, school, college, classes
     where student.classes_id=#{id, jdbcType=INTEGER} and student.school_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
