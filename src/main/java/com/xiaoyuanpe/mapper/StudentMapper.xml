@@ -181,7 +181,6 @@
     where student.classes_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
   </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from student
     where id = #{id,jdbcType=INTEGER}
