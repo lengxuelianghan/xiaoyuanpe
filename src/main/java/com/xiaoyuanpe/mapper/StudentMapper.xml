@@ -33,9 +33,9 @@
     <result column="national_code" jdbcType="VARCHAR" property="nationalCode" />
     <result column="id_card" jdbcType="VARCHAR" property="idCard" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
-    <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
-    <result column="classes_name" jdbcType="VARCHAR" property="classesName" />
+    <result column="school" jdbcType="VARCHAR" property="schoolName" />
+    <result column="college" jdbcType="VARCHAR" property="collegeName" />
+    <result column="classes" jdbcType="VARCHAR" property="classesName" />
   </resultMap>
 
 
@@ -151,8 +151,8 @@
     student.sex as sex, student.shcool_id as shcool_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
-    student.address as address, student.term as term, school.school_name as school_name,
-    college.college_name as college_name, classes.class_name as classes_name
+    student.address as address, student.term as term, school.school_name as school,
+    college.college_name as college, classes.class_name as classes
       from student, school, college, classes
     where student.shcool_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
@@ -163,8 +163,8 @@
     student.sex as sex, student.shcool_id as shcool_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
-    student.address as address, student.term as term, school.school_name as school_name,
-    college.college_name as college_name, classes.class_name as classes_name
+    student.address as address, student.term as term, school.school_name as school,
+    college.college_name as college, classes.class_name as classes
       from student, school, college, classes
     where student.college_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
@@ -175,8 +175,8 @@
     student.sex as sex, student.shcool_id as shcool_id, student.college_id as college_id,
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
-    student.address as address, student.term as term, school.school_name as school_name,
-    college.college_name as college_name, classes.class_name as classes_name
+    student.address as address, student.term as term, school.school_name as school,
+    college.college_name as college, classes.class_name as classes
       from student, school, college, classes
     where student.classes_id=#{id, jdbcType=INTEGER} and student.shcool_id=school.id
      and student.college_id=college.id and student.classes_id=classes.id
