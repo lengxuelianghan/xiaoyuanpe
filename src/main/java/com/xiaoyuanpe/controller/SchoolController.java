@@ -89,6 +89,20 @@ public class SchoolController {
         return resultBean;
     }
 
+    @RequestMapping(value = "/querySchoolList", method = RequestMethod.GET)
+    public ResultBean querySchoolList(){
+        ResultBean resultBean = new ResultBean();
+        try {
+            resultBean.setData(this.schoolService.findSchoolAll());
+            resultBean.setCode(0);
+        } catch (Exception e) {
+            System.out.println("错误" + e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("学校列表查找失败");
+        }
+        return resultBean;
+    }
+
     @RequestMapping(value = "/updateSchool", method = RequestMethod.POST)
     public ResultBean updateSchool(@RequestBody School school){
         ResultBean resultBean = new ResultBean();
