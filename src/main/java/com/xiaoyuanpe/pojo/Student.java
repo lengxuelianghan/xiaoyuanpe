@@ -37,6 +37,8 @@ public class Student {
 
     private Integer classesName;
 
+    public Student(){}
+
     public Integer getId() {
         return id;
     }
