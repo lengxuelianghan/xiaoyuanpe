@@ -81,7 +81,7 @@ public class ImportController  {
             int j=0;
             boolean flag = true;
             List<Student> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
-            resultBean.setMsg("读取结束");
+            resultBean.setData("读取结束");
             for (Student studentInfo : studentInfos) {
                 j++;
                 System.out.println(studentInfo.getStudentName()+","
@@ -98,7 +98,7 @@ public class ImportController  {
                 user1.setEmail(studentInfo.getEmail());
                 users.add(user1);
                 //this.userService.addUser(user1);
-                resultBean.setMsg("User结束");
+                resultBean.setData("User结束");
 
                 studentInfo.setSchoolId(user.getSchoolId());
                 if (mapCollege.containsKey(studentInfo.getCollegeName()))
@@ -117,7 +117,7 @@ public class ImportController  {
                     resultBean.setMsg("第"+j+"条数据,"+studentInfo.getClassesName()+"错误");
                     break;
                 }
-                resultBean.setMsg("Student结束");
+                resultBean.setData("Student结束");
                 //this.studentService.addStudent(studentInfo);
 
 //                Semester semester = new Semester();
@@ -152,7 +152,7 @@ public class ImportController  {
                         semesters.add(semester);
                     }
                 }
-                resultBean.setMsg("semesters结束");
+                resultBean.setData("semesters结束");
                 this.semesterService.addBatch(semesters);
             }
             resultBean.setCode(0);
