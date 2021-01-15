@@ -36,6 +36,8 @@ public class StudentController {
     private CollegeService collegeService;
     @Autowired
     private SchoolService schoolService;
+    @Autowired
+    private RoleService roleService;
 
     // 查询当前学期学生成绩
     @RequestMapping("/StudentSportInfo")
