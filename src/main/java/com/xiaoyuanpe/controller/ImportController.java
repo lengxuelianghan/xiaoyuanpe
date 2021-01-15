@@ -61,17 +61,15 @@ public class ImportController  {
         ResultBean resultBean = new ResultBean();
         String fileName = "";
         String filepath = getUploadPath();
-        String ss = "";
+        String ss = "123";
         try {
             if (excelFile != null){
                 String filename=excelFile.getOriginalFilename();
                 ss = fileName;
                 fileName = getFileName(filename);
-//                File f = new File("C:\\Users\\Administrator\\Desktop"+"\\"+filename);
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(filepath + File.separator + fileName)));
                 System.out.println(filepath + File.separator + fileName);
-                //FileUtils.writeByteArrayToFile(f, excelFile.getBytes());
                 out.write(excelFile.getBytes());
                 out.flush();
             }
