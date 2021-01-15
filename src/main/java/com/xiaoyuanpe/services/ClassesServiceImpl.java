@@ -65,4 +65,9 @@ public class ClassesServiceImpl implements ClassesService {
     public List<Classes> findClassesByCollege(Integer id) {
         return this.classesMapper.findClassesByCollege(id);
     }
+
+    @Override
+    public void addBatch(List<Classes> classes) {
+        this.classesMapper.insertBatch(classes);
+    }
 }

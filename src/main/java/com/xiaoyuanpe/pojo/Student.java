@@ -254,4 +254,30 @@ public class Student {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", schoolId=" + schoolId +
+                ", collegeId=" + collegeId +
+                ", classesId=" + classesId +
+                ", studentName='" + studentName + '\'' +
+                ", studentNumber='" + studentNumber + '\'' +
+                ", term=" + term +
+                ", sex='" + sex + '\'' +
+                ", startYear=" + startYear +
+                ", birthday=" + birthday +
+                ", gradeNumber=" + gradeNumber +
+                ", nationalCode='" + nationalCode + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", address='" + address + '\'' +
+                ", schoolName='" + schoolName + '\'' +
+                ", collegeName='" + collegeName + '\'' +
+                ", classesName='" + classesName + '\'' +
+                ", classNumber='" + classNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }

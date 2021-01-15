@@ -25,6 +25,7 @@ public class ReadExcel {
         if (file != null) {
             this.num=1;
             List<Student> studentInfos = openFile(file);
+            System.out.println(studentInfos.size()+"就是我的长度");
             return studentInfos;
         }
         else {

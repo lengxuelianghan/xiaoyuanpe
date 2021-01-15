@@ -35,4 +35,6 @@ public interface ClassesMapper {
     List<Classes> selectByCollege(Integer id);
 
     List<Classes> findClassesByCollege(Integer id);
+
+    int insertBatch(List<Classes> classes);
 }

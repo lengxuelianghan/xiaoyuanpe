@@ -13,6 +13,26 @@ public class Classes {
 
     private String classNumber;
 
+    private String schoolName;
+
+    private String collegeName;
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
     public Integer getId() {
         return id;
     }

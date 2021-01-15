@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.units;
 
+import com.xiaoyuanpe.pojo.Classes;
 import com.xiaoyuanpe.pojo.StudentInfo;
 import org.apache.poi.hssf.usermodel.HSSFDataFormatter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -17,11 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExcelUtilClass {
-    public static List<StudentInfo> importExcel(Workbook wb) throws SQLException, ParseException {
+    public static List<Classes> importExcel(Workbook wb) throws SQLException, ParseException {
 
-        StudentInfo studentInfo;
+        Classes classes;
 
-        List<StudentInfo> BOM = new ArrayList<>();
+        List<Classes> BOM = new ArrayList<>();
         if (wb instanceof HSSFWorkbook) {
             Sheet sheet = wb.getSheetAt(0);
 
@@ -37,11 +38,12 @@ public class ExcelUtilClass {
                         if (sheet.getRow(j)==null){
                             continue;
                         }
-                        StudentInfo studentInfo1 = new StudentInfo();
-                        studentInfo1.setSchool(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
-                        studentInfo1.setCollege(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
-                        studentInfo1.setClasses(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
-                        BOM.add(studentInfo1);
+                        Classes classes1 = new Classes();
+                        classes1.setSchoolName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
+                        classes1.setSchoolName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
+                        classes1.setCollegeName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
+                        classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(3)));
+                        BOM.add(classes1);
                     }
                 }
             }
@@ -54,25 +56,28 @@ public class ExcelUtilClass {
                 for (int i = 1; i < lastRowNum+1; i++) {
                     //System.out.println(lastRowNum);
                     XSSFRow row = sheet.getRow(i);
-                    studentInfo = new StudentInfo();
+                    classes = new Classes();
                     for (int j = 0; j < row.getLastCellNum(); j++) {
                         XSSFCell cell = row.getCell(j);
                         switch (cell.getColumnIndex()) {
                             case 0:
-                                studentInfo.setSchool(cell.toString());
+                                classes.setClassNumber(cell.toString());
                                 break;
                             case 1:
-                                studentInfo.setCollege(cell.toString());
+                                classes.setSchoolName(cell.toString());
                                 break;
                             case 2:
-                                studentInfo.setClasses(cell.toString());
+                                classes.setCollegeName(cell.toString());
+                                break;
+                            case 3:
+                                classes.setClassName(cell.toString());
                                 break;
                             default:
                                 // TODO 数据格式有误
                                 break;
                         }
                     }
-                    BOM.add(studentInfo);
+                    BOM.add(classes);
                 }
                 break;
             }

@@ -128,6 +128,16 @@
     values (#{id,jdbcType=INTEGER}, #{schoolId,jdbcType=INTEGER}, #{collegeId,jdbcType=INTEGER}, 
       #{className,jdbcType=VARCHAR}, #{termYear,jdbcType=INTEGER}, #{classNumber,jdbcType=VARCHAR})
   </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+    insert into classes (id, school_id, college_id, class_name, term_year, class_number)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.schoolId,jdbcType=INTEGER}, #{item.collegeId,jdbcType=INTEGER},
+      #{item.className,jdbcType=VARCHAR}, #{item.termYear,jdbcType=INTEGER}, #{item.classNumber,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Classes">
     insert into classes
     <trim prefix="(" suffix=")" suffixOverrides=",">

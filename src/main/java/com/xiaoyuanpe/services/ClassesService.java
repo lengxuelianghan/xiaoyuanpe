@@ -24,4 +24,6 @@ public interface ClassesService {
     PageInfo<Classes> selectByCollege(Page page, Integer id);
 
     List<Classes> findClassesByCollege(Integer id);
+
+    void addBatch(List<Classes> classes);
 }
