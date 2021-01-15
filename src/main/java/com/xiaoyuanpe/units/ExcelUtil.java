@@ -42,7 +42,7 @@ public class ExcelUtil {
                             continue;
                         }
 
-                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
+                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
                         String cell = ExcelUtil.getCell(sheet.getRow(j).getCell(7));
                         cell.replace("/","-");
                         Date birthday = formatter.parse(cell);
