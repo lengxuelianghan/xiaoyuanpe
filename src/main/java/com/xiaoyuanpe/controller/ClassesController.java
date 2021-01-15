@@ -27,12 +27,14 @@ public class ClassesController {
     @Autowired
     private StudentService studentService;
     @RequestMapping(value = "/addClasses", method = RequestMethod.POST)
-    public ResultBean addClasses(@RequestBody Classes classes){
+    public ResultBean addClasses(@RequestBody Classes classes, HttpServletRequest servletRequest){
+        User user = (User) servletRequest.getSession().getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         ResultBean resultBean = new ResultBean();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager", "supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
+                classes.setSchoolId(user.getSchoolId());
                 this.classesService.addClasses(classes);
                 resultBean.setCode(0);
             } catch (Exception e) {

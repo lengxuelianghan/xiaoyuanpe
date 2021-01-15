@@ -69,7 +69,7 @@ public class ImportController  {
                 fileName = getFileName(filename);
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(filepath + File.separator + fileName)));
-                System.out.println(filepath + File.separator + fileName);
+                ss+=filepath + File.separator + fileName;
                 out.write(excelFile.getBytes());
                 out.flush();
             }
