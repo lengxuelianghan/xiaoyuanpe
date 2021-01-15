@@ -39,7 +39,7 @@ public class ExcelUtilClass {
                             continue;
                         }
                         Classes classes1 = new Classes();
-                        classes1.setSchoolName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
+                        classes1.setClassNumber(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
                         classes1.setSchoolName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
                         classes1.setCollegeName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
                         classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(3)));
