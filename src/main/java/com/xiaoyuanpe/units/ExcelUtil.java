@@ -44,8 +44,8 @@ public class ExcelUtil {
 
                         SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
                         String cell = ExcelUtil.getCell(sheet.getRow(j).getCell(7));
-                        cell.replace("/","-");
-                        Date birthday = formatter.parse(cell);
+                        //cell.replace("/","-");
+                        Date birthday = formatter.parse(cell.replace("/","-"));
 
                         Student student1 = new Student(0,0,0,
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(5)),
@@ -106,8 +106,8 @@ public class ExcelUtil {
                             case 7:
                                 SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
                                 String cell1 = cell.toString();
-                                cell1.replace("/","-");
-                                Date birthday = formatter.parse(cell1);
+                                //cell1.replace("/","-");
+                                Date birthday = formatter.parse(cell1.replace("/","-"));
                                 student.setBirthday(birthday);
                                 break;
                             case 8:
