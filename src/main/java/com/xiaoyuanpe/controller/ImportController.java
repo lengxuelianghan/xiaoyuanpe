@@ -65,7 +65,7 @@ public class ImportController  {
         try {
             if (excelFile != null){
                 String filename=excelFile.getOriginalFilename();
-                ss = fileName;
+                ss = fileName+"000";
                 fileName = getFileName(filename);
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(filepath + File.separator + fileName)));
