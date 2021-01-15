@@ -84,7 +84,7 @@ public class ImportController  {
             resultBean.setData("读取结束");
             for (Student studentInfo : studentInfos) {
                 j++;
-                System.out.println(studentInfo.getStudentName()+","
+                resultBean.setData(studentInfo.getStudentName()+","
                         +studentInfo.getStudentNumber());
                 User user1 = new User();
                 user1.setIdentity("学生");
