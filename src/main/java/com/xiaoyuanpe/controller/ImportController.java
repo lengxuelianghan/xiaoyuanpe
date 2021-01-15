@@ -81,7 +81,7 @@ public class ImportController  {
             int j=0;
             boolean flag = true;
             List<Student> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
-            resultBean.setData("读取结束");
+            resultBean.setData("读取结束"+studentInfos.size());
             for (Student studentInfo : studentInfos) {
                 j++;
                 resultBean.setData(studentInfo.getStudentName()+","
