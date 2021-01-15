@@ -1,7 +1,6 @@
 package com.xiaoyuanpe.units;
 
 import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.StudentInfo;
 
 import org.apache.poi.hssf.usermodel.HSSFDataFormatter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -41,12 +40,13 @@ public class ExcelUtil {
                         if (sheet.getRow(j)==null){
                             continue;
                         }
-                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-                        String cell = ExcelUtil.getCell(sheet.getRow(j).getCell(7));
-                        String [] strs = cell.split("/");
-                        String da = strs[0]+"-"+strs[1]+"-"+strs[2]+" 00:00:00";
-                        Date birthday = formatter.parse(da);
-                        //System.out.println( formatter.format(birthday));
+//                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+//                        String cell = ExcelUtil.getCell(sheet.getRow(j).getCell(7));
+//                        String [] strs = cell.split("/");
+//                        String da = strs[0]+"-"+strs[1]+"-"+strs[2]+" 00:00:00";
+//                        Date birthday = formatter.parse(da);
+                        Date birthday  = sheet.getRow(j).getCell(7).getDateCellValue();
+                        System.out.println(sheet.getRow(j).getCell(7).getDateCellValue());
 
                         Student student1 = new Student(0,0,0,
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(5)),
