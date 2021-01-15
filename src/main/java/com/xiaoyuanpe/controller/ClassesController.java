@@ -93,13 +93,13 @@ public class ClassesController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryClassesListByCollege", method = RequestMethod.POST)
-    public ResultBean queryClassesListByList(@RequestBody Page page, HttpServletRequest session){
+    @RequestMapping(value = "/queryClassesListByCollege/{collegeId}", method = RequestMethod.POST)
+    public ResultBean queryClassesListByList(@RequestBody Page page, @PathVariable Integer collegeId, HttpServletRequest session){
         User user = (User) session.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-            resultBean.setData(this.classesService.selectByCollege(page, student.getCollegeId()));
+            //Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            resultBean.setData(this.classesService.selectByCollege(page, collegeId));
             resultBean.setCode(0);
         }catch (Exception e){
             System.out.println(e.getMessage());
