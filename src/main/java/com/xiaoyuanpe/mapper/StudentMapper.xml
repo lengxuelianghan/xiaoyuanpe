@@ -172,7 +172,7 @@
       #{address,jdbcType=VARCHAR})
   </insert>
 
-  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="userId">
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
     insert into student (id, school_id, college_id, classes_id, student_name, student_number,
     term, sex, start_year, birthday, grade_number, national_code, id_card, address)
     values

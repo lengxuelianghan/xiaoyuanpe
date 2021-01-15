@@ -42,9 +42,12 @@ public class ExcelUtil {
                             continue;
                         }
 
-                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
+                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
                         String cell = ExcelUtil.getCell(sheet.getRow(j).getCell(7));
-                        Date birthday = formatter.parse(cell.replace("/","-"));
+                        String [] strs = cell.split("/");
+                        String da = strs[0]+"-"+strs[1]+"-"+strs[2]+" 00:00:00";
+                        Date birthday = formatter.parse(da);
+                        System.out.println( formatter.format(birthday));
 
                         Student student1 = new Student(0,0,0,
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(5)),

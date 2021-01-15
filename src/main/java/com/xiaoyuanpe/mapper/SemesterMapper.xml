@@ -111,7 +111,7 @@
       #{exerciseTime,jdbcType=INTEGER}, #{sudentId,jdbcType=INTEGER})
   </insert>
 
-  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="userId">
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
     insert into semester (id, school_id, college_id,
     classes_id, term, score,
     exercise_time, sudent_id)
