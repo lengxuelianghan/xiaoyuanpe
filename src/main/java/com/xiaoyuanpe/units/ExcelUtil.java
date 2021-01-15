@@ -47,7 +47,8 @@ public class ExcelUtil {
                         cell.replace("/","-");
                         Date birthday = formatter.parse(cell);
 
-                        Student student1 = new Student(0,0,0,ExcelUtil.getCell(sheet.getRow(j).getCell(5)),
+                        Student student1 = new Student(0,0,0,
+                                ExcelUtil.getCell(sheet.getRow(j).getCell(5)),
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(3)),1,
                                 ExcelUtil.getCell(sheet.getRow(j).getCell(6)),new Date(),birthday,
                                 Integer.parseInt(ExcelUtil.getCell(sheet.getRow(j).getCell(0))),
