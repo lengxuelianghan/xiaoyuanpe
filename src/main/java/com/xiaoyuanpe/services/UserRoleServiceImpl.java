@@ -43,4 +43,9 @@ public class UserRoleServiceImpl implements UserRoleService {
             this.userRoleMapper.deleteByPrimaryKey(id);
         }
     }
+
+    @Override
+    public List<UserRole> findUserRoleByUserId(Integer id) {
+        return this.userRoleMapper.selectByUserId(id);
+    }
 }

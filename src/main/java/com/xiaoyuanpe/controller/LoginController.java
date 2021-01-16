@@ -3,10 +3,8 @@ package com.xiaoyuanpe.controller;
 import com.xiaoyuanpe.pojo.School;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserEntry;
-import com.xiaoyuanpe.services.LoginService;
-import com.xiaoyuanpe.services.SchoolService;
-import com.xiaoyuanpe.services.StudentService;
-import com.xiaoyuanpe.services.UserService;
+import com.xiaoyuanpe.pojo.UserRole;
+import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("/login")
@@ -27,6 +26,8 @@ public class LoginController {
     private SchoolService schoolService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private UserRoleService userRoleService;
 
     @PostMapping("/login")
     public ResultBean Login(@RequestParam Integer schoolId, @RequestParam String usernumber,
@@ -75,9 +76,18 @@ public class LoginController {
     public ResultBean loginManager(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
-            int pageSize = (int)this.userService.Count();
-            String info = "";
-            info = this.loginService.login(usernumber, password);
+            String info = "非管理员，登陆失败";
+            User username = this.userService.findRolesByUsername(usernumber);
+            if (username!=null) {
+                List<UserRole> userRoleByUserId = this.userRoleService.findUserRoleByUserId(username.getId());
+                for (UserRole userRole:userRoleByUserId){
+                    if (userRole.getRoleId()==1){
+                        info = this.loginService.login(usernumber, password);
+                        break;
+                    }
+                }
+
+            }
             if (info.equals("登陆成功")) {
                 resultBean.setCode(0);
                 User user = this.userService.findUsersByStudentNum(usernumber);
