@@ -76,18 +76,17 @@ public class LoginController {
     public ResultBean loginManager(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
-            String info = "非管理员，登陆失败";
-            User username = this.userService.findUsersByStudentNum(usernumber);
+            String info = "";
+            User username = this.userService.findRolesByUsername(usernumber);
             if (username!=null) {
                 List<UserRole> userRoleByUserId = this.userRoleService.findUserRoleByUserId(username.getId());
-                for (UserRole userRole:userRoleByUserId){
+                for (UserRole userRole: userRoleByUserId){
                     if (userRole.getRoleId()==1){
                         info = this.loginService.login(usernumber, password);
-                        break;
                     }
                 }
-
             }
+            else info="用户不存在";
             if (info.equals("登陆成功")) {
                 resultBean.setCode(0);
                 User user = this.userService.findUsersByStudentNum(usernumber);
