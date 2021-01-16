@@ -87,7 +87,7 @@ public class LoginController {
                         break;
                     }
                 }
-                info=username.getUserNumber()+","+username.getId();
+                info=username.getUserNumber()+","+username.getId()+","+userRoleByUserId.size();
             }
             else info="用户不存在";
             if (info.equals("登陆成功")) {
