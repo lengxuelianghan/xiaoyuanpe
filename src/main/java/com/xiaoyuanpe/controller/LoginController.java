@@ -77,7 +77,7 @@ public class LoginController {
         ResultBean resultBean = new ResultBean();
         try {
             String info = "非管理员，登陆失败";
-            User username = this.userService.findRolesByUsername(usernumber);
+            User username = this.userService.findUsersByStudentNum(usernumber);
             if (username!=null) {
                 List<UserRole> userRoleByUserId = this.userRoleService.findUserRoleByUserId(username.getId());
                 for (UserRole userRole:userRoleByUserId){
