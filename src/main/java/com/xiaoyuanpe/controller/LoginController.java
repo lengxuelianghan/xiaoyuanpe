@@ -76,7 +76,7 @@ public class LoginController {
     public ResultBean loginManager(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
         ResultBean resultBean = new ResultBean();
         try {
-            String info = "";
+            String info = "非管理员，无法登录";
             User username = this.userService.findRolesByUsername(usernumber);
             if (username!=null) {
                 List<UserRole> userRoleByUserId = this.userRoleService.findUserRoleByUserId(username.getId());
