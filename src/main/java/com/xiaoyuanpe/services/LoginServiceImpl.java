@@ -30,4 +30,21 @@ public class LoginServiceImpl implements LoginService {
         }
         return err;
     }
+
+    @Override
+    public String login(String username, String password) {
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+        String err = "登陆成功";
+        try {
+            subject.login(token);
+        }catch (UnknownAccountException e){
+            e.printStackTrace();
+            err = "登陆失败，用户名不存在";
+        }catch (IncorrectCredentialsException e){
+            e.printStackTrace();
+            err = "登录失败：密码错误";
+        }
+        return err;
+    }
 }

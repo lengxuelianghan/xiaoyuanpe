@@ -40,7 +40,7 @@ public class LoginController {
             }
             if (info.equals("登陆成功")) {
                 resultBean.setCode(0);
-                for (User user : this.userService.findUsersAll(1, pageSize).getContent()) {
+                User user = this.userService.findUsersByStudentNum(usernumber);
                     if (usernumber.equals(user.getUserNumber())) {
                         session.setAttribute("user", user);
                         session.setMaxInactiveInterval(30 * 60 * 60);
@@ -58,8 +58,46 @@ public class LoginController {
                         userEntry.setUnit(user.getUnit());
                         userEntry.setUserNumber(user.getUserNumber());
                         resultBean.setData(userEntry);
-                        break;
-                    }
+                }
+            }
+            else
+                resultBean.setCode(1);
+            resultBean.setMsg(info);
+        }catch (Exception e){
+            System.out.println("错误："+e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("登录失败");
+        }
+        return resultBean;
+    }
+
+    @PostMapping("/loginManager")
+    public ResultBean loginManager(@RequestParam String usernumber, @RequestParam String password, HttpSession session){
+        ResultBean resultBean = new ResultBean();
+        try {
+            int pageSize = (int)this.userService.Count();
+            String info = "";
+            info = this.loginService.login(usernumber, password);
+            if (info.equals("登陆成功")) {
+                resultBean.setCode(0);
+                User user = this.userService.findUsersByStudentNum(usernumber);
+                    if (usernumber.equals(user.getUserNumber())) {
+                        session.setAttribute("user", user);
+                        session.setMaxInactiveInterval(30 * 60 * 60);
+                        resultBean.setTotal(user.getId());
+                        UserEntry userEntry = new UserEntry();
+                        userEntry.setId(user.getId());
+                        userEntry.setUsername(user.getUsername());
+                        userEntry.setAge(user.getAge());
+                        userEntry.setEmail(user.getEmail());
+                        userEntry.setSex(user.getSex());
+                        userEntry.setPhone(user.getPhone());
+                        userEntry.setIdentity(user.getIdentity());
+                        userEntry.setPassword(user.getPassword());
+                        userEntry.setSchoolId(this.schoolService.findSchoolById(user.getSchoolId()).getSchoolName());
+                        userEntry.setUnit(user.getUnit());
+                        userEntry.setUserNumber(user.getUserNumber());
+                        resultBean.setData(userEntry);
                 }
             }
             else
