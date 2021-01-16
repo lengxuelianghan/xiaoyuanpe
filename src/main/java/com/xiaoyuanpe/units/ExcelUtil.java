@@ -105,9 +105,10 @@ public class ExcelUtil {
                                 student.setSex(cell.toString());
                                 break;
                             case 7:
-                                SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
-                                String cell1 = cell.toString();
-                                Date birthday = formatter.parse(cell1.replace("/","-"));
+//                                SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
+//                                String cell1 = cell.toString();
+//                                Date birthday = formatter.parse(cell1.replace("/","-"));
+                                Date birthday  = sheet.getRow(j).getCell(7).getDateCellValue();
                                 student.setBirthday(birthday);
                                 break;
                             case 8:
