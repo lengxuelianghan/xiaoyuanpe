@@ -115,7 +115,7 @@ public class LoginController {
             resultBean.setMsg(info);
         }catch (Exception e){
             System.out.println("错误："+e.getMessage());
-            resultBean.setCode(2);
+            resultBean.setCode(1);
             resultBean.setMsg("登录失败!!");
         }
         return resultBean;
