@@ -86,7 +86,6 @@ public class LoginController {
                         break;
                     }
                 }
-                //info=username.getUserNumber()+","+username.getId()+","+userRoleByUserId.size();
             }
             else info="用户不存在";
             if (info.equals("登陆成功")) {
@@ -112,11 +111,11 @@ public class LoginController {
                 }
             }
             else
-                resultBean.setCode(1);
+                resultBean.setCode(2);
             resultBean.setMsg(info);
         }catch (Exception e){
             System.out.println("错误："+e.getMessage());
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("登录失败!!");
         }
         return resultBean;
