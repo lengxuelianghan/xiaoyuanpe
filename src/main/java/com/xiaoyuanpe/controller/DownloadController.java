@@ -3,6 +3,7 @@ package com.xiaoyuanpe.controller;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class DownloadController {
         return upload.getAbsolutePath();
     }
 
-    @GetMapping(value = "/downloadExcelModel", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/downloadExcelModel")
     public ResultBean downloadExcelModel(HttpServletResponse response) {
         ResultBean resultBean = new ResultBean();
         String fileName = getUploadPath()+"/模板"+".xls";
