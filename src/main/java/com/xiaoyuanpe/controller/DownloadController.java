@@ -22,25 +22,25 @@ public class DownloadController {
             e.printStackTrace();
         }
         if (!path.exists()) path = new File("");
-        File upload = new File(path.getAbsolutePath(), "static/download/");
+        File upload = new File(path.getAbsolutePath(), "static/upload/");
         if (!upload.exists()) upload.mkdirs();
         return upload.getAbsolutePath();
     }
 
-    @PostMapping(value = "/downloadExcelModel")
-    public ResultBean downloadExcelModel(HttpServletResponse response) {
+    @GetMapping(value = "/downloadExcelModel")
+    public ResultBean downloadExcelModel(HttpServletResponse response) throws UnsupportedEncodingException {
         ResultBean resultBean = new ResultBean();
         String fileName = getUploadPath()+"/模板"+".xls";
-        response.setContentType("application/vnd.ms-excel");
-        response.setCharacterEncoding("utf-8");
-        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        response.setHeader("content-type", "application/octet-stream");
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=" + new String(fileName.getBytes("utf-8"),"iso-8859-1"));
 
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
         OutputStream outputStream = null;
         try {
             outputStream = response.getOutputStream();
-            bis = new BufferedInputStream(new FileInputStream(new File("D:/BaiduNetdiskDownload/" + fileName )));
+            bis = new BufferedInputStream(new FileInputStream(new File(fileName)));
             int read = bis.read(buff);
 
             while (read != -1) {
