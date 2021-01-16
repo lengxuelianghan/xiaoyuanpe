@@ -82,12 +82,11 @@ public class LoginController {
                 List<UserRole> userRoleByUserId = this.userRoleService.findUserRoleByUserId(username.getId());
                 for (UserRole userRole: userRoleByUserId){
                     if (userRole.getRoleId()==1){
-                        resultBean.setData(userRole.getRoleId()+" "+userRole.getUserId());
                         info = this.loginService.login(usernumber, password);
                         break;
                     }
                 }
-                info=username.getUserNumber()+","+username.getId()+","+userRoleByUserId.size();
+                //info=username.getUserNumber()+","+username.getId()+","+userRoleByUserId.size();
             }
             else info="用户不存在";
             if (info.equals("登陆成功")) {
