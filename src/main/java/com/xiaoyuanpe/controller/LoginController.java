@@ -82,7 +82,7 @@ public class LoginController {
                 List<UserRole> userRoleByUserId = this.userRoleService.findUserRoleByUserId(username.getId());
                 for (UserRole userRole: userRoleByUserId){
                     if (userRole.getRoleId()==1){
-                        resultBean.setMsg(userRole.getRoleId()+" "+userRole.getUserId());
+                        resultBean.setData(userRole.getRoleId()+" "+userRole.getUserId());
                         info = this.loginService.login(usernumber, password);
                         break;
                     }
