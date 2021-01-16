@@ -83,6 +83,7 @@ public class LoginController {
                 for (UserRole userRole: userRoleByUserId){
                     if (userRole.getRoleId()==1){
                         info = this.loginService.login(usernumber, password);
+                        break;
                     }
                 }
             }
