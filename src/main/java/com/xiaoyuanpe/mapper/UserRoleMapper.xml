@@ -83,12 +83,14 @@
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
+    <include refid="Base_Column_List" />
     from user_role
     where id = #{id,jdbcType=INTEGER}
   </select>
 
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
+    <include refid="Base_Column_List" />
     from user_role
     where user_id = #{id,jdbcType=INTEGER}
   </select>
