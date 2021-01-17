@@ -8,6 +8,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="school_zip_code" jdbcType="VARCHAR" property="schoolZipCode" />
     <result column="school_number" jdbcType="VARCHAR" property="schoolNumber" />
+    <result column="valid_period" jdbcType="VARCHAR" property="validPeriod" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xiaoyuanpe.pojo.School">
     <result column="school_introduction" jdbcType="LONGVARCHAR" property="schoolIntroduction" />
@@ -126,11 +127,11 @@
   </delete>
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.School">
     insert into school (id, school_name, school_address, 
-      phone, school_zip_code, school_introduction,school_number
+      phone, school_zip_code, school_introduction,school_number,valid_period
       )
     values (#{id,jdbcType=INTEGER}, #{schoolName,jdbcType=VARCHAR}, #{schoolAddress,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{schoolZipCode,jdbcType=VARCHAR}, #{schoolIntroduction,jdbcType=LONGVARCHAR}
-      ,#{school_number,jdbcType=VARCHAR})
+      ,#{schoolNumber,jdbcType=VARCHAR}, #{validPeriod,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.School">
     insert into school
@@ -228,7 +229,8 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       school_zip_code = #{record.schoolZipCode,jdbcType=VARCHAR},
       school_introduction = #{record.schoolIntroduction,jdbcType=LONGVARCHAR},
-      school_number = #{record.schoolNumber,jdbcType=VARCHAR}
+      school_number = #{record.schoolNumber,jdbcType=VARCHAR},
+      validPeriod = #{record.validPeriod,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -261,7 +263,8 @@
       phone = #{phone,jdbcType=VARCHAR},
       school_zip_code = #{schoolZipCode,jdbcType=VARCHAR},
       school_introduction = #{schoolIntroduction,jdbcType=LONGVARCHAR},
-      school_number = #{schoolNumber,jdbcType=VARCHAR}
+      school_number = #{schoolNumber,jdbcType=VARCHAR},
+      validPeriod = #{validPeriod,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xiaoyuanpe.pojo.School">
@@ -271,7 +274,8 @@
       phone = #{phone,jdbcType=VARCHAR},
       school_zip_code = #{schoolZipCode,jdbcType=VARCHAR},
       school_introduction = #{schoolIntroduction,jdbcType=LONGVARCHAR},
-      school_number = #{schoolNumber,jdbcType=VARCHAR}
+      school_number = #{schoolNumber,jdbcType=VARCHAR},
+      validPeriod = #{validPeriod,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <delete id="deleteByPrimaryKeys" parameterType="java.util.List">

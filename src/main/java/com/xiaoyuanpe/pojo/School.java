@@ -1,5 +1,7 @@
 package com.xiaoyuanpe.pojo;
 
+import java.util.Date;
+
 public class School {
     private Integer id;
 
@@ -14,6 +16,8 @@ public class School {
     private String schoolIntroduction;
 
     private String schoolNumber;
+
+    private Date validPeriod;
 
     public Integer getId() {
         return id;
@@ -69,5 +73,13 @@ public class School {
 
     public void setSchoolNumber(String schoolNumber) {
         this.schoolNumber = schoolNumber;
+    }
+
+    public Date getValidPeriod() {
+        return validPeriod;
+    }
+
+    public void setValidPeriod(Date validPeriod) {
+        this.validPeriod = validPeriod;
     }
 }
