@@ -274,8 +274,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       school_zip_code = #{schoolZipCode,jdbcType=VARCHAR},
       school_introduction = #{schoolIntroduction,jdbcType=LONGVARCHAR},
-      school_number = #{schoolNumber,jdbcType=VARCHAR},
-      validPeriod = #{validPeriod,jdbcType=VARCHAR}
+      school_number = #{schoolNumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <delete id="deleteByPrimaryKeys" parameterType="java.util.List">
