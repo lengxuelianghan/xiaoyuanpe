@@ -84,4 +84,9 @@ public class StudentServiceImpl implements StudentService {
     public Student findStudentByNumberAndSchool(String snumber, int id) {
         return this.studentMapper.selectByNumberAndSchool(snumber, id);
     }
+
+    @Override
+    public void ModifyBatch(List<Student> students) {
+        this.studentMapper.updateBatch(students);
+    }
 }

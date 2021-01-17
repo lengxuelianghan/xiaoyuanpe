@@ -34,4 +34,6 @@ public interface StudentService {
     void addBatch(List<Student> list);
 
     Student findStudentByNumberAndSchool(String snumber, int id);
+
+    void ModifyBatch(List<Student> students);
 }

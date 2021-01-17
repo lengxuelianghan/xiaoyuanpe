@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class AutoCreate {
     @Autowired
     private ReservationService reservationService;
 
+    //创建早操签到记录
     @Scheduled(cron = "0 10 5 ? * MON-FRI")
     public void addSignIn(){
         try{
@@ -44,11 +46,10 @@ public class AutoCreate {
             System.out.println(e.getMessage());
         }
     }
-
+    //每天23点将当天的预定记录清空
     @Scheduled(cron = "0 0 23 * * ?")
     public void InitReservation(){
         try{
-            System.out.println("你好");
             int dayInWeek = new Date().getDay();
             for (Reservation reservation: this.reservationService.findReservationAllByDay(dayInWeek)){
                 reservation.setStatus(0);
@@ -60,24 +61,7 @@ public class AutoCreate {
         }
     }
 
-//    @Scheduled(cron = "0 10 5 ? * MON-FRI")
-//    public void setCurrentSems(){
-//        try{
-//            System.out.println("你好");
-//            StudentExample studentExample = new StudentExample();
-//            for (Student student: this.studentService.findStudentAll()){
-//                Signin signin1 = new Signin();
-//                signin1.setFlag(0);
-//                signin1.setSignTime(new Date());
-//                signin1.setStudentId(student.getId());
-//                this.signInService.addSignin(signin1);
-//            }
-//        }
-//        catch (Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
+    //对活动进行判断是否可以报名，是否可以在进行中
     @Scheduled(cron = "0 */1 * * * ?")
     public void updateStatus(){
         try{
@@ -102,6 +86,39 @@ public class AutoCreate {
         }
         catch (Exception e){
             System.out.println("错误"+e.getMessage());
+        }
+    }
+
+    //计算学生学期
+    @Scheduled(cron = "0 00 12 20 8 ?")
+    public void handleStudentWithTerm(){
+        try{
+            List<Student> studentAll = this.studentService.findStudentAll();
+            for (Student student: studentAll){
+                student.setTerm(student.getTerm()+1);
+            }
+            this.studentService.ModifyBatch(studentAll);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //删除学生
+    @Scheduled(cron = "0 00 12 30 6 ?")
+    public void handleStudentOverTerm(){
+        try{
+            List<Integer> ids = new ArrayList<>();
+            List<Student> studentAll = this.studentService.findStudentAll();
+            for (Student student: studentAll){
+                if (student.getTerm()>=8){
+                    ids.add(student.getId());
+                }
+            }
+            this.studentService.DeleteStudentList(ids);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 }

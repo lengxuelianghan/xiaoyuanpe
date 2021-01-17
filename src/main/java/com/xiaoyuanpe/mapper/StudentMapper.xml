@@ -367,6 +367,26 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      update student
+      set school_id = #{item.schoolId,jdbcType=INTEGER},
+      college_id = #{item.collegeId,jdbcType=INTEGER},
+      classes_id = #{item.classesId,jdbcType=INTEGER},
+      student_name = #{item.studentName,jdbcType=VARCHAR},
+      student_number = #{item.studentNumber,jdbcType=VARCHAR},
+      term = #{item.term,jdbcType=INTEGER},
+      sex = #{item.sex,jdbcType=VARCHAR},
+      start_year = #{item.startYear,jdbcType=TIMESTAMP},
+      birthday = #{item.birthday,jdbcType=TIMESTAMP},
+      grade_number = #{item.gradeNumber,jdbcType=INTEGER},
+      national_code = #{item.nationalCode,jdbcType=VARCHAR},
+      id_card = #{item.idCard,jdbcType=VARCHAR},
+      address = #{item.address,jdbcType=VARCHAR}
+      where id = #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+
   <select id="selectLast" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
