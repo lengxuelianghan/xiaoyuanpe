@@ -57,4 +57,9 @@ public class SchoolServiceImpl implements SchoolService {
     public List<School> findSchoolBySchoolId() {
         return null;
     }
+
+    @Override
+    public void ModifyValidPeriod(School school) {
+        this.schoolMapper.updateValidPeriod(school);
+    }
 }

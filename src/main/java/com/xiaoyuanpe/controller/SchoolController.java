@@ -146,4 +146,26 @@ public class SchoolController {
         }
         return resultBean;
     }
+
+    @RequestMapping(value = "/updateValidPeriod", method = RequestMethod.POST)
+    public ResultBean updateValidPeriod(@RequestBody School school){
+        ResultBean resultBean = new ResultBean();
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                this.schoolService.ModifyValidPeriod(school);
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学期失败");
+            }
+        }
+        else {
+            resultBean.setMsg("您们没有权限");
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
 }

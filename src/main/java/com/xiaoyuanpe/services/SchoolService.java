@@ -22,4 +22,6 @@ public interface SchoolService {
     void DeleteSchoolList(List<Integer> ids);
 
     List<School> findSchoolBySchoolId();
+
+    void ModifyValidPeriod(School school);
 }

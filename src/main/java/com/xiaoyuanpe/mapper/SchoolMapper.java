@@ -37,4 +37,6 @@ public interface SchoolMapper {
     int updateByPrimaryKey(School record);
 
     List<School> findSchoolBySchoolId(Integer id);
+
+    void updateValidPeriod(School school);
 }

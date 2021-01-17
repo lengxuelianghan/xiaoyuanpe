@@ -277,6 +277,13 @@
       school_number = #{schoolNumber,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateValidPeriod"  parameterType="com.xiaoyuanpe.pojo.School">
+    update school
+    set  valid_period = #{validPeriod,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
   <delete id="deleteByPrimaryKeys" parameterType="java.util.List">
     delete from school
     where id in
