@@ -60,12 +60,13 @@ public class SchoolController {
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
-        //Map<String, List<String>> stringListMap = this.schoolNames();
+        Map<String, List<String>> stringListMap = this.schoolNames();
         if (HasRole.hasOneRole(booleans)) {
             if (user.getPassword().equals(schoolWithPassword.getPassword())) {
                 try {
                         this.schoolService.addSchool(schoolWithPassword.getSchool());
                         resultBean.setCode(0);
+                        resultBean.setData(stringListMap.get("schoolName"));
                     } catch (Exception e) {
                         System.out.println("错误" + e.getMessage());
                         resultBean.setCode(1);
