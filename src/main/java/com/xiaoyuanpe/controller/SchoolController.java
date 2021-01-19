@@ -100,7 +100,7 @@ public class SchoolController {
         return resultBean;
     }
     //模糊查询学校信息
-    @RequestMapping("/searchSchool/{schoolName}")
+    @RequestMapping(value = "/searchSchool/{schoolName}", method = RequestMethod.POST)
     public ResultBean searchSchool(@RequestBody Page page, @PathVariable String schoolName){
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
