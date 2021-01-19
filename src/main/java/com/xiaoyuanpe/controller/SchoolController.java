@@ -54,7 +54,7 @@ public class SchoolController {
     }
 
     @PostMapping("/addSchool")
-    public ResultBean addSchool(@RequestBody SchoolWithPassword schoolWithPassword,
+    public ResultBean addSchool(SchoolWithPassword schoolWithPassword,
                                 HttpServletRequest servletRequest){
         User user = (User)  servletRequest.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
