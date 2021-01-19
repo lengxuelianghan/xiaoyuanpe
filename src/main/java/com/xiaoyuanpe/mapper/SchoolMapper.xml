@@ -120,7 +120,7 @@
   <select id="selectBySchoolName" parameterType="java.lang.String" resultMap="BaseResultMap">
      SELECT  <include refid="Base_Column_List" />
      FROM school
-     WHERE school_name LIKE %#{schoolName,jdbcType=VARCHAR}%
+     WHERE school_name LIKE concat ('%', #{schoolName,jdbcType=VARCHAR}, '%')
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
