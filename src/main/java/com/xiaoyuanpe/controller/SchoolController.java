@@ -6,6 +6,7 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.SchoolService;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import com.xiaoyuanpe.units.Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -100,14 +101,16 @@ public class SchoolController {
         return resultBean;
     }
     //模糊查询学校信息
-    @RequestMapping(value = "/searchSchool/{schoolName}", method = RequestMethod.POST)
-    public ResultBean searchSchool(@RequestBody Page page, @PathVariable String schoolName){
+    @RequestMapping(value = "/searchSchool/{columnName}/{searchContent}", method = RequestMethod.POST)
+    public ResultBean searchSchool(@RequestBody Page page, @PathVariable String columnName,
+                                   @PathVariable String searchContent){
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
-                resultBean.setData(this.schoolService.selectBySchoolName(page,schoolName));
+                searchContent = Utils.camelToUnderline(searchContent);
+                resultBean.setData(this.schoolService.selectBySchoolName(page,columnName,searchContent));
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println("错误" + e.getMessage());

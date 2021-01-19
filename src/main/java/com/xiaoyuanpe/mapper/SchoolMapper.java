@@ -40,6 +40,6 @@ public interface SchoolMapper {
 
     void updateValidPeriod(School school);
 
-    List<School> selectBySchoolName(String schoolName);
+    List<School> selectBySchoolName(@Param("schoolName") String schoolName, @Param("searchContent") String searchContent);
 
 }
