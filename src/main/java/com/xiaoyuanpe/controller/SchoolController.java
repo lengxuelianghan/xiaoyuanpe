@@ -60,7 +60,7 @@ public class SchoolController {
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
-        Map<String, List<String>> stringListMap = this.schoolNames();
+        //Map<String, List<String>> stringListMap = this.schoolNames();
         if (HasRole.hasOneRole(booleans)) {
             if (user.getPassword().equals(schoolWithPassword.getPassword())) {
 //                if ((stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName()))&&
