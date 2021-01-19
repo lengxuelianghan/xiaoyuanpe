@@ -64,7 +64,9 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public List<School> selectBySchoolName(String schoolName) {
-        return this.schoolMapper.selectBySchoolName(schoolName);
+    public PageInfo<School> selectBySchoolName(Page page, String schoolName) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<School> schoolPageInfo = new PageInfo<>(this.schoolMapper.selectBySchoolName(schoolName));
+        return schoolPageInfo;
     }
 }

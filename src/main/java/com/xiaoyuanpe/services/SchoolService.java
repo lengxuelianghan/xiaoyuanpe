@@ -25,5 +25,5 @@ public interface SchoolService {
 
     void ModifyValidPeriod(School school);
 
-    List<School> selectBySchoolName(String schoolName);
+    PageInfo<School> selectBySchoolName(Page page, String schoolName);
 }

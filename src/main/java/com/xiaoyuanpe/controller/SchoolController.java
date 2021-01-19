@@ -101,13 +101,13 @@ public class SchoolController {
     }
     //模糊查询学校信息
     @RequestMapping("/searchSchool/{schoolName}")
-    public ResultBean searchSchool(@PathVariable String schoolName){
+    public ResultBean searchSchool(@RequestBody Page page, @PathVariable String schoolName){
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
-                resultBean.setData(this.schoolService.selectBySchoolName(schoolName));
+                resultBean.setData(this.schoolService.selectBySchoolName(page,schoolName));
                 resultBean.setCode(0);
             } catch (Exception e) {
                 System.out.println("错误" + e.getMessage());
