@@ -13,6 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +41,8 @@ public class SchoolController {
     }
 
     @PostMapping("/addSchool")
-    public ResultBean addSchool(@RequestBody School school){
+    public ResultBean addSchool(@RequestBody School school, HttpServletRequest servletRequest){
+        User user = (User)  servletRequest.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
@@ -74,6 +76,51 @@ public class SchoolController {
         }
         return resultBean;
     }
+
+
+    @RequestMapping("/querySchoolValidPeriod")
+    public ResultBean querySchoolValidPeriod(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                resultBean.setData(this.schoolService.findSchoolById(user.getSchoolId()).getValidPeriod());
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学校查找失败");
+            }
+        }else {
+            resultBean.setMsg("您没有权限");
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
+    //模糊查询学校信息
+    @RequestMapping("/searchSchool/{schoolName}")
+    public ResultBean searchSchool(@PathVariable String schoolName){
+        ResultBean resultBean = new ResultBean();
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                resultBean.setData(this.schoolService.selectBySchoolName(schoolName));
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学校查找失败");
+            }
+        }else {
+            resultBean.setCode(1);
+            resultBean.setMsg("您没有权限");
+        }
+        return resultBean;
+    }
+
 
     @RequestMapping(value = "/querySchoolList", method = RequestMethod.POST)
     public ResultBean querySchoolList(@RequestBody Page page){

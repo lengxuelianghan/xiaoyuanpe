@@ -115,6 +115,13 @@
     from school
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
+  <select id="selectBySchoolName" parameterType="java.lang.String" resultType="BaseResultMap">
+    SELECT * FROM school
+     WHERE school_name LIKE #{schoolName}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from school
     where id = #{id,jdbcType=INTEGER}

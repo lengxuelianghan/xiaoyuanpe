@@ -62,4 +62,9 @@ public class SchoolServiceImpl implements SchoolService {
     public void ModifyValidPeriod(School school) {
         this.schoolMapper.updateValidPeriod(school);
     }
+
+    @Override
+    public List<School> selectBySchoolName(String schoolName) {
+        return this.schoolMapper.selectBySchoolName(schoolName);
+    }
 }

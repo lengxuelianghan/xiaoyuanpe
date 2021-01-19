@@ -24,4 +24,6 @@ public interface SchoolService {
     List<School> findSchoolBySchoolId();
 
     void ModifyValidPeriod(School school);
+
+    List<School> selectBySchoolName(String schoolName);
 }

@@ -39,4 +39,6 @@ public interface SchoolMapper {
     List<School> findSchoolBySchoolId(Integer id);
 
     void updateValidPeriod(School school);
+
+    List<School> selectBySchoolName(String schoolName);
 }
