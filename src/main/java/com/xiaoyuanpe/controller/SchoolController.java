@@ -63,9 +63,7 @@ public class SchoolController {
         //Map<String, List<String>> stringListMap = this.schoolNames();
         if (HasRole.hasOneRole(booleans)) {
             if (user.getPassword().equals(schoolWithPassword.getPassword())) {
-//                if ((stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName()))&&
-//                        (stringListMap.get("schoolNumber").contains(schoolWithPassword.getSchool().getSchoolNumber()))) {
-                    try {
+                try {
                         this.schoolService.addSchool(schoolWithPassword.getSchool());
                         resultBean.setCode(0);
                     } catch (Exception e) {
@@ -73,15 +71,10 @@ public class SchoolController {
                         resultBean.setCode(1);
                         resultBean.setMsg("学校添加失败");
                     }
-//                }
-//                else {
-//                    resultBean.setCode(1);
-//                    resultBean.setMsg("学校名或者学校编码重复");
-//                }
             }
             else {
                 resultBean.setCode(1);
-                resultBean.setMsg("密码输入错误");
+                resultBean.setMsg("密码输入错误"+user.getPassword()+","+schoolWithPassword.getPassword());
             }
         }
         else {
