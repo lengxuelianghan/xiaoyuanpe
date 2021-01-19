@@ -55,8 +55,8 @@ public class SchoolController {
 
     @PostMapping("/addSchool")
     public ResultBean addSchool(@RequestBody SchoolWithPassword schoolWithPassword,
-                                HttpServletRequest servletRequest){
-        User user = (User)  servletRequest.getSession().getAttribute("user");
+                                HttpSession session){
+        User user = (User)  session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
