@@ -109,7 +109,7 @@ public class SchoolController {
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             try {
-                searchContent = Utils.camelToUnderline(searchContent);
+                columnName = Utils.camelToUnderline(columnName);
                 resultBean.setData(this.schoolService.selectBySchoolName(page,columnName,searchContent));
                 resultBean.setCode(0);
             } catch (Exception e) {
