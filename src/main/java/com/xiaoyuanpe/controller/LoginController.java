@@ -123,13 +123,19 @@ public class LoginController {
     @RequestMapping("/logout")
     public ResultBean logout(HttpSession session){
         ResultBean resultBean = new ResultBean();
-        try {
-            session.removeAttribute("user");
-            resultBean.setCode(0);
-        }catch (Exception e){
-            System.out.println("错误："+e.getMessage());
+        if (session.getAttribute("user")==null){
             resultBean.setCode(1);
-            resultBean.setMsg("登录失败");
+            resultBean.setMsg("你以经退出登录，操作重复。");
+        }
+        else {
+            try {
+                session.removeAttribute("user");
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println("错误：" + e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("退出登陆成功！");
+            }
         }
         return resultBean;
     }

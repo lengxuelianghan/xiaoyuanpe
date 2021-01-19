@@ -17,15 +17,26 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/school")
 public class SchoolController {
     @Autowired
     private SchoolService schoolService;
+
+    private  Map<String, List<String>>  schoolNames(){
+        Map<String, List<String>> maps = new HashMap<>();
+        List<String> schoolNames = new ArrayList<>();
+        List<String> schoolNumber = new ArrayList<>();
+        for (School school:this.schoolService.findSchoolAll()){
+            schoolNames.add(school.getSchoolName());
+            schoolNumber.add(school.getSchoolNumber());
+        }
+        maps.put("schoolName", schoolNames);
+        maps.put("schoolNumber", schoolNumber);
+        return maps;
+    }
 
     @GetMapping("/selectSchoolByUser")
     public ResultBean selectSchoolByUser(HttpSession session){
@@ -51,13 +62,20 @@ public class SchoolController {
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
             if (user.getPassword().equals(schoolWithPassword.getPassword())) {
-                try {
-                    this.schoolService.addSchool(schoolWithPassword.getSchool());
-                    resultBean.setCode(0);
-                } catch (Exception e) {
-                    System.out.println("错误" + e.getMessage());
+                if ((!this.schoolNames().get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName()))&&
+                        (!this.schoolNames().get("schoolNumber").contains(schoolWithPassword.getSchool().getSchoolNumber()))) {
+                    try {
+                        this.schoolService.addSchool(schoolWithPassword.getSchool());
+                        resultBean.setCode(0);
+                    } catch (Exception e) {
+                        System.out.println("错误" + e.getMessage());
+                        resultBean.setCode(1);
+                        resultBean.setMsg("学校添加失败");
+                    }
+                }
+                else {
                     resultBean.setCode(1);
-                    resultBean.setMsg("学校添加失败");
+                    resultBean.setMsg("学校名或者学校编码重复");
                 }
             }
             else {
