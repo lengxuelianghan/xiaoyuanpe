@@ -63,8 +63,8 @@ public class SchoolController {
         Map<String, List<String>> stringListMap = this.schoolNames();
         if (HasRole.hasOneRole(booleans)) {
             if (user.getPassword().equals(schoolWithPassword.getPassword())) {
-                if ((!stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName()))&&
-                        (!stringListMap.get("schoolNumber").contains(schoolWithPassword.getSchool().getSchoolNumber()))) {
+                if ((stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName()))&&
+                        (stringListMap.get("schoolNumber").contains(schoolWithPassword.getSchool().getSchoolNumber()))) {
                     try {
                         this.schoolService.addSchool(schoolWithPassword.getSchool());
                         resultBean.setCode(0);
