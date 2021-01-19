@@ -117,7 +117,7 @@
   </select>
 
 
-  <select id="selectBySchoolName" parameterType="java.lang.String" resultType="BaseResultMap">
+  <select id="selectBySchoolName" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT * FROM school
      WHERE school_name LIKE #{schoolName}
   </select>

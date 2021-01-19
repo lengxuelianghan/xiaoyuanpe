@@ -135,7 +135,7 @@ public class SchoolController {
                 }
         return resultBean;
     }
-
+    //获取所有学校信息
     @RequestMapping(value = "/querySchoolList", method = RequestMethod.GET)
     public ResultBean querySchoolList(){
         ResultBean resultBean = new ResultBean();
