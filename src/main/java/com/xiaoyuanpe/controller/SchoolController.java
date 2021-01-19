@@ -66,7 +66,7 @@ public class SchoolController {
                 try {
                         this.schoolService.addSchool(schoolWithPassword.getSchool());
                         resultBean.setCode(0);
-                        resultBean.setData(stringListMap.get("schoolName"));
+                        resultBean.setData(schoolWithPassword.getSchool().getSchoolName()+","+stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName()));
                     } catch (Exception e) {
                         System.out.println("错误" + e.getMessage());
                         resultBean.setCode(1);
