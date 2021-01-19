@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, school_name, school_address, phone, school_zip_code,school_number
+    id, school_name, school_address, phone, school_zip_code,school_number, valid_period
   </sql>
   <sql id="Blob_Column_List">
     school_introduction
