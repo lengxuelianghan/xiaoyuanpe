@@ -2,6 +2,7 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.pojo.School;
+import com.xiaoyuanpe.pojo.SchoolWithPassword;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.SchoolService;
 import com.xiaoyuanpe.units.HasRole;
@@ -42,19 +43,26 @@ public class SchoolController {
     }
 
     @PostMapping("/addSchool")
-    public ResultBean addSchool(@RequestBody School school, HttpServletRequest servletRequest){
+    public ResultBean addSchool(@RequestBody SchoolWithPassword schoolWithPassword,
+                                HttpServletRequest servletRequest){
         User user = (User)  servletRequest.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
-            try {
-                this.schoolService.addSchool(school);
-                resultBean.setCode(0);
-            } catch (Exception e) {
-                System.out.println("错误" + e.getMessage());
+            if (user.getPassword().equals(schoolWithPassword.getPassword())) {
+                try {
+                    this.schoolService.addSchool(schoolWithPassword.getSchool());
+                    resultBean.setCode(0);
+                } catch (Exception e) {
+                    System.out.println("错误" + e.getMessage());
+                    resultBean.setCode(1);
+                    resultBean.setMsg("学校添加失败");
+                }
+            }
+            else {
                 resultBean.setCode(1);
-                resultBean.setMsg("学校添加失败");
+                resultBean.setMsg("密码输入错误");
             }
         }
         else {
