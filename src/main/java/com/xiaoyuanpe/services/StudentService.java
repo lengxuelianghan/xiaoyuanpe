@@ -29,7 +29,9 @@ public interface StudentService {
 
     PageInfo<Student> findStudentByCollege(Integer id, Page page);
 
-    PageInfo<Student> findStudentBySchool(Integer id, Page page);
+    PageInfo<Student> findStudentBySchool(Integer id, Page page, String columnName, String searchContent);
+
+    PageInfo<Student> findStudentBySchoolInt(Integer id, Page page, String columnName, Integer searchContent);
 
     void addBatch(List<Student> list);
 

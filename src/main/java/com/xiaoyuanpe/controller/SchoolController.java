@@ -63,8 +63,6 @@ public class SchoolController {
         Map<String, List<String>> stringListMap = this.schoolNames();
         if (HasRole.hasOneRole(booleans)) {
             if (user.getPassword().equals(schoolWithPassword.getPassword())) {
-                resultBean.setData(!stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName())+
-                        ","+!stringListMap.get("schoolNumber").contains(schoolWithPassword.getSchool().getSchoolNumber()));
                 if (!stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName())&&
                 !stringListMap.get("schoolNumber").contains(schoolWithPassword.getSchool().getSchoolNumber())) {
                     try {
@@ -83,7 +81,7 @@ public class SchoolController {
             }
             else {
                 resultBean.setCode(1);
-                resultBean.setMsg("密码输入错误"+user.getPassword()+","+schoolWithPassword.getPassword());
+                resultBean.setMsg("密码输入错误");
             }
         }
         else {
@@ -227,18 +225,25 @@ public class SchoolController {
     }
 
     @RequestMapping(value = "/updateValidPeriod", method = RequestMethod.POST)
-    public ResultBean updateValidPeriod(@RequestBody School school){
+    public ResultBean updateValidPeriod(@RequestBody SchoolWithPassword schoolWithPassword, HttpSession session){
+        User user = (User)  session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("supermanager"));
         if (HasRole.hasOneRole(booleans)) {
-            try {
-                this.schoolService.ModifyValidPeriod(school);
-                resultBean.setCode(0);
-            } catch (Exception e) {
-                System.out.println("错误" + e.getMessage());
+            if (user.getPassword().equals(schoolWithPassword.getPassword())) {
+                try {
+                    this.schoolService.ModifyValidPeriod(schoolWithPassword.getSchool());
+                    resultBean.setCode(0);
+                } catch (Exception e) {
+                    System.out.println("错误" + e.getMessage());
+                    resultBean.setCode(1);
+                    resultBean.setMsg("学期失败");
+                }
+            }
+            else {
                 resultBean.setCode(1);
-                resultBean.setMsg("学期失败");
+                resultBean.setMsg("密码错误");
             }
         }
         else {

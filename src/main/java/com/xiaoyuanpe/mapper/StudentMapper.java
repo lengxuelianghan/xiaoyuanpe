@@ -35,7 +35,9 @@ public interface StudentMapper {
 
     int updateByPrimaryKey(Student record);
 
-    List<Student> selectBySchool(Integer id);
+    List<Student> selectBySchool(@Param("id")Integer id, @Param("columnName")String columnName, @Param("searchContent")String searchContent);
+
+    List<Student> selectBySchoolInt(@Param("id")Integer id, @Param("columnName")String columnName, @Param("searchContent")Integer searchContent);
 
     List<Student> selectByCollege(Integer id);
 
