@@ -37,7 +37,7 @@ public class SemesterController {
             for (Semester semester: semesters){
                 Student s  =this.studentService.findStudentById(semester.getSudentId());
                 if (s.getTerm() == semester.getTerm()
-                        &&semester.getSchoolId() == schoolId){
+                        &&semester.getSchoolId() == schoolId && s!=null){
                     SemesterEntry semesterEntry = new SemesterEntry();
                     semesterEntry.setId(semester.getId());
                     semesterEntry.setName(s.getStudentName());
