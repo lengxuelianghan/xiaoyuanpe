@@ -43,7 +43,7 @@ public class SemesterController {
                     semesterEntry.setName(s.getStudentName());
                     //College collegeById = collegeService.findCollegeById(semester.getCollegeId());
                     //semesterEntry.setCollegeId(collegeById==null?"无":collegeById.getCollegeName());
-                    //resultBean.setData(312);
+                    resultBean.setData(312);
                     semesterEntry.setScore(semester.getScore());
                     semesterEntries.add(semesterEntry);
                 }
