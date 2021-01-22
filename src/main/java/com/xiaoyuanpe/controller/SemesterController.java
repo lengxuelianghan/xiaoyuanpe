@@ -44,7 +44,7 @@ public class SemesterController {
                     SemesterEntry semesterEntry = new SemesterEntry();
                     semesterEntry.setId(semester.getId());
                     semesterEntry.setName(s.getStudentName());
-                    resultBean.setData(123);
+                    resultBean.setData(123+","+semester.getCollegeId());
                     semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
                     resultBean.setData(312);
                     semesterEntry.setScore(semester.getScore());
