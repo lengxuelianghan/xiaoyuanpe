@@ -1,9 +1,6 @@
 package com.xiaoyuanpe.controller;
 
-import com.xiaoyuanpe.pojo.Semester;
-import com.xiaoyuanpe.pojo.SemesterEntry;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.CollegeService;
 import com.xiaoyuanpe.services.SemesterService;
 import com.xiaoyuanpe.services.StudentService;
@@ -44,9 +41,9 @@ public class SemesterController {
                     SemesterEntry semesterEntry = new SemesterEntry();
                     semesterEntry.setId(semester.getId());
                     semesterEntry.setName(s.getStudentName());
-                    resultBean.setData(123+","+semester.getCollegeId());
-                    semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
-                    resultBean.setData(312);
+                    College collegeById = collegeService.findCollegeById(semester.getCollegeId());
+                    semesterEntry.setCollegeId(collegeById==null?"无":collegeById.getCollegeName());
+                    //resultBean.setData(312);
                     semesterEntry.setScore(semester.getScore());
                     semesterEntries.add(semesterEntry);
                 }
