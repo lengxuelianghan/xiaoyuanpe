@@ -9,6 +9,16 @@ public class SemesterEntry{
 
     private String name;
 
+    public SemesterEntry() {
+    }
+
+    public SemesterEntry(Integer id, String collegeId, Integer score, String name) {
+        this.id = id;
+        this.collegeId = collegeId;
+        this.score = score;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

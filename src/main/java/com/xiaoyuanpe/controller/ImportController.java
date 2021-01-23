@@ -34,13 +34,18 @@ public class ImportController  {
     @Autowired
     private ClassesService classesService;
 
-    private Map<String,Integer> mapCollege(){
+    private List<Map> mapCollege(){
+        List<Map> mapList = new ArrayList<>();
         Map<String,Integer> map = new HashMap<>();
         List<College> collegeAll = this.collegeService.findCollegeAll();
+        Map<Integer, Integer> map1 = new HashMap<>();
         for (College college:collegeAll){
             map.put(college.getCollegeName(),college.getId());
+            map1.put(college.getId(),college.getSchoolId());
         }
-        return map;
+        mapList.add(map);
+        mapList.add(map1);
+        return mapList;
     }
 
     private Map<String,Integer> mapClass(){
@@ -51,7 +56,7 @@ public class ImportController  {
         }
         return map;
     }
-
+    //导入学生
     @RequestMapping(value = "/readExcel", method = RequestMethod.POST)
     public ResultBean ImportFile(@RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest req){
         User user = (User) req.getSession().getAttribute("user");
@@ -67,14 +72,15 @@ public class ImportController  {
                 out.write(excelFile.getBytes());
                 out.flush();
             }
-            Map<String, Integer> mapCollege = this.mapCollege();
+            List<Map> mapList = this.mapCollege();
+            Map<String, Integer> mapCollege = mapList.get(0);
+            Map<String, Integer> mapCollegeSchool = mapList.get(1);
             Map<String, Integer> mapClasses = this.mapClass();
             ReadExcel readExcel = new ReadExcel();
             List<User> users = new ArrayList<>();
             int j=0;
             boolean flag = true;
             List<Student> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
-            //resultBean.setData(ss+" 读取结束"+(studentInfos==null?"0":studentInfos.size()));
             System.out.println("读取文件结束"+(studentInfos==null?"0":studentInfos.size()));
             for (Student studentInfo : studentInfos) {
                 j++;
@@ -187,7 +193,7 @@ public class ImportController  {
             }
             ReadExcelClass readExcel = new ReadExcelClass();
             List<Classes> classesList = readExcel.importExcel(filepath + File.separator + fileName);
-            Map<String,Integer> mapColleges = mapCollege();
+            Map<String,Integer> mapColleges = mapCollege().get(0);
             boolean flag =true;
             int j=0;
             for (Classes classes : classesList) {

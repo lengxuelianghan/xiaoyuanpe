@@ -1,6 +1,7 @@
 package com.xiaoyuanpe.mapper;
 
 import com.xiaoyuanpe.pojo.Semester;
+import com.xiaoyuanpe.pojo.SemesterEntry;
 import com.xiaoyuanpe.pojo.SemesterExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -52,4 +53,6 @@ public interface SemesterMapper {
     int updateByPrimaryKey(Semester record);
 
     int insertBatch(List<Semester> list);
+
+    List<SemesterEntry> selectBySchool(@Param("schoolId") Integer schoolId, @Param("term") Integer term);
 }

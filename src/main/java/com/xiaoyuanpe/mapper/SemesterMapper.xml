@@ -11,6 +11,14 @@
     <result column="exercise_time" jdbcType="INTEGER" property="exerciseTime" />
     <result column="sudent_id" jdbcType="INTEGER" property="sudentId" />
   </resultMap>
+
+  <resultMap id="BaseResultMapEntry" type="com.xiaoyuanpe.pojo.SemesterEntry">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="college_id" jdbcType="VARCHAR" property="collegeId" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -269,33 +277,47 @@
   </update>
 
   <select id="selectByPrimaryKeys" resultMap="BaseResultMap">
-    select *
+    select
+    <include refid="Base_Column_List" />
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classes_id = #{classId,jdbcType=INTEGER} and sudent_id = #{studentId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryStudent" resultMap="BaseResultMap">
-    select *
+    select
+    <include refid="Base_Column_List" />
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classes_id = #{classId,jdbcType=INTEGER} and sudent_id = #{studentId,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryClasses" resultMap="BaseResultMap">
-    select *
+    select
+    <include refid="Base_Column_List" />
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and classes_id = #{classId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimaryCollege" resultMap="BaseResultMap">
-    select *
+    select
+    <include refid="Base_Column_List" />
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and college_id = #{collegeId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
   </select>
 
   <select id="selectByPrimarySchool" resultMap="BaseResultMap">
-    select *
+    select
+    <include refid="Base_Column_List" />
     from semester
     where school_id = #{schoolId,jdbcType=INTEGER} and term = #{term,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectBySchool" resultMap="BaseResultMapEntry">
+    select semester.id as id, college.college_name as college_id, semester.score as score, student.student_name as name
+    from semester, student, college
+    where semester.school_id = #{schoolId,jdbcType=INTEGER} and semester.term = #{term,jdbcType=INTEGER}
+    and semester.college_id = college.id and semester.sudent_id = student.id
+    order by score
+    limit 0, 10
   </select>
 
 </mapper>

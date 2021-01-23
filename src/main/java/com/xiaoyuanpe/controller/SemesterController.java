@@ -31,31 +31,31 @@ public class SemesterController {
         User user = (User) session.getAttribute("user");
         Integer schoolId = user.getSchoolId();
         ResultBean resultBean = new ResultBean();
-        List<SemesterEntry> semesterEntries = new ArrayList<>();
+        Student s  =this.studentService.findStudentByNumber(user.getUserNumber());
         try {
-            List<Semester> semesters = this.semesterService.findSemesterAll();
-            for (Semester semester: semesters){
-                Student s  =this.studentService.findStudentById(semester.getSudentId());
-                if (s.getTerm() == semester.getTerm()
-                        &&semester.getSchoolId() == schoolId && s!=null){
-                    SemesterEntry semesterEntry = new SemesterEntry();
-                    semesterEntry.setId(semester.getId());
-                    semesterEntry.setName(s.getStudentName());
-                    College collegeById = collegeService.findCollegeById(semester.getCollegeId());
-                    semesterEntry.setCollegeId(collegeById==null?"无":collegeById.getCollegeName());
-                    semesterEntry.setScore(semester.getScore());
-                    resultBean.setData(312);
-                    semesterEntries.add(semesterEntry);
-                }
-            }
-            resultBean.setData(3121);
-            semesterEntries.sort(new Comparator<SemesterEntry>() {
-                @Override
-                public int compare(SemesterEntry o1, SemesterEntry o2) {
-                    return o2.getScore().compareTo(o1.getScore());
-                }
-            });
-            resultBean.setData(3122);
+            List<SemesterEntry> semesterEntries = this.semesterService.selectBySchool(schoolId,s.getTerm());
+//            List<Semester> semesters = this.semesterService.findSemesterAll();
+//            for (Semester semester: semesters){
+//                Student s  =this.studentService.findStudentById(semester.getSudentId());
+//                if (s.getTerm() == semester.getTerm()
+//                        &&semester.getSchoolId() == schoolId && s!=null){
+//                    SemesterEntry semesterEntry = new SemesterEntry();
+//                    semesterEntry.setId(semester.getId());
+//                    semesterEntry.setName(s.getStudentName());
+//                    College collegeById = collegeService.findCollegeById(semester.getCollegeId());
+//                    semesterEntry.setCollegeId(collegeById==null?"无":collegeById.getCollegeName());
+//                    semesterEntry.setScore(semester.getScore());
+//                    semesterEntries.add(semesterEntry);
+//                }
+//            }
+//            resultBean.setData(3121);
+//            semesterEntries.sort(new Comparator<SemesterEntry>() {
+//                @Override
+//                public int compare(SemesterEntry o1, SemesterEntry o2) {
+//                    return o2.getScore().compareTo(o1.getScore());
+//                }
+//            });
+//            resultBean.setData(3122);
             resultBean.setData(semesterEntries);
             resultBean.setCode(0);
         }catch (Exception e){

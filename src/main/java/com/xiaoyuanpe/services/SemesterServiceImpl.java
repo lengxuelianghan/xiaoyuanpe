@@ -2,6 +2,7 @@ package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.mapper.SemesterMapper;
 import com.xiaoyuanpe.pojo.Semester;
+import com.xiaoyuanpe.pojo.SemesterEntry;
 import com.xiaoyuanpe.pojo.SemesterExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,5 +68,10 @@ public class SemesterServiceImpl implements SemesterService {
     @Override
     public void addBatch(List<Semester> semesters) {
         this.semesterMapper.insertBatch(semesters);
+    }
+
+    @Override
+    public List<SemesterEntry> selectBySchool(Integer schoolId, Integer term) {
+        return this.semesterMapper.selectBySchool(schoolId, term);
     }
 }

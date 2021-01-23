@@ -1,6 +1,8 @@
 package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.pojo.Semester;
+import com.xiaoyuanpe.pojo.SemesterEntry;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,5 +28,7 @@ public interface SemesterService {
     List<Semester> selectByPrimarySchool(Integer schoolId, Integer term);
 
     void addBatch(List<Semester> semesters);
+
+    List<SemesterEntry> selectBySchool(Integer schoolId, Integer term);
 
 }
