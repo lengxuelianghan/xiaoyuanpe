@@ -316,7 +316,7 @@
     from semester, student, college
     where semester.school_id = #{schoolId,jdbcType=INTEGER} and semester.term = #{term,jdbcType=INTEGER}
     and semester.college_id = college.id and semester.sudent_id = student.id
-    order by score
+    order by score desc
     limit 0, 10
   </select>
 
