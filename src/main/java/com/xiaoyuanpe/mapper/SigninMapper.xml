@@ -94,19 +94,21 @@
   </select>
 
   <select id="searchActivityOneWeekActivity" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
-    select SUM(TIMESTAMPDIFF(HOUR,signin.signout_time,signin.sign_time))
+    select SUM(diff)
+    from (select TIMESTAMPDIFF(MINUTE,signin.signout_time,signin.sign_time) as diff
     from signin and activity
     where signin.signout_time between current_date()-7 and sysdate() and
     signin.student_id = #{studentId,jdbcType=INTEGER} and signin.flag = 2 and
-    activity.id = activity.activity_id and activity.activity_class=#{clazz,jdbcType=INTEGER}
+    activity.id = activity.activity_id and activity.activity_class=#{clazz,jdbcType=INTEGER}) as aa
   </select>
 
   <select id="searchActivityOneWeekSport" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-    select SUM(TIMESTAMPDIFF(HOUR,signin.signout_time,signin.sign_time))
+    select SUM(diff)
+    from(select TIMESTAMPDIFF(MINUTE,signin.signout_time,signin.sign_time) as diff
     from signin and sport
     where signin.signout_time between current_date()-7 and sysdate() and
     signin.student_id = #{studentId,jdbcType=INTEGER} and signin.flag = 2 and
-    signin.sport_id = sport_id.id
+    signin.sport_id = sport_id.id) as aa
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
