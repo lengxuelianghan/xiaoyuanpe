@@ -53,7 +53,7 @@ public class SignInServiceImpl implements SignInService {
 
     @Override
     public int searchActivityOneWeekActivity(Integer studentId, Integer clazz) {
-        return this.signinMapper.searchActivityOneWeekActivity(studentId);
+        return this.signinMapper.searchActivityOneWeekActivity(studentId, clazz);
     }
 
     @Override
