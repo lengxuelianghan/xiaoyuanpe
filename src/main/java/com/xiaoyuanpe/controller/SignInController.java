@@ -487,11 +487,11 @@ public class SignInController {
         ScorePerWeek sport = new ScorePerWeek("运动",0.0f);
         try {
             System.out.println("失败在这");
-            float n1=this.signInService.searchActivityOneWeekActivity(student.getId(), 0) * 0.5f;
+            Float n1=this.signInService.searchActivityOneWeekActivity(student.getId(), 0) * 0.5f;
             System.out.println("失败在这1");
-            float n2=this.signInService.searchActivityOneWeekActivity(student.getId(), 1) * 0.5f;
+            Float n2=this.signInService.searchActivityOneWeekActivity(student.getId(), 1) * 0.5f;
             System.out.println("失败在这2");
-            float n3=this.signInService.searchActivityOneWeekSport(student.getId())*0.5f;
+            Float n3=this.signInService.searchActivityOneWeekSport(student.getId())*0.5f;
             System.out.println("失败在这3");
 //            List<SinglePeopleInfo> singlePeopleInfos = new ArrayList<>();
 //            List<Signin> signins = this.signInService.findSigninAll();
@@ -540,9 +540,9 @@ public class SignInController {
 //                }
 //            }
             List<ScorePerWeek> scorePerWeeks = new ArrayList<>();
-            activity.setScore(n1);
-            game.setScore(n2);
-            sport.setScore(n3);
+            activity.setScore(n1==null?0:n1);
+            game.setScore(n2==null?0:n2);
+            sport.setScore(n3==null?0:n3);
             scorePerWeeks.add(activity);
             scorePerWeeks.add(game);
             scorePerWeeks.add(sport);
