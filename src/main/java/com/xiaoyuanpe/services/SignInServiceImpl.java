@@ -52,12 +52,12 @@ public class SignInServiceImpl implements SignInService {
     }
 
     @Override
-    public int searchActivityOneWeekActivity(Integer studentId, Integer clazz) {
+    public Integer searchActivityOneWeekActivity(Integer studentId, Integer clazz) {
         return this.signinMapper.searchActivityOneWeekActivity(studentId, clazz);
     }
 
     @Override
-    public int searchActivityOneWeekSport(Integer studentId) {
+    public Integer searchActivityOneWeekSport(Integer studentId) {
         return this.signinMapper.searchActivityOneWeekSport(studentId);
     }
 

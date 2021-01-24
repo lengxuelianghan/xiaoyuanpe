@@ -486,9 +486,13 @@ public class SignInController {
         ScorePerWeek game = new ScorePerWeek("比赛",0.0f);
         ScorePerWeek sport = new ScorePerWeek("运动",0.0f);
         try {
+            System.out.println("失败在这");
             float n1=this.signInService.searchActivityOneWeekActivity(student.getId(), 0) * 0.5f;
+            System.out.println("失败在这1");
             float n2=this.signInService.searchActivityOneWeekActivity(student.getId(), 1) * 0.5f;
+            System.out.println("失败在这2");
             float n3=this.signInService.searchActivityOneWeekSport(student.getId())*0.5f;
+            System.out.println("失败在这3");
 //            List<SinglePeopleInfo> singlePeopleInfos = new ArrayList<>();
 //            List<Signin> signins = this.signInService.findSigninAll();
 //            resultBean.setData("s俄式是");
@@ -545,7 +549,7 @@ public class SignInController {
             resultBean.setData(scorePerWeeks);
             resultBean.setCode(0);
         }catch (Exception e){
-            resultBean.setMsg("失败！");
+            resultBean.setMsg("失败！"+e.getMessage());
             resultBean.setCode(1);
         }
         return resultBean;

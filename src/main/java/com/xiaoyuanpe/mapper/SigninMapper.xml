@@ -95,20 +95,20 @@
 
   <select id="searchActivityOneWeekActivity" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
     select SUM(diff)
-    from (select TIMESTAMPDIFF(MINUTE,signin.signout_time,signin.sign_time) as diff
-    from signin and activity
-    where signin.signout_time between current_date()-7 and sysdate() and
+    from (select timestampdiff(MINUTE,signin.signout_time,signin.sign_time) as diff
+    from signin, activity
+    where TO_DAYS(CURDATE())-TO_DAYS(FROM_UNIXTIME(signin.signout_time)) &lt; 7 and
     signin.student_id = #{studentId,jdbcType=INTEGER} and signin.flag = 2 and
-    activity.id = activity.activity_id and activity.activity_class=#{clazz,jdbcType=INTEGER}) as aa
+    activity.id = signin.activity_id and activity.activity_class=#{clazz,jdbcType=INTEGER}) as aa
   </select>
 
   <select id="searchActivityOneWeekSport" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select SUM(diff)
-    from(select TIMESTAMPDIFF(MINUTE,signin.signout_time,signin.sign_time) as diff
-    from signin and sport
-    where signin.signout_time between current_date()-7 and sysdate() and
+    from(select timestampdiff(MINUTE,signin.signout_time,signin.sign_time) as diff
+    from signin, sport
+    where TO_DAYS(CURDATE())-TO_DAYS(FROM_UNIXTIME(signin.signout_time)) &lt; 7 and
     signin.student_id = #{studentId,jdbcType=INTEGER} and signin.flag = 2 and
-    signin.sport_id = sport_id.id) as aa
+    signin.sport_id = sport.id) as aa
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
