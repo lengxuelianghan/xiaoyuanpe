@@ -16,4 +16,8 @@ public interface SignInService {
     void DeleteSignin(Integer id);
 
     void DeleteSigninList(List<Integer> ids);
+
+    int searchActivityOneWeekActivity(Integer studentId, Integer clazz);
+
+    int searchActivityOneWeekSport(Integer studentId);
 }

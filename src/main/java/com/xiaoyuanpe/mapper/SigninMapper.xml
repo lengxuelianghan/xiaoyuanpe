@@ -92,6 +92,23 @@
     from signin
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="searchActivityOneWeekActivity" parameterType="java.lang.Integer"  resultType="java.lang.Integer">
+    select SUM(TIMESTAMPDIFF(HOUR,signin.signout_time,signin.sign_time))
+    from signin and activity
+    where signin.signout_time between current_date()-7 and sysdate() and
+    signin.student_id = #{studentId,jdbcType=INTEGER} and signin.flag = 2 and
+    activity.id = activity.activity_id and activity.activity_class=#{clazz,jdbcType=INTEGER}
+  </select>
+
+  <select id="searchActivityOneWeekSport" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select SUM(TIMESTAMPDIFF(HOUR,signin.signout_time,signin.sign_time))
+    from signin and sport
+    where signin.signout_time between current_date()-7 and sysdate() and
+    signin.student_id = #{studentId,jdbcType=INTEGER} and signin.flag = 2 and
+    signin.sport_id = sport_id.id
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from signin
     where id = #{id,jdbcType=INTEGER}

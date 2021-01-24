@@ -27,4 +27,7 @@ public interface SigninMapper {
     int updateByPrimaryKeySelective(Signin record);
 
     int updateByPrimaryKey(Signin record);
+
+    int searchActivityOneWeekActivity(@Param("studentId")Integer studentId, @Param("clazz")Integer clazz);
+    int searchActivityOneWeekSport(@Param("studentId")Integer studentId);
 }
