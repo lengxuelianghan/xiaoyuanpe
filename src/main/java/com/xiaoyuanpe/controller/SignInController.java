@@ -489,7 +489,7 @@ public class SignInController {
             System.out.println("失败在这");
             Float n1=this.signInService.searchActivityOneWeekActivity(student.getId(), 0) * 0.5f;
             System.out.println("失败在这1");
-            Float n2=this.signInService.searchActivityOneWeekActivity(student.getId(), 1) * 0.5f;
+            Float n2=this.signInService.searchActivityOneWeekActivity(student.getId(), 0) * 0.5f;
             System.out.println("失败在这2");
             Float n3=this.signInService.searchActivityOneWeekSport(student.getId())*0.5f;
             System.out.println("失败在这3");
@@ -540,9 +540,9 @@ public class SignInController {
 //                }
 //            }
             List<ScorePerWeek> scorePerWeeks = new ArrayList<>();
-            activity.setScore(n1==null?0:n1);
-            game.setScore(n2==null?0:n2);
-            sport.setScore(n3==null?0:n3);
+            activity.setScore(n1==null?0f:n1);
+            game.setScore(n2==null?0f:n2);
+            sport.setScore(n3==null?0f:n3);
             scorePerWeeks.add(activity);
             scorePerWeeks.add(game);
             scorePerWeeks.add(sport);
