@@ -104,9 +104,9 @@
 
   <select id="searchActivityOneWeekSport" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select SUM(diff)
-    from(select timestampdiff(MINUTE,signin.signout_time,signin.sign_time) as diff
+    from(select timestampdiff(MINUTE,signin.sign_time,signin.signout_time) as diff
     from signin, sports
-    where timestampdiff(DAY,current_timestamp(),signin.signout_time) &lt; 7 and
+    where timestampdiff(DAY,signin.signout_time,current_timestamp()) &lt; 7 and
     signin.student_id = #{studentId,jdbcType=INTEGER} and signin.flag = 2 and
     signin.sport_id = sports.id) as aa
   </select>
