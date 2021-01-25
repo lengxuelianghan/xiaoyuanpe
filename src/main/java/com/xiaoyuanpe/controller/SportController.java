@@ -108,7 +108,7 @@ public class SportController {
             try {
                 User rolesByUsername = this.userService.findUsersByStudentNum(this.studentService.findStudentById(studentId).getStudentNumber());
                 if (!rolesByUsername.getIdentity().equals("学生")){
-                    resultBean.setMsg("用户不是学生身份，设置失败");
+                    resultBean.setMsg("用户是"+rolesByUsername.getIdentity()+"身份"+"，设置失败");
                     resultBean.setCode(2);
                 }
                 else if (!rolesByUsername.getIdentity().equals("签到员")) {
