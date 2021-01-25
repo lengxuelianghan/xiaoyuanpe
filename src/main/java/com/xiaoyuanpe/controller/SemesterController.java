@@ -78,8 +78,7 @@ public class SemesterController {
         return resultBean;
     }
 
-
-
+    // 查询个人信息
     @RequestMapping("/singleScore")
     public ResultBean singleScore(HttpSession session){
         User user = (User) session.getAttribute("user");
@@ -87,20 +86,25 @@ public class SemesterController {
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         try {
             List<Semester> semesters = this.semesterService.findSemesterByStudent(student.getSchoolId(), student.getCollegeId(), student.getClassesId(), student.getId());
-            Semester semester = new Semester();
+            Semester semester = null;
             for (Semester sem: semesters){
                 if (student.getTerm() == sem.getTerm()) {
                     semester = sem;
                     break;
                 }
             }
-            SemesterEntry semesterEntry = new SemesterEntry();
-            semesterEntry.setId(semester.getId());
-            semesterEntry.setName(student.getStudentName());
-            semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
-            semesterEntry.setScore(semester.getScore());
-            resultBean.setData(semesterEntry);
-            resultBean.setCode(0);
+            if (semester==null) {
+                SemesterEntry semesterEntry = new SemesterEntry();
+                semesterEntry.setId(semester.getId());
+                semesterEntry.setName(student.getStudentName());
+                semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
+                semesterEntry.setScore(semester.getScore());
+                resultBean.setData(semesterEntry);
+                resultBean.setCode(0);
+            }else {
+                resultBean.setMsg("此学生学期状态不存在");
+                resultBean.setCode(2);
+            }
         }catch (Exception e){
             resultBean.setMsg("查询失败"+e.getMessage());
             resultBean.setCode(1);

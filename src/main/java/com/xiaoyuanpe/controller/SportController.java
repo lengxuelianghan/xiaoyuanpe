@@ -106,7 +106,7 @@ public class SportController {
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)) {
             try {
-                User rolesByUsername = this.userService.findRolesByUsername(this.studentService.findStudentById(studentId).getStudentNumber());
+                User rolesByUsername = this.userService.findUsersByStudentNum(this.studentService.findStudentById(studentId).getStudentNumber());
                 if (!rolesByUsername.getIdentity().equals("签到员")) {
                     SportStud sportStud = new SportStud();
                     sportStud.setStudentId(studentId);
