@@ -126,7 +126,7 @@
   <select id="searchSignInSport" resultMap="BaseResultMapEntry">
     select signin.id as id, student.id as student_id, student.student_name as student_name,
     student.student_number as student_number, classes.class_name as classz, college.college_name as college,
-    signin.sign_time as sign_time,signin.signout_time as signOut_time, signin.flag as flag
+    signin.flag as flag
     from signin, college, classes, student
     where timestampdiff(DAY,signin.signout_time,current_timestamp()) = 0 and signin.flag &lt;= 2 and
     signin.sport_id = #{sportId,jdbcType=INTEGER}  and college.id = #{collegeId,jdbcType=INTEGER} and

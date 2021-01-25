@@ -13,6 +13,22 @@ public class StudentInfoEntry {
     private Timestamp signTime;
     private Timestamp signOutTime;
 
+    public StudentInfoEntry() {
+    }
+
+    public StudentInfoEntry(Integer id, String studentName, String studentNumber, Integer studentId,
+                            Integer flag, String classz, String college, Timestamp signTime, Timestamp signOutTime) {
+        this.id = id;
+        this.studentName = studentName;
+        this.studentNumber = studentNumber;
+        this.studentId = studentId;
+        this.flag = flag;
+        this.classz = classz;
+        this.college = college;
+        this.signTime = signTime;
+        this.signOutTime = signOutTime;
+    }
+
     public Integer getId() {
         return id;
     }
