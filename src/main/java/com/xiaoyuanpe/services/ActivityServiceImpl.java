@@ -18,35 +18,16 @@ import java.util.List;
 public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private ActivityMapper activityMapper;
-    @Autowired
-    private StudentMapper studentMapper;
     @Override
     public int addActivity(Activity activity) {
         return this.activityMapper.insert(activity);
     }
 
     @Override
-    public Pager<Activity> findActivityAll(int current, int pageSize) {
-        ActivityExample activityExample = new ActivityExample();
-        List<Activity> activities = this.activityMapper.selectByExample(activityExample);
-        Pager<Activity> pager = new Pager<>();
-        pager.setCurrentPage(current);
-        pager.setPageSize(pageSize);
-        int totalNum = (int)this.activityMapper.countByExample(activityExample);
-        pager.setRecordTotal(totalNum);
-        if (current * pageSize < totalNum) {
-            pager.setContent(activities.subList((current - 1) * pageSize, current * pageSize));
-        }
-        else {
-            if ((current - 1) * pageSize <= totalNum){
-                pager.setContent(activities.subList((current - 1) * pageSize, totalNum));
-            }
-            else {
-                pager.setContent(null);
-            }
-
-        }
-        return pager;
+    public PageInfo<ActivityEntry> findActivityAll(Page page, int schoolId, String columnName,Integer searchContent) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllWithSomething(schoolId,columnName,searchContent));
+        return studentInfoPage;
     }
 
     @Override
@@ -61,7 +42,7 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public void DeleteActivityList(List<Integer> ids) {
-
+        ids.forEach(id->this.activityMapper.deleteByPrimaryKey(id));
     }
 
     @Override
