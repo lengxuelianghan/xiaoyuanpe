@@ -76,7 +76,7 @@ public class Student {
     public Student(Integer schoolId, Integer collegeId, Integer classesId, String studentName, String studentNumber,
                    Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber, String nationalCode,
                    String idCard, String address, String schoolName, String collegeName, String classesName,
-                   String classNumber,String phone, String email,String characters) {
+                   String classNumber,String phone, String email) {
         this.schoolId = schoolId;
         this.collegeId = collegeId;
         this.classesId = classesId;
@@ -96,7 +96,6 @@ public class Student {
         this.classNumber = classNumber;
         this.phone=phone;
         this.email = email;
-        this.characters = characters;
     }
 
     public Integer getId() {
