@@ -51,21 +51,21 @@
     <result column="sign_num" jdbcType="INTEGER" property="signNum" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="review_time" jdbcType="TIMESTAMP" property="reviewTime" />
-<!--    <collection property="projectList" javaType="list" ofType="com.xiaoyuanpe.pojo.Project">-->
-<!--      <id column="id" jdbcType="INTEGER" property="id" />-->
-<!--      <result column="project_name" jdbcType="VARCHAR" property="projectName" />-->
-<!--      <result column="team" jdbcType="BIT" property="team" />-->
-<!--      <result column="maximum" jdbcType="INTEGER" property="maximum" />-->
-<!--      <result column="integral_set" jdbcType="VARCHAR" property="integralSet" />-->
-<!--      <result column="signing_condition" jdbcType="VARCHAR" property="signingCondition" />-->
-<!--      <result column="venue" jdbcType="VARCHAR" property="venue" />-->
-<!--      <result column="entry_fee" jdbcType="INTEGER" property="entryFee" />-->
-<!--      <result column="judge" jdbcType="TINYINT" property="judge" />-->
-<!--      <result column="referee_conditions" jdbcType="VARCHAR" property="refereeConditions" />-->
-<!--      <result column="activity_id" jdbcType="INTEGER" property="activityId" />-->
-<!--      <result column="team_people" jdbcType="INTEGER" property="teamPeople" />-->
-<!--      <result column="minmum" jdbcType="INTEGER" property="minmum" />-->
-<!--    </collection>-->
+    <collection property="projectList" javaType="list" ofType="com.xiaoyuanpe.pojo.Project">
+      <id column="pid" jdbcType="INTEGER" property="id" />
+      <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+      <result column="team" jdbcType="BIT" property="team" />
+      <result column="maximum" jdbcType="INTEGER" property="maximum" />
+      <result column="integral_set" jdbcType="VARCHAR" property="integralSet" />
+      <result column="signing_condition" jdbcType="VARCHAR" property="signingCondition" />
+      <result column="venue" jdbcType="VARCHAR" property="venue" />
+      <result column="entry_fee" jdbcType="INTEGER" property="entryFee" />
+      <result column="judge" jdbcType="TINYINT" property="judge" />
+      <result column="referee_conditions" jdbcType="VARCHAR" property="refereeConditions" />
+      <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+      <result column="team_people" jdbcType="INTEGER" property="teamPeople" />
+      <result column="minmum" jdbcType="INTEGER" property="minmum" />
+    </collection>
   </resultMap>
 
   <sql id="Example_Where_Clause">
@@ -154,7 +154,17 @@
   </select>
 
   <select id="selectActivityAll" parameterType="java.lang.Integer" resultMap="BaseResultMapEntry">
-    select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
+     select z.id as id,z.activity_name as activity_name,z.activity_content as activity_content,z.image_path as image_path,
+    z.publisher_id as publisher_id, z.publish_data as publish_data,z.school_id as school_id,z.college_id as college_id,
+    z.start_time as start_time, z.end_time as end_time,z.status as status,z.activity_area as activity_area,
+    z.registration_closing_time as registration_closing_time, z.registration_start_time as registration_start_time,
+    z.contact_phone as contact_phone,z.cost_description as cost_description,z.cost as cost,z.college_list as college_list,
+    z.people_num as people_num,z.activity_class as activity_class,z.sign_num as sign_num, z.contact as contact,
+    z.review_time as review_time, p.id as pid, p.project_name as project_name, p.team as team, p.maximum as maximum,
+    p.integral_set as integral_set, p.signing_condition as signing_condition, p.venue as venue, p.entry_fee as entry_fee,
+    p.judge as judge, p.referee_conditions as referee_conditions, p.activity_id as activity_id, p.team_people as team_people,
+    p.minmum as minmum from
+    (select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
     u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
     a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
     a.registration_closing_time as registration_closing_time, a.registration_start_time as registration_start_time,
@@ -163,7 +173,7 @@
     a.review_time as review_time
     from activity as a, school as s,college as c,user as u
     where a.school_id = #{schoolId,jdbcType=INTEGER} and a.publisher_id=u.id and s.id = a.school_id and
-    a.college_id = c.id
+    a.college_id = c.id) as z LEFT JOIN project as p on p.activity_id = z.id
   </select>
 
   <select id="selectActivityAllWithSomething" resultMap="BaseResultMapEntry">
