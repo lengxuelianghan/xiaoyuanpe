@@ -196,7 +196,7 @@
     a.review_time as review_time
     from activity as a, school as s,college as c,user as u
     where a.school_id = #{schoolId,jdbcType=INTEGER} and a.publisher_id=u.id and s.id = a.school_id and
-    a.college_id = c.id and activity.${columnName} LIKE concat('%',#{searchContent, jdbcType=VARCHAR},'%')) as z
+    a.college_id = c.id and a.${columnName} LIKE concat('%',#{searchContent, jdbcType=VARCHAR},'%')) as z
     LEFT JOIN project as p on p.activity_id = z.id
   </select>
 
