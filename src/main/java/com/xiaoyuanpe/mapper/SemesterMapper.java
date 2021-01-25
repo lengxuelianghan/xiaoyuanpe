@@ -55,4 +55,5 @@ public interface SemesterMapper {
     int insertBatch(List<Semester> list);
 
     List<SemesterEntry> selectBySchool(@Param("schoolId") Integer schoolId, @Param("term") Integer term);
+    List<SemesterEntry> selectByClass(@Param("classId") Integer classId, @Param("term") Integer term);
 }

@@ -486,59 +486,9 @@ public class SignInController {
         ScorePerWeek game = new ScorePerWeek("比赛",0.0f);
         ScorePerWeek sport = new ScorePerWeek("运动",0.0f);
         try {
-            System.out.println("失败在这");
             Integer n1=this.signInService.searchActivityOneWeekActivity(student.getId(), 0);
-            System.out.println("失败在这1");
             Integer n2=this.signInService.searchActivityOneWeekActivity(student.getId(), 1);
-            System.out.println("失败在这2");
             Integer n3=this.signInService.searchActivityOneWeekSport(student.getId());
-            System.out.println("失败在这3");
-//            List<SinglePeopleInfo> singlePeopleInfos = new ArrayList<>();
-//            List<Signin> signins = this.signInService.findSigninAll();
-//            resultBean.setData("s俄式是");
-//            for (Signin signin: signins){
-//                if (this.studentService.findStudentById(signin.getStudentId()).getClassesId()==student.getClassesId()){
-//                    Date endTime = signin.getSignoutTime();
-//                    Date date = new Date();
-//                    if (signin.getStudentId()==student.getId()&&signin.getFlag()==2&&endTime.getYear()==date.getYear()
-//                            &&endTime.getMonth()==date.getMonth()&&date.getDay()-endTime.getDay()<7){
-//                        SinglePeopleInfo singlePeopleInfo = new SinglePeopleInfo();
-//                        int dataLen = (int) (signin.getSignoutTime().getTime() - signin.getSignTime().getTime())/(1000 * 60);
-//                        singlePeopleInfo.setTimeLen(dataLen);
-//                        singlePeopleInfo.setStartTime(signin.getSignTime());
-//                        singlePeopleInfo.setEndTime(signin.getSignoutTime());
-//                        singlePeopleInfo.setScore(dataLen * 0.5f);
-//                        singlePeopleInfo.setClasz(this.classesService.findClassesById(student.getClassesId()).getClassName());
-//                        if (signin.getActivityId()!=null) {
-//                            if (this.activityService.findActivityById(signin.getActivityId()).getActivityClass()==0){
-//                                singlePeopleInfo.setClasz("活动");
-//                                n1+=dataLen * 0.5f;
-//                            }else {
-//                                singlePeopleInfo.setClasz("运动");
-//                                n2+=dataLen * 0.5f;
-//                            }
-//                            singlePeopleInfo.setActivityOrSportName(this.activityService.findActivityById(signin.getActivityId()).getActivityName());
-//                        }
-//                        else if(signin.getSportId()!=null) {
-//                            singlePeopleInfo.setClasz("运动");
-//                            singlePeopleInfo.setActivityOrSportName(this.sportService.findSportsById(signin.getSportId()).getName());
-//                        }
-//                        singlePeopleInfos.add(singlePeopleInfo);
-//
-//                        resultBean.setTotal(dataLen);
-//                        if (signin.getActivityId()!=null){
-//                            if (this.activityService.findActivityById(signin.getActivityId()).getActivityClass()==0){
-//                                n1+=dataLen * 0.5f;
-//                            }else {
-//                                n2+=dataLen * 0.5f;
-//                            }
-//                        }
-//                        else if (signin.getSportId()!=null){
-//                            n3+=dataLen * 0.5f;
-//                        }
-//                    }
-//                }
-//            }
             List<ScorePerWeek> scorePerWeeks = new ArrayList<>();
             activity.setScore(n1==null?0f:n1*0.5f);
             game.setScore(n2==null?0f:n2*0.5f);

@@ -320,4 +320,13 @@
     limit 0, 10
   </select>
 
+  <select id="selectByClass" resultMap="BaseResultMapEntry">
+    select semester.id as id, college.college_name as college_id, semester.score as score, student.student_name as name
+    from semester, student, college
+    where semester.classes_id = #{classId,jdbcType=INTEGER} and semester.term = #{term,jdbcType=INTEGER}
+    and semester.college_id = college.id and semester.sudent_id = student.id
+    order by score desc
+    limit 0, 10
+  </select>
+
 </mapper>

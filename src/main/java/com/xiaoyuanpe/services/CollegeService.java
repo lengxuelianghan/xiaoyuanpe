@@ -7,7 +7,7 @@ import com.xiaoyuanpe.pojo.Page;
 import java.util.List;
 
 public interface CollegeService {
-    void addCollege(College college);
+    String addCollege(College college);
 
     PageInfo<College> findCollegeAll(Page page, Integer id);
 

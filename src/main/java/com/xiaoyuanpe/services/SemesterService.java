@@ -31,4 +31,6 @@ public interface SemesterService {
 
     List<SemesterEntry> selectBySchool(Integer schoolId, Integer term);
 
+    List<SemesterEntry> selectByClass(Integer classId, Integer term);
+
 }

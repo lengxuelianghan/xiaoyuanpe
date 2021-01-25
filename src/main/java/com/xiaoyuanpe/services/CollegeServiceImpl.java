@@ -9,6 +9,7 @@ import com.xiaoyuanpe.pojo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,9 +17,25 @@ public class CollegeServiceImpl implements CollegeService {
     @Autowired
     private CollegeMapper collegeMapper;
 
+    private List<String> checkCollege(Integer id){
+        List<College> colleges = this.collegeMapper.selectBySchool(id);
+        List<String> collegeNames = new ArrayList<>();
+        for (College college:colleges){
+            collegeNames.add(college.getCollegeName());
+        }
+        return collegeNames;
+    }
+
     @Override
-    public void addCollege(College college) {
-        this.collegeMapper.insert(college);
+    public String addCollege(College college) {
+        List<String> stringList = checkCollege(college.getSchoolId());
+        if (!stringList.contains(college.getCollegeName())) {
+            this.collegeMapper.insert(college);
+            return "插入成功";
+        }
+        else {
+            return "学院名重复";
+        }
     }
 
     @Override

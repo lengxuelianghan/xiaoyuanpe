@@ -32,8 +32,9 @@ public class CollegeController {
         if (HasRole.hasOneRole(booleans)) {
             try {
                 college.setSchoolId(user.getSchoolId());
-                this.collegeService.addCollege(college);
+                String s = this.collegeService.addCollege(college);
                 resultBean.setCode(0);
+                resultBean.setData(s);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 resultBean.setCode(1);

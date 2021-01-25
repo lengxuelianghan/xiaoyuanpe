@@ -25,7 +25,7 @@ public class SemesterController {
     private StudentService studentService;
     @Autowired
     private CollegeService collegeService;
-
+    //按学校排名
     @RequestMapping("/scoreBySchool")
     public ResultBean getScoreBySchool(HttpSession session){
         User user = (User) session.getAttribute("user");
@@ -34,35 +34,12 @@ public class SemesterController {
         Student s  =this.studentService.findStudentByNumber(user.getUserNumber());
         try {
             List<SemesterEntry> semesterEntries = this.semesterService.selectBySchool(schoolId,s.getTerm());
-//            List<Semester> semesters = this.semesterService.findSemesterAll();
-//            for (Semester semester: semesters){
-//                Student s  =this.studentService.findStudentById(semester.getSudentId());
-//                if (s.getTerm() == semester.getTerm()
-//                        &&semester.getSchoolId() == schoolId && s!=null){
-//                    SemesterEntry semesterEntry = new SemesterEntry();
-//                    semesterEntry.setId(semester.getId());
-//                    semesterEntry.setName(s.getStudentName());
-//                    College collegeById = collegeService.findCollegeById(semester.getCollegeId());
-//                    semesterEntry.setCollegeId(collegeById==null?"无":collegeById.getCollegeName());
-//                    semesterEntry.setScore(semester.getScore());
-//                    semesterEntries.add(semesterEntry);
-//                }
-//            }
-//            resultBean.setData(3121);
-//            semesterEntries.sort(new Comparator<SemesterEntry>() {
-//                @Override
-//                public int compare(SemesterEntry o1, SemesterEntry o2) {
-//                    return o2.getScore().compareTo(o1.getScore());
-//                }
-//            });
-//            resultBean.setData(3122);
             resultBean.setData(semesterEntries);
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setMsg("查询失败"+e.getMessage());
             resultBean.setCode(1);
         }
-
         return resultBean;
     }
     @RequestMapping("/scoreByClass")

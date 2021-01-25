@@ -74,4 +74,9 @@ public class SemesterServiceImpl implements SemesterService {
     public List<SemesterEntry> selectBySchool(Integer schoolId, Integer term) {
         return this.semesterMapper.selectBySchool(schoolId, term);
     }
+
+    @Override
+    public List<SemesterEntry> selectByClass(Integer classId, Integer term) {
+        return null;
+    }
 }
