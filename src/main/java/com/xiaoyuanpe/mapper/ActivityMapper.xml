@@ -26,6 +26,33 @@
     <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="review_time" jdbcType="TIMESTAMP" property="reviewTime" />
   </resultMap>
+
+  <resultMap id="BaseResultMapEntry" type="com.xiaoyuanpe.pojo.ActivityEntry">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_content" jdbcType="VARCHAR" property="activityContent" />
+    <result column="image_path" jdbcType="VARCHAR" property="imagePath" />
+    <result column="publisher_id" jdbcType="VARCHAR" property="publisherId" />
+    <result column="publish_data" jdbcType="TIMESTAMP" property="publishData" />
+    <result column="school_id" jdbcType="VARCHAR" property="schoolId" />
+    <result column="college_id" jdbcType="VARCHAR" property="collegeId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="activity_area" jdbcType="VARCHAR" property="activityArea" />
+    <result column="registration_closing_time" jdbcType="TIMESTAMP" property="registrationClosingTime" />
+    <result column="registration_start_time" jdbcType="TIMESTAMP" property="registrationStartTime" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="cost_description" jdbcType="VARCHAR" property="costDescription" />
+    <result column="cost" jdbcType="VARCHAR" property="cost" />
+    <result column="college_list" jdbcType="VARCHAR" property="collegeList" />
+    <result column="people_num" jdbcType="INTEGER" property="peopleNum" />
+    <result column="activity_class" jdbcType="INTEGER" property="activityClass" />
+    <result column="sign_num" jdbcType="INTEGER" property="signNum" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="review_time" jdbcType="TIMESTAMP" property="reviewTime" />
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -110,6 +137,22 @@
     from activity
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectActivityAll" parameterType="java.lang.Integer" resultMap="BaseResultMapEntry">
+    select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
+    u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
+    a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
+    a.registration_closing_time as registration_closing_time, a.registration_start_time as registration_start_time,
+    a.contact_phone as contact_phone,a.cost_description as cost_description,a.cost as cost,a.college_list as college_list,
+    a.people_num as people_num,a.activity_class as activity_class,a.sign_num as sign_num, a.contact as contact,
+    a.review_time as review_time
+    from activity as a, school as s,college as c,user as u
+    where a.school_id = #{schoolId,jdbcType=INTEGER} and a.publisher_id=u.id and s.id = a.school_id and
+    a.college_id = c.id
+  </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from activity
     where id = #{id,jdbcType=INTEGER}

@@ -1,5 +1,7 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.ActivityMapper;
 import com.xiaoyuanpe.mapper.StudentMapper;
 import com.xiaoyuanpe.pojo.*;
@@ -90,6 +92,13 @@ public class ActivityServiceImpl implements ActivityService {
             }
         }
         return activities;
+    }
+
+    @Override
+    public PageInfo<ActivityEntry> findActivityAll(Page page, Integer schoolId) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAll(schoolId));
+        return studentInfoPage;
     }
 
 }

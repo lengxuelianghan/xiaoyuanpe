@@ -1,6 +1,9 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.Activity;
+import com.xiaoyuanpe.pojo.ActivityEntry;
+import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.units.Pager;
 
 import java.util.List;
@@ -22,5 +25,7 @@ public interface ActivityService {
     List<Activity>  findActivityAllListAfterDate();
 
     List<Activity>  findActivityByUserId(Integer userId);
+
+    PageInfo<ActivityEntry> findActivityAll(Page page, Integer schoolId);
 
 }

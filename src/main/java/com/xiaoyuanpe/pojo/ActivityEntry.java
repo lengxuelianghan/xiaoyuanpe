@@ -19,15 +19,13 @@ public class ActivityEntry {
 
     private String schoolId;
 
-    private Integer collegeId;
+    private String collegeId;
 
     private Date startTime;
 
     private Date endTime;
 
     private Integer status;
-
-    private String college;
 
     private Date registrationClosingTime;
 
@@ -124,11 +122,11 @@ public class ActivityEntry {
         this.schoolId = schoolId;
     }
 
-    public Integer getCollegeId() {
+    public String getCollegeId() {
         return collegeId;
     }
 
-    public void setCollegeId(Integer collegeId) {
+    public void setCollegeId(String collegeId) {
         this.collegeId = collegeId;
     }
 
@@ -154,14 +152,6 @@ public class ActivityEntry {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getCollege() {
-        return college;
-    }
-
-    public void setCollege(String college) {
-        this.college = college;
     }
 
     public Date getRegistrationClosingTime() {

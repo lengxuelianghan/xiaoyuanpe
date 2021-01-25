@@ -363,11 +363,9 @@ public class ActivityController {
         ActivityEntry activityEntry = new ActivityEntry();
         activityEntry.setId(activity.getId());
         activityEntry.setActivityName(activity.getActivityName());
-        User user = this.userService.findUsersById(activity.getPublisherId());
         activityEntry.setPublisherId(this.userService.findUsersById(activity.getPublisherId()).getUsername());
         activityEntry.setActivityContent(activity.getActivityContent() == null ? "" : activity.getActivityContent());
-        activityEntry.setCollege(this.collegeService.findCollegeById(activity.getCollegeId()).getCollegeName());
-        activityEntry.setCollegeId(activity.getCollegeId() == null ? 0 : activity.getCollegeId());
+        activityEntry.setCollegeId(this.collegeService.findCollegeById(activity.getCollegeId()).getCollegeName());
         activityEntry.setCollegeList(activity.getCollegeList() == null ? "" : activity.getCollegeList());
         activityEntry.setContactPhone(activity.getContactPhone() == null ? "" : activity.getContactPhone());
         activityEntry.setEndTime(activity.getEndTime() == null ? new Date() : activity.getEndTime());
@@ -377,7 +375,6 @@ public class ActivityController {
         activityEntry.setRegistrationClosingTime(activity.getRegistrationClosingTime() == null ? new Date() : activity.getRegistrationClosingTime());
         activityEntry.setRegistrationStartTime(activity.getRegistrationStartTime() == null ? new Date() : activity.getRegistrationStartTime());
         activityEntry.setSchoolId(activity.getSchoolId() == null ? "" : this.schoolService.findSchoolById(activity.getSchoolId()).getSchoolName());
-        //System.out.println(activityEntry.getActivityName() + activity.getActivityName());
         activityEntry.setStartTime(activity.getStartTime() == null ? new Date() : activity.getStartTime());
         activityEntry.setStatus(activity.getStatus() == null ? 0 : activity.getStatus());
         activityEntry.setSignNum(activity.getSignNum()==null?0:activity.getSignNum());
@@ -395,20 +392,19 @@ public class ActivityController {
         return activityEntry;
     }
 
-    @GetMapping("/queryActivityListAll")
-    public ResultBean queryActivityListAll(HttpSession session){
+    @PostMapping("/queryActivityListAll")
+    public ResultBean queryActivityListAll(@RequestBody Page page, HttpSession session){
         User userSession = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-            List<Activity> activityList = this.activityService.findActivityAllList();
-            List<ActivityEntry> activityEntries = new ArrayList<>();
-            for (Activity activity: activityList){
-                if (activity.getSchoolId()==userSession.getSchoolId()) {
-
-                    activityEntries.add(this.toActivity(activity));
-                }
-            }
-            resultBean.setData(activityEntries);
+//            List<Activity> activityList = this.activityService.findActivityAllList();
+//            List<ActivityEntry> activityEntries = new ArrayList<>();
+//            for (Activity activity: activityList){
+//                if (activity.getSchoolId()==userSession.getSchoolId()) {
+//                    activityEntries.add(this.toActivity(activity));
+//                }
+//            }
+            resultBean.setData(this.activityService.findActivityAll(page,userSession.getSchoolId()));
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
