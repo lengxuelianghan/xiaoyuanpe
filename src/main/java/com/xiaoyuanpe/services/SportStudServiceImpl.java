@@ -43,4 +43,9 @@ public class SportStudServiceImpl implements SportStudService {
     public SportStud findSportStudByStudentId(Integer id) {
         return null;
     }
+
+    @Override
+    public void DeleteSportStud(Integer sportId, Integer studentId) {
+
+    }
 }

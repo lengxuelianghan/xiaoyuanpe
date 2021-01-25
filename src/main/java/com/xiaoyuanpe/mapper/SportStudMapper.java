@@ -29,4 +29,6 @@ public interface SportStudMapper {
     int updateByPrimaryKey(SportStud record);
 
     SportStud findSportStudByStudentId(Integer id);
+
+    void deleteSportStud(@Param("sportId") Integer sportId, @Param("studentId") Integer studentId);
 }

@@ -100,6 +100,12 @@
     delete from sport_stud
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteSportStud">
+    delete from sport_stud
+    where sport_id = #{sportId,jdbcType=INTEGER} and student_id = #{studentId,jdbcType=INTEGER}
+  </delete>
+
   <delete id="deleteByExample" parameterType="com.xiaoyuanpe.pojo.SportStudExample">
     delete from sport_stud
     <if test="_parameter != null">

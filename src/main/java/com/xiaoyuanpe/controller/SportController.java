@@ -127,4 +127,30 @@ public class SportController {
         }
         return resultBean;
     }
+
+    //指定早操签到员
+    @RequestMapping("/cancelChecker/{sportId}/{studentId}")
+    public ResultBean cancelChecker(@PathVariable Integer sportId,@PathVariable Integer studentId){
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("teacher","classmanager"));
+        ResultBean resultBean = new ResultBean();
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                User rolesByUsername = this.userService.findUsersByStudentNum(this.studentService.findStudentById(studentId).getStudentNumber());
+                if (rolesByUsername.getIdentity().equals("签到员")) {
+                    rolesByUsername.setIdentity("学生");
+                    this.userService.ModifyUser(rolesByUsername);
+                    this.sportStudService.DeleteSportStud(sportId, studentId);
+                }
+                else {
+                    resultBean.setMsg("不是签到员，设置失败");
+                    resultBean.setCode(2);
+                }
+            }catch (Exception e){
+                resultBean.setMsg("设置失败"+e.getMessage());
+                resultBean.setCode(1);
+            }
+        }
+        return resultBean;
+    }
 }

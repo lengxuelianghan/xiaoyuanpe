@@ -17,4 +17,6 @@ public interface SportStudService {
 
     SportStud findSportStudByStudentId(Integer id);
 
+    void DeleteSportStud(Integer sportId, Integer studentId);
+
 }
