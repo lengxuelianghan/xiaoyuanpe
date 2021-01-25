@@ -30,4 +30,8 @@ public interface ActivityMapper {
     int updateByPrimaryKey(Activity record);
 
     List<ActivityEntry> selectActivityAll(Integer schoolId);
+
+    List<ActivityEntry> selectActivityAllWithSomething(@Param("schoolId") Integer schoolId, @Param("columnName")String columnName, @Param("searchContent")Integer searchContent);
+
+    List<ActivityEntry> selectActivityAllSignIn(Integer schoolId);
 }

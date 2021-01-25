@@ -51,6 +51,21 @@
     <result column="sign_num" jdbcType="INTEGER" property="signNum" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="review_time" jdbcType="TIMESTAMP" property="reviewTime" />
+<!--    <collection property="projectList" javaType="list" ofType="com.xiaoyuanpe.pojo.Project">-->
+<!--      <id column="id" jdbcType="INTEGER" property="id" />-->
+<!--      <result column="project_name" jdbcType="VARCHAR" property="projectName" />-->
+<!--      <result column="team" jdbcType="BIT" property="team" />-->
+<!--      <result column="maximum" jdbcType="INTEGER" property="maximum" />-->
+<!--      <result column="integral_set" jdbcType="VARCHAR" property="integralSet" />-->
+<!--      <result column="signing_condition" jdbcType="VARCHAR" property="signingCondition" />-->
+<!--      <result column="venue" jdbcType="VARCHAR" property="venue" />-->
+<!--      <result column="entry_fee" jdbcType="INTEGER" property="entryFee" />-->
+<!--      <result column="judge" jdbcType="TINYINT" property="judge" />-->
+<!--      <result column="referee_conditions" jdbcType="VARCHAR" property="refereeConditions" />-->
+<!--      <result column="activity_id" jdbcType="INTEGER" property="activityId" />-->
+<!--      <result column="team_people" jdbcType="INTEGER" property="teamPeople" />-->
+<!--      <result column="minmum" jdbcType="INTEGER" property="minmum" />-->
+<!--    </collection>-->
   </resultMap>
 
   <sql id="Example_Where_Clause">
@@ -151,7 +166,32 @@
     a.college_id = c.id
   </select>
 
+  <select id="selectActivityAllWithSomething" resultMap="BaseResultMapEntry">
+    select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
+    u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
+    a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
+    a.registration_closing_time as registration_closing_time, a.registration_start_time as registration_start_time,
+    a.contact_phone as contact_phone,a.cost_description as cost_description,a.cost as cost,a.college_list as college_list,
+    a.people_num as people_num,a.activity_class as activity_class,a.sign_num as sign_num, a.contact as contact,
+    a.review_time as review_time
+    from activity as a, school as s,college as c,user as u
+    where a.school_id = #{schoolId,jdbcType=INTEGER} and a.publisher_id=u.id and s.id = a.school_id and
+    a.college_id = c.id and activity.${columnName} LIKE concat('%',#{searchContent, jdbcType=VARCHAR},'%')
+  </select>
 
+  <select id="selectActivityAllSignIn" parameterType="java.lang.Integer" resultMap="BaseResultMapEntry">
+    select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
+    u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
+    a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
+    a.registration_closing_time as registration_closing_time, a.registration_start_time as registration_start_time,
+    a.contact_phone as contact_phone,a.cost_description as cost_description,a.cost as cost,a.college_list as college_list,
+    a.people_num as people_num,a.activity_class as activity_class,a.sign_num as sign_num, a.contact as contact,
+    a.review_time as review_time
+    from activity as a, school as s,college as c,user as u
+    where a.school_id = #{schoolId,jdbcType=INTEGER} and a.publisher_id=u.id and s.id = a.school_id and
+    a.college_id = c.id and timestampdiff(DAY,a.registration_closing_time,current_timestamp()) &lt;= 0
+    and timestampdiff(DAY,a.registration_start_time,current_timestamp()) &gt;= 0 and a.status=2
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from activity

@@ -397,13 +397,6 @@ public class ActivityController {
         User userSession = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-//            List<Activity> activityList = this.activityService.findActivityAllList();
-//            List<ActivityEntry> activityEntries = new ArrayList<>();
-//            for (Activity activity: activityList){
-//                if (activity.getSchoolId()==userSession.getSchoolId()) {
-//                    activityEntries.add(this.toActivity(activity));
-//                }
-//            }
             resultBean.setData(this.activityService.findActivityAll(page,userSession.getSchoolId()));
             resultBean.setCode(0);
         }catch (Exception e){
@@ -414,23 +407,23 @@ public class ActivityController {
         return resultBean;
     }
     //获取可报名活动
-    @GetMapping("/queryActivityListSignIn")
-    public ResultBean queryActivityListSignIn(HttpSession session){
+    @PostMapping("/queryActivityListSignIn")
+    public ResultBean queryActivityListSignIn(@RequestBody Page page, HttpSession session){
         User userSession = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
-            List<Activity> activityList = this.activityService.findActivityAllList();
-            List<ActivityEntry> activityEntries = new ArrayList<>();
-            Date nowDate = new Date();
-            for (Activity activity: activityList){
-                if (activity.getSchoolId()==userSession.getSchoolId() &&
-                        activity.getRegistrationStartTime().compareTo(nowDate)<0
-                        && activity.getRegistrationClosingTime().compareTo(nowDate)>0 && activity.getStatus()==2)
-                {
-                    activityEntries.add(this.toActivity(activity));
-                }
-            }
-            resultBean.setData(activityEntries);
+//            List<Activity> activityList = this.activityService.findActivityAllList();
+//            List<ActivityEntry> activityEntries = new ArrayList<>();
+//            Date nowDate = new Date();
+//            for (Activity activity: activityList){
+//                if (activity.getSchoolId()==userSession.getSchoolId() &&
+//                        activity.getRegistrationStartTime().compareTo(nowDate)<0
+//                        && activity.getRegistrationClosingTime().compareTo(nowDate)>0 && activity.getStatus()==2)
+//                {
+//                    activityEntries.add(this.toActivity(activity));
+//                }
+//            }
+            resultBean.setData(this.activityService.selectActivityAllSignIn(page,userSession.getSchoolId()));
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);

@@ -5,6 +5,7 @@ import com.xiaoyuanpe.pojo.Activity;
 import com.xiaoyuanpe.pojo.ActivityEntry;
 import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.units.Pager;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,4 +29,7 @@ public interface ActivityService {
 
     PageInfo<ActivityEntry> findActivityAll(Page page, Integer schoolId);
 
+    PageInfo<ActivityEntry> selectActivityAllWithSomething(Page page, Integer schoolId, String columnName,Integer searchContent);
+
+    PageInfo<ActivityEntry> selectActivityAllSignIn(Page page, Integer schoolId);
 }

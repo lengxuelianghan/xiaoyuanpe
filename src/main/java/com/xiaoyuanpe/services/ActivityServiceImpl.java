@@ -101,4 +101,18 @@ public class ActivityServiceImpl implements ActivityService {
         return studentInfoPage;
     }
 
+    @Override
+    public PageInfo<ActivityEntry> selectActivityAllWithSomething(Page page, Integer schoolId, String columnName, Integer searchContent) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllWithSomething(schoolId,columnName, searchContent));
+        return studentInfoPage;
+    }
+
+    @Override
+    public PageInfo<ActivityEntry> selectActivityAllSignIn(Page page, Integer schoolId) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllSignIn(schoolId));
+        return studentInfoPage;
+    }
+
 }

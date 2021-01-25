@@ -357,6 +357,7 @@
       <result column="rname" property="roleName"></result>
     </collection>
   </resultMap>
+
   <select id="findRolesByUsername" parameterType="java.lang.String" resultMap="UserMap">
         select u.id uid,u.user_number, r.id, r.role_name rname
         from user u
