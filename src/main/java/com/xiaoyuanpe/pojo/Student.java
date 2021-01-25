@@ -43,10 +43,12 @@ public class Student {
 
     private String phone;
 
+    private String characters;
+
     public Student(Integer id, Integer schoolId, Integer collegeId, Integer classesId, String studentName,
                    String studentNumber, Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber,
                    String nationalCode, String idCard, String address, String schoolName, String collegeName,
-                   String classesName, String classNumber, String phone, String email) {
+                   String classesName, String classNumber, String phone, String email,String characters) {
         this.id = id;
         this.schoolId = schoolId;
         this.collegeId = collegeId;
@@ -67,13 +69,14 @@ public class Student {
         this.classNumber = classNumber;
         this.phone=phone;
         this.email = email;
+        this.characters = characters;
     }
     public Student(){}
 
     public Student(Integer schoolId, Integer collegeId, Integer classesId, String studentName, String studentNumber,
                    Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber, String nationalCode,
                    String idCard, String address, String schoolName, String collegeName, String classesName,
-                   String classNumber,String phone, String email) {
+                   String classNumber,String phone, String email,String characters) {
         this.schoolId = schoolId;
         this.collegeId = collegeId;
         this.classesId = classesId;
@@ -93,6 +96,7 @@ public class Student {
         this.classNumber = classNumber;
         this.phone=phone;
         this.email = email;
+        this.characters = characters;
     }
 
     public Integer getId() {

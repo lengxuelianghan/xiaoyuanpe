@@ -348,24 +348,6 @@ public class SignInController {
                 this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
             try {
                 PageInfo<StudentInfoEntry> studentInfoEntryPageInfo = this.signInService.searchSignInSport(1, student.getCollegeId(), student.getClassesId(), page);
-//                List<Signin> signins = this.signInService.findSigninAll();
-//                for (Signin signin : signins) {
-//                    if (signin.getSportId() != null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
-//                            this.studentService.findStudentById(signin.getStudentId()).getClassesId() == student.getClassesId()) {
-//                        Date date1 = signin.getSignTime();
-//                        //date1 = new Date(date1.getTime()+8*60*60*1000);
-//                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && date1.getDate() == date.getDate()) {
-//                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
-//                            studentInfoEntries.add(this.setStudentInfoEntry(signin));
-//                        }
-//                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && (date.getDate() - date1.getDate() == 1)) {
-//                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
-//                            signin.setFlag(3);
-//                            this.signInService.ModifySignin(signin);
-//                        }
-//
-//                    }
-//                }
                 resultBean.setData(studentInfoEntryPageInfo);
                 resultBean.setCode(0);
             } catch (Exception e) {
