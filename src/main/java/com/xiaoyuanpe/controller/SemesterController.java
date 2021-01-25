@@ -42,31 +42,32 @@ public class SemesterController {
         }
         return resultBean;
     }
+
+    @RequestMapping("/scoreBySchoolOrder")
+    public ResultBean scoreBySchoolOrder(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Integer schoolId = user.getSchoolId();
+        ResultBean resultBean = new ResultBean();
+        Student s  =this.studentService.findStudentByNumber(user.getUserNumber());
+        try {
+            Integer integer = this.semesterService.selectBySchoolOrder(schoolId, s.getTerm(), s.getId());
+            resultBean.setData(integer==null?0:integer);
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setMsg("查询失败"+e.getMessage());
+            resultBean.setCode(1);
+        }
+        return resultBean;
+    }
+
+
     @RequestMapping("/scoreByClass")
     public ResultBean classScore(HttpSession session){
         User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-        List<SemesterEntry> semesterEntries = new ArrayList<>();
         try {
-            List<Semester> semesters = this.semesterService.findSemesterAll();
-            for (Semester semester: semesters){
-                Student s  =this.studentService.findStudentById(semester.getSudentId());
-                if (s.getTerm() == semester.getTerm()&&student.getClassesId()==semester.getClassesId()){
-                    SemesterEntry semesterEntry = new SemesterEntry();
-                    semesterEntry.setId(semester.getId());
-                    semesterEntry.setName(s.getStudentName());
-                    semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
-                    semesterEntry.setScore(semester.getScore());
-                    semesterEntries.add(semesterEntry);
-                }
-            }
-            semesterEntries.sort(new Comparator<SemesterEntry>() {
-                @Override
-                public int compare(SemesterEntry o1, SemesterEntry o2) {
-                    return o2.getScore().compareTo(o1.getScore());
-                }
-            });
+            List<SemesterEntry> semesterEntries =this.semesterService.selectByClass(student.getClassesId(), student.getTerm());
             resultBean.setData(semesterEntries);
             resultBean.setCode(0);
 
@@ -76,6 +77,9 @@ public class SemesterController {
         }
         return resultBean;
     }
+
+
+
     @RequestMapping("/singleScore")
     public ResultBean singleScore(HttpSession session){
         User user = (User) session.getAttribute("user");

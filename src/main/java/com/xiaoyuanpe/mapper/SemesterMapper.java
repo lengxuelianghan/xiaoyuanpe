@@ -56,4 +56,6 @@ public interface SemesterMapper {
 
     List<SemesterEntry> selectBySchool(@Param("schoolId") Integer schoolId, @Param("term") Integer term);
     List<SemesterEntry> selectByClass(@Param("classId") Integer classId, @Param("term") Integer term);
+
+    Integer selectBySchoolOrder (@Param("schoolId") Integer schoolId, @Param("term") Integer term, @Param("studentId") Integer studentId);
 }

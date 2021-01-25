@@ -3,6 +3,8 @@ package com.xiaoyuanpe.mapper;
 import com.xiaoyuanpe.pojo.Signin;
 import com.xiaoyuanpe.pojo.SigninExample;
 import java.util.List;
+
+import com.xiaoyuanpe.pojo.StudentInfoEntry;
 import org.apache.ibatis.annotations.Param;
 
 public interface SigninMapper {
@@ -30,4 +32,6 @@ public interface SigninMapper {
 
     Integer searchActivityOneWeekActivity(@Param("studentId")Integer studentId, @Param("clazz")Integer clazz);
     Integer searchActivityOneWeekSport(Integer studentId);
+
+    List<StudentInfoEntry> searchSignInSport(@Param("sportId") Integer sportId,@Param("collegeId")Integer collegeId, @Param("classId")Integer classId);
 }

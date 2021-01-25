@@ -77,6 +77,11 @@ public class SemesterServiceImpl implements SemesterService {
 
     @Override
     public List<SemesterEntry> selectByClass(Integer classId, Integer term) {
-        return null;
+        return this.semesterMapper.selectByClass(classId,term);
+    }
+
+    @Override
+    public Integer selectBySchoolOrder(Integer schoolId, Integer term, Integer studentId) {
+        return this.semesterMapper.selectBySchoolOrder(schoolId,term,studentId);
     }
 }

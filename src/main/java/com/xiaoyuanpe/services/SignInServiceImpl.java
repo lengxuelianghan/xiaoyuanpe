@@ -2,10 +2,7 @@ package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.mapper.SigninMapper;
 import com.xiaoyuanpe.mapper.StudentMapper;
-import com.xiaoyuanpe.pojo.Signin;
-import com.xiaoyuanpe.pojo.SigninExample;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.StudentExample;
+import com.xiaoyuanpe.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -59,6 +56,11 @@ public class SignInServiceImpl implements SignInService {
     @Override
     public Integer searchActivityOneWeekSport(Integer studentId) {
         return this.signinMapper.searchActivityOneWeekSport(studentId);
+    }
+
+    @Override
+    public List<StudentInfoEntry> searchSignInSport(Integer sportId, Integer collegeId, Integer classId) {
+        return this.signinMapper.searchSignInSport(sportId,collegeId,classId);
     }
 
 }

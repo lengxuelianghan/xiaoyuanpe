@@ -320,6 +320,17 @@
     limit 0, 10
   </select>
 
+  <select id="selectBySchoolOrder" resultType="java.lang.Integer">
+    select u.rowNo
+    from(
+    select student.id as id,(@rowNum:=@rowNum+1) as rowNo
+    from semester, student, college
+    (select (@rowNum :=0) ) b
+    where semester.school_id = #{schoolId,jdbcType=INTEGER} and semester.term = #{term,jdbcType=INTEGER}
+    and semester.college_id = college.id and semester.sudent_id = student.id
+    order by score desc) as u where u.id = #{studentId,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByClass" resultMap="BaseResultMapEntry">
     select semester.id as id, college.college_name as college_id, semester.score as score, student.student_name as name
     from semester, student, college

@@ -1,6 +1,8 @@
 package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.pojo.Signin;
+import com.xiaoyuanpe.pojo.StudentInfoEntry;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,4 +22,7 @@ public interface SignInService {
     Integer searchActivityOneWeekActivity(Integer studentId, Integer clazz);
 
     Integer searchActivityOneWeekSport(Integer studentId);
+
+    List<StudentInfoEntry> searchSignInSport(Integer sportId, Integer collegeId, Integer classId);
+
 }

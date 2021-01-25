@@ -345,26 +345,27 @@ public class SignInController {
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)||
                 this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
-            List<StudentInfoEntry> studentInfoEntries = new ArrayList<>();
             try {
-                List<Signin> signins = this.signInService.findSigninAll();
-                for (Signin signin : signins) {
-                    if (signin.getSportId() != null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
-                            this.studentService.findStudentById(signin.getStudentId()).getClassesId() == student.getClassesId()) {
-                        Date date1 = signin.getSignTime();
-                        //date1 = new Date(date1.getTime()+8*60*60*1000);
-                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && date1.getDate() == date.getDate()) {
-                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
-                            studentInfoEntries.add(this.setStudentInfoEntry(signin));
-                        }
-                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && (date.getDate() - date1.getDate() == 1)) {
-                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
-                            signin.setFlag(3);
-                            this.signInService.ModifySignin(signin);
-                        }
-
-                    }
-                }
+                List<StudentInfoEntry> studentInfoEntries =
+                        this.signInService.searchSignInSport(1,student.getCollegeId(), student.getClassesId());
+//                List<Signin> signins = this.signInService.findSigninAll();
+//                for (Signin signin : signins) {
+//                    if (signin.getSportId() != null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
+//                            this.studentService.findStudentById(signin.getStudentId()).getClassesId() == student.getClassesId()) {
+//                        Date date1 = signin.getSignTime();
+//                        //date1 = new Date(date1.getTime()+8*60*60*1000);
+//                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && date1.getDate() == date.getDate()) {
+//                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
+//                            studentInfoEntries.add(this.setStudentInfoEntry(signin));
+//                        }
+//                        if (date1.getYear() == date.getYear() && date1.getMonth() == date.getMonth() && (date.getDate() - date1.getDate() == 1)) {
+//                            //resultBean.setMsg(date1.getYear()+"-"+date1.getMonth()+"-"+date1.getDate()+",,,"+date.getYear()+"-"+date.getMonth()+"-"+date.getDate());
+//                            signin.setFlag(3);
+//                            this.signInService.ModifySignin(signin);
+//                        }
+//
+//                    }
+//                }
                 resultBean.setData(studentInfoEntries);
                 resultBean.setCode(0);
             } catch (Exception e) {
@@ -458,7 +459,6 @@ public class SignInController {
                     Semester semester = this.semesterService.findSemesterByIds(student.getSchoolId(),student.getCollegeId(),
                             student.getClassesId(),student.getId(), student.getTerm());
                     if (semester!=null) {
-                        //resultBean.setMsg(semester.getExerciseTime()+","+semester.getClassesId());
                         int score = semester.getExerciseTime();
                         semester.setExerciseTime(score + dataLen);
                         int s = semester.getScore() + (int) (dataLen * 0.5);
