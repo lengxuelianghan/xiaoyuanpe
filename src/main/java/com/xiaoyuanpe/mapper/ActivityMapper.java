@@ -31,7 +31,7 @@ public interface ActivityMapper {
 
     List<ActivityEntry> selectActivityAll(Integer schoolId);
 
-    List<ActivityEntry> selectActivityAllWithSomething(@Param("schoolId") Integer schoolId, @Param("columnName")String columnName, @Param("searchContent")Integer searchContent);
+    List<ActivityEntry> selectActivityAllWithSomething(@Param("schoolId") Integer schoolId, @Param("columnName")String columnName, @Param("searchContent")String searchContent);
 
     List<ActivityEntry> selectActivityAllSignIn(Integer schoolId);
 }

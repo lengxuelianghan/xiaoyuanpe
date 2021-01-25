@@ -29,7 +29,7 @@ public interface ActivityService {
 
     PageInfo<ActivityEntry> findActivityAll(Page page, Integer schoolId);
 
-    PageInfo<ActivityEntry> selectActivityAllWithSomething(Page page, Integer schoolId, String columnName,Integer searchContent);
+    PageInfo<ActivityEntry> selectActivityAllWithSomething(Page page, Integer schoolId, String columnName,String searchContent);
 
     PageInfo<ActivityEntry> selectActivityAllSignIn(Page page, Integer schoolId);
 }
