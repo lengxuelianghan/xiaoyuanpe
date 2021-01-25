@@ -93,7 +93,7 @@
     select
     <include refid="Base_Column_List" />
     from sport_stud
-    where student_id = #{id,jdbcType=INTEGER}
+    where student_id = #{id,jdbcType=INTEGER} and sport_id = #{sportId,jdbcType=INTEGER}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

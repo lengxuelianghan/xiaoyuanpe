@@ -15,7 +15,7 @@ public interface SportStudService {
 
     List<SportStud>  findSportStudAllList();
 
-    SportStud findSportStudByStudentId(Integer id);
+    SportStud findSportStudByStudentId(Integer id, Integer sportId);
 
     void DeleteSportStud(Integer sportId, Integer studentId);
 

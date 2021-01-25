@@ -132,7 +132,7 @@ public class SportController {
         return resultBean;
     }
 
-    //指定早操签到员
+    //撤销早操签到员
     @RequestMapping("/cancelChecker/{sportId}/{studentId}")
     public ResultBean cancelChecker(@PathVariable Integer sportId,@PathVariable Integer studentId){
         Subject subject = SecurityUtils.getSubject();

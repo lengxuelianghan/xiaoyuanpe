@@ -40,8 +40,8 @@ public class SportStudServiceImpl implements SportStudService {
     }
 
     @Override
-    public SportStud findSportStudByStudentId(Integer id) {
-        return null;
+    public SportStud findSportStudByStudentId(Integer id, Integer sportId) {
+        return this.sportStudMapper.findSportStudByStudentId(id, sportId);
     }
 
     @Override

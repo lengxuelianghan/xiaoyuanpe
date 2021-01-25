@@ -344,7 +344,7 @@ public class SignInController {
         boolean[] booleans = subject.hasRoles(Arrays.asList("classmanager"));
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)||
-                this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
+                this.sportStudService.findSportStudByStudentId(student.getId(), 1).getCharacters().equals("签到员")) {
             try {
                 PageInfo<StudentInfoEntry> studentInfoEntryPageInfo = this.signInService.searchSignInSport(1, student.getCollegeId(), student.getClassesId(), page);
                 resultBean.setData(studentInfoEntryPageInfo);
@@ -369,7 +369,7 @@ public class SignInController {
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("classmanager"));
         if (HasRole.hasOneRole(booleans)||
-                this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
+                this.sportStudService.findSportStudByStudentId(student.getId(),1).getCharacters().equals("签到员")) {
             try {
                 for (Integer id : ids) {
                     Signin signin = this.signInService.findSigninById(id);
@@ -403,7 +403,7 @@ public class SignInController {
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("classmanager"));
         if (HasRole.hasOneRole(booleans)||
-                this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
+                this.sportStudService.findSportStudByStudentId(student.getId(), 1).getCharacters().equals("签到员")) {
             try {
                 List<Signin> signins = this.signInService.findSigninAll();
                 for (Signin signin : signins) {
