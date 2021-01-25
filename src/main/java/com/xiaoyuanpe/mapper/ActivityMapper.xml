@@ -177,7 +177,17 @@
   </select>
 
   <select id="selectActivityAllWithSomething" resultMap="BaseResultMapEntry">
-    select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
+ select z.id as id,z.activity_name as activity_name,z.activity_content as activity_content,z.image_path as image_path,
+    z.publisher_id as publisher_id, z.publish_data as publish_data,z.school_id as school_id,z.college_id as college_id,
+    z.start_time as start_time, z.end_time as end_time,z.status as status,z.activity_area as activity_area,
+    z.registration_closing_time as registration_closing_time, z.registration_start_time as registration_start_time,
+    z.contact_phone as contact_phone,z.cost_description as cost_description,z.cost as cost,z.college_list as college_list,
+    z.people_num as people_num,z.activity_class as activity_class,z.sign_num as sign_num, z.contact as contact,
+    z.review_time as review_time, p.id as pid, p.project_name as project_name, p.team as team, p.maximum as maximum,
+    p.integral_set as integral_set, p.signing_condition as signing_condition, p.venue as venue, p.entry_fee as entry_fee,
+    p.judge as judge, p.referee_conditions as referee_conditions, p.activity_id as activity_id, p.team_people as team_people,
+    p.minmum as minmum from
+    (select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
     u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
     a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
     a.registration_closing_time as registration_closing_time, a.registration_start_time as registration_start_time,
@@ -186,11 +196,22 @@
     a.review_time as review_time
     from activity as a, school as s,college as c,user as u
     where a.school_id = #{schoolId,jdbcType=INTEGER} and a.publisher_id=u.id and s.id = a.school_id and
-    a.college_id = c.id and activity.${columnName} LIKE concat('%',#{searchContent, jdbcType=VARCHAR},'%')
+    a.college_id = c.id and activity.${columnName} LIKE concat('%',#{searchContent, jdbcType=VARCHAR},'%')) as z
+    LEFT JOIN project as p on p.activity_id = z.id
   </select>
 
   <select id="selectActivityAllSignIn" parameterType="java.lang.Integer" resultMap="BaseResultMapEntry">
-    select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
+  select z.id as id,z.activity_name as activity_name,z.activity_content as activity_content,z.image_path as image_path,
+    z.publisher_id as publisher_id, z.publish_data as publish_data,z.school_id as school_id,z.college_id as college_id,
+    z.start_time as start_time, z.end_time as end_time,z.status as status,z.activity_area as activity_area,
+    z.registration_closing_time as registration_closing_time, z.registration_start_time as registration_start_time,
+    z.contact_phone as contact_phone,z.cost_description as cost_description,z.cost as cost,z.college_list as college_list,
+    z.people_num as people_num,z.activity_class as activity_class,z.sign_num as sign_num, z.contact as contact,
+    z.review_time as review_time, p.id as pid, p.project_name as project_name, p.team as team, p.maximum as maximum,
+    p.integral_set as integral_set, p.signing_condition as signing_condition, p.venue as venue, p.entry_fee as entry_fee,
+    p.judge as judge, p.referee_conditions as referee_conditions, p.activity_id as activity_id, p.team_people as team_people,
+    p.minmum as minmum from
+    (select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
     u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
     a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
     a.registration_closing_time as registration_closing_time, a.registration_start_time as registration_start_time,
@@ -200,7 +221,8 @@
     from activity as a, school as s,college as c,user as u
     where a.school_id = #{schoolId,jdbcType=INTEGER} and a.publisher_id=u.id and s.id = a.school_id and
     a.college_id = c.id and timestampdiff(DAY,a.registration_closing_time,current_timestamp()) &lt;= 0
-    and timestampdiff(DAY,a.registration_start_time,current_timestamp()) &gt;= 0 and a.status=2
+    and timestampdiff(DAY,a.registration_start_time,current_timestamp()) &gt;= 0 and a.status=2) as z
+    LEFT JOIN project as p on p.activity_id = z.id
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
