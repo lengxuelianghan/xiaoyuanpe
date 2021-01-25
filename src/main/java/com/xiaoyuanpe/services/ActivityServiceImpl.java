@@ -18,17 +18,18 @@ import java.util.List;
 public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private ActivityMapper activityMapper;
+
     @Override
     public int addActivity(Activity activity) {
         return this.activityMapper.insert(activity);
     }
 
-    @Override
-    public PageInfo<ActivityEntry> findActivityAll(Page page, int schoolId, String columnName,Integer searchContent) {
-        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllWithSomething(schoolId,columnName,searchContent));
-        return studentInfoPage;
-    }
+//    @Override
+//    public PageInfo<ActivityEntry> findActivityAll(Page page, int schoolId, String columnName,Integer searchContent) {
+//        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+//        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllWithSomething(schoolId,columnName,searchContent));
+//        return studentInfoPage;
+//    }
 
     @Override
     public Activity findActivityById(Integer id) {

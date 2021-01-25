@@ -13,7 +13,7 @@ public interface ActivityService {
 
     int addActivity(Activity activity);
 
-    PageInfo<ActivityEntry>  findActivityAll(Page page,int schoolId, String columnName,Integer searchContent);
+//    PageInfo<ActivityEntry>  findActivityAll(Page page,int schoolId, String columnName,Integer searchContent);
 
     Activity findActivityById(Integer id);
 

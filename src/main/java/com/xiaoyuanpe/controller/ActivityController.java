@@ -406,21 +406,21 @@ public class ActivityController {
         }
         return resultBean;
     }
-    //按条件查找
-    @PostMapping("/queryActivityListAll")
-    public ResultBean queryActivityListAll(@RequestBody Page page, String columnName,Integer searchContent, HttpSession session){
-        User userSession = (User) session.getAttribute("user");
-        ResultBean resultBean = new ResultBean();
-        try {
-            resultBean.setData(this.activityService.findActivityAll(page,userSession.getSchoolId(),columnName,searchContent));
-            resultBean.setCode(0);
-        }catch (Exception e){
-            resultBean.setCode(1);
-            resultBean.setMsg(e.getMessage());
-            System.out.println(e.getMessage());
-        }
-        return resultBean;
-    }
+//    //按条件查找
+//    @PostMapping("/queryActivityListAll")
+//    public ResultBean queryActivityListAll(@RequestBody Page page, String columnName,Integer searchContent, HttpSession session){
+//        User userSession = (User) session.getAttribute("user");
+//        ResultBean resultBean = new ResultBean();
+//        try {
+//            resultBean.setData(this.activityService.findActivityAll(page,userSession.getSchoolId(),columnName,searchContent));
+//            resultBean.setCode(0);
+//        }catch (Exception e){
+//            resultBean.setCode(1);
+//            resultBean.setMsg(e.getMessage());
+//            System.out.println(e.getMessage());
+//        }
+//        return resultBean;
+//    }
 
     //获取可报名活动
     @PostMapping("/queryActivityListSignIn")
