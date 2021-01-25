@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.HasRole;
@@ -335,8 +336,8 @@ public class SignInController {
     }
 
     //运动签到，按照班级来
-    @RequestMapping(value = "/getSignInByClass")
-    public ResultBean getSignInByClass(HttpServletRequest httpServletRequest){
+    @RequestMapping(value = "/getSignInByClass", method = RequestMethod.POST)
+    public ResultBean getSignInByClass(@RequestBody Page page, HttpServletRequest httpServletRequest){
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         Subject subject = SecurityUtils.getSubject();
@@ -346,8 +347,7 @@ public class SignInController {
         if (HasRole.hasOneRole(booleans)||
                 this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
             try {
-                List<StudentInfoEntry> studentInfoEntries =
-                        this.signInService.searchSignInSport(1,student.getCollegeId(), student.getClassesId());
+                PageInfo<StudentInfoEntry> studentInfoEntryPageInfo = this.signInService.searchSignInSport(1, student.getCollegeId(), student.getClassesId(), page);
 //                List<Signin> signins = this.signInService.findSigninAll();
 //                for (Signin signin : signins) {
 //                    if (signin.getSportId() != null && signin.getSportId() == 1 && signin.getFlag() <= 2 &&
@@ -366,7 +366,7 @@ public class SignInController {
 //
 //                    }
 //                }
-                resultBean.setData(studentInfoEntries);
+                resultBean.setData(studentInfoEntryPageInfo);
                 resultBean.setCode(0);
             } catch (Exception e) {
                 resultBean.setMsg("失败！");

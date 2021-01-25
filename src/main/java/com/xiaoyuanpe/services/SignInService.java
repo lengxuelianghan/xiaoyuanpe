@@ -1,5 +1,7 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageInfo;
+import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.pojo.Signin;
 import com.xiaoyuanpe.pojo.StudentInfoEntry;
 import org.apache.ibatis.annotations.Param;
@@ -23,6 +25,6 @@ public interface SignInService {
 
     Integer searchActivityOneWeekSport(Integer studentId);
 
-    List<StudentInfoEntry> searchSignInSport(Integer sportId, Integer collegeId, Integer classId);
+    PageInfo<StudentInfoEntry> searchSignInSport(Integer sportId, Integer collegeId, Integer classId, Page page);
 
 }

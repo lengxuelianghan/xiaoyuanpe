@@ -1,5 +1,7 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.SigninMapper;
 import com.xiaoyuanpe.mapper.StudentMapper;
 import com.xiaoyuanpe.pojo.*;
@@ -59,8 +61,10 @@ public class SignInServiceImpl implements SignInService {
     }
 
     @Override
-    public List<StudentInfoEntry> searchSignInSport(Integer sportId, Integer collegeId, Integer classId) {
-        return this.signinMapper.searchSignInSport(sportId,collegeId,classId);
+    public PageInfo<StudentInfoEntry> searchSignInSport(Integer sportId, Integer collegeId, Integer classId, Page page) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<StudentInfoEntry> studentInfoPage = new PageInfo<>(this.signinMapper.searchSignInSport(sportId,collegeId,classId));
+        return studentInfoPage;
     }
 
 }
