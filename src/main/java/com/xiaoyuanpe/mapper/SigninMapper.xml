@@ -17,7 +17,7 @@
     <id column="student_id" jdbcType="INTEGER" property="studentId" />
     <result column="student_name" jdbcType="VARCHAR" property="studentName" />
     <result column="student_number" jdbcType="VARCHAR" property="studentNumber" />
-    <result column="classz" jdbcType="VARCHAR" property="college" />
+    <result column="classz" jdbcType="VARCHAR" property="classz" />
     <result column="college" jdbcType="VARCHAR" property="college" />
     <result column="sign_time" jdbcType="TIMESTAMP" property="signTime" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
