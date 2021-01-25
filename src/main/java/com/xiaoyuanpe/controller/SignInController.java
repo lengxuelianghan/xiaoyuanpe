@@ -447,6 +447,9 @@ public class SignInController {
                         this.signInService.ModifySignin(signin);
                         this.semesterService.ModifySemester(semester);
                     }
+                    else {
+
+                    }
                 }
                 else continue;
             }

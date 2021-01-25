@@ -43,6 +43,8 @@ public interface StudentMapper {
 
     List<Student> selectByClass(Integer id);
 
+    List<Student> selectBySchoolPure(Integer id);
+
     int insertBatch(List<Student> students);
 
     Student selectByNumberAndSchool(@Param("snumber") String snumber, @Param("id") Integer id);

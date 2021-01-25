@@ -69,6 +69,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public PageInfo<Student> findStudentBySchoolPure(Integer id, Page page) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<Student> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchoolPure(id));
+        return studentInfoPage;
+    }
+
+    @Override
     public PageInfo<Student> findStudentBySchool(Integer id, Page page,String columnName, String searchContent) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
         PageInfo<Student> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id,columnName,searchContent));

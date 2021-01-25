@@ -54,7 +54,7 @@ public class StudentController {
                 resultBean.setCode(0);
             }
             else {
-                resultBean.setCode(1);
+                resultBean.setCode(2);
                 resultBean.setMsg("查询失败，已无信息！");
             }
         }catch (Exception e){
@@ -83,7 +83,7 @@ public class StudentController {
                 resultBean.setMsg("学生信息新增失败");
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
@@ -105,7 +105,7 @@ public class StudentController {
                 resultBean.setMsg("学生信息新增失败");
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
@@ -127,7 +127,7 @@ public class StudentController {
                 resultBean.setMsg("学生信息新增失败");
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
@@ -204,7 +204,7 @@ public class StudentController {
                 resultBean.setMsg("学生信息修改失败");
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
@@ -238,7 +238,29 @@ public class StudentController {
                 resultBean.setMsg("学生信息查询失败"+e.getMessage());
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
+            resultBean.setMsg("你没有权限");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/queryStudentInfoBySchool", method = RequestMethod.POST)
+    public ResultBean queryStudentInfoBySchool(@RequestBody Page page, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Subject subject = SecurityUtils.getSubject();
+        boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
+        ResultBean resultBean = new ResultBean();
+        if (HasRole.hasOneRole(booleans)) {
+            try {
+                resultBean.setData(this.studentService.findStudentBySchoolPure(user.getSchoolId(), page));
+                resultBean.setCode(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                resultBean.setCode(1);
+                resultBean.setMsg("学生信息查询失败"+e.getMessage());
+            }
+        }else {
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
@@ -261,7 +283,7 @@ public class StudentController {
                 resultBean.setMsg("学生信息查询失败"+e.getMessage());
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
@@ -284,7 +306,7 @@ public class StudentController {
                 resultBean.setMsg("学生信息查询失败"+e.getMessage());
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
@@ -305,7 +327,7 @@ public class StudentController {
                 resultBean.setMsg("学生删除失败");
             }
         }else {
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你没有权限");
         }
         return resultBean;
