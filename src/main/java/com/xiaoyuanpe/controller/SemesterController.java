@@ -93,7 +93,7 @@ public class SemesterController {
                     break;
                 }
             }
-            if (semester==null) {
+            if (semester!=null) {
                 SemesterEntry semesterEntry = new SemesterEntry();
                 semesterEntry.setId(semester.getId());
                 semesterEntry.setName(student.getStudentName());

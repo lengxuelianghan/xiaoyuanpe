@@ -124,7 +124,7 @@ public class LoginController {
     public ResultBean logout(HttpSession session){
         ResultBean resultBean = new ResultBean();
         if (session.getAttribute("user")==null){
-            resultBean.setCode(1);
+            resultBean.setCode(2);
             resultBean.setMsg("你以经退出登录，操作重复。");
         }
         else {
