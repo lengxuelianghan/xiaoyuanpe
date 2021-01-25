@@ -43,12 +43,12 @@ public class Student {
 
     private String phone;
 
-    private String characters;
+    private String identity;
 
     public Student(Integer id, Integer schoolId, Integer collegeId, Integer classesId, String studentName,
                    String studentNumber, Integer term, String sex, Date startYear, Date birthday, Integer gradeNumber,
                    String nationalCode, String idCard, String address, String schoolName, String collegeName,
-                   String classesName, String classNumber, String phone, String email,String characters) {
+                   String classesName, String classNumber, String phone, String email, String identity) {
         this.id = id;
         this.schoolId = schoolId;
         this.collegeId = collegeId;
@@ -67,9 +67,9 @@ public class Student {
         this.collegeName = collegeName;
         this.classesName = classesName;
         this.classNumber = classNumber;
-        this.phone=phone;
+        this.phone = phone;
         this.email = email;
-        this.characters = characters;
+        this.identity = identity;
     }
     public Student(){}
 
@@ -256,6 +256,14 @@ public class Student {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(String identity) {
+        this.identity = identity;
     }
 
     @Override

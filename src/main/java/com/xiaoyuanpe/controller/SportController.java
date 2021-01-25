@@ -2,8 +2,11 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.SportStud;
 import com.xiaoyuanpe.pojo.Sports;
+import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.services.SportService;
 import com.xiaoyuanpe.services.SportStudService;
+import com.xiaoyuanpe.services.StudentService;
+import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
 import org.apache.shiro.SecurityUtils;
@@ -21,6 +24,10 @@ public class SportController {
     private SportService sportService;
     @Autowired
     private SportStudService sportStudService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private StudentService studentService;
 
     @PostMapping("/addSport")
     public ResultBean addSport(@RequestBody Sports sports){
@@ -99,11 +106,20 @@ public class SportController {
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)) {
             try {
-                SportStud sportStud = new SportStud();
-                sportStud.setStudentId(studentId);
-                sportStud.setSportId(sportId);
-                sportStud.setCharacters("签到员");
-                this.sportStudService.addSportStud(sportStud);
+                User rolesByUsername = this.userService.findRolesByUsername(this.studentService.findStudentById(studentId).getStudentNumber());
+                if (!rolesByUsername.getIdentity().equals("签到员")) {
+                    SportStud sportStud = new SportStud();
+                    sportStud.setStudentId(studentId);
+                    sportStud.setSportId(sportId);
+                    sportStud.setCharacters("签到员");
+                    rolesByUsername.setIdentity("签到员");
+                    this.userService.ModifyUser(rolesByUsername);
+                    this.sportStudService.addSportStud(sportStud);
+                }
+                else {
+                    resultBean.setMsg("已经是签到员，设置失败");
+                    resultBean.setCode(2);
+                }
             }catch (Exception e){
                 resultBean.setMsg("设置失败"+e.getMessage());
                 resultBean.setCode(1);

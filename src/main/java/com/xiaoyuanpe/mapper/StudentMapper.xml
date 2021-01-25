@@ -19,7 +19,7 @@
     <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
     <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
     <result column="classes_name" jdbcType="VARCHAR" property="classesName" />
-    <result column="characters" jdbcType="VARCHAR" property="characters" />
+    <result column="identity" jdbcType="VARCHAR" property="identity" />
   </resultMap>
 
   <sql id="Example_Where_Clause">
@@ -124,10 +124,10 @@
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
     student.address as address, student.term as term, school.school_name as school_name,
-    college.college_name as college_name, classes.class_name as classes_name, sport_stud.characters as characters
-      from student, school, college, classes, sport_stud
+    college.college_name as college_name, classes.class_name as classes_name, user.identity as identity
+      from student, school, college, classes, user
     where student.school_id=#{id, jdbcType=INTEGER} and student.school_id=school.id
-     and student.college_id=college.id and student.classes_id=classes.id and sport_stud.student_id = student.id
+     and student.college_id=college.id and student.classes_id=classes.id and user.user_number=student.student_number
      and student.${columnName} LIKE concat('%',#{searchContent, jdbcType=VARCHAR},'%')
   </select>
 
@@ -137,10 +137,10 @@
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
     student.address as address, student.term as term, school.school_name as school_name,
-    college.college_name as college_name, classes.class_name as classes_name, sport_stud.characters as characters
-      from student, school, college, classes, sport_stud
+    college.college_name as college_name, classes.class_name as classes_name, user.identity as identity
+      from student, school, college, classes,user
     where student.school_id=#{id, jdbcType=INTEGER} and student.school_id=school.id
-     and student.college_id=college.id and student.classes_id=classes.id and sport_stud.student_id = student.id
+     and student.college_id=college.id and student.classes_id=classes.id and user.user_number=student.student_number
      and student.${columnName} LIKE concat('%',#{searchContent, jdbcType=VARCHAR},'%')
   </select>
 
@@ -150,10 +150,10 @@
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
     student.address as address, student.term as term, school.school_name as school_name,
-    college.college_name as college_name, classes.class_name as classes_name, sport_stud.characters as characters
-      from student, school, college, classes, sport_stud
+    college.college_name as college_name, classes.class_name as classes_name, user.identity as identity
+      from student, school, college, classes,user
     where student.college_id=#{id, jdbcType=INTEGER} and student.school_id=school.id
-     and student.college_id=college.id and student.classes_id=classes.id and sport_stud.student_id = student.id
+     and student.college_id=college.id and student.classes_id=classes.id and user.user_number=student.student_number
   </select>
 
   <select id="selectByClass" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -162,10 +162,10 @@
     student.start_year as start_year, student.classes_id as classes_id, student.birthday as birthday,
     student.grade_number as grade_number, student.national_code as national_code, student.id_card as id_card,
     student.address as address, student.term as term, school.school_name as school_name,
-    college.college_name as college_name, classes.class_name as classes_name, sport_stud.characters as characters
-      from student, school, college, classes, sport_stud
+    college.college_name as college_name, classes.class_name as classes_name, user.identity as identity
+      from student, school, college, classes,user
     where student.classes_id=#{id, jdbcType=INTEGER} and student.school_id=school.id
-     and student.college_id=college.id and student.classes_id=classes.id and sport_stud.student_id = student.id
+     and student.college_id=college.id and student.classes_id=classes.id and user.user_number=student.student_number
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from student

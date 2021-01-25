@@ -342,7 +342,6 @@ public class SignInController {
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("classmanager"));
-        Date date = new Date();
         ResultBean resultBean = new ResultBean();
         if (HasRole.hasOneRole(booleans)||
                 this.sportStudService.findSportStudByStudentId(student.getId()).getCharacters().equals("签到员")) {
