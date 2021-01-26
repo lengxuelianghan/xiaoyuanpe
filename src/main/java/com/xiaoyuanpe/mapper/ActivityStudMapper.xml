@@ -102,7 +102,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="selectActivityByOrganizer" parameterType="java.lang.Integer" resultMap="BaseResultMapEntry">
+  <select id="selectActivityByOrganizer" resultMap="BaseResultMapEntry">
     select acs.id as id, a.activity_name as activity_id, s.student_name as student_id, acs.characters as characters,
     a.status as status, s.student_number as student_number, si.flag as sign_status,s.id as student_id_num,
     si.id as sign_id
