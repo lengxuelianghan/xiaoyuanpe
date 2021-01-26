@@ -10,6 +10,7 @@
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="sport_id" jdbcType="INTEGER" property="sportId" />
     <result column="term" jdbcType="INTEGER" property="term" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
 
   <resultMap id="BaseResultMapEntry" type="com.xiaoyuanpe.pojo.StudentInfoEntry">
@@ -128,7 +129,7 @@
     student.student_number as student_number, classes.class_name as classz, college.college_name as college,
     signin.flag as flag, signin.sign_time as sign_time, signin.signout_time as signOut_time
     from signin, college, classes, student
-    where timestampdiff(DAY,signin.sign_time,current_timestamp()) = 0 and signin.flag &lt;= 2 and
+    where timestampdiff(DAY,signin.create_time,current_timestamp()) = 0 and signin.flag &lt;= 2 and
     signin.sport_id = #{sportId,jdbcType=INTEGER} and signin.student_id=student.id
     and college.id = #{collegeId,jdbcType=INTEGER} and classes.id=#{classId,jdbcType=INTEGER}
     and classes.college_id = college.id and student.classes_id = classes.id and student.college_id = college.id

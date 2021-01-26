@@ -19,6 +19,8 @@ public class Signin {
 
     private Integer term;
 
+    private Date createTime;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class Signin {
 
     public void setTerm(Integer term) {
         this.term = term;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

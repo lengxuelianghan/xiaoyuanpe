@@ -36,7 +36,7 @@ public class AutoCreate {
             for (Student student: this.studentService.findStudentAll()){
                 Signin signin1 = new Signin();
                 signin1.setFlag(0);
-                //signin1.setSignTime(new Date());
+                signin1.setCreateTime(new Date());
                 signin1.setStudentId(student.getId());
                 signin1.setSportId(1);
                 this.signInService.addSignin(signin1);
