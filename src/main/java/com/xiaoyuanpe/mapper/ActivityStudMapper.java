@@ -32,4 +32,6 @@ public interface ActivityStudMapper {
     int updateByPrimaryKey(ActivityStud record);
 
     List<ActivityStudEntry> selectActivityByOrganizer(@Param("studentId") Integer studentId);
+
+    List<ActivityStudEntry> selectActivityByPartner(@Param("studentId") Integer studentId);
 }

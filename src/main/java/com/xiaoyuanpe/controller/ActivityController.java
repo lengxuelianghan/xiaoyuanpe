@@ -869,16 +869,6 @@ public class ActivityController {
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
             PageInfo<ActivityStudEntry> activityStudEntryPageInfo = this.activityStudService.selectActivityByOrganizer(page, student.getId());
-//            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-//            for (ActivityStud activityStud: activityStuds){
-//                System.out.println(activityStud.getCharacters()+","+student.getId()+","+activityStud.getStudentId());
-//                if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
-//                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-//                    if (activityStudEntry!=null) {
-//                        activityStudList.add(activityStudEntry);
-//                    }
-//                }
-//            }
             resultBean.setCode(0);
             resultBean.setData(activityStudEntryPageInfo);
         }catch (Exception e){
@@ -888,28 +878,28 @@ public class ActivityController {
         return resultBean;
     }
 
-    @GetMapping("/getActivityByPartner")
-    public ResultBean getActivityByPartner(HttpSession session){
+    @PostMapping("/getActivityByPartner")
+    public ResultBean getActivityByPartner(@RequestBody Page page,HttpSession session){
         User user = (User) session.getAttribute("user");
         System.out.println(user.getUsername());
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-            List<ActivityStudEntry> activityStudList = new ArrayList<>();
-            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-            for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacters().equals("参与者")&&student.getId()==activityStud.getStudentId()){
-                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-                    if (activityStudEntry!=null) {
-                        List<Projectsignin> projectByActivityId =
-                                this.projectSignInService.findProjectByActivityId(activityStud.getActivityId());
-                        if (projectByActivityId!=null){
-                            activityStudEntry.setProjectsignins(projectByActivityId);
-                        }
-                        activityStudList.add(activityStudEntry);
-                    }
-                }
-            }
+            PageInfo<ActivityStudEntry> activityStudList = this.activityStudService.selectActivityByPartner(page,student.getId());
+//            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+//            for (ActivityStud activityStud: activityStuds){
+//                if(activityStud.getCharacters().equals("参与者")&&student.getId()==activityStud.getStudentId()){
+//                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+//                    if (activityStudEntry!=null) {
+//                        List<Projectsignin> projectByActivityId =
+//                                this.projectSignInService.findProjectByActivityId(activityStud.getActivityId());
+//                        if (projectByActivityId!=null){
+//                            activityStudEntry.setProjectsignins(projectByActivityId);
+//                        }
+//                        activityStudList.add(activityStudEntry);
+//                    }
+//                }
+//            }
             resultBean.setCode(0);
             resultBean.setData(activityStudList);
         }catch (Exception e){
