@@ -756,7 +756,7 @@ public class ActivityController {
         return resultBean;
     }
     //根据活动id获取参与者
-    @GetMapping("/getPartner/{aid}")
+    @PostMapping("/getPartner/{aid}")
     public ResultBean getPartner(@RequestBody Page page,@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try {
