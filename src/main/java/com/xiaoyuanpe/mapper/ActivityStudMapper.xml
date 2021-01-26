@@ -107,7 +107,7 @@
     a.status as status, s.student_number as student_number, s.id as student_id_num,
     from activity as a,activity_stud as acs,student as s
     where  acs.student_id= #{studentId,jdbcType=INTEGER} and acs.student_id=s.id and acs.activity_id = a.id
-    and and acs.characters='发起人'
+    and acs.characters='发起人'
 --      and si.activity_id = a.id and si.student_id = acs.student_id
   </select>
 
