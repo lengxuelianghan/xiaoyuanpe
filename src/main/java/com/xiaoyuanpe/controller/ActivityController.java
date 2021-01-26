@@ -4,6 +4,7 @@ import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import com.xiaoyuanpe.units.Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -412,6 +413,7 @@ public class ActivityController {
         User userSession = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
+            columnName = Utils.camelToUnderline(columnName);
             resultBean.setData(this.activityService.selectActivityAllWithSomething(page,userSession.getSchoolId(),columnName,searchContent));
             resultBean.setCode(0);
         }catch (Exception e){
