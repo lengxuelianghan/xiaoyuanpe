@@ -23,5 +23,6 @@ public interface ActivityStudService {
     PageInfo<ActivityStudEntry> selectActivityByOrganizer(Page page, @Param("studentId") Integer studentId);
     PageInfo<ActivityStudEntry> selectActivityByPartner(Page page, @Param("studentId") Integer studentId);
     PageInfo<ActivityStudEntry> selectActivityBySignin(Page page, @Param("studentId") Integer studentId);
+    PageInfo<ActivityStudEntry> selectPartnerByActivity(Page page, @Param("activityId") Integer activityId);
 
 }

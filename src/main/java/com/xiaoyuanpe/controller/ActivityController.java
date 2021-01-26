@@ -719,26 +719,26 @@ public class ActivityController {
     public ResultBean assignation(@PathVariable Integer aid, @PathVariable Integer uid){
         //User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
-        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-        Map<Integer,List<Integer>> map = new HashMap<>();
-        for (ActivityStud activityStud:activityStuds){
-            if (!map.containsKey(activityStud.getActivityId())) {
-                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
-            }
-            else {
-                List<Integer> list = map.get(activityStud.getActivityId());
-                List arrList = new ArrayList(list);
-                arrList.add(activityStud.getStudentId());
-                map.put(activityStud.getActivityId(),arrList);
-            }
-        }
+//        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+//        Map<Integer,List<Integer>> map = new HashMap<>();
+//        for (ActivityStud activityStud:activityStuds){
+//            if (!map.containsKey(activityStud.getActivityId())) {
+//                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+//            }
+//            else {
+//                List<Integer> list = map.get(activityStud.getActivityId());
+//                List arrList = new ArrayList(list);
+//                arrList.add(activityStud.getStudentId());
+//                map.put(activityStud.getActivityId(),arrList);
+//            }
+//        }
 
         try {
             String num = this.userService.findUsersById(uid).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
 
-            if (map.containsKey(aid) && map.get(aid).contains(id)){
-                resultBean.setCode(1);
+            if (this.activityStudService.findByAIdAndSid(id,aid)!=null){
+                resultBean.setCode(2);
                 resultBean.setMsg("已报名参加！");
             }
             else {
@@ -757,19 +757,19 @@ public class ActivityController {
     }
     //根据活动id获取参与者
     @GetMapping("/getPartner/{aid}")
-    public ResultBean getPartner(@PathVariable Integer aid){
+    public ResultBean getPartner(@RequestBody Page page,@PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
         try {
-            List<ActivityStudEntry> activityStudList = new ArrayList<>();
-            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-            for (ActivityStud activityStud: activityStuds){
-                if(activityStud.getCharacters().equals("参与者") && activityStud.getActivityId()==aid){
-                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-                    if (activityStudEntry!=null) {
-                        activityStudList.add(activityStudEntry);
-                    }
-                }
-            }
+            PageInfo<ActivityStudEntry> activityStudList = this.activityStudService.selectPartnerByActivity(page,aid);
+//            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+//            for (ActivityStud activityStud: activityStuds){
+//                if(activityStud.getCharacters().equals("参与者") && activityStud.getActivityId()==aid){
+//                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+//                    if (activityStudEntry!=null) {
+//                        activityStudList.add(activityStudEntry);
+//                    }
+//                }
+//            }
             resultBean.setCode(0);
             resultBean.setData(activityStudList);
         }catch (Exception e){
@@ -902,20 +902,6 @@ public class ActivityController {
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
             PageInfo<ActivityStudEntry> activityStudList = this.activityStudService.selectActivityBySignin(page, student.getId());
-//            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-//            for (ActivityStud activityStud: activityStuds){
-//                if(activityStud.getCharacters().equals("签到员")&&student.getId()==activityStud.getStudentId()) {
-//                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-//                    if (activityStudEntry != null) {
-//                        List<Projectsignin> projectByActivityId =
-//                                this.projectSignInService.findProjectByActivityId(activityStud.getActivityId());
-//                        if (projectByActivityId!=null){
-//                            activityStudEntry.setProjectsignins(projectByActivityId);
-//                        }
-//                        activityStudList.add(activityStudEntry);
-//                    }
-//                }
-//            }
             resultBean.setCode(0);
             resultBean.setData(activityStudList);
         }catch (Exception e){

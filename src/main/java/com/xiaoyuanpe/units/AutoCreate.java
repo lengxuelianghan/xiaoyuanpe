@@ -32,7 +32,6 @@ public class AutoCreate {
     public void addSignIn(){
         try{
             System.out.println("你好");
-            StudentExample studentExample = new StudentExample();
             for (Student student: this.studentService.findStudentAll()){
                 Signin signin1 = new Signin();
                 signin1.setFlag(0);

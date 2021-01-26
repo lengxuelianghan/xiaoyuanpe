@@ -66,4 +66,11 @@ public class ActivityStudServiceImpl implements ActivityStudService {
         PageInfo<ActivityStudEntry> studentInfoPage = new PageInfo<>(this.activityStudMapper.selectActivityBySignin(studentId));
         return studentInfoPage;
     }
+
+    @Override
+    public PageInfo<ActivityStudEntry> selectPartnerByActivity(Page page, Integer activityId) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityStudEntry> studentInfoPage = new PageInfo<>(this.activityStudMapper.selectPartnerByActivity(activityId));
+        return studentInfoPage;
+    }
 }
