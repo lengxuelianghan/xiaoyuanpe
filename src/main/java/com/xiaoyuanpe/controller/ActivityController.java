@@ -868,20 +868,19 @@ public class ActivityController {
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-            List<ActivityStudEntry> activityStudList = new ArrayList<>();
-//            PageInfo<ActivityStudEntry> activityStudEntryPageInfo = this.activityStudService.selectActivityByOrganizer(page, student.getId());
-            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-            for (ActivityStud activityStud: activityStuds){
-                System.out.println(activityStud.getCharacters()+","+student.getId()+","+activityStud.getStudentId());
-                if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
-                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-                    if (activityStudEntry!=null) {
-                        activityStudList.add(activityStudEntry);
-                    }
-                }
-            }
+            PageInfo<ActivityStudEntry> activityStudEntryPageInfo = this.activityStudService.selectActivityByOrganizer(page, student.getId());
+//            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+//            for (ActivityStud activityStud: activityStuds){
+//                System.out.println(activityStud.getCharacters()+","+student.getId()+","+activityStud.getStudentId());
+//                if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
+//                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+//                    if (activityStudEntry!=null) {
+//                        activityStudList.add(activityStudEntry);
+//                    }
+//                }
+//            }
             resultBean.setCode(0);
-            resultBean.setData(activityStudList);
+            resultBean.setData(activityStudEntryPageInfo);
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg(e.getMessage());
