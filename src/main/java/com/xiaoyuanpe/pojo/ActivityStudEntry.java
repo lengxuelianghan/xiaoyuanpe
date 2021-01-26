@@ -12,8 +12,6 @@ public class ActivityStudEntry {
 
     private String characters;
 
-    private Integer SportState;
-
     private String StudentNumber;
 
     private Integer SignStatus;
@@ -25,6 +23,22 @@ public class ActivityStudEntry {
     private Integer status;
 
     private List<Projectsignin> projectsignins;
+
+    public ActivityStudEntry() {
+    }
+
+    public ActivityStudEntry(Integer id, String activityId, String studentId, String characters, String studentNumber, Integer signStatus, Integer studentIDNum, Integer signId, Integer status, List<Projectsignin> projectsignins) {
+        this.id = id;
+        this.activityId = activityId;
+        this.studentId = studentId;
+        this.characters = characters;
+        StudentNumber = studentNumber;
+        SignStatus = signStatus;
+        this.studentIDNum = studentIDNum;
+        this.signId = signId;
+        this.status = status;
+        this.projectsignins = projectsignins;
+    }
 
     public Integer getId() {
         return id;
@@ -58,13 +72,6 @@ public class ActivityStudEntry {
         this.characters = characters;
     }
 
-    public Integer getSportState() {
-        return SportState;
-    }
-
-    public void setSportState(Integer sportState) {
-        SportState = sportState;
-    }
 
     public String getStudentNumber() {
         return StudentNumber;

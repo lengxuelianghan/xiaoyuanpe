@@ -1,6 +1,10 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.ActivityStud;
+import com.xiaoyuanpe.pojo.ActivityStudEntry;
+import com.xiaoyuanpe.pojo.Page;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +20,6 @@ public interface ActivityStudService {
     void DeleteActivityStudList(List<Integer> ids);
 
     List<ActivityStud>  findActivityStudAllList();
+    PageInfo<ActivityStudEntry> selectActivityByOrganizer(Page page, @Param("studentId") Integer studentId);
+
 }

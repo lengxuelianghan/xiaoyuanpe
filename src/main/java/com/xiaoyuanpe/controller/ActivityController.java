@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.HasRole;
@@ -848,7 +849,6 @@ public class ActivityController {
             activityStudEntry.setCharacters(activityStud.getCharacters());
             activityStudEntry.setId(activityStud.getActivityId());
             activityStudEntry.setStudentId(student.getStudentName());
-            activityStudEntry.setSportState(activity.getStatus()==null?0:activity.getStatus());
             activityStudEntry.setStudentNumber(student.getStudentNumber());
             activityStudEntry.setSignStatus(signStatus);
             activityStudEntry.setSignId(signId);
@@ -861,26 +861,26 @@ public class ActivityController {
         }
     }
 
-    @GetMapping("/getActivityByOrganizers")
-    public ResultBean getActivityByOrganizers(HttpSession session){
+    @PostMapping("/getActivityByOrganizers")
+    public ResultBean getActivityByOrganizers(@RequestBody Page page, HttpSession session){
         User user = (User) session.getAttribute("user");
         System.out.println(user.getUserNumber());
         ResultBean resultBean = new ResultBean();
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
-            List<ActivityStudEntry> activityStudList = new ArrayList<>();
-            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-            for (ActivityStud activityStud: activityStuds){
-                System.out.println(activityStud.getCharacters()+","+student.getId()+","+activityStud.getStudentId());
-                if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
-                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-                    if (activityStudEntry!=null) {
-                        activityStudList.add(activityStudEntry);
-                    }
-                }
-            }
+            PageInfo<ActivityStudEntry> activityStudEntryPageInfo = this.activityStudService.selectActivityByOrganizer(page, student.getId());
+//            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
+//            for (ActivityStud activityStud: activityStuds){
+//                System.out.println(activityStud.getCharacters()+","+student.getId()+","+activityStud.getStudentId());
+//                if(activityStud.getCharacters().equals("发起人")&&student.getId()==activityStud.getStudentId()){
+//                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
+//                    if (activityStudEntry!=null) {
+//                        activityStudList.add(activityStudEntry);
+//                    }
+//                }
+//            }
             resultBean.setCode(0);
-            resultBean.setData(activityStudList);
+            resultBean.setData(activityStudEntryPageInfo);
         }catch (Exception e){
             resultBean.setCode(1);
             resultBean.setMsg(e.getMessage());

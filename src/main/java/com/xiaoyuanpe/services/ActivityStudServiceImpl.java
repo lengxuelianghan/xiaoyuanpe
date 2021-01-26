@@ -1,9 +1,9 @@
 package com.xiaoyuanpe.services;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.ActivityStudMapper;
-import com.xiaoyuanpe.pojo.Activity;
-import com.xiaoyuanpe.pojo.ActivityStud;
-import com.xiaoyuanpe.pojo.ActivityStudExample;
+import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.units.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +44,12 @@ public class ActivityStudServiceImpl implements ActivityStudService {
     public List<ActivityStud> findActivityStudAllList() {
         ActivityStudExample activityStudExample = new ActivityStudExample();
         return this.activityStudMapper.selectByExample(activityStudExample);
+    }
+
+    @Override
+    public PageInfo<ActivityStudEntry> selectActivityByOrganizer(Page page, Integer studentId) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityStudEntry> studentInfoPage = new PageInfo<>(this.activityStudMapper.selectActivityByOrganizer(studentId));
+        return studentInfoPage;
     }
 }

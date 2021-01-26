@@ -1,6 +1,7 @@
 package com.xiaoyuanpe.mapper;
 
 import com.xiaoyuanpe.pojo.ActivityStud;
+import com.xiaoyuanpe.pojo.ActivityStudEntry;
 import com.xiaoyuanpe.pojo.ActivityStudExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -29,4 +30,6 @@ public interface ActivityStudMapper {
     int updateByPrimaryKeySelective(ActivityStud record);
 
     int updateByPrimaryKey(ActivityStud record);
+
+    List<ActivityStudEntry> selectActivityByOrganizer(@Param("studentId") Integer studentId);
 }
