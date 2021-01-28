@@ -761,15 +761,6 @@ public class ActivityController {
         ResultBean resultBean = new ResultBean();
         try {
             PageInfo<ActivityStudEntry> activityStudList = this.activityStudService.selectPartnerByActivity(page,aid);
-//            List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-//            for (ActivityStud activityStud: activityStuds){
-//                if(activityStud.getCharacters().equals("参与者") && activityStud.getActivityId()==aid){
-//                    ActivityStudEntry activityStudEntry = this.IntegerToString(activityStud);
-//                    if (activityStudEntry!=null) {
-//                        activityStudList.add(activityStudEntry);
-//                    }
-//                }
-//            }
             resultBean.setCode(0);
             resultBean.setData(activityStudList);
         }catch (Exception e){
@@ -869,6 +860,24 @@ public class ActivityController {
         try {
             Student student = this.studentService.findStudentByNumber(user.getUserNumber());
             PageInfo<ActivityStudEntry> activityStudEntryPageInfo = this.activityStudService.selectActivityByOrganizer(page, student.getId());
+            resultBean.setCode(0);
+            resultBean.setData(activityStudEntryPageInfo);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    @PostMapping("/getActivityByOrganizers/{status}")
+    public ResultBean getActivityByOrganizers(@RequestBody Page page, @PathVariable Integer status, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        System.out.println(user.getUserNumber());
+        ResultBean resultBean = new ResultBean();
+        try {
+            Student student = this.studentService.findStudentByNumber(user.getUserNumber());
+            PageInfo<ActivityStudEntry> activityStudEntryPageInfo =
+                    this.activityStudService.selectActivityByOrganizerWithStatus(page, student.getId(),status);
             resultBean.setCode(0);
             resultBean.setData(activityStudEntryPageInfo);
         }catch (Exception e){

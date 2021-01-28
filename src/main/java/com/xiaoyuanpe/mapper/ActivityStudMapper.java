@@ -33,6 +33,9 @@ public interface ActivityStudMapper {
 
     List<ActivityStudEntry> selectActivityByOrganizer(@Param("studentId") Integer studentId);
 
+    List<ActivityStudEntry> selectActivityByOrganizerWithStatus(@Param("studentId") Integer studentId,
+                                                                @Param("status")  Integer status);
+
     List<ActivityStudEntry> selectActivityByPartner(@Param("studentId") Integer studentId);
 
     List<ActivityStudEntry> selectActivityBySignin(@Param("studentId") Integer studentId);

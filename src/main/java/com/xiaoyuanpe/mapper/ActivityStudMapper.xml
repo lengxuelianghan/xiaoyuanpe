@@ -110,6 +110,15 @@
     and acs.characters='发起人'
   </select>
 
+  <select id="selectActivityByOrganizerWithStatus" resultMap="BaseResultMapEntry">
+    select acs.id as id, a.activity_name as activity_id, s.student_name as student_id, acs.characters as characters,
+    a.status as status, s.student_number as student_number, s.id as student_id_num
+    from activity as a, activity_stud as acs, student as s
+    where acs.student_id=#{studentId,jdbcType=INTEGER} and acs.student_id=s.id and acs.activity_id = a.id
+    and acs.characters='发起人' and a.status=#{status,jdbcType=INTEGER}
+  </select>
+
+
   <select id="selectActivityByPartner" resultMap="BaseResultMapEntry">
     select acs.id as id, a.activity_name as activity_id, s.student_name as student_id, acs.characters as characters,
     a.status as status, s.student_number as student_number, s.id as student_id_num, si.flag as sign_status, si.id as sign_id

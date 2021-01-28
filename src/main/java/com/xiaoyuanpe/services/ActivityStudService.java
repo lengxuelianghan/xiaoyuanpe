@@ -20,9 +20,10 @@ public interface ActivityStudService {
     void DeleteActivityStudList(List<Integer> ids);
 
     List<ActivityStud>  findActivityStudAllList();
-    PageInfo<ActivityStudEntry> selectActivityByOrganizer(Page page, @Param("studentId") Integer studentId);
-    PageInfo<ActivityStudEntry> selectActivityByPartner(Page page, @Param("studentId") Integer studentId);
-    PageInfo<ActivityStudEntry> selectActivityBySignin(Page page, @Param("studentId") Integer studentId);
-    PageInfo<ActivityStudEntry> selectPartnerByActivity(Page page, @Param("activityId") Integer activityId);
+    PageInfo<ActivityStudEntry> selectActivityByOrganizer(Page page, Integer studentId);
+    PageInfo<ActivityStudEntry> selectActivityByOrganizerWithStatus(Page page,Integer studentId, Integer status);
+    PageInfo<ActivityStudEntry> selectActivityByPartner(Page page, Integer studentId);
+    PageInfo<ActivityStudEntry> selectActivityBySignin(Page page, Integer studentId);
+    PageInfo<ActivityStudEntry> selectPartnerByActivity(Page page, Integer activityId);
 
 }
