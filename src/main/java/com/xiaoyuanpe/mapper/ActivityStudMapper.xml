@@ -20,7 +20,7 @@
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
 
-  <resultMap id="BaseResultMapEntry" type="com.xiaoyuanpe.pojo.ActivityEntry">
+  <resultMap id="BaseResultMapEntry1" type="com.xiaoyuanpe.pojo.ActivityEntry">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
     <result column="activity_content" jdbcType="VARCHAR" property="activityContent" />
@@ -136,7 +136,7 @@
     and acs.characters='发起人'
   </select>
 
-  <select id="selectActivityByOrganizerWithStatus" resultMap="BaseResultMapEntry">
+  <select id="selectActivityByOrganizerWithStatus" resultMap="BaseResultMapEntry1">
     select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
     u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
     a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
