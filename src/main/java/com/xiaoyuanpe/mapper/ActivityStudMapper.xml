@@ -145,7 +145,7 @@
     a.people_num as people_num,a.activity_class as activity_class,a.sign_num as sign_num, a.contact as contact,
     a.review_time as review_time
     from activity as a, school as s,college as c,user as u, activity_stud as acs
-    where s.id = a.school_id and a.college_id = c.id and a.status=#{status,jdbcType=INTEGER} and a.publisher_id=u.id
+    where s.id = a.school_id and a.college_id = c.id and a.status=#{status,jdbcType=INTEGER} and a.publisher_id=u.id and
     acs.student_id=#{studentId,jdbcType=INTEGER} and acs.activity_id = a.id and acs.characters='发起人'
   </select>
 
