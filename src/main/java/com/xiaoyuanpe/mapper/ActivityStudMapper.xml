@@ -129,11 +129,16 @@
   </select>
 
   <select id="selectActivityByOrganizer" resultMap="BaseResultMapEntry">
-    select acs.id as id, a.activity_name as activity_id, s.student_name as student_id, acs.characters as characters,
-    a.status as status, s.student_number as student_number, s.id as student_id_num
-    from activity as a, activity_stud as acs, student as s
-    where acs.student_id=#{studentId,jdbcType=INTEGER} and acs.student_id=s.id and acs.activity_id = a.id
-    and acs.characters='发起人'
+    select a.id as id,a.activity_name as activity_name,a.activity_content as activity_content,a.image_path as image_path,
+    u.username as publisher_id, a.publish_data as publish_data,s.school_name as school_id,c.college_name as college_id,
+    a.start_time as start_time, a.end_time as end_time,a.status as status,a.activity_area as activity_area,
+    a.registration_closing_time as registration_closing_time, a.registration_start_time as registration_start_time,
+    a.contact_phone as contact_phone,a.cost_description as cost_description,a.cost as cost,a.college_list as college_list,
+    a.people_num as people_num,a.activity_class as activity_class,a.sign_num as sign_num, a.contact as contact,
+    a.review_time as review_time
+    from activity as a, school as s,college as c,user as u, activity_stud as acs
+    where s.id = a.school_id and a.college_id = c.id and a.publisher_id=u.id and
+    acs.student_id=#{studentId,jdbcType=INTEGER} and acs.activity_id = a.id and acs.characters='发起人'
   </select>
 
   <select id="selectActivityByOrganizerWithStatus" resultMap="BaseResultMapEntry1">
