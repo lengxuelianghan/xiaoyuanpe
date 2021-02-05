@@ -78,7 +78,16 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public PageInfo<Student> findStudentBySchool(Integer id, Page page,String columnName, String searchContent) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-        PageInfo<Student> studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id,columnName,searchContent));
+        PageInfo<Student> studentInfoPage = null;
+        if (columnName.equals("classes_name")){
+            columnName = "class_name";
+            studentInfoPage = new PageInfo<>(this.studentMapper.selectByClassesWithSomething(id,columnName,searchContent));
+        }
+        else if (columnName.equals("college_name")){
+            studentInfoPage = new PageInfo<>(this.studentMapper.selectByCollegeWithSomething(id,columnName,searchContent));
+        }
+        else
+            studentInfoPage = new PageInfo<>(this.studentMapper.selectBySchool(id,columnName,searchContent));
         return studentInfoPage;
     }
 

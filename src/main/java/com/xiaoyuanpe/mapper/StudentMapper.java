@@ -39,6 +39,10 @@ public interface StudentMapper {
 
     List<Student> selectBySchoolInt(@Param("id")Integer id, @Param("columnName")String columnName, @Param("searchContent")Integer searchContent);
 
+    List<Student> selectByCollegeWithSomething(@Param("id")Integer id, @Param("columnName")String columnName, @Param("searchContent")String searchContent);
+
+    List<Student> selectByClassesWithSomething(@Param("id")Integer id, @Param("columnName")String columnName, @Param("searchContent")String searchContent);
+
     List<Student> selectByCollege(Integer id);
 
     List<Student> selectByClass(Integer id);
