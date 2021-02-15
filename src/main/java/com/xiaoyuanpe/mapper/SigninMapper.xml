@@ -83,7 +83,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, student_id, sign_time, flag, signout_time, activity_id, sport_id, term
+    id, student_id, sign_time, flag, signout_time, activity_id, sport_id, term, create_time
   </sql>
   <select id="selectByExample" parameterType="com.xiaoyuanpe.pojo.SigninExample" resultMap="BaseResultMap">
     select
@@ -148,10 +148,10 @@
   <insert id="insert" parameterType="com.xiaoyuanpe.pojo.Signin" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into signin (id, student_id, sign_time, 
       flag, signout_time, activity_id, 
-      sport_id, term)
+      sport_id, term,create_time)
     values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{signTime,jdbcType=TIMESTAMP}, 
       #{flag,jdbcType=INTEGER}, #{signoutTime,jdbcType=TIMESTAMP}, #{activityId,jdbcType=INTEGER}, 
-      #{sportId,jdbcType=INTEGER}, #{term,jdbcType=INTEGER})
+      #{sportId,jdbcType=INTEGER}, #{term,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaoyuanpe.pojo.Signin">
     insert into signin
