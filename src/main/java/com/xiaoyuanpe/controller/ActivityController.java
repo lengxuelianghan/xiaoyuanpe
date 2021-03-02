@@ -408,14 +408,52 @@ public class ActivityController {
         }
         return resultBean;
     }
+
     //按条件查找
     @PostMapping("/queryActivityListAll/{columnName}/{searchContent}")
-    public ResultBean queryActivityListAll(@RequestBody Page page, @PathVariable String columnName, @PathVariable String searchContent, HttpSession session){
+    public ResultBean queryActivityListAll(@RequestBody Page page, @PathVariable String columnName,
+                                           @PathVariable String searchContent, HttpSession session){
         User userSession = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
         try {
             columnName = Utils.camelToUnderline(columnName);
-            resultBean.setData(this.activityService.selectActivityAllWithSomething(page,userSession.getSchoolId(),columnName,searchContent));
+            resultBean.setData(this.activityService.selectActivityAllWithSomething(page,userSession.getSchoolId(),
+                    columnName,searchContent));
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    //按条件查找可报名活动
+    @PostMapping("/queryActivityListAttend/{columnName}/{searchContent}")
+    public ResultBean queryActivityListAttend(@RequestBody Page page, @PathVariable String columnName,
+                                           @PathVariable String searchContent, HttpSession session){
+        User userSession = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            columnName = Utils.camelToUnderline(columnName);
+            resultBean.setData(this.activityService.selectActivityAllWithSomethingAttend(page,userSession.getSchoolId(),
+                    columnName,searchContent));
+            resultBean.setCode(0);
+        }catch (Exception e){
+            resultBean.setCode(1);
+            resultBean.setMsg(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+        return resultBean;
+    }
+
+    // 按照status查找
+    @GetMapping("/queryActivityByStatus/{status}")
+    public ResultBean queryActivityByStatus(@RequestBody Page page, @PathVariable Integer status, HttpSession session){
+        User userSession = (User) session.getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            resultBean.setData(this.activityService.findActivityByStatus(page, status, userSession.getSchoolId()));
             resultBean.setCode(0);
         }catch (Exception e){
             resultBean.setCode(1);
@@ -577,18 +615,20 @@ public class ActivityController {
     public ResultBean signUp(@PathVariable Integer aid, HttpSession session){
         ResultBean resultBean = new ResultBean();
         User user = (User) session.getAttribute("user");
-        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-        Map<Integer,List<Integer>> map = new HashMap<>();
+        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllByActivityId(aid);
+        Map<Integer, String> map = new HashMap<>();
         for (ActivityStud activityStud:activityStuds){
-            if (!map.containsKey(activityStud.getActivityId())) {
-                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+            if (!map.containsKey(activityStud.getStudentId())) {
+                if (activityStud.getCharacters().equals("参与者")) {
+                    map.put(activityStud.getStudentId(), activityStud.getCharacters());
+                }
             }
-            else {
-                List<Integer> list = map.get(activityStud.getActivityId());
-                List arrList = new ArrayList(list);
-                arrList.add(activityStud.getStudentId());
-                map.put(activityStud.getActivityId(),arrList);
-            }
+//            else {
+//                List<Integer> list = map.get(activityStud.getActivityId());
+//                List arrList = new ArrayList(list);
+//                arrList.add(activityStud.getStudentId());
+//                map.put(activityStud.getActivityId(),arrList);
+//            }
         }
         Activity activity = this.activityService.findActivityById(aid);
         if (activity.getSignNum()==null)
@@ -598,7 +638,7 @@ public class ActivityController {
             ActivityStud activityStud = new ActivityStud();
             String num = this.userService.findUsersById(user.getId()).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();
-            if (map.containsKey(aid) && map.get(aid).contains(id)){
+            if (map.containsKey(id)){
                 resultBean.setCode(1);
                 resultBean.setMsg("已报名参加！");
             }
@@ -636,18 +676,18 @@ public class ActivityController {
     @PostMapping("/signUpList/{aid}")
     public ResultBean signUpList(@RequestBody List<Integer> ids, @PathVariable Integer aid){
         ResultBean resultBean = new ResultBean();
-        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-        Map<Integer,List<Integer>> map = new HashMap<>();
+        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllByActivityId(aid);
+        Map<Integer, String> map = new HashMap<>();
         for (ActivityStud activityStud:activityStuds){
-            if (map.containsKey(activityStud.getActivityId())) {
-                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+            if (!map.containsKey(activityStud.getStudentId())) {
+                if (activityStud.getCharacters().equals("参与者")) {
+                    map.put(activityStud.getStudentId(), activityStud.getCharacters());
+                }
             }
-            else
-                map.get(activityStud.getActivityId()).add(activityStud.getStudentId());
         }
         try {
             for (Integer id: ids) {
-                if (map.containsKey(aid) && map.get(aid).contains(id))
+                if (map.containsKey(id))
                     continue;
                 ActivityStud activityStud = new ActivityStud();
                 String num = this.userService.findUsersById(id).getUserNumber();
@@ -675,18 +715,18 @@ public class ActivityController {
     public ResultBean signUpListWithProject(@RequestBody List<Integer> ids, @PathVariable Integer aid,
                                             @PathVariable Integer projectId){
         ResultBean resultBean = new ResultBean();
-        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-        Map<Integer,List<Integer>> map = new HashMap<>();
+        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllByActivityId(aid);
+        Map<Integer, String> map = new HashMap<>();
         for (ActivityStud activityStud:activityStuds){
-            if (map.containsKey(activityStud.getActivityId())) {
-                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
+            if (!map.containsKey(activityStud.getStudentId())) {
+                if (activityStud.getCharacters().equals("参与者")) {
+                    map.put(activityStud.getStudentId(), activityStud.getCharacters());
+                }
             }
-            else
-                map.get(activityStud.getActivityId()).add(activityStud.getStudentId());
         }
         try {
             for (Integer id: ids) {
-                if (map.containsKey(aid) && map.get(aid).contains(id))
+                if (map.containsKey(id))
                     continue;
                 ActivityStud activityStud = new ActivityStud();
                 String num = this.userService.findUsersById(id).getUserNumber();

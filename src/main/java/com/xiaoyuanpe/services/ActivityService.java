@@ -31,5 +31,9 @@ public interface ActivityService {
 
     PageInfo<ActivityEntry> selectActivityAllWithSomething(Page page, Integer schoolId, String columnName,String searchContent);
 
+    PageInfo<ActivityEntry> selectActivityAllWithSomethingAttend(Page page, Integer schoolId, String columnName,String searchContent);
+
     PageInfo<ActivityEntry> selectActivityAllSignIn(Page page, Integer schoolId);
+
+    PageInfo<ActivityEntry> findActivityByStatus(Page page, Integer status, Integer schoolId);
 }

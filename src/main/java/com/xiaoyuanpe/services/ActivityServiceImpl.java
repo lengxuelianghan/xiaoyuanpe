@@ -86,7 +86,16 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public PageInfo<ActivityEntry> selectActivityAllWithSomething(Page page, Integer schoolId, String columnName, String searchContent) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
-        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllWithSomething(schoolId,columnName, searchContent));
+        PageInfo<ActivityEntry> studentInfoPage =
+                new PageInfo<>(this.activityMapper.selectActivityAllWithSomething(schoolId,columnName, searchContent));
+        return studentInfoPage;
+    }
+
+    @Override
+    public PageInfo<ActivityEntry> selectActivityAllWithSomethingAttend(Page page, Integer schoolId, String columnName, String searchContent) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityEntry> studentInfoPage =
+                new PageInfo<>(this.activityMapper.selectActivityAllWithSomethingAttend(schoolId,columnName, searchContent));
         return studentInfoPage;
     }
 
@@ -94,6 +103,13 @@ public class ActivityServiceImpl implements ActivityService {
     public PageInfo<ActivityEntry> selectActivityAllSignIn(Page page, Integer schoolId) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
         PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllSignIn(schoolId));
+        return studentInfoPage;
+    }
+
+    @Override
+    public PageInfo<ActivityEntry> findActivityByStatus(Page page, Integer status, Integer schoolId) {
+        PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
+        PageInfo<ActivityEntry> studentInfoPage = new PageInfo<>(this.activityMapper.selectActivityAllSignIn(status));
         return studentInfoPage;
     }
 
