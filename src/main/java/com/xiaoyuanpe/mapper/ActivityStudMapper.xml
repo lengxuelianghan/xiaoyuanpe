@@ -190,12 +190,16 @@
   </select>
 
   <select id="selectByAidAndSid" resultMap="BaseResultMap">
-    select from activity_stud
+    select
+    <include refid="Base_Column_List" />
+    from activity_stud
     where activity_id = #{aid,jdbcType=INTEGER} and student_id = #{sid,jdbcType=INTEGER}
   </select>
 
   <select id="selectByAid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select from activity_stud
+    select
+    <include refid="Base_Column_List" />
+    from activity_stud
     where activity_id = #{aid,jdbcType=INTEGER}
   </select>
 
