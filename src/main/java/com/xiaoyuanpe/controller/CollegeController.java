@@ -35,6 +35,9 @@ public class CollegeController {
                 String s = this.collegeService.addCollege(college);
                 resultBean.setCode(0);
                 resultBean.setData(s);
+                if(s.equals("学院名重复")){
+                    resultBean.setCode(2);
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 resultBean.setCode(1);
