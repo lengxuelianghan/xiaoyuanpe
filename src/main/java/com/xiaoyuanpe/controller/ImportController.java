@@ -180,7 +180,6 @@ public class ImportController  {
         ResultBean resultBean = new ResultBean();
         String fileName = "";
         String filepath = getUploadPath();
-        School school = this.schoolService.findSchoolById(user.getSchoolId());
         try {
             if (excelFile != null){
                 String filename=excelFile.getOriginalFilename();
@@ -195,25 +194,18 @@ public class ImportController  {
             List<Classes> classesList = readExcel.importExcel(filepath + File.separator + fileName);
             Map<String,Integer> mapColleges = mapCollege().get(0);
             boolean flag =true;
+
             int j=0;
             for (Classes classes : classesList) {
                 j++;
-                if (classes.getSchoolName().trim().equals(school.getSchoolName())){
-                    if(mapColleges.containsKey(classes.getCollegeName())){
-                        classes.setCollegeId(mapColleges.get(classes.getCollegeName()));
-                        classes.setSchoolId(user.getSchoolId());
-                    }
-                    else {
-                        flag = false;
-                        resultBean.setCode(1);
-                        resultBean.setMsg("第"+j+"条数据的学院名称有误");
-                        break;
-                    }
+                if(mapColleges.containsKey(classes.getCollegeName())){
+                    classes.setCollegeId(mapColleges.get(classes.getCollegeName()));
+                    classes.setSchoolId(user.getSchoolId());
                 }
                 else {
                     flag = false;
                     resultBean.setCode(1);
-                    resultBean.setMsg("第"+j+"条数据的学校名称有误");
+                    resultBean.setMsg("第"+j+"条数据的学院名称有误");
                     break;
                 }
             }

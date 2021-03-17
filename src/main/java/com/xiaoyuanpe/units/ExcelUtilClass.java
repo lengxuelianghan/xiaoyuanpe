@@ -42,7 +42,7 @@ public class ExcelUtilClass {
                         classes1.setClassNumber(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
                         classes1.setSchoolName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
                         classes1.setCollegeName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
-                        classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(3)));
+                        //classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(3)));
                         BOM.add(classes1);
                     }
                 }
@@ -69,9 +69,9 @@ public class ExcelUtilClass {
                             case 2:
                                 classes.setCollegeName(cell.toString());
                                 break;
-                            case 3:
-                                classes.setClassName(cell.toString());
-                                break;
+//                            case 3:
+//                                classes.setClassName(cell.toString());
+//                                break;
                             default:
                                 // TODO 数据格式有误
                                 break;
