@@ -93,7 +93,8 @@
   </select>
 
   <select id="selectBySchool" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select c.school_id, c.college_id, c.class_name, c.term_year, c.class_number, cc.college_name
+    select c.school_id as school_id, c.college_id as college_id, c.class_name as class_name,
+     c.term_year as term_year, c.class_number as class_number, cc.college_name as college_name
     from classes as c, college as cc
     where c.school_id = #{id,jdbcType=INTEGER} and cc.id=c.college_id
   </select>
