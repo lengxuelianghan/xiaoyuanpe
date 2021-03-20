@@ -80,12 +80,12 @@ public class SchoolController {
                             User user1 = new User();
                             user1.setSchoolId(school.getId());
                             user1.setUnit(school.getSchoolName());
-                            user.setUsername(school.getSchoolName());
+                            user1.setUsername(school.getSchoolName());
                             user1.setUserNumber(""+school.getId()+(school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
                             user1.setIdentity("学校管理员");
                             user1.setPassword("123456");
                             user1.setUnit(school.getSchoolName());
-                            this.userService.addUser(user);
+                            this.userService.addUser(user1);
                             Student student = new Student();
                             student.setTerm(1);
                             student.setSchoolName(school.getSchoolName());
