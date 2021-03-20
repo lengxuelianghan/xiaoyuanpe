@@ -7,6 +7,7 @@
     <result column="school_address" jdbcType="VARCHAR" property="schoolAddress" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="school_zip_code" jdbcType="VARCHAR" property="schoolZipCode" />
+    <result column="school_introduction" jdbcType="VARCHAR" property="schoolIntroduction" />
     <result column="school_number" jdbcType="VARCHAR" property="schoolNumber" />
     <result column="valid_period" jdbcType="TIMESTAMP" property="validPeriod" />
   </resultMap>
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, school_name, school_address, phone, school_zip_code,school_number,valid_period
+    id, school_name, school_address, phone, school_zip_code,school_introduction,school_number,valid_period
   </sql>
   <sql id="Blob_Column_List">
     school_introduction
