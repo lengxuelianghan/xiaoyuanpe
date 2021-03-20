@@ -1,10 +1,9 @@
 package com.xiaoyuanpe.controller;
 
-import com.xiaoyuanpe.pojo.Page;
-import com.xiaoyuanpe.pojo.School;
-import com.xiaoyuanpe.pojo.SchoolWithPassword;
-import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.SchoolService;
+import com.xiaoyuanpe.services.StudentService;
+import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
 import com.xiaoyuanpe.units.Utils;
@@ -15,6 +14,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.*;
@@ -24,6 +24,10 @@ import java.util.*;
 public class SchoolController {
     @Autowired
     private SchoolService schoolService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private StudentService studentService;
 
     private  Map<String, List<String>>  schoolNames(){
         Map<String, List<String>> maps = new HashMap<>();
@@ -69,10 +73,31 @@ public class SchoolController {
                         School school = schoolWithPassword.getSchool();
                         this.schoolService.addSchool(school);
 
-                        resultBean.setData(school.getId());
+                        if (school.getId()>0){
+                            User user1 = new User();
+                            user1.setSchoolId(school.getId());
+                            user1.setUnit(school.getSchoolName());
+                            user1.setUsername(""+school.getId()+(school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
+                            user1.setIdentity("学校管理员");
+                            user1.setPassword("123456");
+                            user1.setUnit(school.getSchoolName());
+                            this.userService.addUser(user);
+                            Student student = new Student();
+                            student.setTerm(1);
+                            student.setSchoolName(school.getSchoolName());
+                            student.setStudentNumber(user1.getUserNumber());
+                            student.setSchoolId(school.getId());
+                            student.setAddress(school.getSchoolAddress());
+                            this.studentService.addStudent(student);
+                        }
+                        else {
+                            this.schoolService.DeleteSchool(school.getId());
+                            resultBean.setCode(1);
+                            resultBean.setMsg("学校添加失败");
+                        }
                         resultBean.setCode(0);
-                        //resultBean.setData("您的账户是："+school.getId()+
-                         //       (school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
+                        resultBean.setData("您的账户是："+school.getId()+
+                                (school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
                     } catch (Exception e) {
                         System.out.println("错误" + e.getMessage());
                         resultBean.setCode(1);
