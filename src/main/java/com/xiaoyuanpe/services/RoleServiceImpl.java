@@ -6,11 +6,12 @@ import com.xiaoyuanpe.pojo.RoleExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service("role")
 public class RoleServiceImpl implements RoleService {
-    @Autowired
+    @Resource
     private RoleMapper roleMapper;
 
     @Override

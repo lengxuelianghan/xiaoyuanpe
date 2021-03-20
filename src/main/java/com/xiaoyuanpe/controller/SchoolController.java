@@ -3,6 +3,7 @@ package com.xiaoyuanpe.controller;
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.SchoolService;
 import com.xiaoyuanpe.services.StudentService;
+import com.xiaoyuanpe.services.UserRoleService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
@@ -28,6 +29,8 @@ public class SchoolController {
     private UserService userService;
     @Resource
     private StudentService studentService;
+    @Resource
+    private UserRoleService userRoleService;
 
     private  Map<String, List<String>>  schoolNames(){
         Map<String, List<String>> maps = new HashMap<>();
@@ -89,6 +92,10 @@ public class SchoolController {
                             student.setSchoolId(school.getId());
                             student.setAddress(school.getSchoolAddress());
                             this.studentService.addStudent(student);
+                            UserRole userRole = new UserRole();
+                            userRole.setUserId(user1.getId());
+                            userRole.setRoleId(2);
+                            this.userRoleService.addUserRole(userRole);
                         }
                         else {
                             this.schoolService.DeleteSchool(school.getId());

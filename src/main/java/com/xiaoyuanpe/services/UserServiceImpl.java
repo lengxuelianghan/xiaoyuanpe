@@ -2,24 +2,19 @@ package com.xiaoyuanpe.services;
 
 import com.xiaoyuanpe.mapper.StudentMapper;
 import com.xiaoyuanpe.mapper.UserMapper;
-import com.xiaoyuanpe.pojo.Permissions;
-import com.xiaoyuanpe.pojo.Student;
-import com.xiaoyuanpe.pojo.User;
-import com.xiaoyuanpe.pojo.UserExample;
+import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.units.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-    @Autowired
+    @Resource
     private UserMapper usersMapper;
-    @Autowired
-    private StudentMapper studentMapper;
-
     @Override
     public void addUser(User users) {
 //        Student student = new Student();

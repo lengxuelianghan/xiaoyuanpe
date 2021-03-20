@@ -167,10 +167,6 @@ public class StudentController {
                     user.setIdentity("学生");
 
                     this.userService.addUser(user);
-                    UserRole userRole = new UserRole();
-                    userRole.setUserId(user.getId());
-                    userRole.setRoleId(5);
-                    this.userRoleService.addUserRole(userRole);
                     resultBean.setCode(0);
                 }
                 else {
