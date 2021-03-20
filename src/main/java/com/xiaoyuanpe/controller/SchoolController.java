@@ -69,7 +69,8 @@ public class SchoolController {
                         School school = schoolWithPassword.getSchool();
                         this.schoolService.addSchool(school);
                         resultBean.setCode(0);
-                        resultBean.setData("您的id是 "+school.getId());
+//                        resultBean.setData("您的账户是："+school.getId()+
+//                                (school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
                     } catch (Exception e) {
                         System.out.println("错误" + e.getMessage());
                         resultBean.setCode(1);
