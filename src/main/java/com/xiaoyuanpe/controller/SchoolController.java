@@ -66,8 +66,10 @@ public class SchoolController {
                 if (!stringListMap.get("schoolName").contains(schoolWithPassword.getSchool().getSchoolName())&&
                 !stringListMap.get("schoolNumber").contains(schoolWithPassword.getSchool().getSchoolNumber())) {
                     try {
-                        this.schoolService.addSchool(schoolWithPassword.getSchool());
+                        School school = schoolWithPassword.getSchool();
+                        this.schoolService.addSchool(school);
                         resultBean.setCode(0);
+                        resultBean.setData("您的id是 "+school.getId());
                     } catch (Exception e) {
                         System.out.println("错误" + e.getMessage());
                         resultBean.setCode(1);
