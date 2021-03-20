@@ -25,7 +25,7 @@ public class SchoolServiceImpl implements SchoolService {
             User user = new User();
             user.setSchoolId(school.getId());
             user.setUnit(school.getSchoolName());
-            user.setUsername(""+school.getId()+(school.getSchoolNumber()==null?"1111111111":school.getSchoolNumber()));
+            user.setUsername(""+school.getId()+(school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
             user.setIdentity("学校管理员");
             user.setPassword("123456");
             user.setUnit(school.getSchoolName());
