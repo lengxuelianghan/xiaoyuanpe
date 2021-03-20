@@ -21,7 +21,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public void addSchool(School school) {
         this.schoolMapper.insert(school);
-        if (school.getId()!=0){
+        if (school.getId()>0){
             User user = new User();
             user.setSchoolId(school.getId());
             user.setUnit(school.getSchoolName());
