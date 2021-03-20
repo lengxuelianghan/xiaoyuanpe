@@ -74,6 +74,13 @@ public class SchoolController {
                         this.schoolService.addSchool(school);
 
 //                        if (school.getId()>0){
+//                            Student student = new Student();
+//                            student.setTerm(1);
+//                            student.setSchoolName(school.getSchoolName());
+//                            student.setStudentNumber(user1.getUserNumber());
+//                            student.setSchoolId(school.getId());
+//                            student.setAddress(school.getSchoolAddress());
+//                            this.studentService.addStudent(student);
 //                            User user1 = new User();
 //                            user1.setSchoolId(school.getId());
 //                            user1.setUnit(school.getSchoolName());
@@ -82,13 +89,7 @@ public class SchoolController {
 //                            user1.setPassword("123456");
 //                            user1.setUnit(school.getSchoolName());
 //                            this.userService.addUser(user);
-//                            Student student = new Student();
-//                            student.setTerm(1);
-//                            student.setSchoolName(school.getSchoolName());
-//                            student.setStudentNumber(user1.getUserNumber());
-//                            student.setSchoolId(school.getId());
-//                            student.setAddress(school.getSchoolAddress());
-//                            this.studentService.addStudent(student);
+//
 //                        }
 //                        else {
 //                            this.schoolService.DeleteSchool(school.getId());

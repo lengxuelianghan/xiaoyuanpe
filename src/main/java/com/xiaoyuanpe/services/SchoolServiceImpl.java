@@ -14,10 +14,6 @@ import java.util.List;
 public class SchoolServiceImpl implements SchoolService {
     @Resource
     private SchoolMapper schoolMapper;
-    @Resource
-    private UserService userService;
-    @Resource
-    private StudentService studentService;
     @Override
     public void addSchool(School school) {
         this.schoolMapper.insert(school);
