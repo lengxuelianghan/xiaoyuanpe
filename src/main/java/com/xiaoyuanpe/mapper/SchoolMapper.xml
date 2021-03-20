@@ -133,7 +133,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.School">
+  <insert id="insert" parameterType="com.xiaoyuanpe.pojo.School" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into school (id, school_name, school_address, 
       phone, school_zip_code, school_introduction,school_number,valid_period
       )
