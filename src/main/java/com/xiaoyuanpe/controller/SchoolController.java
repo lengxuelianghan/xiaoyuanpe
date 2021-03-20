@@ -87,7 +87,7 @@ public class SchoolController {
                             user1.setUnit(school.getSchoolName());
                             this.userService.addUser(user1);
                             Student student = new Student();
-                            student.setSchoolName(school.getSchoolName());
+                            student.setStudentName(school.getSchoolName());
                             student.setTerm(1);
                             student.setSchoolName(school.getSchoolName());
                             student.setStudentNumber(user1.getUserNumber());
