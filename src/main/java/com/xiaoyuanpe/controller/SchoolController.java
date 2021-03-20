@@ -73,28 +73,28 @@ public class SchoolController {
                         School school = schoolWithPassword.getSchool();
                         this.schoolService.addSchool(school);
 
-                        if (school.getId()>0){
-                            User user1 = new User();
-                            user1.setSchoolId(school.getId());
-                            user1.setUnit(school.getSchoolName());
-                            user1.setUsername(""+school.getId()+(school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
-                            user1.setIdentity("学校管理员");
-                            user1.setPassword("123456");
-                            user1.setUnit(school.getSchoolName());
-                            this.userService.addUser(user);
-                            Student student = new Student();
-                            student.setTerm(1);
-                            student.setSchoolName(school.getSchoolName());
-                            student.setStudentNumber(user1.getUserNumber());
-                            student.setSchoolId(school.getId());
-                            student.setAddress(school.getSchoolAddress());
-                            this.studentService.addStudent(student);
-                        }
-                        else {
-                            this.schoolService.DeleteSchool(school.getId());
-                            resultBean.setCode(1);
-                            resultBean.setMsg("学校添加失败");
-                        }
+//                        if (school.getId()>0){
+//                            User user1 = new User();
+//                            user1.setSchoolId(school.getId());
+//                            user1.setUnit(school.getSchoolName());
+//                            user1.setUsername(""+school.getId()+(school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
+//                            user1.setIdentity("学校管理员");
+//                            user1.setPassword("123456");
+//                            user1.setUnit(school.getSchoolName());
+//                            this.userService.addUser(user);
+//                            Student student = new Student();
+//                            student.setTerm(1);
+//                            student.setSchoolName(school.getSchoolName());
+//                            student.setStudentNumber(user1.getUserNumber());
+//                            student.setSchoolId(school.getId());
+//                            student.setAddress(school.getSchoolAddress());
+//                            this.studentService.addStudent(student);
+//                        }
+//                        else {
+//                            this.schoolService.DeleteSchool(school.getId());
+//                            resultBean.setCode(1);
+//                            resultBean.setMsg("学校添加失败");
+//                        }
                         resultBean.setCode(0);
                         resultBean.setData("您的账户是："+school.getId()+
                                 (school.getSchoolNumber()==null?"1234321":school.getSchoolNumber()));
