@@ -29,8 +29,9 @@ public class XiaoyuanpeApplication {
             user.setIdentity("网站管理员");
             user.setUsername("管理员");
             user.setUnit("无");
-            user.setUserNumber("123456");
+            user.setUserNumber("root");
             user.setPassword("123456");
+            user.setPhone("无");
             userService.addUser(user);
             UserRole userRole = new UserRole();
             userRole.setUserId(user.getId());
