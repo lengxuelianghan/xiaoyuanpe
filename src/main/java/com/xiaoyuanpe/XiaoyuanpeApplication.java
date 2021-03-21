@@ -4,6 +4,7 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserRole;
 import com.xiaoyuanpe.services.UserRoleService;
 import com.xiaoyuanpe.services.UserService;
+import com.xiaoyuanpe.units.ApplicationContextUtils;
 import com.xiaoyuanpe.units.SpringUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -20,9 +21,9 @@ public class XiaoyuanpeApplication {
     public static void main(String[] args) {
         SpringApplication.run(XiaoyuanpeApplication.class, args);
         ApplicationContext context = SpringUtil.getApplicationContext();
-        UserService userService = context.getBean(UserService.class);
+        UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
 
-        UserRoleService userRoleService = context.getBean(UserRoleService.class);
+        UserRoleService userRoleService = (UserRoleService) ApplicationContextUtils.getBean("userRoleService");
         List<User> usersListAll = userService.findUsersListAll();
         if (usersListAll==null||usersListAll.size()==0){
             User user = new User();
