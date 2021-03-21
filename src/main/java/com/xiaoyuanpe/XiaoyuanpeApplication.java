@@ -20,9 +20,9 @@ public class XiaoyuanpeApplication {
     public static void main(String[] args) {
         SpringApplication.run(XiaoyuanpeApplication.class, args);
         ApplicationContext context = SpringUtil.getApplicationContext();
-        UserService userService = context.getBean(UserService.class);// 注意是UserServiceI ， 不是UserServiceImpl
+        UserService userService = context.getBean(UserService.class);
 
-        UserRoleService userRoleService = context.getBean(UserRoleService.class);// 注意是UserServiceI ， 不是UserServiceImpl
+        UserRoleService userRoleService = context.getBean(UserRoleService.class);
         List<User> usersListAll = userService.findUsersListAll();
         if (usersListAll==null||usersListAll.size()==0){
             User user = new User();
