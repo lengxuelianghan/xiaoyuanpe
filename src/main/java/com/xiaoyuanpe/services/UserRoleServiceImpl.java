@@ -6,10 +6,11 @@ import com.xiaoyuanpe.pojo.UserRoleExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
-@Service
+@Service("userRoleService")
 public class UserRoleServiceImpl implements UserRoleService {
-    @Autowired
+    @Resource
     private UserRoleMapper userRoleMapper;
 
     @Override
