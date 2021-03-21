@@ -32,7 +32,6 @@ public class XiaoyuanpeApplication {
             user.setUserNumber("123456");
             user.setPassword("123456");
             userService.addUser(user);
-
             UserRole userRole = new UserRole();
             userRole.setUserId(user.getId());
             userRole.setRoleId(1);
