@@ -5,6 +5,7 @@ import com.xiaoyuanpe.pojo.UserRole;
 import com.xiaoyuanpe.services.UserRoleService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ApplicationContextUtils;
+import com.xiaoyuanpe.units.CreateUser;
 import com.xiaoyuanpe.units.SpringUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -23,35 +24,37 @@ public class XiaoyuanpeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(XiaoyuanpeApplication.class, args);
-        try {
-
-            UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
-
-            UserRoleService userRoleService = (UserRoleService) ApplicationContextUtils.getBean("userRoleService");
-            List<User> usersListAll = userService.findUsersListAll();
-            if (usersListAll == null || usersListAll.size() == 0) {
-                User user = new User();
-                user.setIdentity("网站管理员");
-                user.setUsername("管理员");
-                user.setUnit("无");
-                user.setUserNumber("root");
-                user.setPassword("123456");
-                user.setPhone("无");
-                userService.addUser(user);
-                UserRole userRole = new UserRole();
-                userRole.setUserId(user.getId());
-                userRole.setRoleId(1);
-                userRoleService.addUserRole(userRole);
-            }
-        }catch (Exception e){
-            try {
-                BufferedWriter out = new BufferedWriter(new FileWriter("D:/root.txt"));
-                out.write(e.getMessage());
-                out.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+        CreateUser createUser = new CreateUser();
+        createUser.createUser();
+//        try {
+//
+//            UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
+//
+//            UserRoleService userRoleService = (UserRoleService) ApplicationContextUtils.getBean("userRoleService");
+//            List<User> usersListAll = userService.findUsersListAll();
+//            if (usersListAll == null || usersListAll.size() == 0) {
+//                User user = new User();
+//                user.setIdentity("网站管理员");
+//                user.setUsername("管理员");
+//                user.setUnit("无");
+//                user.setUserNumber("root");
+//                user.setPassword("123456");
+//                user.setPhone("无");
+//                userService.addUser(user);
+//                UserRole userRole = new UserRole();
+//                userRole.setUserId(user.getId());
+//                userRole.setRoleId(1);
+//                userRoleService.addUserRole(userRole);
+//            }
+//        }catch (Exception e){
+//            try {
+//                BufferedWriter out = new BufferedWriter(new FileWriter("C:/root.txt"));
+//                out.write(e.getMessage());
+//                out.close();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
     }
 
 }
