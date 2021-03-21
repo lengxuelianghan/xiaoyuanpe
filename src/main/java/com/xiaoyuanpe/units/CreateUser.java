@@ -4,20 +4,19 @@ import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserRole;
 import com.xiaoyuanpe.services.UserRoleService;
 import com.xiaoyuanpe.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import java.io.*;
 import java.util.List;
 @Component
 @Order(value = 1)
 public class CreateUser implements ApplicationRunner {
-    @Resource
+    @Autowired
     private UserService userService;
-    @Resource
+    @Autowired
     private UserRoleService userRoleService;
 
     @Override

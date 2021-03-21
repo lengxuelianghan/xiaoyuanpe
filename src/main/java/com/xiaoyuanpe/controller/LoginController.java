@@ -98,13 +98,8 @@ public class LoginController {
                         UserEntry userEntry = new UserEntry();
                         userEntry.setId(user.getId());
                         userEntry.setUsername(user.getUsername());
-                        userEntry.setAge(user.getAge());
-                        userEntry.setEmail(user.getEmail());
-                        userEntry.setSex(user.getSex());
-                        userEntry.setPhone(user.getPhone());
                         userEntry.setIdentity(user.getIdentity());
                         userEntry.setPassword(user.getPassword());
-                        userEntry.setSchoolId(this.schoolService.findSchoolById(user.getSchoolId()).getSchoolName());
                         userEntry.setUnit(user.getUnit());
                         userEntry.setUserNumber(user.getUserNumber());
                         resultBean.setData(userEntry);
