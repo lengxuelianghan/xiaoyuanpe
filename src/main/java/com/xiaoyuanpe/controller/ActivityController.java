@@ -759,20 +759,6 @@ public class ActivityController {
     public ResultBean assignation(@PathVariable Integer aid, @PathVariable Integer uid){
         //User user = (User) session.getAttribute("user");
         ResultBean resultBean = new ResultBean();
-//        List<ActivityStud> activityStuds = this.activityStudService.findActivityStudAllList();
-//        Map<Integer,List<Integer>> map = new HashMap<>();
-//        for (ActivityStud activityStud:activityStuds){
-//            if (!map.containsKey(activityStud.getActivityId())) {
-//                map.put(activityStud.getActivityId(), Arrays.asList(activityStud.getStudentId()));
-//            }
-//            else {
-//                List<Integer> list = map.get(activityStud.getActivityId());
-//                List arrList = new ArrayList(list);
-//                arrList.add(activityStud.getStudentId());
-//                map.put(activityStud.getActivityId(),arrList);
-//            }
-//        }
-
         try {
             String num = this.userService.findUsersById(uid).getUserNumber();
             int id = this.studentService.findStudentByNumber(num).getId();

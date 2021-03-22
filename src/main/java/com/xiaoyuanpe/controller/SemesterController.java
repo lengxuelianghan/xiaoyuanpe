@@ -4,7 +4,10 @@ import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.CollegeService;
 import com.xiaoyuanpe.services.SemesterService;
 import com.xiaoyuanpe.services.StudentService;
+import com.xiaoyuanpe.units.HasRole;
 import com.xiaoyuanpe.units.ResultBean;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,24 +88,32 @@ public class SemesterController {
         ResultBean resultBean = new ResultBean();
         Student student = this.studentService.findStudentByNumber(user.getUserNumber());
         try {
-            List<Semester> semesters = this.semesterService.findSemesterByStudent(student.getSchoolId(), student.getCollegeId(), student.getClassesId(), student.getId());
-            Semester semester = null;
-            for (Semester sem: semesters){
-                if (student.getTerm() == sem.getTerm()) {
-                    semester = sem;
-                    break;
+            Subject subject = SecurityUtils.getSubject();
+            boolean[] booleans = subject.hasRoles(Arrays.asList("student"));
+            if (HasRole.hasOneRole(booleans)) {
+                List<Semester> semesters = this.semesterService.findSemesterByStudent(student.getSchoolId(), student.getCollegeId(), student.getClassesId(), student.getId());
+                Semester semester = null;
+                for (Semester sem : semesters) {
+                    if (student.getTerm() == sem.getTerm()) {
+                        semester = sem;
+                        break;
+                    }
+                }
+                if (semester != null) {
+                    SemesterEntry semesterEntry = new SemesterEntry();
+                    semesterEntry.setId(semester.getId());
+                    semesterEntry.setName(student.getStudentName());
+                    semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
+                    semesterEntry.setScore(semester.getScore());
+                    resultBean.setData(semesterEntry);
+                    resultBean.setCode(0);
+                } else {
+                    resultBean.setMsg("此学生学期状态不存在");
+                    resultBean.setCode(2);
                 }
             }
-            if (semester!=null) {
-                SemesterEntry semesterEntry = new SemesterEntry();
-                semesterEntry.setId(semester.getId());
-                semesterEntry.setName(student.getStudentName());
-                semesterEntry.setCollegeId(collegeService.findCollegeById(semester.getCollegeId()).getCollegeName());
-                semesterEntry.setScore(semester.getScore());
-                resultBean.setData(semesterEntry);
-                resultBean.setCode(0);
-            }else {
-                resultBean.setMsg("此学生学期状态不存在");
+            else {
+                resultBean.setMsg("教师，管理员等无此信息");
                 resultBean.setCode(2);
             }
         }catch (Exception e){
