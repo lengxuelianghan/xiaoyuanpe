@@ -2,10 +2,7 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -27,10 +24,22 @@ public class DownloadController {
         return upload.getAbsolutePath();
     }
 
-    @GetMapping(value = "/downloadExcelModel")
-    public ResultBean downloadExcelModel(HttpServletResponse response) throws UnsupportedEncodingException {
+    @GetMapping(value = "/downloadExcelModel/{num}")
+    public ResultBean downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
         ResultBean resultBean = new ResultBean();
-        String fileName = getUploadPath()+"/模板"+".xls";
+        String fileName=null;
+        if (num==1) {
+            fileName = getUploadPath() + "/学生模板" + ".xls";
+        }
+        else if(num==2) {
+            fileName = getUploadPath() + "/班级模板" + ".xlsx";
+        }
+        else if(num==3) {
+            fileName = getUploadPath() + "/学院模板" + ".xlsx";
+        }
+        else {
+            fileName = getUploadPath() + "/模板" + ".xlsx";
+        }
         response.setHeader("content-type", "application/octet-stream");
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=" + new String(fileName.getBytes("utf-8"),"iso-8859-1"));

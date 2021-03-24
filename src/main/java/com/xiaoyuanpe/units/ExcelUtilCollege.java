@@ -1,7 +1,7 @@
 package com.xiaoyuanpe.units;
 
 import com.xiaoyuanpe.pojo.Classes;
-import com.xiaoyuanpe.pojo.StudentInfo;
+import com.xiaoyuanpe.pojo.College;
 import org.apache.poi.hssf.usermodel.HSSFDataFormatter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -18,12 +18,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExcelUtilClass {
-    public static List<Classes> importExcel(Workbook wb) throws SQLException, ParseException {
+public class ExcelUtilCollege {
+    public static List<College> importExcel(Workbook wb) throws SQLException, ParseException {
 
-        Classes classes;
+        College college;
 
-        List<Classes> BOM = new ArrayList<>();
+        List<College> BOM = new ArrayList<>();
         if (wb instanceof HSSFWorkbook) {
             Sheet sheet = wb.getSheetAt(0);
 
@@ -39,12 +39,12 @@ public class ExcelUtilClass {
                         if (sheet.getRow(j)==null){
                             continue;
                         }
-                        Classes classes1 = new Classes();
-                        classes1.setClassNumber(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
-                        classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
-                        classes1.setCollegeName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
-                        classes1.setTermYear(Integer.valueOf(ExcelUtilClass.getCell(sheet.getRow(j).getCell(3))));
-                        BOM.add(classes1);
+                        College college1 = new College();
+                        college1.setCollegeNumber(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(0)));
+                        college1.setCollegeName(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(1)));
+                        college1.setScore(Integer.valueOf(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(2))));
+                        college1.setCollegeInfo(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(3)));
+                        BOM.add(college1);
                     }
                 }
             }
@@ -57,28 +57,28 @@ public class ExcelUtilClass {
                 for (int i = 1; i < lastRowNum+1; i++) {
                     //System.out.println(lastRowNum);
                     XSSFRow row = sheet.getRow(i);
-                    classes = new Classes();
+                    college = new College();
                     for (int j = 0; j < row.getLastCellNum(); j++) {
                         XSSFCell cell = row.getCell(j);
                         switch (cell.getColumnIndex()) {
                             case 0:
-                                classes.setClassNumber(cell.toString());
+                                college.setCollegeNumber(cell.toString());
                                 break;
                             case 1:
-                                classes.setClassName(cell.toString());
+                                college.setCollegeName(cell.toString());
                                 break;
                             case 2:
-                                classes.setCollegeName(cell.toString());
+                                college.setScore(Integer.valueOf(cell.toString()));
                                 break;
                             case 3:
-                                classes.setTermYear(Integer.valueOf(cell.toString()));
+                                college.setCollegeInfo(cell.toString());
                                 break;
                             default:
                                 // TODO 数据格式有误
                                 break;
                         }
                     }
-                    BOM.add(classes);
+                    BOM.add(college);
                 }
                 break;
             }

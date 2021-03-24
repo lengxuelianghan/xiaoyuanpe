@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.mapper;
 
+import com.xiaoyuanpe.pojo.Classes;
 import com.xiaoyuanpe.pojo.College;
 import com.xiaoyuanpe.pojo.CollegeExample;
 import java.util.List;
@@ -31,4 +32,6 @@ public interface CollegeMapper {
     int deleteByPrimaryKeys(List<Integer> id);
 
     List<College> selectBySchool(Integer id);
+
+    int insertBatch(List<College> colleges);
 }

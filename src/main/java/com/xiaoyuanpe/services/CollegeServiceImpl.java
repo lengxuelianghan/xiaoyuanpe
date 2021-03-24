@@ -9,12 +9,13 @@ import com.xiaoyuanpe.pojo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CollegeServiceImpl implements CollegeService {
-    @Autowired
+    @Resource
     private CollegeMapper collegeMapper;
 
     private List<String> checkCollege(Integer id){
@@ -39,6 +40,11 @@ public class CollegeServiceImpl implements CollegeService {
     }
 
     @Override
+    public void addBatch(List<College> college) {
+        this.collegeMapper.insertBatch(college);
+    }
+
+    @Override
     public PageInfo<College> findCollegeAll(Page page, Integer id) {
         PageHelper.startPage(page.getCurrentPageNumber(), page.getPageSize(), page.getSort());
         PageInfo<College> collegePageInfo = new PageInfo<>(this.collegeMapper.selectBySchool(id));
@@ -48,6 +54,11 @@ public class CollegeServiceImpl implements CollegeService {
     @Override
     public List<College> findCollegeAll() {
         return this.collegeMapper.selectByExample(new CollegeExample());
+    }
+
+    @Override
+    public List<College> findCollegeBySchool(Integer schoolId) {
+        return this.collegeMapper.selectBySchool(schoolId);
     }
 
     @Override

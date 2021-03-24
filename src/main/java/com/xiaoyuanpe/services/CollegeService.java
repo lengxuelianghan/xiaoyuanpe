@@ -9,9 +9,13 @@ import java.util.List;
 public interface CollegeService {
     String addCollege(College college);
 
+    void addBatch(List<College> college);
+
     PageInfo<College> findCollegeAll(Page page, Integer id);
 
     List<College> findCollegeAll();
+
+    List<College> findCollegeBySchool(Integer schoolId);
 
     College findCollegeById(Integer id);
 

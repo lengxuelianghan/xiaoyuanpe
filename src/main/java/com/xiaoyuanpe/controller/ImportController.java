@@ -4,6 +4,7 @@ import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
 import com.xiaoyuanpe.units.ReadExcel;
 import com.xiaoyuanpe.units.ReadExcelClass;
+import com.xiaoyuanpe.units.ReadExcelCollege;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
@@ -211,6 +212,57 @@ public class ImportController  {
             }
             if (flag) {
                 this.classesService.addBatch(classesList);
+                resultBean.setCode(0);
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("导入失败");
+        }
+        return resultBean;
+    }
+
+    @RequestMapping(value = "/ImportFileCollege", method = RequestMethod.POST)
+    public ResultBean ImportFileCollege(@RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        String fileName = "";
+        String filepath = getUploadPath();
+        try {
+            if (excelFile != null){
+                String filename=excelFile.getOriginalFilename();
+                fileName = "college_"+getFileName(filename);
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(filepath + File.separator + fileName)));
+                System.out.println(filepath + File.separator + fileName);
+                out.write(excelFile.getBytes());
+                out.flush();
+                out.close();
+            }
+            ReadExcelCollege readExcel = new ReadExcelCollege();
+            List<College> collegeList = readExcel.importExcel(filepath + File.separator + fileName);
+            boolean flag =true;
+            List<College> colleges = this.collegeService.findCollegeBySchool(user.getSchoolId());
+            Set<String> collegeName = new HashSet<>();
+            for (College college:colleges){
+                collegeName.add(college.getCollegeName());
+            }
+
+            int j=0;
+            for (College college : collegeList) {
+                j++;
+                if(!collegeName.contains(college.getCollegeName())){
+                    college.setSchoolId(user.getSchoolId());
+                }
+                else {
+                    flag = false;
+                    resultBean.setCode(1);
+                    resultBean.setMsg("第"+j+"条数据的学院名称重复");
+                    break;
+                }
+            }
+            if (flag) {
+                this.collegeService.addBatch(collegeList);
                 resultBean.setCode(0);
             }
         }catch (Exception e){

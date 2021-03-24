@@ -12,6 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,11 +41,6 @@ public class ExcelUtil {
                         if (sheet.getRow(j)==null){
                             continue;
                         }
-//                        SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-//                        String cell = ExcelUtil.getCell(sheet.getRow(j).getCell(7));
-//                        String [] strs = cell.split("/");
-//                        String da = strs[0]+"-"+strs[1]+"-"+strs[2]+" 00:00:00";
-//                        Date birthday = formatter.parse(da);
                         Date birthday  = sheet.getRow(j).getCell(7).getDateCellValue();
                         System.out.println(sheet.getRow(j).getCell(7).getDateCellValue());
 
@@ -70,9 +66,7 @@ public class ExcelUtil {
             for (int s = 0; s < xs.getNumberOfSheets(); s++) {
                 XSSFSheet sheet = xs.getSheetAt(s);
                 int lastRowNum = sheet.getLastRowNum();
-                //System.out.println("当前页:" + xs.getSheetName(s));
                 for (int i = 1; i < lastRowNum+1; i++) {
-                    //System.out.println(lastRowNum);
                     XSSFRow row = sheet.getRow(i);
                     student = new Student();
                     for (int j = 0; j < row.getLastCellNum(); j++) {
@@ -105,9 +99,6 @@ public class ExcelUtil {
                                 student.setSex(cell.toString());
                                 break;
                             case 7:
-//                                SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
-//                                String cell1 = cell.toString();
-//                                Date birthday = formatter.parse(cell1.replace("/","-"));
                                 Date birthday  = sheet.getRow(j).getCell(7).getDateCellValue();
                                 student.setBirthday(birthday);
                                 break;
@@ -131,11 +122,15 @@ public class ExcelUtil {
                                 break;
                         }
                     }
-                    //materiel.setMateriel_type(sheet.getSheetName());
                     BOM.add(student);
                 }
                 break;
             }
+        }
+        try {
+            wb.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println("到这里了");
         return BOM;
@@ -145,7 +140,6 @@ public class ExcelUtil {
         if (cell != null) {
             switch (cell.getCellTypeEnum()) {
                 case FORMULA:
-                    // cell.getCellFormula();
                     try {
                         String value1 = String.valueOf(cell.getNumericCellValue());
                         value =  String.format("%.2f", Double.valueOf(value1));
