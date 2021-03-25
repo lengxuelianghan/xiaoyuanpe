@@ -29,7 +29,7 @@ public class ShiroConfig {
         Map<String,String> map = new LinkedHashMap<>();
         map.put("/login/**", "anon");
         map.put("/school/querySchoolList", "anon");
-        //map.put("/download/downloadExcelModel", "anon");
+        map.put("/download/downloadExcelModel/**", "anon");
         map.put("/**", "authc");
         //map.put("/**", "perms[]");
         shiroFilterFactoryBean.setLoginUrl("/login/loginFaild");
