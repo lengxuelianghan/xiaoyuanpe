@@ -31,19 +31,19 @@ public class DownloadController {
         String newFileName= null;
         if (num==1) {
             fileName = getUploadPath() + "/学生模板" + ".xls";
-            newFileName = "学生模板";
+            newFileName = "学生模板.xls";
         }
         else if(num==2) {
             fileName = getUploadPath() + "/班级模板" + ".xlsx";
-            newFileName = "班级模板";
+            newFileName = "班级模板.xlsx";
         }
         else if(num==3) {
             fileName = getUploadPath() + "/学院模板" + ".xlsx";
-            newFileName = "学院模板";
+            newFileName = "学院模板.xlsx";
         }
         else {
             fileName = getUploadPath() + "/模板" + ".xlsx";
-            newFileName = "模板";
+            newFileName = "模板.xlsx";
         }
 
         resultBean.setMsg(fileName);
