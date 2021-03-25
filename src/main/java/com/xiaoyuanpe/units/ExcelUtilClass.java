@@ -41,8 +41,8 @@ public class ExcelUtilClass {
                         }
                         Classes classes1 = new Classes();
                         classes1.setClassNumber(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
-                        classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
-                        classes1.setCollegeName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
+                        classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
+                        classes1.setCollegeName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
                         classes1.setTermYear(Integer.valueOf(ExcelUtilClass.getCell(sheet.getRow(j).getCell(3))));
                         BOM.add(classes1);
                     }
@@ -65,10 +65,10 @@ public class ExcelUtilClass {
                                 classes.setClassNumber(cell.toString());
                                 break;
                             case 1:
-                                classes.setClassName(cell.toString());
+                                classes.setCollegeName(cell.toString());
                                 break;
                             case 2:
-                                classes.setCollegeName(cell.toString());
+                                classes.setClassName(cell.toString());
                                 break;
                             case 3:
                                 classes.setTermYear(Integer.valueOf(cell.toString()));

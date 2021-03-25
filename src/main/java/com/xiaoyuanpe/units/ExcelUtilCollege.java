@@ -42,7 +42,7 @@ public class ExcelUtilCollege {
                         College college1 = new College();
                         college1.setCollegeNumber(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(0)));
                         college1.setCollegeName(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(1)));
-                        college1.setScore(Integer.valueOf(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(2))));
+                        college1.setScore(Integer.parseInt(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(2))));
                         college1.setCollegeInfo(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(3)));
                         BOM.add(college1);
                     }
@@ -68,7 +68,7 @@ public class ExcelUtilCollege {
                                 college.setCollegeName(cell.toString());
                                 break;
                             case 2:
-                                college.setScore(Integer.valueOf(cell.toString()));
+                                college.setScore(Double.valueOf(cell.toString()).intValue());
                                 break;
                             case 3:
                                 college.setCollegeInfo(cell.toString());

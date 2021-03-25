@@ -41,7 +41,7 @@ public class ImportController  {
         List<College> collegeAll = this.collegeService.findCollegeAll();
         Map<Integer, Integer> map1 = new HashMap<>();
         for (College college:collegeAll){
-            map.put(college.getCollegeName(),college.getId());
+            map.put(college.getCollegeName().trim(),college.getId());
             map1.put(college.getId(),college.getSchoolId());
         }
         mapList.add(map);
@@ -75,7 +75,7 @@ public class ImportController  {
             }
             List<Map> mapList = this.mapCollege();
             Map<String, Integer> mapCollege = mapList.get(0);
-            Map<String, Integer> mapCollegeSchool = mapList.get(1);
+
             Map<String, Integer> mapClasses = this.mapClass();
             ReadExcel readExcel = new ReadExcel();
             List<User> users = new ArrayList<>();
@@ -199,14 +199,14 @@ public class ImportController  {
             int j=0;
             for (Classes classes : classesList) {
                 j++;
-                if(mapColleges.containsKey(classes.getCollegeName())){
-                    classes.setCollegeId(mapColleges.get(classes.getCollegeName()));
+                if(mapColleges.containsKey(classes.getCollegeName().trim())){
+                    classes.setCollegeId(mapColleges.get(classes.getCollegeName().trim()));
                     classes.setSchoolId(user.getSchoolId());
                 }
                 else {
                     flag = false;
                     resultBean.setCode(1);
-                    resultBean.setMsg("第"+j+"条数据的学院名称有误");
+                    resultBean.setMsg("第"+j+"条数据的学院名称有误"+classes.getCollegeName());
                     break;
                 }
             }
@@ -268,7 +268,7 @@ public class ImportController  {
         }catch (Exception e){
             System.out.println(e.getMessage());
             resultBean.setCode(1);
-            resultBean.setMsg("导入失败");
+            resultBean.setMsg("导入失败"+e.getMessage());
         }
         return resultBean;
     }

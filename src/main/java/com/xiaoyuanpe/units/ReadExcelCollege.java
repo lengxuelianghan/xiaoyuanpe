@@ -62,11 +62,11 @@ public class ReadExcelCollege {
                 InputStream is = new FileInputStream(filePath);
                 if(".xls".equals(fileType)){
                     wb = new HSSFWorkbook(is);
-                    System.out.println(wb);
+                    System.out.println("haha"+wb.getSheetName(0));
                 }else if(".xlsx".equals(fileType)){
                     System.out.println(is.toString());
                     wb = new XSSFWorkbook(is);
-                    System.out.println(wb);
+                    System.out.println("haha"+wb.getSheetName(0));
                 }else{
                     System.out.println("格式不正确");
                     wb=null;
