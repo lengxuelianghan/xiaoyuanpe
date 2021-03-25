@@ -35,10 +35,10 @@ public class ImportController  {
     @Autowired
     private ClassesService classesService;
 
-    private List<Map> mapCollege(){
+    private List<Map> mapCollege(Integer schoolId){
         List<Map> mapList = new ArrayList<>();
         Map<String,Integer> map = new HashMap<>();
-        List<College> collegeAll = this.collegeService.findCollegeAll();
+        List<College> collegeAll = this.collegeService.findCollegeBySchool(schoolId);
         Map<Integer, Integer> map1 = new HashMap<>();
         for (College college:collegeAll){
             map.put(college.getCollegeName().trim(),college.getId());
@@ -73,7 +73,7 @@ public class ImportController  {
                 out.write(excelFile.getBytes());
                 out.flush();
             }
-            List<Map> mapList = this.mapCollege();
+            List<Map> mapList = this.mapCollege(user.getSchoolId());
             Map<String, Integer> mapCollege = mapList.get(0);
 
             Map<String, Integer> mapClasses = this.mapClass();
@@ -193,7 +193,7 @@ public class ImportController  {
             }
             ReadExcelClass readExcel = new ReadExcelClass();
             List<Classes> classesList = readExcel.importExcel(filepath + File.separator + fileName);
-            Map<String,Integer> mapColleges = mapCollege().get(0);
+            Map<String,Integer> mapColleges = mapCollege(user.getSchoolId()).get(0);
             boolean flag =true;
 
             int j=0;
