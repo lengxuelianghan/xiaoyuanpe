@@ -26,7 +26,7 @@ public class DownloadController {
 
     @ResponseBody
     @GetMapping(value = "/downloadExcelModel/{num}")
-    public ResultBean downloadExcelModel(@PathVariable int num, HttpServletResponse response) throws UnsupportedEncodingException {
+    public ResultBean downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
         ResultBean resultBean = new ResultBean();
         String fileName = null;
         if (num==1) {
