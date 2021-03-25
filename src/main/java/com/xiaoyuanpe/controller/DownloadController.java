@@ -40,8 +40,9 @@ public class DownloadController {
         }
         else {
             fileName = getUploadPath() + "/模板" + ".xlsx";
-            resultBean.setMsg(fileName);
         }
+
+        resultBean.setMsg(fileName);
         response.setHeader("content-type", "application/octet-stream");
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=" + new String(fileName.getBytes("utf-8"),"iso-8859-1"));
