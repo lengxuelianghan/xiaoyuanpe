@@ -19,7 +19,7 @@ public class DownloadController {
             e.printStackTrace();
         }
         if (!path.exists()) path = new File("");
-        File upload = new File(path.getAbsolutePath(), "static/upload/");
+        File upload = new File(path.getAbsolutePath(), "static/download/");
         if (!upload.exists()) upload.mkdirs();
         return upload.getAbsolutePath();
     }
