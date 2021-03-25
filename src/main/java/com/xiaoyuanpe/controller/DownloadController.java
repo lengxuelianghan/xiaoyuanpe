@@ -24,10 +24,11 @@ public class DownloadController {
         return upload.getAbsolutePath();
     }
 
+    @ResponseBody
     @GetMapping(value = "/downloadExcelModel/{num}")
     public ResultBean downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
         ResultBean resultBean = new ResultBean();
-        String fileName=null;
+        String fileName = null;
         if (num==1) {
             fileName = getUploadPath() + "/学生模板" + ".xls";
         }
@@ -39,6 +40,7 @@ public class DownloadController {
         }
         else {
             fileName = getUploadPath() + "/模板" + ".xlsx";
+            resultBean.setMsg(fileName);
         }
         response.setHeader("content-type", "application/octet-stream");
         response.setContentType("application/octet-stream");
