@@ -28,23 +28,28 @@ public class DownloadController {
     public ResultBean downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
         ResultBean resultBean = new ResultBean();
         String fileName = null;
+        String newFileName= null;
         if (num==1) {
             fileName = getUploadPath() + "/学生模板" + ".xls";
+            newFileName = "学生模板";
         }
         else if(num==2) {
             fileName = getUploadPath() + "/班级模板" + ".xlsx";
+            newFileName = "班级模板";
         }
         else if(num==3) {
             fileName = getUploadPath() + "/学院模板" + ".xlsx";
+            newFileName = "学院模板";
         }
         else {
             fileName = getUploadPath() + "/模板" + ".xlsx";
+            newFileName = "模板";
         }
 
         resultBean.setMsg(fileName);
         response.setHeader("content-type", "application/octet-stream");
         response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename=" + new String(fileName.getBytes("utf-8"),"iso-8859-1"));
+        response.setHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
 
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
