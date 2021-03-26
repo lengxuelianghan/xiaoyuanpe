@@ -47,8 +47,8 @@ public class DownloadController {
         }
 
         response.setHeader("content-type", "application/octet-stream");
-        response.setContentType("application/octet-stream");
-        response.setHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
+        response.setContentType("application/force-download");
+        response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
 
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
