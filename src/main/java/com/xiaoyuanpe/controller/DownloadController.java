@@ -46,9 +46,11 @@ public class DownloadController {
             newFileName = "模板.xlsx";
         }
 
-        response.setContentType("application/force-download");
+//        response.setContentType("application/force-download");
+        response.setContentType("text/html;charset=utf-8");
         response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
 
+        response.setCharacterEncoding("utf-8");
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
         OutputStream outputStream = null;
