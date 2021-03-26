@@ -24,8 +24,7 @@ public class DownloadController {
         return upload.getAbsolutePath();
     }
 
-    @ResponseBody
-    @PostMapping(value = "/downloadExcelModel/{num}")
+    @RequestMapping(value = "/downloadExcelModel/{num}")
     public void downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
         String fileName = null;
         String newFileName= null;
@@ -47,17 +46,14 @@ public class DownloadController {
         }
 
 //        response.setContentType("application/force-download");
-        response.setContentType("text/html;charset=utf-8");
-        response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
-
-        response.setCharacterEncoding("utf-8");
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
         OutputStream outputStream = null;
         FileInputStream inputStream = null;
         try {
             outputStream = response.getOutputStream();
-            inputStream = new FileInputStream(new File(fileName));
+            File file = new File(fileName);
+            inputStream = new FileInputStream(file);
             bis = new BufferedInputStream(inputStream);
             response.setHeader("Content-Length", String.valueOf(inputStream.available()));
             int read = bis.read(buff);
@@ -67,6 +63,12 @@ public class DownloadController {
                 outputStream.flush();
                 read = bis.read(buff);
             }
+            response.reset();
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/octet-stream");
+            response.addHeader("Content-Length", "" + file.length());
+            response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
+
 //            resultBean.setCode(0);
         }catch (IOException  e){
             e.printStackTrace();
