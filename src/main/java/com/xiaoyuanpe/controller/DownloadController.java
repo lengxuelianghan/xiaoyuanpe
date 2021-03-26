@@ -25,7 +25,7 @@ public class DownloadController {
     }
 
     @ResponseBody
-    @GetMapping(value = "/downloadExcelModel/{num}")
+    @PostMapping(value = "/downloadExcelModel/{num}")
     public void downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
         String fileName = null;
         String newFileName= null;
