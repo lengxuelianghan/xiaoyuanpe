@@ -46,7 +46,6 @@ public class DownloadController {
             newFileName = "模板.xlsx";
         }
 
-        //response.setHeader("content-type", "application/octet-stream");
         response.setContentType("application/force-download");
         response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
 
@@ -58,6 +57,7 @@ public class DownloadController {
             outputStream = response.getOutputStream();
             inputStream = new FileInputStream(new File(fileName));
             bis = new BufferedInputStream(inputStream);
+            response.setHeader("Content-Length", String.valueOf(inputStream.available()));
             int read = bis.read(buff);
 
             while (read != -1) {
