@@ -53,9 +53,11 @@ public class DownloadController {
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
         OutputStream outputStream = null;
+        FileInputStream inputStream = null;
         try {
             outputStream = response.getOutputStream();
-            bis = new BufferedInputStream(new FileInputStream(new File(fileName)));
+            inputStream = new FileInputStream(new File(fileName));
+            bis = new BufferedInputStream(inputStream);
             int read = bis.read(buff);
 
             while (read != -1) {
@@ -80,6 +82,13 @@ public class DownloadController {
             if (outputStream != null) {
                 try {
                     outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (bis!=null){
+                try {
+                    bis.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
