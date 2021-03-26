@@ -63,10 +63,7 @@ public class DownloadController {
                 outputStream.flush();
                 read = bis.read(buff);
             }
-            response.reset();
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/octet-stream");
-            response.addHeader("Content-Length", "" + file.length());
+            response.setContentType("application/force-download");
             response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
 
 //            resultBean.setCode(0);
