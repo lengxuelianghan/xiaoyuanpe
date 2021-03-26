@@ -5,17 +5,10 @@ import com.xiaoyuanpe.pojo.UserRole;
 import com.xiaoyuanpe.services.UserRoleService;
 import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.ApplicationContextUtils;
-import com.xiaoyuanpe.units.CreateUser;
-import com.xiaoyuanpe.units.SpringUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.thymeleaf.spring5.context.SpringContextUtils;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 
 @SpringBootApplication
