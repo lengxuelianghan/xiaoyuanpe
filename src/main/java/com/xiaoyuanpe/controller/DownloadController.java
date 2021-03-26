@@ -26,8 +26,7 @@ public class DownloadController {
 
     @ResponseBody
     @GetMapping(value = "/downloadExcelModel/{num}")
-    public ResultBean downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
-        ResultBean resultBean = new ResultBean();
+    public void downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
         String fileName = null;
         String newFileName= null;
         if (num==1) {
@@ -47,7 +46,6 @@ public class DownloadController {
             newFileName = "模板.xlsx";
         }
 
-        resultBean.setMsg(fileName);
         response.setHeader("content-type", "application/octet-stream");
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
@@ -65,11 +63,11 @@ public class DownloadController {
                 outputStream.flush();
                 read = bis.read(buff);
             }
-            resultBean.setCode(0);
+//            resultBean.setCode(0);
         }catch (IOException  e){
             e.printStackTrace();
-            resultBean.setCode(1);
-            resultBean.setMsg("下载失败");
+//            resultBean.setCode(1);
+//            resultBean.setMsg("下载失败");
         }
         finally {
             if (bis != null) {
@@ -87,6 +85,6 @@ public class DownloadController {
                 }
             }
         }
-        return resultBean;
+//        return resultBean;
     }
 }
