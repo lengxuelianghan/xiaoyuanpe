@@ -44,6 +44,8 @@ public class DownloadController {
             fileName = getUploadPath() + "/模板" + ".xlsx";
             newFileName = "模板.xlsx";
         }
+        response.setContentType("application/force-download");
+        response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
 
 //        response.setContentType("application/force-download");
         byte[] buff = new byte[1024];
@@ -55,7 +57,6 @@ public class DownloadController {
             File file = new File(fileName);
             inputStream = new FileInputStream(file);
             bis = new BufferedInputStream(inputStream);
-            response.setHeader("Content-Length", String.valueOf(inputStream.available()));
             int read = bis.read(buff);
 
             while (read != -1) {
@@ -63,8 +64,6 @@ public class DownloadController {
                 outputStream.flush();
                 read = bis.read(buff);
             }
-            response.setContentType("application/force-download");
-            response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
 
 //            resultBean.setCode(0);
         }catch (IOException  e){
