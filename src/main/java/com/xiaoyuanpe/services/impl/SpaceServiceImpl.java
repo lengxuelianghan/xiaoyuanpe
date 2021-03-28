@@ -1,17 +1,19 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.SpaceMapper;
 import com.xiaoyuanpe.pojo.Space;
 import com.xiaoyuanpe.pojo.SpaceExample;
+import com.xiaoyuanpe.services.SpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class SpaceServiceImpl implements SpaceService {
-    @Autowired
+    @Resource
     private SpaceMapper spaceMapper;
 
     @Override
@@ -33,8 +35,8 @@ public class SpaceServiceImpl implements SpaceService {
     public List<Space> findSpaceBySportId(Integer id) {
         List<Space> spaces = this.spaceMapper.selectByExample(new SpaceExample());
         List<Space> spaceList = new ArrayList<>();
-        for (Space space : spaces){
-            if (space.getSportvenueId()==id){
+        for (Space space : spaces) {
+            if (space.getSportvenueId().equals(id)) {
                 spaceList.add(space);
             }
         }
@@ -53,7 +55,7 @@ public class SpaceServiceImpl implements SpaceService {
 
     @Override
     public void DeleteSpaceList(List<Integer> ids) {
-        for (Integer id :ids){
+        for (Integer id : ids) {
             this.spaceMapper.deleteByPrimaryKey(id);
         }
     }

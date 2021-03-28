@@ -1,18 +1,21 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.ActivityStudMapper;
-import com.xiaoyuanpe.pojo.*;
-import com.xiaoyuanpe.units.Pager;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xiaoyuanpe.pojo.ActivityStud;
+import com.xiaoyuanpe.pojo.ActivityStudEntry;
+import com.xiaoyuanpe.pojo.ActivityStudExample;
+import com.xiaoyuanpe.pojo.Page;
+import com.xiaoyuanpe.services.ActivityStudService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class ActivityStudServiceImpl implements ActivityStudService {
-    @Autowired
+    @Resource
     private ActivityStudMapper activityStudMapper;
 
     @Override

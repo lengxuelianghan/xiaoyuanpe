@@ -1,15 +1,17 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.PermissionsMapper;
 import com.xiaoyuanpe.pojo.Permissions;
 import com.xiaoyuanpe.pojo.PermissionsExample;
+import com.xiaoyuanpe.services.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 @Service
 public class PermissionsServiceImpl implements PermissionService {
-    @Autowired
+    @Resource
     private PermissionsMapper permissionsMapper;
 
     @Override

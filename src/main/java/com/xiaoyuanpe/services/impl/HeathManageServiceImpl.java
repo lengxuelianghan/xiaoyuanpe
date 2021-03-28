@@ -1,16 +1,17 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.HealthmanagementMapper;
 import com.xiaoyuanpe.pojo.Healthmanagement;
 import com.xiaoyuanpe.pojo.HealthmanagementExample;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xiaoyuanpe.services.HeathManageService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class HeathManageServiceImpl implements HeathManageService {
-    @Autowired
+    @Resource
     private HealthmanagementMapper healthmanagementMapper;
     @Override
     public void addHealthmanagement(Healthmanagement healthmanagement) {

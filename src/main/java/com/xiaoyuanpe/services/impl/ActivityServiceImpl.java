@@ -1,22 +1,23 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.ActivityMapper;
-import com.xiaoyuanpe.mapper.StudentMapper;
-import com.xiaoyuanpe.pojo.*;
-import com.xiaoyuanpe.units.Pager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
+import com.xiaoyuanpe.pojo.Activity;
+import com.xiaoyuanpe.pojo.ActivityEntry;
+import com.xiaoyuanpe.pojo.ActivityExample;
+import com.xiaoyuanpe.pojo.Page;
+import com.xiaoyuanpe.services.ActivityService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class ActivityServiceImpl implements ActivityService {
-    @Autowired
+    @Resource
     private ActivityMapper activityMapper;
 
     @Override

@@ -33,16 +33,16 @@ public class DownloadController {
             newFileName = "学生模板.xls";
         }
         else if(num==2) {
-            fileName = getUploadPath() + "/班级模板" + ".xlsx";
-            newFileName = "班级模板.xlsx";
+            fileName = getUploadPath() + "/班级模板" + ".xls";
+            newFileName = "班级模板.xls";
         }
         else if(num==3) {
-            fileName = getUploadPath() + "/学院模板" + ".xlsx";
-            newFileName = "学院模板.xlsx";
+            fileName = getUploadPath() + "/学院模板" + ".xls";
+            newFileName = "学院模板.xls";
         }
         else {
-            fileName = getUploadPath() + "/模板" + ".xlsx";
-            newFileName = "模板.xlsx";
+            fileName = getUploadPath() + "/模板" + ".xls";
+            newFileName = "模板.xls";
         }
         response.setContentType("application/force-download");
         response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));

@@ -1,17 +1,19 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.SportsMapper;
 import com.xiaoyuanpe.pojo.Sports;
 import com.xiaoyuanpe.pojo.SportsExample;
+import com.xiaoyuanpe.services.SportService;
 import com.xiaoyuanpe.units.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class SportServiceImpl implements SportService {
-    @Autowired
+    @Resource
     private SportsMapper sportsMapper;
 
     @Override
@@ -23,19 +25,17 @@ public class SportServiceImpl implements SportService {
     public Pager<Sports> findSportsAll(Integer current, Integer pageSize) {
         SportsExample sportsExample = new SportsExample();
         List<Sports> sportsList = this.sportsMapper.selectByExample(sportsExample);
-        int totalNum = (int)this.sportsMapper.countByExample(sportsExample);
+        int totalNum = (int) this.sportsMapper.countByExample(sportsExample);
         Pager<Sports> pager = new Pager<>();
         pager.setCurrentPage(current);
         pager.setPageSize(pageSize);
         pager.setRecordTotal(totalNum);
         if (current * pageSize < totalNum) {
             pager.setContent(sportsList.subList((current - 1) * pageSize, current * pageSize));
-        }
-        else {
-            if ((current - 1) * pageSize <= totalNum){
+        } else {
+            if ((current - 1) * pageSize <= totalNum) {
                 pager.setContent(sportsList.subList((current - 1) * pageSize, totalNum));
-            }
-            else {
+            } else {
                 pager.setContent(null);
             }
 

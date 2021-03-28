@@ -1,17 +1,19 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.SemesterMapper;
 import com.xiaoyuanpe.pojo.Semester;
 import com.xiaoyuanpe.pojo.SemesterEntry;
 import com.xiaoyuanpe.pojo.SemesterExample;
+import com.xiaoyuanpe.services.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class SemesterServiceImpl implements SemesterService {
-    @Autowired
+    @Resource
     private SemesterMapper semesterMapper;
 
     @Override

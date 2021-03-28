@@ -1,17 +1,18 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.ProjectMapper;
 import com.xiaoyuanpe.pojo.Project;
 import com.xiaoyuanpe.pojo.ProjectExample;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xiaoyuanpe.services.ProjectService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
-    @Autowired
+    @Resource
     private ProjectMapper projectMapper;
     @Override
     public void addProject(Project project) {

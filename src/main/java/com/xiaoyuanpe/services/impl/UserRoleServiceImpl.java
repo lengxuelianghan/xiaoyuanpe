@@ -1,15 +1,18 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.UserRoleMapper;
 import com.xiaoyuanpe.pojo.UserRole;
 import com.xiaoyuanpe.pojo.UserRoleExample;
+import com.xiaoyuanpe.services.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 @Service("userRoleService")
 public class UserRoleServiceImpl implements UserRoleService {
+
     @Resource
     private UserRoleMapper userRoleMapper;
 
@@ -40,7 +43,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public void DeleteUserRoleList(List<Integer> ids) {
-        for (Integer id: ids) {
+        for (Integer id : ids) {
             this.userRoleMapper.deleteByPrimaryKey(id);
         }
     }

@@ -1,9 +1,10 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.mapper.SchoolMapper;
 import com.xiaoyuanpe.pojo.*;
+import com.xiaoyuanpe.services.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,6 @@
 package com.xiaoyuanpe.units;
 
+import com.xiaoyuanpe.XiaoyuanpeApplication;
 import com.xiaoyuanpe.pojo.User;
 import com.xiaoyuanpe.pojo.UserRole;
 import com.xiaoyuanpe.services.UserRoleService;
@@ -21,21 +22,6 @@ public class CreateUser implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        List<User> usersListAll = userService.findUsersListAll();
-        if (usersListAll == null || usersListAll.size() == 0) {
-            User user = new User();
-            user.setIdentity("网站管理员");
-            user.setUsername("管理员");
-            user.setUnit("无");
-            user.setUserNumber("root");
-            user.setPassword("123456");
-            user.setPhone("无");
-
-            userService.addUser(user);
-            UserRole userRole = new UserRole();
-            userRole.setUserId(user.getId());
-            userRole.setRoleId(1);
-            userRoleService.addUserRole(userRole);
-        }
+        XiaoyuanpeApplication.roleSet(userService, userRoleService);
     }
 }

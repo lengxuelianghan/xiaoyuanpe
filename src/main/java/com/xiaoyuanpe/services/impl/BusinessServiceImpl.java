@@ -1,17 +1,18 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.BusinessMapper;
 import com.xiaoyuanpe.pojo.Business;
 import com.xiaoyuanpe.pojo.BusinessExample;
+import com.xiaoyuanpe.services.BusinessService;
 import com.xiaoyuanpe.units.Pager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class BusinessServiceImpl implements BusinessService {
-    @Autowired
+    @Resource
     private BusinessMapper businessMapper;
 
     @Override

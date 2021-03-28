@@ -1,16 +1,17 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.InfoMapper;
 import com.xiaoyuanpe.pojo.Info;
 import com.xiaoyuanpe.pojo.InfoExample;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xiaoyuanpe.services.InfoService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class InfoServiceImpl implements InfoService {
-    @Autowired
+    @Resource
     private InfoMapper infoMapper;
     @Override
     public void addInfo(Info info) {

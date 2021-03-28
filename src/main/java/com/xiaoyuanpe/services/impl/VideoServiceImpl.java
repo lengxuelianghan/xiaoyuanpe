@@ -1,17 +1,20 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.VideoMapper;
 import com.xiaoyuanpe.pojo.Video;
 import com.xiaoyuanpe.pojo.VideoExample;
+import com.xiaoyuanpe.services.VideoService;
 import com.xiaoyuanpe.units.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class VideoServiceImpl implements VideoService {
-    @Autowired
+
+    @Resource
     private VideoMapper videoMapper;
 
     @Override
@@ -23,19 +26,17 @@ public class VideoServiceImpl implements VideoService {
     public Pager<Video> findVideoAll(Integer current, Integer pageSize) {
         VideoExample videoExample = new VideoExample();
         List<Video> videos = this.videoMapper.selectByExample(videoExample);
-        int totalNum = (int)this.videoMapper.countByExample(videoExample);
+        int totalNum = (int) this.videoMapper.countByExample(videoExample);
         Pager<Video> pager = new Pager<>();
         pager.setCurrentPage(current);
         pager.setPageSize(pageSize);
         pager.setRecordTotal(totalNum);
         if (current * pageSize < totalNum) {
             pager.setContent(videos.subList((current - 1) * pageSize, current * pageSize));
-        }
-        else {
-            if ((current - 1) * pageSize <= totalNum){
+        } else {
+            if ((current - 1) * pageSize <= totalNum) {
                 pager.setContent(videos.subList((current - 1) * pageSize, totalNum));
-            }
-            else {
+            } else {
                 pager.setContent(null);
             }
 

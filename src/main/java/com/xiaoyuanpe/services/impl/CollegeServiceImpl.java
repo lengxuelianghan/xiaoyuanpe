@@ -1,4 +1,4 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -6,6 +6,7 @@ import com.xiaoyuanpe.mapper.CollegeMapper;
 import com.xiaoyuanpe.pojo.College;
 import com.xiaoyuanpe.pojo.CollegeExample;
 import com.xiaoyuanpe.pojo.Page;
+import com.xiaoyuanpe.services.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

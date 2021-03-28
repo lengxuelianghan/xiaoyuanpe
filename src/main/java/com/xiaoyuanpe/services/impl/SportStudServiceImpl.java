@@ -1,15 +1,18 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.SportStudMapper;
 import com.xiaoyuanpe.pojo.SportStud;
 import com.xiaoyuanpe.pojo.SportStudExample;
+import com.xiaoyuanpe.services.SportStudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
+
 @Service
 public class SportStudServiceImpl implements SportStudService {
-    @Autowired
+    @Resource
     private SportStudMapper sportStudMapper;
 
     @Override
@@ -29,7 +32,7 @@ public class SportStudServiceImpl implements SportStudService {
 
     @Override
     public void DeleteSportStudList(List<Integer> ids) {
-        ids.forEach(id->{
+        ids.forEach(id -> {
             this.sportStudMapper.deleteByPrimaryKey(id);
         });
     }

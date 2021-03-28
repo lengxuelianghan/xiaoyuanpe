@@ -1,4 +1,4 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -6,14 +6,15 @@ import com.xiaoyuanpe.mapper.ClassesMapper;
 import com.xiaoyuanpe.pojo.Classes;
 import com.xiaoyuanpe.pojo.ClassesExample;
 import com.xiaoyuanpe.pojo.Page;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xiaoyuanpe.services.ClassesService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class ClassesServiceImpl implements ClassesService {
-    @Autowired
+    @Resource
     private ClassesMapper classesMapper;
 
     @Override

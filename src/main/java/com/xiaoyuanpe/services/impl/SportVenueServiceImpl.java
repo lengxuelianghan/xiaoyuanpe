@@ -1,17 +1,20 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.SportvenueMapper;
 import com.xiaoyuanpe.pojo.Sportvenue;
 import com.xiaoyuanpe.pojo.SportvenueExample;
+import com.xiaoyuanpe.services.SportVenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class SportVenueServiceImpl implements SportVenueService {
-    @Autowired
+    @Resource
     private SportvenueMapper sportvenueMapper;
+
     @Override
     public void addSportvenue(Sportvenue sportvenue) {
         this.sportvenueMapper.insert(sportvenue);
@@ -39,7 +42,7 @@ public class SportVenueServiceImpl implements SportVenueService {
 
     @Override
     public void DeleteSportvenueList(List<Integer> ids) {
-        for (Integer id: ids){
+        for (Integer id : ids) {
             this.sportvenueMapper.deleteByPrimaryKey(id);
         }
     }

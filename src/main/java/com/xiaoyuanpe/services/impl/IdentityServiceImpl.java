@@ -1,20 +1,22 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.IdentitiesMapper;
 import com.xiaoyuanpe.mapper.UserMapper;
 import com.xiaoyuanpe.pojo.Identities;
 import com.xiaoyuanpe.pojo.IdentitiesExample;
 import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.services.IdentityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class IdentityServiceImpl implements IdentityService {
-    @Autowired
+    @Resource
     private IdentitiesMapper identitiesMapper;
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override

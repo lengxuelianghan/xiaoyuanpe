@@ -1,18 +1,22 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.TransactionMapper;
 import com.xiaoyuanpe.pojo.Transaction;
 import com.xiaoyuanpe.pojo.TransactionExample;
+import com.xiaoyuanpe.services.TransactionService;
 import org.apache.ibatis.javassist.bytecode.stackmap.TypeData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
-    @Autowired
+
+    @Resource
     private TransactionMapper transactionMapper;
+
     @Override
     public void addTransaction(Transaction transaction) {
         this.transactionMapper.insert(transaction);

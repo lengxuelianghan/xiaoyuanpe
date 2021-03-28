@@ -1,7 +1,8 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.UserMapper;
 import com.xiaoyuanpe.pojo.User;
+import com.xiaoyuanpe.services.LoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -10,9 +11,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class LoginServiceImpl implements LoginService {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
     @Override
     public String login(String usenumber, String password, Integer schoolId) {

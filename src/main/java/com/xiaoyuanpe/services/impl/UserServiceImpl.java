@@ -1,8 +1,9 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.StudentMapper;
 import com.xiaoyuanpe.mapper.UserMapper;
 import com.xiaoyuanpe.pojo.*;
+import com.xiaoyuanpe.services.UserService;
 import com.xiaoyuanpe.units.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,10 @@ import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
+
     @Resource
     private UserMapper usersMapper;
+
     @Override
     public void addUser(User users) {
 //        Student student = new Student();
@@ -31,17 +34,15 @@ public class UserServiceImpl implements UserService {
         pager.setCurrentPage(current);
         pager.setPageSize(pageSize);
         UserExample example = new UserExample();
-        int totalNum = (int)this.usersMapper.countByExample(example);
+        int totalNum = (int) this.usersMapper.countByExample(example);
         pager.setRecordTotal(totalNum);
         List<User> userList = this.usersMapper.selectByExample(example);
         if (current * pageSize < totalNum) {
             pager.setContent(userList.subList((current - 1) * pageSize, current * pageSize));
-        }
-        else {
-            if ((current - 1) * pageSize <= totalNum){
+        } else {
+            if ((current - 1) * pageSize <= totalNum) {
                 pager.setContent(userList.subList((current - 1) * pageSize, totalNum));
-            }
-            else {
+            } else {
                 pager.setContent(null);
             }
 
@@ -88,10 +89,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean NameRepeat(String number) {
         User user = this.usersMapper.selectByPrimaryNumber(number);
-        if (user!=null){
+        if (user != null) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }

@@ -1,16 +1,19 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.VenueMapper;
 import com.xiaoyuanpe.pojo.Venue;
 import com.xiaoyuanpe.pojo.VenueExample;
+import com.xiaoyuanpe.services.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class VenueServiceImpl implements VenueService {
-    @Autowired
+
+    @Resource
     private VenueMapper venueMapper;
 
     @Override
@@ -40,7 +43,7 @@ public class VenueServiceImpl implements VenueService {
 
     @Override
     public void DeleteVenueList(List<Integer> ids) {
-        for (Integer id :ids){
+        for (Integer id : ids) {
             this.venueMapper.deleteByPrimaryKey(id);
         }
     }

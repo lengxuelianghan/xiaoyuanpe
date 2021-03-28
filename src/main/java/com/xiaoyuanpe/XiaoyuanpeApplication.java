@@ -20,23 +20,27 @@ public class XiaoyuanpeApplication {
         try {
             UserService userService = (UserService) ApplicationContextUtils.getBean("userService");
             UserRoleService userRoleService = (UserRoleService) ApplicationContextUtils.getBean("userRoleService");
-            List<User> usersListAll = userService.findUsersListAll();
-            if (usersListAll == null || usersListAll.size() == 0) {
-                User user = new User();
-                user.setIdentity("网站管理员");
-                user.setUsername("管理员");
-                user.setUnit("无");
-                user.setUserNumber("root");
-                user.setPassword("123456");
-                user.setPhone("无");
-                userService.addUser(user);
-                UserRole userRole = new UserRole();
-                userRole.setUserId(user.getId());
-                userRole.setRoleId(1);
-                userRoleService.addUserRole(userRole);
-            }
+            roleSet(userService, userRoleService);
         }catch (Exception e){
            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void roleSet(UserService userService, UserRoleService userRoleService) {
+        List<User> usersListAll = userService.findUsersListAll();
+        if (usersListAll == null || usersListAll.size() == 0) {
+            User user = new User();
+            user.setIdentity("网站管理员");
+            user.setUsername("管理员");
+            user.setUnit("无");
+            user.setUserNumber("root");
+            user.setPassword("123456");
+            user.setPhone("无");
+            userService.addUser(user);
+            UserRole userRole = new UserRole();
+            userRole.setUserId(user.getId());
+            userRole.setRoleId(1);
+            userRoleService.addUserRole(userRole);
         }
     }
 

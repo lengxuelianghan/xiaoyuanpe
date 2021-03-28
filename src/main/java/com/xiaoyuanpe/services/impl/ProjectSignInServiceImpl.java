@@ -1,18 +1,20 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.ProjectsigninMapper;
 import com.xiaoyuanpe.pojo.Project;
 import com.xiaoyuanpe.pojo.Projectsignin;
 import com.xiaoyuanpe.pojo.ProjectsigninExample;
+import com.xiaoyuanpe.services.ProjectSignInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProjectSignInServiceImpl implements ProjectSignInService {
-    @Autowired
+    @Resource
     private ProjectsigninMapper projectsigninMapper;
     @Override
     public void addProjectSignIn(Projectsignin projectsignin) {

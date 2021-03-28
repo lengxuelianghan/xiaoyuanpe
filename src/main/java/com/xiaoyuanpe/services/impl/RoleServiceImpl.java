@@ -1,8 +1,9 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.RoleMapper;
 import com.xiaoyuanpe.pojo.Role;
 import com.xiaoyuanpe.pojo.RoleExample;
+import com.xiaoyuanpe.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

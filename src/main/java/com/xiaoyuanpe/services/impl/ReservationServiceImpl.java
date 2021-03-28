@@ -1,18 +1,20 @@
-package com.xiaoyuanpe.services;
+package com.xiaoyuanpe.services.impl;
 
 import com.xiaoyuanpe.mapper.ReservationMapper;
 import com.xiaoyuanpe.mapper.VenueMapper;
 import com.xiaoyuanpe.pojo.Reservation;
 import com.xiaoyuanpe.pojo.ReservationExample;
+import com.xiaoyuanpe.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
-    @Autowired
+    @Resource
     private ReservationMapper reservationMapper;
     @Override
     public void addReservation(Reservation reservation,int s, int e) {
