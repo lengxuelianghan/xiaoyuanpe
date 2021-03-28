@@ -10,6 +10,7 @@ import com.xiaoyuanpe.units.Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,10 @@ public class StudentController {
     private SchoolService schoolService;
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    @Qualifier("studentSQLOption")
+    private BasicSQLOption studentSQLOption;
 
     // 查询当前学期学生成绩
     @RequestMapping("/StudentSportInfo")
@@ -144,7 +149,8 @@ public class StudentController {
                 student.setSchoolId(user1.getSchoolId());
                 student.setTerm(1);
                 if (this.studentService.findStudentByNumberAndSchool(student.getStudentNumber(), user1.getSchoolId())==null) {
-                    this.studentService.addStudent(student);
+//                    this.studentService.addStudent(student);
+                    studentSQLOption.createRecord(student);
                     Semester semester = new Semester();
                     semester.setSudentId(student.getId());
                     semester.setClassesId(student.getClassesId());

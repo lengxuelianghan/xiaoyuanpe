@@ -6,9 +6,11 @@ import com.xiaoyuanpe.pojo.ActivityEntry;
 import com.xiaoyuanpe.pojo.Page;
 import com.xiaoyuanpe.units.Pager;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ActivityService {
 
     int addActivity(Activity activity);
