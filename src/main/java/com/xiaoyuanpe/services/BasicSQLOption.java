@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public interface BasicSQLOption<K,V> {
 
-    Integer createRecord(V data);
+    void createRecord(V data);
 
     Void updateRecord(V data);
 

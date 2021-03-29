@@ -1,6 +1,5 @@
 package com.xiaoyuanpe.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaoyuanpe.pojo.*;
 import com.xiaoyuanpe.services.*;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,9 +44,9 @@ public class StudentController {
 
     // 查询当前学期学生成绩
     @RequestMapping("/StudentSportInfo")
-    public ResultBean SearchAll(HttpSession session){
+    public ResultBean<Semester> SearchAll(HttpSession session){
         User user = (User) session.getAttribute("user");
-        ResultBean resultBean = new ResultBean();
+        ResultBean<Semester> resultBean = new ResultBean<Semester>();
         int sid = this.studentService.findStudentByNumber(user.getUserNumber()).getId();
         Student student = this.studentService.findStudentById(sid);
         try {
@@ -71,9 +69,9 @@ public class StudentController {
     }
     //按照班级信息查询
     @RequestMapping("/queryStudentListByClass/{cId}/{ccId}/{num}")
-    public ResultBean queryStudentListByClass(@PathVariable Integer cId, @PathVariable Integer ccId,
-                                              @PathVariable Integer num, HttpSession session){
-        ResultBean resultBean = new ResultBean();
+    public ResultBean<List<Semester>> queryStudentListByClass(@PathVariable Integer cId, @PathVariable Integer ccId,
+                                                              @PathVariable Integer num, HttpSession session){
+        ResultBean<List<Semester>> resultBean = new ResultBean<List<Semester>>();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","classmanager","teacher"));
         if (HasRole.hasOneRole(booleans)) {
@@ -95,8 +93,8 @@ public class StudentController {
     }
     //根据学院查询当前学期成绩
     @RequestMapping("/queryStudentListByCollege/{cId}/{num}")
-    public ResultBean queryStudentListByCollege(@PathVariable Integer cId, @PathVariable Integer num,HttpSession session){
-        ResultBean resultBean = new ResultBean();
+    public ResultBean<List<Semester>> queryStudentListByCollege(@PathVariable Integer cId, @PathVariable Integer num, HttpSession session){
+        ResultBean<List<Semester>> resultBean = new ResultBean<>();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","teacher"));
         if (HasRole.hasOneRole(booleans)) {
@@ -117,8 +115,8 @@ public class StudentController {
     }
     //根据学校查询当前学期信息
     @RequestMapping("/queryStudentListBySchool/{num}")
-    public ResultBean queryStudentListBySchool(@PathVariable Integer num, HttpSession session){
-        ResultBean resultBean = new ResultBean();
+    public ResultBean<List<Semester>> queryStudentListBySchool(@PathVariable Integer num, HttpSession session){
+        ResultBean<List<Semester>> resultBean = new ResultBean<List<Semester>>();
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
         if (HasRole.hasOneRole(booleans)) {
@@ -149,7 +147,7 @@ public class StudentController {
                 student.setSchoolId(user1.getSchoolId());
                 student.setTerm(1);
                 if (this.studentService.findStudentByNumberAndSchool(student.getStudentNumber(), user1.getSchoolId())==null) {
-//                    this.studentService.addStudent(student);
+                    this.studentService.addStudent(student);
                     studentSQLOption.createRecord(student);
                     Semester semester = new Semester();
                     semester.setSudentId(student.getId());
@@ -213,8 +211,8 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/queryStudentInfoBySchool/{columnName}/{searchContent}", method = RequestMethod.POST)
-    public ResultBean queryStudentInfoBySchool(@RequestBody Page page, @PathVariable String columnName,
-                                               @PathVariable String searchContent, HttpSession session){
+    public ResultBean<PageInfo<Student>> queryStudentInfoBySchool(@RequestBody Page page, @PathVariable String columnName,
+                                                                  @PathVariable String searchContent, HttpSession session){
         Integer searchContentToInt = 0;
         int label = 0;
         if (columnName.equals("schoolId")||columnName.equals("collegeId")||columnName.equals("classesId")||
@@ -225,7 +223,7 @@ public class StudentController {
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
-        ResultBean resultBean = new ResultBean();
+        ResultBean<PageInfo<Student>> resultBean = new ResultBean<PageInfo<Student>>();
         if (HasRole.hasOneRole(booleans)) {
             try {
                 columnName = Utils.camelToUnderline(columnName);
@@ -247,11 +245,11 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/queryStudentInfoBySchool", method = RequestMethod.POST)
-    public ResultBean queryStudentInfoBySchool(@RequestBody Page page, HttpSession session){
+    public ResultBean<PageInfo<Student>> queryStudentInfoBySchool(@RequestBody Page page, HttpSession session){
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
-        ResultBean resultBean = new ResultBean();
+        ResultBean<PageInfo<Student>> resultBean = new ResultBean<>();
         if (HasRole.hasOneRole(booleans)) {
             try {
                 resultBean.setData(this.studentService.findStudentBySchoolPure(user.getSchoolId(), page));
@@ -269,11 +267,11 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/queryStudentInfoByCollege", method = RequestMethod.POST)
-    public ResultBean queryStudentInfoByCollege(@RequestBody Page page, HttpSession session){
+    public ResultBean<PageInfo<Student>> queryStudentInfoByCollege(@RequestBody Page page, HttpSession session){
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager"));
-        ResultBean resultBean = new ResultBean();
+        ResultBean<PageInfo<Student>> resultBean = new ResultBean<>();
         Student student1 = this.studentService.findStudentByNumber(user.getUserNumber());
         if (HasRole.hasOneRole(booleans)) {
             try {
@@ -292,8 +290,8 @@ public class StudentController {
     }
     // 查询本学院所有班级信息
     @RequestMapping(value = "/queryStudentInfoByClass",method = RequestMethod.POST)
-    public ResultBean queryStudentInfoByClass(@RequestBody Page page, HttpSession session){
-        ResultBean resultBean = new ResultBean();
+    public ResultBean<PageInfo<Student>> queryStudentInfoByClass(@RequestBody Page page, HttpSession session){
+        ResultBean<PageInfo<Student>> resultBean = new ResultBean<PageInfo<Student>>();
         User user = (User) session.getAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         boolean[] booleans = subject.hasRoles(Arrays.asList("schoolmanager","supermanager","classmanager","teacher"));

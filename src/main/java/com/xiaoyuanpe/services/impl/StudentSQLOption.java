@@ -22,8 +22,8 @@ public class StudentSQLOption implements BasicSQLOption<Integer, Student> {
     private StudentMapper studentMapper;
 
     @Override
-    public Integer createRecord(Student data) {
-        return studentMapper.insert(data);
+    public void createRecord(Student data) {
+        studentMapper.insert(data);
     }
 
     @Override

@@ -2,9 +2,7 @@ package com.xiaoyuanpe.controller;
 
 import com.xiaoyuanpe.pojo.Sportvenue;
 import com.xiaoyuanpe.pojo.User;
-import com.xiaoyuanpe.pojo.Venue;
 import com.xiaoyuanpe.services.SportVenueService;
-import com.xiaoyuanpe.services.VenueService;
 import com.xiaoyuanpe.units.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
@@ -112,8 +110,8 @@ public class SportVenueController {
         return resultBean;
     }
     @RequestMapping(value = "/querySportVenueById/{id}")
-    public ResultBean querySportVenueById(@PathVariable Integer id){
-        ResultBean resultBean = new ResultBean();
+    public ResultBean<Sportvenue> querySportVenueById(@PathVariable Integer id){
+        ResultBean<Sportvenue> resultBean = new ResultBean<>();
         try {
             resultBean.setData(this.sportVenueService.findSportvenueById(id));
             resultBean.setCode(0);
@@ -124,8 +122,8 @@ public class SportVenueController {
         return resultBean;
     }
     @RequestMapping(value = "/querySportVenueAll")
-    public ResultBean querySportVenueAll(){
-        ResultBean resultBean = new ResultBean();
+    public ResultBean<List<Sportvenue>> querySportVenueAll(){
+        ResultBean<List<Sportvenue>> resultBean = new ResultBean<List<Sportvenue>>();
         try {
             resultBean.setData(this.sportVenueService.findSportvenueAll());
             resultBean.setCode(0);

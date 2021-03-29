@@ -24,23 +24,23 @@ public class DownloadController {
         return upload.getAbsolutePath();
     }
 
-    @RequestMapping(value = "/downloadExcelModel/{num}")
-    public void downloadExcelModel(@PathVariable Integer num, HttpServletResponse response) throws UnsupportedEncodingException {
+    @RequestMapping(value = "/downloadExcelModel/{type}")
+    public void downloadExcelModel(@PathVariable String type, HttpServletResponse response) throws UnsupportedEncodingException {
         String fileName = null;
         String newFileName= null;
-        if (num==1) {
+        if (type.equals("student")) {
             fileName = getUploadPath() + "/学生模板" + ".xls";
             newFileName = "学生模板.xls";
         }
-        else if(num==2) {
+        else if(type.equals("class")) {
             fileName = getUploadPath() + "/班级模板" + ".xls";
             newFileName = "班级模板.xls";
         }
-        else if(num==3) {
+        else if(type.equals("college")) {
             fileName = getUploadPath() + "/学院模板" + ".xls";
             newFileName = "学院模板.xls";
         }
-        else {
+        else if (type.equals("standard")) {
             fileName = getUploadPath() + "/模板" + ".xls";
             newFileName = "模板.xls";
         }
