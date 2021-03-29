@@ -27,7 +27,7 @@ public class DownloadController {
     @RequestMapping(value = "/downloadFile/{type}")
     public void downloadExcelModel(@PathVariable String type, HttpServletResponse response) throws IOException {
         String fileName = "";
-        String newFileName= null;
+        String newFileName = null;
         switch (type) {
             case "student":
                 fileName = getUploadPath() + "/学生模板" + ".xls";
@@ -52,10 +52,13 @@ public class DownloadController {
         FileInputStream inputStream = new FileInputStream(file);
         BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
         byte[] buffer = new byte[4096];
+        int read = bufferedInputStream.read(buffer);
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(response.getOutputStream());
         int offset = 0;
-        while (inputStream.read(buffer, offset, buffer.length) > -1) {
-            bufferedOutputStream.write(buffer,0,buffer.length);
+        while (read > -1) {
+            bufferedOutputStream.write(buffer, 0, buffer.length);
+            bufferedOutputStream.flush();
+            read = bufferedInputStream.read(buffer);
         }
         bufferedInputStream.close();
         bufferedOutputStream.close();
