@@ -27,7 +27,7 @@ public class DownloadController {
     @RequestMapping(value = "/downloadExcelModel/{type}")
     public void downloadExcelModel(@PathVariable String type, HttpServletResponse response) throws IOException {
         String fileName = "";
-        String newFileName= null;
+        String newFileName= "";
         switch (type) {
             case "student":
                 fileName = getUploadPath() + "/学生模板" + ".xls";
