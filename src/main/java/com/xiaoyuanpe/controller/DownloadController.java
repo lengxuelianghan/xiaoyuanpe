@@ -24,7 +24,7 @@ public class DownloadController {
         return upload.getAbsolutePath();
     }
 
-    @RequestMapping(value = "/downloadFile/{type}")
+    @RequestMapping(value = "/downloadExcelModel/{type}")
     public void downloadExcelModel(@PathVariable String type, HttpServletResponse response) throws IOException {
         String fileName = "";
         String newFileName= null;
@@ -47,9 +47,9 @@ public class DownloadController {
                 break;
         }
         /// 测试前端选择另存为路径
-        response.setContentType("application/force-download");
+//        response.setContentType("application/force-download");
 //        response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
-//        response.setContentType("application/octet-stream;charset=UTF-8");
+        response.setContentType("application/octet-stream;charset=UTF-8");
         response.addHeader("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(fileName, "UTF-8"));
         File file = new File(fileName);
         FileInputStream fis = new FileInputStream(file);
