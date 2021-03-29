@@ -27,7 +27,7 @@ public class DownloadController {
     @RequestMapping(value = "/downloadExcelModel/{type}")
     public void downloadExcelModel(@PathVariable String type, HttpServletResponse response) throws IOException {
         String fileName = "";
-        String newFileName= "";
+        String newFileName = "";
         switch (type) {
             case "student":
                 fileName = getUploadPath() + "/学生模板" + ".xls";
@@ -49,18 +49,20 @@ public class DownloadController {
         response.setContentType("application/octet-stream;charset=UTF-8");
         response.addHeader("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(newFileName, "UTF-8"));
         File file = new File(fileName);
-        FileInputStream fis = new FileInputStream(file);
-        BufferedInputStream bis = new BufferedInputStream(fis);
-        byte[] buffer = new byte[4096];
-        int read = bis.read(buffer);
-        BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
-        int offset = 0;
-        while (read > -1) {
-            bos.write(buffer,0,buffer.length);
-            bos.flush();
-            read = bis.read(buffer);
+        if (file.exists()) {
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            byte[] buffer = new byte[4096];
+            int read = bis.read(buffer);
+            BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+            int offset = 0;
+            while (read > -1) {
+                bos.write(buffer, 0, buffer.length);
+                bos.flush();
+                read = bis.read(buffer);
+            }
+            bis.close();
+            bos.close();
         }
-        bis.close();
-        bos.close();
     }
 }
