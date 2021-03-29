@@ -24,28 +24,33 @@ public class DownloadController {
         return upload.getAbsolutePath();
     }
 
-    @RequestMapping(value = "/downloadExcelModel/{type}")
+    @RequestMapping(value = "/downloadFile/{type}")
     public void downloadExcelModel(@PathVariable String type, HttpServletResponse response) throws UnsupportedEncodingException {
-        String fileName = null;
+        String fileName = "";
         String newFileName= null;
-        if (type.equals("student")) {
-            fileName = getUploadPath() + "/学生模板" + ".xls";
-            newFileName = "学生模板.xls";
+        switch (type) {
+            case "student":
+                fileName = getUploadPath() + "/学生模板" + ".xls";
+                newFileName = "学生模板.xls";
+                break;
+            case "class":
+                fileName = getUploadPath() + "/班级模板" + ".xls";
+                newFileName = "班级模板.xls";
+                break;
+            case "college":
+                fileName = getUploadPath() + "/学院模板" + ".xls";
+                newFileName = "学院模板.xls";
+                break;
+            case "standard":
+                fileName = getUploadPath() + "/模板" + ".xls";
+                newFileName = "模板.xls";
+                break;
         }
-        else if(type.equals("class")) {
-            fileName = getUploadPath() + "/班级模板" + ".xls";
-            newFileName = "班级模板.xls";
-        }
-        else if(type.equals("college")) {
-            fileName = getUploadPath() + "/学院模板" + ".xls";
-            newFileName = "学院模板.xls";
-        }
-        else if (type.equals("standard")) {
-            fileName = getUploadPath() + "/模板" + ".xls";
-            newFileName = "模板.xls";
-        }
-        response.setContentType("application/force-download");
-        response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
+        /// 测试前端选择另存为路径
+//        response.setContentType("application/force-download");
+//        response.addHeader("Content-Disposition", "attachment; filename=" + new String(newFileName.getBytes("utf-8"),"iso-8859-1"));
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        response.addHeader("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(fileName, "UTF-8"));
 
 //        response.setContentType("application/force-download");
         byte[] buff = new byte[1024];
