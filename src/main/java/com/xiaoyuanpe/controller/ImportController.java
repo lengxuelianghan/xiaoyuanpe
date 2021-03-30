@@ -49,9 +49,9 @@ public class ImportController  {
         return mapList;
     }
 
-    private Map<String,Integer> mapClass(){
+    private Map<String,Integer> mapClass(Integer schoolId){
         Map<String,Integer> map = new HashMap<>();
-        List<Classes> classes = this.classesService.findClassesAll();
+        List<Classes> classes = this.classesService.findClassesBySchool(schoolId);
         for (Classes classes1:classes){
             map.put(classes1.getClassName(),classes1.getId());
         }
@@ -76,7 +76,7 @@ public class ImportController  {
             List<Map> mapList = this.mapCollege(user.getSchoolId());
             Map<String, Integer> mapCollege = mapList.get(0);
 
-            Map<String, Integer> mapClasses = this.mapClass();
+            Map<String, Integer> mapClasses = this.mapClass(user.getSchoolId());
             ReadExcel readExcel = new ReadExcel();
             List<User> users = new ArrayList<>();
             int j=0;

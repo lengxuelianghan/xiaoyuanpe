@@ -29,6 +29,11 @@ public class ClassesServiceImpl implements ClassesService {
     }
 
     @Override
+    public List<Classes> findClassesBySchool(Integer id) {
+        return this.classesMapper.selectBySchool(id);
+    }
+
+    @Override
     public Classes findClassesById(Integer id) {
         return this.classesMapper.selectByPrimaryKey(id);
     }

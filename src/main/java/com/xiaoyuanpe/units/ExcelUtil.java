@@ -61,7 +61,8 @@ public class ExcelUtil {
                     }
                 }
             }
-        } else if (wb instanceof XSSFWorkbook) {
+        }
+        else if (wb instanceof XSSFWorkbook) {
             XSSFWorkbook xs = (XSSFWorkbook) wb;
             for (int s = 0; s < xs.getNumberOfSheets(); s++) {
                 XSSFSheet sheet = xs.getSheetAt(s);
@@ -127,6 +128,9 @@ public class ExcelUtil {
                 break;
             }
         }
+
+
+
         try {
             wb.close();
         } catch (IOException e) {
@@ -135,29 +139,7 @@ public class ExcelUtil {
         System.out.println("到这里了");
         return BOM;
     }
-    public static String getCellValue(Cell cell) {
-        String value = null;
-        if (cell != null) {
-            switch (cell.getCellTypeEnum()) {
-                case FORMULA:
-                    try {
-                        String value1 = String.valueOf(cell.getNumericCellValue());
-                        value =  String.format("%.2f", Double.valueOf(value1));
-                    } catch (IllegalStateException e) {
-                        value = String.valueOf(cell.getRichStringCellValue());
-                    }
-                    break;
-                case NUMERIC:
-                    value = String.valueOf(cell.getNumericCellValue());
-                    break;
-                case STRING:
-                    value = String.valueOf(cell.getRichStringCellValue());
-                    break;
-            }
-        }
 
-        return value;
-    }
     public static String getCell(Cell cell) {
         String cellValue = null;
         HSSFDataFormatter hSSFDataFormatter = new HSSFDataFormatter();

@@ -11,6 +11,8 @@ public interface ClassesService {
 
     List<Classes> findClassesAll();
 
+    List<Classes> findClassesBySchool(Integer id);
+
     Classes findClassesById(Integer id);
 
     void ModifyClasses(Classes classes);
