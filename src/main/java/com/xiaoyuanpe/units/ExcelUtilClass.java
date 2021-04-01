@@ -40,10 +40,10 @@ public class ExcelUtilClass {
                             continue;
                         }
                         Classes classes1 = new Classes();
-                        classes1.setClassNumber(ExcelUtilClass.getCell(sheet.getRow(j).getCell(0)));
-                        classes1.setClassName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(2)));
-                        classes1.setCollegeName(ExcelUtilClass.getCell(sheet.getRow(j).getCell(1)));
-                        classes1.setTermYear(Integer.valueOf(ExcelUtilClass.getCell(sheet.getRow(j).getCell(3))));
+                        classes1.setClassNumber(ExcelUtilClass.getCellValue(sheet.getRow(j).getCell(0)));
+                        classes1.setClassName(ExcelUtilClass.getCellValue(sheet.getRow(j).getCell(2)));
+                        classes1.setCollegeName(ExcelUtilClass.getCellValue(sheet.getRow(j).getCell(1)));
+                        classes1.setTermYear(Double.valueOf(ExcelUtilClass.getCellValue(sheet.getRow(j).getCell(3))).intValue());
                         BOM.add(classes1);
                     }
                 }
@@ -71,7 +71,7 @@ public class ExcelUtilClass {
                                 classes.setClassName(cell.toString());
                                 break;
                             case 3:
-                                classes.setTermYear(Integer.valueOf(cell.toString()));
+                                classes.setTermYear(Double.valueOf(cell.toString()).intValue());
                                 break;
                             default:
                                 // TODO 数据格式有误

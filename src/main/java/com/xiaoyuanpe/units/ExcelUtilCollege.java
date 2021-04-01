@@ -40,7 +40,7 @@ public class ExcelUtilCollege {
                             continue;
                         }
                         College college1 = new College();
-                        college1.setCollegeNumber(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(0)));
+                        college1.setCollegeNumber(ExcelUtilCollege.getCellValue(sheet.getRow(j).getCell(0)));
                         college1.setCollegeName(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(1)));
                         college1.setScore(Integer.parseInt(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(2))));
                         college1.setCollegeInfo(ExcelUtilCollege.getCell(sheet.getRow(j).getCell(3)));
