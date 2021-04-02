@@ -217,7 +217,7 @@ public class ImportController  {
         }catch (Exception e){
             System.out.println(e.getMessage());
             resultBean.setCode(1);
-            resultBean.setMsg("导入失败");
+            resultBean.setMsg(e.getMessage());
         }
         return resultBean;
     }
