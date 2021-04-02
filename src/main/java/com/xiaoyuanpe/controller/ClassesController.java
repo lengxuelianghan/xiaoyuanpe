@@ -93,7 +93,7 @@ public class ClassesController {
         return resultBean;
     }
 
-    @RequestMapping(value = "/queryClassesListByCollege/{collegeId}", method = RequestMethod.POST)
+    @PostMapping("/queryClassesListByCollege/{collegeId}")
     public ResultBean queryClassesListByList(@RequestBody Page page, @PathVariable Integer collegeId, HttpServletRequest session){
         User user = (User) session.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
@@ -109,6 +109,20 @@ public class ClassesController {
         return resultBean;
     }
 
+    @GetMapping("/queryClassesListByCollege/{collegeId}")
+    public ResultBean queryClassesListByList(HttpServletRequest session, @PathVariable Integer collegeId){
+        User user = (User) session.getSession().getAttribute("user");
+        ResultBean resultBean = new ResultBean();
+        try {
+            resultBean.setData(this.classesService.findClassesByCollege(collegeId));
+            resultBean.setCode(0);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            resultBean.setCode(1);
+            resultBean.setMsg("班级列表信息查询失败");
+        }
+        return resultBean;
+    }
 
     @RequestMapping(value = "/queryClassesListByCollege")
     public ResultBean queryClassesListByList(HttpServletRequest session){
