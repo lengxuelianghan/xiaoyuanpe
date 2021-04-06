@@ -3,6 +3,7 @@ package com.xiaoyuanpe.units;
 import com.xiaoyuanpe.pojo.Student;
 
 import org.apache.poi.hssf.usermodel.HSSFDataFormatter;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -141,9 +142,14 @@ public class ExcelUtil {
     }
 
     public static String getCell(Cell cell) {
-        String cellValue = null;
-        HSSFDataFormatter hSSFDataFormatter = new HSSFDataFormatter();
-        cellValue = hSSFDataFormatter.formatCellValue(cell); // 使用EXCEL原来格式的方式取得值
-        return cellValue;
+        if (cell.getCellType() == cell.CELL_TYPE_NUMERIC) {
+            //Check if a cell contains a date
+            if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                Date d = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
+                return new SimpleDateFormat("yyyy-MM-dd").format(d);
+            }
+        }
+        HSSFDataFormatter dataFormatter = new HSSFDataFormatter();
+        return dataFormatter.formatCellValue(cell); // 使用EXCEL原来格式的方式取得值
     }
 }

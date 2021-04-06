@@ -21,7 +21,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/importFile")
-public class ImportController  {
+public class ImportController {
     @Autowired
     private UserService userService;
     @Autowired
@@ -35,38 +35,39 @@ public class ImportController  {
     @Autowired
     private ClassesService classesService;
 
-    private List<Map> mapCollege(Integer schoolId){
+    private List<Map> mapCollege(Integer schoolId) {
         List<Map> mapList = new ArrayList<>();
-        Map<String,Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap<>();
         List<College> collegeAll = this.collegeService.findCollegeBySchool(schoolId);
         Map<Integer, Integer> map1 = new HashMap<>();
-        for (College college:collegeAll){
-            map.put(college.getCollegeName().trim(),college.getId());
-            map1.put(college.getId(),college.getSchoolId());
+        for (College college : collegeAll) {
+            map.put(college.getCollegeName().trim(), college.getId());
+            map1.put(college.getId(), college.getSchoolId());
         }
         mapList.add(map);
         mapList.add(map1);
         return mapList;
     }
 
-    private Map<String,Integer> mapClass(Integer schoolId){
-        Map<String,Integer> map = new HashMap<>();
+    private Map<String, Integer> mapClass(Integer schoolId) {
+        Map<String, Integer> map = new HashMap<>();
         List<Classes> classes = this.classesService.findClassesBySchool(schoolId);
-        for (Classes classes1:classes){
-            map.put(classes1.getClassName(),classes1.getId());
+        for (Classes classes1 : classes) {
+            map.put(classes1.getClassName(), classes1.getId());
         }
         return map;
     }
+
     //导入学生
-    @RequestMapping(value = "/readExcel", method = RequestMethod.POST)
-    public ResultBean ImportFile(@RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest req){
+    @PostMapping("/readExcel")
+    public ResultBean ImportFile(@RequestParam("excelFile") MultipartFile excelFile, HttpServletRequest req) {
         User user = (User) req.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         String fileName = "";
         String filepath = getUploadPath();
         try {
-            if (excelFile != null){
-                String filename=excelFile.getOriginalFilename();
+            if (excelFile != null) {
+                String filename = excelFile.getOriginalFilename();
                 fileName = getFileName(filename);
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(filepath + File.separator + fileName)));
@@ -79,14 +80,14 @@ public class ImportController  {
             Map<String, Integer> mapClasses = this.mapClass(user.getSchoolId());
             ReadExcel readExcel = new ReadExcel();
             List<User> users = new ArrayList<>();
-            int j=0;
+            int j = 0;
             boolean flag = true;
             List<Student> studentInfos = readExcel.importExcel(filepath + File.separator + fileName);
-            System.out.println("读取文件结束"+(studentInfos==null?"0":studentInfos.size()));
+            System.out.println("读取文件结束" + (studentInfos == null ? "0" : studentInfos.size()));
             for (Student studentInfo : studentInfos) {
                 j++;
-                resultBean.setData(studentInfo.getStudentName()+","
-                        +studentInfo.getStudentNumber());
+                resultBean.setData(studentInfo.getStudentName() + ","
+                        + studentInfo.getStudentNumber());
                 User user1 = new User();
                 user1.setIdentity("学生");
                 user1.setUserNumber(studentInfo.getStudentNumber());
@@ -107,7 +108,7 @@ public class ImportController  {
                 else {
                     resultBean.setCode(1);
                     flag = false;
-                    resultBean.setMsg("第"+j+"条数据,"+studentInfo.getCollegeName()+"错误");
+                    resultBean.setMsg("第" + j + "条数据," + studentInfo.getCollegeName() + "错误");
                     break;
                 }
                 if (mapClasses.containsKey(studentInfo.getClassesName()))
@@ -115,16 +116,16 @@ public class ImportController  {
                 else {
                     resultBean.setCode(1);
                     flag = false;
-                    resultBean.setMsg("第"+j+"条数据,"+studentInfo.getClassesName()+"错误");
+                    resultBean.setMsg("第" + j + "条数据," + studentInfo.getClassesName() + "错误");
                     break;
                 }
                 resultBean.setData("Student结束");
             }
-            if (flag){
+            if (flag) {
                 this.studentService.addBatch(studentInfos);
                 this.userService.addBatch(users);
                 List<Semester> semesters = new ArrayList<>();
-                for (Student student: studentInfos){
+                for (Student student : studentInfos) {
                     Semester semester = new Semester();
                     semester.setSudentId(student.getId());
                     semester.setClassesId(student.getClassesId());
@@ -143,7 +144,7 @@ public class ImportController  {
                 this.semesterService.addBatch(semesters);
                 resultBean.setCode(0);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             resultBean.setCode(1);
             resultBean.setMsg("导入失败" + e.getMessage());
@@ -176,15 +177,15 @@ public class ImportController  {
     }
 
     @RequestMapping(value = "/ImportFileClass", method = RequestMethod.POST)
-    public ResultBean ImportFileClass(@RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest request){
+    public ResultBean ImportFileClass(@RequestParam("excelFile") MultipartFile excelFile, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         String fileName = "";
         String filepath = getUploadPath();
         try {
-            if (excelFile != null){
-                String filename=excelFile.getOriginalFilename();
-                fileName = "class_"+getFileName(filename);
+            if (excelFile != null) {
+                String filename = excelFile.getOriginalFilename();
+                fileName = "class_" + getFileName(filename);
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(filepath + File.separator + fileName)));
                 System.out.println(filepath + File.separator + fileName);
@@ -193,20 +194,19 @@ public class ImportController  {
             }
             ReadExcelClass readExcel = new ReadExcelClass();
             List<Classes> classesList = readExcel.importExcel(filepath + File.separator + fileName);
-            Map<String,Integer> mapColleges = mapCollege(user.getSchoolId()).get(0);
-            boolean flag =true;
+            Map<String, Integer> mapColleges = mapCollege(user.getSchoolId()).get(0);
+            boolean flag = true;
 
-            int j=0;
+            int j = 0;
             for (Classes classes : classesList) {
                 j++;
-                if(mapColleges.containsKey(classes.getCollegeName().trim())){
+                if (mapColleges.containsKey(classes.getCollegeName().trim())) {
                     classes.setCollegeId(mapColleges.get(classes.getCollegeName().trim()));
                     classes.setSchoolId(user.getSchoolId());
-                }
-                else {
+                } else {
                     flag = false;
                     resultBean.setCode(1);
-                    resultBean.setMsg("第"+j+"条数据的学院名称有误"+classes.getCollegeName());
+                    resultBean.setMsg("第" + j + "条数据的学院名称有误" + classes.getCollegeName());
                     break;
                 }
             }
@@ -214,7 +214,7 @@ public class ImportController  {
                 this.classesService.addBatch(classesList);
                 resultBean.setCode(0);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             resultBean.setCode(1);
             resultBean.setMsg(e.getMessage());
@@ -223,15 +223,15 @@ public class ImportController  {
     }
 
     @RequestMapping(value = "/ImportFileCollege", method = RequestMethod.POST)
-    public ResultBean ImportFileCollege(@RequestParam("excelFile")MultipartFile excelFile, HttpServletRequest request){
+    public ResultBean ImportFileCollege(@RequestParam("excelFile") MultipartFile excelFile, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         ResultBean resultBean = new ResultBean();
         String fileName = "";
         String filepath = getUploadPath();
         try {
-            if (excelFile != null){
-                String filename=excelFile.getOriginalFilename();
-                fileName = "college_"+getFileName(filename);
+            if (excelFile != null) {
+                String filename = excelFile.getOriginalFilename();
+                fileName = "college_" + getFileName(filename);
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(filepath + File.separator + fileName)));
                 System.out.println(filepath + File.separator + fileName);
@@ -241,23 +241,22 @@ public class ImportController  {
             }
             ReadExcelCollege readExcel = new ReadExcelCollege();
             List<College> collegeList = readExcel.importExcel(filepath + File.separator + fileName);
-            boolean flag =true;
+            boolean flag = true;
             List<College> colleges = this.collegeService.findCollegeBySchool(user.getSchoolId());
             Set<String> collegeName = new HashSet<>();
-            for (College college:colleges){
+            for (College college : colleges) {
                 collegeName.add(college.getCollegeName());
             }
 
-            int j=0;
+            int j = 0;
             for (College college : collegeList) {
                 j++;
-                if(!collegeName.contains(college.getCollegeName())){
+                if (!collegeName.contains(college.getCollegeName())) {
                     college.setSchoolId(user.getSchoolId());
-                }
-                else {
+                } else {
                     flag = false;
                     resultBean.setCode(1);
-                    resultBean.setMsg("第"+j+"条数据的学院名称重复");
+                    resultBean.setMsg("第" + j + "条数据的学院名称重复");
                     break;
                 }
             }
@@ -265,10 +264,10 @@ public class ImportController  {
                 this.collegeService.addBatch(collegeList);
                 resultBean.setCode(0);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             resultBean.setCode(1);
-            resultBean.setMsg("导入失败"+e.getMessage());
+            resultBean.setMsg("导入失败" + e.getMessage());
         }
         return resultBean;
     }
