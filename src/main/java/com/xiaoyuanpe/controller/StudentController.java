@@ -147,7 +147,7 @@ public class StudentController {
                 student.setSchoolId(user1.getSchoolId());
                 student.setTerm(1);
                 if (this.studentService.findStudentByNumberAndSchool(student.getStudentNumber(), user1.getSchoolId())==null) {
-                    this.studentService.addStudent(student);
+//                    this.studentService.addStudent(student);
                     studentSQLOption.createRecord(student);
                     Semester semester = new Semester();
                     semester.setSudentId(student.getId());
